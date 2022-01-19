@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="200.0" prefWidth="709.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadProdutoController">
+   <children>
+      <ImageView fx:id="imageview_fundo" fitHeight="500.0" fitWidth="730.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Fundo.png" />
+         </image>
+      </ImageView>
+      <GridPane layoutX="80.0" layoutY="72.0" prefHeight="247.0" prefWidth="582.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="252.0" minWidth="10.0" prefWidth="116.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="494.0" minWidth="10.0" prefWidth="494.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="lbl_nome_produto" text="Nome do Produto" />
+            <Label fx:id="lbl_descricao" text="Descrição " GridPane.rowIndex="1" />
+            <Label fx:id="lbl_preco_unitario" text="Preço unitário  " GridPane.rowIndex="2" />
+            <Label fx:id="lbl_quantidade" text="Quantidade" GridPane.rowIndex="3" />
+            <TextField fx:id="tf_preco_unitario" prefHeight="25.0" prefWidth="464.0" style="-fx-background-color: #A6F9F3;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="tf_descricao" prefHeight="25.0" prefWidth="473.0" style="-fx-background-color: #4CD6D0;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="tf_quantidade" style="-fx-background-color: #4CD6D0;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="tf_nome_produto" style="-fx-background-color: #A6F9F3;" GridPane.columnIndex="1" />
+            <Label fx:id="lbl_unidade" text="Unidade" GridPane.rowIndex="4" />
+            <Label fx:id="lbl_categoria" text="Categoria" GridPane.rowIndex="5" />
+            <ComboBox fx:id="combo_box_unidade" prefHeight="25.0" prefWidth="185.0" style="-fx-background-color: #A6F9F3;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ComboBox fx:id="combo_box_categoria" prefHeight="21.0" prefWidth="185.0" style="-fx-background-color: #4CD6D0;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+         </children>
+      </GridPane>
+      <Button fx:id="btn_salvar" layoutX="182.0" layoutY="395.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" style="-fx-background-color: #4CD6D0;" text="Salvar" />
+      <Button fx:id="btn_cancelar" layoutX="333.0" layoutY="395.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" style="-fx-background-color: #4CD6D0;" text="Cancelar" />
+      <Button fx:id="btn_ver_produtos_cadastrados" layoutX="484.0" layoutY="395.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="162.0" style="-fx-background-color: #4CD6D0;" text="Ver Produtos Cadastrados" />
+      <ImageView fx:id="imageViewTrickGif" fitHeight="46.0" fitWidth="151.0" layoutX="582.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/TrickGif.gif" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
