@@ -36,23 +36,18 @@
             <Label fx:id="lbl_descricao" text="Descrição " GridPane.rowIndex="1" />
             <Label fx:id="lbl_preco_unitario" text="Preço unitário  " GridPane.rowIndex="2" />
             <Label fx:id="lbl_quantidade" text="Quantidade" GridPane.rowIndex="3" />
-            <TextField fx:id="tf_preco_unitario" prefHeight="25.0" prefWidth="464.0" style="-fx-background-color: #A6F9F3;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="tf_descricao" prefHeight="25.0" prefWidth="473.0" style="-fx-background-color: #4CD6D0;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="tf_quantidade" style="-fx-background-color: #4CD6D0;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="tf_nome_produto" style="-fx-background-color: #A6F9F3;" GridPane.columnIndex="1" />
+            <TextField fx:id="tf_preco_unitario" prefHeight="25.0" prefWidth="464.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="tf_descricao" prefHeight="25.0" prefWidth="473.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="tf_quantidade" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="tf_nome_produto" GridPane.columnIndex="1" />
             <Label fx:id="lbl_unidade" text="Unidade" GridPane.rowIndex="4" />
             <Label fx:id="lbl_categoria" text="Categoria" GridPane.rowIndex="5" />
-            <ComboBox fx:id="combo_box_unidade" prefHeight="25.0" prefWidth="185.0" style="-fx-background-color: #A6F9F3;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <ComboBox fx:id="combo_box_categoria" prefHeight="21.0" prefWidth="185.0" style="-fx-background-color: #4CD6D0;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ComboBox fx:id="combo_box_unidade" prefHeight="25.0" prefWidth="185.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ComboBox fx:id="combo_box_categoria" prefHeight="21.0" prefWidth="185.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
-      <Button fx:id="btn_salvar" layoutX="182.0" layoutY="395.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" style="-fx-background-color: #4CD6D0;" text="Salvar" />
-      <Button fx:id="btn_cancelar" layoutX="333.0" layoutY="395.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" style="-fx-background-color: #4CD6D0;" text="Cancelar" />
-      <Button fx:id="btn_ver_produtos_cadastrados" layoutX="484.0" layoutY="395.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="162.0" style="-fx-background-color: #4CD6D0;" text="Ver Produtos Cadastrados" />
-      <ImageView fx:id="imageViewTrickGif" fitHeight="46.0" fitWidth="151.0" layoutX="582.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/TrickGif.gif" />
-         </image>
-      </ImageView>
+      <Button fx:id="btn_salvar" layoutX="182.0" layoutY="395.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Salvar" />
+      <Button fx:id="btn_cancelar" layoutX="333.0" layoutY="395.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Cancelar" />
+      <Button fx:id="btn_ver_produtos_cadastrados" layoutX="484.0" layoutY="395.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="162.0" text="Ver Produtos Cadastrados" />
    </children>
 </AnchorPane>

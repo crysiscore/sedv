@@ -3,6 +3,7 @@
 /*    */ import java.sql.Connection;
 /*    */ import java.sql.DriverManager;
 /*    */ import java.sql.SQLException;
+import java.util.List;
 /*    */ 
 /*    */ 
 /*    */ 
@@ -64,13 +65,56 @@
 /*    */   }
 /*    */ 
 /*    */ 
-/*    */   
+/*    */   ReadWriteTextFile rwTextFile = new ReadWriteTextFile();
+
+    final static String ficheiro_gravado = "C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sys-vendas\\src\\jdbc\\credenciaisConn.txt";
+    // definir uma lista de frutas
+    List <String> credenciais;
+
+    
+    List <String> credenciaisConn;
+    /**
+     * Creates new form Frutinha
+     */
+              /*    */ 
+    
+      private List<String> LerDadosDeConexao(final String loction) {
+
+         try{
+            credenciaisConn = rwTextFile.readSmallTextFile(ficheiro_gravado);
+            
+            
+         } catch (Exception e) {
+            System.out.println("Ficheiro nao encontrado");
+         }
+          return credenciaisConn;
+     }
+        
+       
+    
+    
 /*    */   public conexao(String host, String port, String bd, String user, String password) {
 /* 69 */     conexao.host = host;
 /* 70 */     conexao.port = port;
 /* 71 */     conexao.bd = bd;
 /* 72 */     conexao.user = user;
 /* 73 */     conexao.password = password;
+
+           
+/*    */   }
+
+/*    */   public conexao() {
+     // ler o ficheiro
+     // extrair os valore lidos
+             
+/* 69 */          credenciaisConn = LerDadosDeConexao(ficheiro_gravado);
+           // Lipara a textarea
+
+               host = credenciaisConn.get(0).substring(5);
+              port = credenciaisConn.get(1).substring(5);
+                bd = credenciaisConn.get(2).substring(9);
+               user = credenciaisConn.get(3).substring(5);
+               password= credenciaisConn.get(4).substring(9);
 /*    */   }
 /*    */ 
 /*    */ 
@@ -81,7 +125,7 @@
 /*    */   
 /*    */   public static Connection getConnection() throws SQLException, ClassNotFoundException {
 /* 84 */     Class.forName("com.mysql.jdbc.Driver");
-/* 85 */     return DriverManager.getConnection("jdbc:mysql://" + "localhost" + ":" + "3306" + "/" + "mydb", "root", "123456789");
+/* 85 */     return DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + bd , user, password);
 /*    */   }
 /*    */ }
 

@@ -26,7 +26,7 @@
 /*    */   
 /*    */   public UnidadeDao() {
 /*    */     try {
-/* 29 */      conexao conexao = new conexao("localhost", "3306", "mydb", "root", "123456789");
+/* 29 */      conexao conexao = new conexao("host", "port", "db", "user", "password");
 /* 30 */       this.connect = conexao.getConnection();
 /*    */     }
 /* 32 */     catch (SQLException e) {

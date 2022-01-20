@@ -1,0 +1,5 @@
+localhost
+3306
+mydb
+root
+123456789

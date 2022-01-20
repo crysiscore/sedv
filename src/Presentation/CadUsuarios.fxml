@@ -6,15 +6,13 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="500.0" prefWidth="776.0" style="-fx-background-color: #D4EAE9;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadUsuariosController">
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="500.0" prefWidth="776.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadUsuariosController">
    <children>
       <GridPane layoutX="59.0" layoutY="103.0" prefHeight="90.0" prefWidth="379.0">
         <columnConstraints>
@@ -30,17 +28,17 @@
             <Label fx:id="lblNome" text="Nome" />
             <Label fx:id="lblSenha" text="Senha" GridPane.rowIndex="1" />
             <Label fx:id="lblCategoria" text="Categoria" GridPane.rowIndex="2" />
-            <TextField fx:id="tfNome" style="-fx-background-color: #1CADA4;" GridPane.columnIndex="1" />
-            <TextField fx:id="tfSenha" prefHeight="25.0" prefWidth="286.0" style="-fx-background-color: #BAEAE7;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ComboBox fx:id="cmbCategoria" prefWidth="150.0" style="-fx-background-color: #BAEAE7;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="tfNome" GridPane.columnIndex="1" />
+            <TextField fx:id="tfSenha" prefHeight="25.0" prefWidth="286.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cmbCategoria" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Label fx:id="labelCadastroUsuarios" layoutX="59.0" layoutY="32.0" text="Cadastro de Usuários">
+      <Label fx:id="labelCadastroUsuarios" layoutX="59.0" layoutY="32.0" text="Cadastro de Usuários" textFill="#5b5858">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <TableView fx:id="tableViewUsuarios" layoutX="120.0" layoutY="228.0" prefHeight="137.0" prefWidth="586.0" style="-fx-background-color: #1CADA4;">
+      <TableView fx:id="tableViewUsuarios" layoutX="120.0" layoutY="228.0" prefHeight="137.0" prefWidth="586.0" style="-fx-background-color: #B6B9B9 #B6B9B9;">
         <columns>
           <TableColumn fx:id="columnCodFuncionario" prefWidth="102.0" text="Cod_Funcionário" />
           <TableColumn fx:id="columnNomeFunc" prefWidth="143.0" text="Nome" />
@@ -49,14 +47,9 @@
             <TableColumn fx:id="columnEstaAutenticado" prefWidth="119.0" text="Está Autenticado" />
         </columns>
       </TableView>
-      <Button fx:id="btnGuardar" layoutX="119.0" layoutY="422.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #1CADA4;" text="Guardar" />
-      <Button fx:id="btnEditar" layoutX="197.0" layoutY="422.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #BAEAE7;" text="Editar" />
-      <Button fx:id="btnAtualizar" layoutX="273.0" layoutY="422.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #1CADA4;" text="Atualizar" />
-      <Button fx:id="btnCancelar" layoutX="352.0" layoutY="422.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #BAEAE7;" text="Cancelar" />
-      <ImageView fx:id="imageViewUsuarios" fitHeight="62.0" fitWidth="150.0" layoutX="605.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/TrickGif.gif" />
-         </image>
-      </ImageView>
+      <Button fx:id="btnGuardar" layoutX="119.0" layoutY="422.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="Guardar" />
+      <Button fx:id="btnEditar" layoutX="197.0" layoutY="422.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="Editar" />
+      <Button fx:id="btnAtualizar" layoutX="273.0" layoutY="422.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="Atualizar" />
+      <Button fx:id="btnCancelar" layoutX="352.0" layoutY="422.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="Cancelar" />
    </children>
 </AnchorPane>

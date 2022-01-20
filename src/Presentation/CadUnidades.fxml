@@ -5,12 +5,10 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D4EAE9;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadUnidadesController">
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadUnidadesController">
    <children>
       <Label fx:id="labelCadastroUnidades" layoutX="60.0" layoutY="22.0" text="Cadastro de Unidades">
          <font>
@@ -18,21 +16,16 @@
          </font>
       </Label>
       <Label fx:id="lblUnidades" layoutX="60.0" layoutY="75.0" text="Unidades" />
-      <TextField fx:id="tfUnidades" layoutX="120.0" layoutY="71.0" prefHeight="25.0" prefWidth="185.0" style="-fx-background-color: #BAEAE7;" />
-      <TableView fx:id="tableViewUnidades" layoutX="60.0" layoutY="139.0" prefHeight="152.0" prefWidth="348.0" style="-fx-background-color: #1CADA4;">
+      <TextField fx:id="tfUnidades" layoutX="120.0" layoutY="71.0" prefHeight="25.0" prefWidth="185.0" />
+      <TableView fx:id="tableViewUnidades" layoutX="60.0" layoutY="139.0" prefHeight="152.0" prefWidth="348.0" style="-fx-background-color: #B6B9B9 #B6B9B9;">
         <columns>
           <TableColumn fx:id="columnCodigo" prefWidth="174.0" text="Código" />
           <TableColumn fx:id="columnUnidade" prefWidth="173.0" text="Unidade" />
         </columns>
       </TableView>
-      <Button fx:id="btnSalvar" layoutX="62.0" layoutY="334.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #BAEAE7;" text="Salvar" />
-      <Button fx:id="btnEditar" layoutX="139.0" layoutY="334.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #1CADA4;" text="Editar" />
-      <Button fx:id="btnAtualizar" layoutX="216.0" layoutY="334.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #BAEAE7;" text="Atualizar" />
-      <Button fx:id="btnCancelar" layoutX="293.0" layoutY="334.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #1CADA4;" text="Cancelar" />
-      <ImageView fx:id="imageViewTrickGif" fitHeight="44.0" fitWidth="162.0" layoutX="463.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/TrickGif.gif" />
-         </image>
-      </ImageView>
+      <Button fx:id="btnSalvar" layoutX="62.0" layoutY="334.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Salvar" />
+      <Button fx:id="btnEditar" layoutX="139.0" layoutY="334.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Editar" />
+      <Button fx:id="btnAtualizar" layoutX="216.0" layoutY="334.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Atualizar" />
+      <Button fx:id="btnCancelar" layoutX="293.0" layoutY="334.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Cancelar" />
    </children>
 </AnchorPane>
