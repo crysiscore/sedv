@@ -23,7 +23,7 @@
 /*    */   
 /*    */   public CategoriaDAO() {
 /*    */     try {
-/* 26 */       conexao conexao = new conexao("host", "port", "db", "user", "password");
+/* 26 */       conexao conexao = new conexao();
 /* 27 */       this.connect = conexao.getConnection();
 /*    */     }
 /* 29 */     catch (SQLException e) {

@@ -19,7 +19,7 @@
 /*     */   
 /*     */   public UsuarioDAO() {
 /*     */     try {
-/*  22 */       conexao conexao = new conexao("host", "port", "db", "user", "password");
+/*  22 */       conexao conexao = new conexao();
 /*  23 */       this.connect = conexao.getConnection();
 /*     */     }
 /*  25 */     catch (SQLException e) {

@@ -4,6 +4,7 @@
 /*    */ import java.sql.DriverManager;
 /*    */ import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JOptionPane;
 /*    */ 
 /*    */ 
 /*    */ 
@@ -115,6 +116,27 @@ import java.util.List;
                 bd = credenciaisConn.get(2).substring(9);
                user = credenciaisConn.get(3).substring(5);
                password= credenciaisConn.get(4).substring(9);
+               
+                if (host.isEmpty()) {
+/*     */       
+/*  89 */       JOptionPane.showMessageDialog(null, "Nome do servidor em falta!");
+/*     */     }
+/*  92 */     else if (port.isEmpty()) {
+/*     */      JOptionPane.showMessageDialog(null, "Numero da porta em falta");
+/*     */     
+/*     */     }
+/* 102 */     else if (bd.isEmpty()) {
+/*     */        JOptionPane.showMessageDialog(null, "Nome da base de dados em falta!");
+/* 104 */       
+/* 106 */     } else if (user.isEmpty()) {
+/*     */       
+/* 108 */       JOptionPane.showMessageDialog(null, "Nome do User em falta!");
+/*     */     }
+/* 112 */     else if (password.isEmpty()) {
+/*     */       
+/* 114 */       JOptionPane.showMessageDialog(null, "password em falta");
+/* 115 */      
+/*     */     } 
 /*    */   }
 /*    */ 
 /*    */ 
