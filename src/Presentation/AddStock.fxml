@@ -20,14 +20,14 @@
             <Image url="@../images/Fundo.png" />
          </image>
       </ImageView>
-      <TextField fx:id="tfProcurar" layoutX="81.0" layoutY="73.0" prefHeight="25.0" prefWidth="195.0" promptText="Nome ou Código do Produto " style="-fx-background-color: #BAEAE7;" />
-      <Button fx:id="btnProcurar" layoutX="283.0" layoutY="73.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" style="-fx-background-color: #1CADA4;" text="Procurar" />
-      <Label fx:id="lblProdutos" layoutX="88.0" layoutY="166.0" text="Produtos">
+      <TextField fx:id="tfProcurar" layoutX="81.0" layoutY="73.0" prefHeight="25.0" prefWidth="195.0" promptText="Nome ou Código do Produto " />
+      <Button fx:id="btnProcurar" layoutX="283.0" layoutY="73.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" style="-fx-background-color: #B6B9B9;" text="Procurar" textFill="#434242" />
+      <Label fx:id="lblProdutos" layoutX="88.0" layoutY="166.0" text="Produtos" textFill="#434242">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TableView fx:id="tableViewStock" layoutX="89.0" layoutY="198.0" prefHeight="180.0" prefWidth="422.0" style="-fx-background-color: #289E95;">
+      <TableView fx:id="tableViewStock" layoutX="89.0" layoutY="198.0" prefHeight="180.0" prefWidth="422.0" style="-fx-background-color: #B6B9B9;">
         <columns>
           <TableColumn fx:id="columnCodigo" prefWidth="69.0" text="Código" />
           <TableColumn fx:id="columnNome" prefWidth="145.0" text="Nome" />
@@ -63,19 +63,14 @@
             <Label fx:id="lblUnidade" style="-fx-background-color: #1CADA4;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
-      <Label layoutX="606.0" layoutY="176.0" text="Detalhes do Produto">
+      <Label layoutX="606.0" layoutY="176.0" text="Detalhes do Produto" textFill="#434242">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="81.0" layoutY="450.0" text="Quantidade a adicionar" />
-      <TextField fx:id="tfQuantidadeAdicionar" layoutX="215.0" layoutY="446.0" style="-fx-background-color: #BAEAE7;" />
-      <Button fx:id="btnAddStock" layoutX="370.0" layoutY="446.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" style="-fx-background-color: #1CADA4;" text="Ok" />
-      <Button fx:id="btnCancelar" layoutX="819.0" layoutY="575.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #1CADA4;" text="Cancelar" />
-      <ImageView fx:id="imageViewTrickGif" fitHeight="59.0" fitWidth="200.0" layoutX="692.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/TrickGif.gif" />
-         </image>
-      </ImageView>
+      <Label layoutX="81.0" layoutY="450.0" text="Quantidade a adicionar" textFill="#434242" />
+      <TextField fx:id="tfQuantidadeAdicionar" layoutX="215.0" layoutY="446.0" />
+      <Button fx:id="btnAddStock" layoutX="370.0" layoutY="446.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" style="-fx-background-color: #B6B9B9;" text="Ok" />
+      <Button fx:id="btnCancelar" layoutX="819.0" layoutY="575.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #B6B9B9;" text="Cancelar" textFill="#434242" />
    </children>
 </AnchorPane>

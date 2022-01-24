@@ -6,19 +6,17 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="tfProcurar" prefHeight="706.0" prefWidth="784.0" style="-fx-background-color: #D4EAE9;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProdutosController">
+<AnchorPane id="AnchorPane" fx:id="tfProcurar" prefHeight="706.0" prefWidth="784.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProdutosController">
    <children>
-      <TextField layoutX="54.0" layoutY="65.0" prefHeight="25.0" prefWidth="237.0" promptText="Nome ou Código do Produto " style="-fx-background-color: #BAEAE7;" />
-      <Button fx:id="btnProcurar" layoutX="300.0" layoutY="65.0" mnemonicParsing="false" style="-fx-background-color: #1CADA4;" text="Procurar" />
-      <TableView fx:id="tableViewProdutos" layoutX="54.0" layoutY="169.0" prefHeight="200.0" prefWidth="676.0" style="-fx-background-color: #289E95;">
+      <TextField layoutX="54.0" layoutY="65.0" prefHeight="25.0" prefWidth="237.0" promptText="Nome ou Código do Produto " />
+      <Button fx:id="btnProcurar" layoutX="300.0" layoutY="65.0" mnemonicParsing="false" text="Procurar" />
+      <TableView fx:id="tableViewProdutos" layoutX="54.0" layoutY="169.0" prefHeight="200.0" prefWidth="676.0" style="-fx-background-color: #B6B9B9;">
         <columns>
           <TableColumn fx:id="columnCodigo" prefWidth="64.0" text="Código" />
           <TableColumn fx:id="columnNome" prefWidth="132.0" text="Nome" />
@@ -50,10 +48,10 @@
             <Label fx:id="lblNome" text="Nome" GridPane.rowIndex="1" />
             <Label fx:id="lblPrecoUnitario" text="Preço Unitário" GridPane.rowIndex="2" />
             <Label fx:id="lblQuantidade" text="Quantidade" GridPane.rowIndex="3" />
-            <TextField fx:id="tfCodigo" style="-fx-background-color: #BAEAE7;" GridPane.columnIndex="1" />
-            <TextField fx:id="tfNome" prefHeight="25.0" prefWidth="211.0" style="-fx-background-color: #1CADA4;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="tfPrecoUnitario" style="-fx-background-color: #BAEAE7;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="tfQuantidade" style="-fx-background-color: #1CADA4;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="tfCodigo" GridPane.columnIndex="1" />
+            <TextField fx:id="tfNome" prefHeight="25.0" prefWidth="211.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="tfPrecoUnitario" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="tfQuantidade" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <Label layoutX="352.0" layoutY="481.0" text="MT">
@@ -77,23 +75,18 @@
             <Label fx:id="lblCategoria" text="Categoria" />
             <Label fx:id="lblUnidade" text="Unidade" GridPane.rowIndex="1" />
             <Label fx:id="lblDescricao" text="Descrição" GridPane.rowIndex="2" />
-            <TextField fx:id="tfCategoria" style="-fx-background-color: #BAEAE7;" GridPane.columnIndex="1" />
-            <TextField fx:id="tfUnidade" prefHeight="20.0" prefWidth="206.0" style="-fx-background-color: #1CADA4;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="tfDescricao" style="-fx-background-color: #BAEAE7;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="tfCategoria" GridPane.columnIndex="1" />
+            <TextField fx:id="tfUnidade" prefHeight="20.0" prefWidth="206.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="tfDescricao" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Categoria" GridPane.rowIndex="3" />
             <Label text="Unidade" GridPane.rowIndex="4" />
-            <ComboBox fx:id="cmbCategoria" prefWidth="150.0" style="-fx-background-color: #1CADA4;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <ComboBox fx:id="cmbUnidade" prefWidth="150.0" style="-fx-background-color: #BAEAE7;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ComboBox fx:id="cmbCategoria" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ComboBox fx:id="cmbUnidade" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
-      <Button fx:id="btnEditar" layoutX="454.0" layoutY="642.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #1CADA4;" text="Editar" />
-      <Button fx:id="btnApagar" layoutX="529.0" layoutY="642.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #1CADA4;" text="Apagar" />
-      <Button fx:id="btnSalvar" layoutX="599.0" layoutY="642.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #1CADA4;" text="Salvar" />
-      <Button fx:id="btnCancelar" layoutX="667.0" layoutY="642.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #1CADA4;" text="Cancelar" />
-      <ImageView fx:id="imageViewTrick" fitHeight="60.0" fitWidth="179.0" layoutX="562.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/TrickGif.gif" />
-         </image>
-      </ImageView>
+      <Button fx:id="btnEditar" layoutX="454.0" layoutY="642.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="Editar" />
+      <Button fx:id="btnApagar" layoutX="529.0" layoutY="642.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="Apagar" />
+      <Button fx:id="btnSalvar" layoutX="599.0" layoutY="642.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="Salvar" />
+      <Button fx:id="btnCancelar" layoutX="667.0" layoutY="642.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="Cancelar" />
    </children>
 </AnchorPane>

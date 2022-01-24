@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="457.0" prefWidth="660.0" style="-fx-background-color: #D4EAE9;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="controller.PrevilegiosController">
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="457.0" prefWidth="660.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PrevilegiosController">
    <children>
       <Label fx:id="lblPrevilegisoFuncionario" layoutX="66.0" layoutY="38.0" text="Previlégios do Funcionário">
          <font>
@@ -42,7 +41,7 @@
             <CheckBox fx:id="CheckBoxProdutosMaisVendidos" mnemonicParsing="false" text="Ver Relatórios de Produtos mais Vendidos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Button fx:id="btnSalvar" layoutX="415.0" layoutY="390.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: #1CADA4;" text="Salvar" />
-      <Button fx:id="btnCancelar" layoutX="512.0" layoutY="390.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: #1CADA4;" text="Cancelar" />
+      <Button fx:id="btnSalvar" layoutX="415.0" layoutY="390.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Salvar" />
+      <Button fx:id="btnCancelar" layoutX="512.0" layoutY="390.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Cancelar" />
    </children>
 </AnchorPane>

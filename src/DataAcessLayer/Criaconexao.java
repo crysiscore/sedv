@@ -19,7 +19,7 @@
 /*    */     try {
 /* 20 */       Class.forName("com.mysql.jdbc.Driver");
 /* 21 */       System.out.println("Conexao ao Banco");
-/* 22 */       return DriverManager.getConnection("jdbc:mysql://localhost/mydb", "root", "123456789");
+/* 22 */       return DriverManager.getConnection("jdbc:mysql://host/db", "user", "password");
 /*    */     }
 /* 24 */     catch (ClassNotFoundException e) {
 /*    */       
