@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -92,5 +94,25 @@
             <Button fx:id="Btn_produtos_mais_vendidos" mnemonicParsing="false" prefHeight="25.0" prefWidth="152.0" text="Produtos Mais Vendidos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
+      <ImageView layoutX="53.0" layoutY="26.0">
+         <image>
+            <Image url="@../images/shopping_cart.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="14.0" layoutY="26.0">
+         <image>
+            <Image url="@../images/database_add.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="33.0" fitWidth="29.0" layoutX="563.0" layoutY="26.0">
+         <image>
+            <Image url="@../images/users_process.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="90.0" layoutY="28.0">
+         <image>
+            <Image url="@../images/shopping_cart_up.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
