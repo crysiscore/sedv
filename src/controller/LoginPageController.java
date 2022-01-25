@@ -23,9 +23,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import sedv.model.dao.UsuarioDAO;
-import sedv.model.database.Database;
-import sedv.model.database.DatabaseFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.StageStyle;
 
@@ -69,9 +66,7 @@ public class LoginPageController implements Initializable {
     @FXML
     private AnchorPane anchorPane;   
     
-    private final Database database = DatabaseFactory.getDatabase("mysql");
-    private final Connection connection = database.conectar();
-    private final UsuarioDAO usuarioDAO = new UsuarioDAO();
+  
   
         
     @Override
