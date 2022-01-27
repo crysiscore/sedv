@@ -38,10 +38,10 @@
 /*    */ 
 /*    */ 
 /*    */   
-/*    */   public void cadastrarUnidade(String Descricao_Unidade) throws SQLException {
+/*    */   public void cadastrarUnidade(String descricao_unidade) throws SQLException {
 /* 42 */     this.cs = this.connect.prepareCall("{call proc_unidade(?)}");
 /*    */     
-/* 44 */     this.cs.setString(1, Descricao_Unidade);
+/* 44 */     this.cs.setString(1, descricao_unidade);
 /* 45 */     this.cs.executeQuery();
 /*    */   }
 /*    */ 
@@ -67,23 +67,24 @@
 /*    */ 
 /*    */ 
 /*    */   
-/*    */   public void atualizaunidade(int idUnidade, String Descricao_Unidade) throws SQLException {
+/*    */   public void atualizaunidade(int idUnidade, String descricao_unidade) throws SQLException {
 /* 71 */     this.cs = this.connect.prepareCall("{call atualizaunidade(?,?)}");
 /* 72 */     this.cs.setInt(1, idUnidade);
-/* 73 */     this.cs.setString(2, Descricao_Unidade);
+/* 73 */     this.cs.setString(2, descricao_unidade);
 /* 74 */     this.cs.executeQuery();
 /*    */   }
 /*    */ 
 /*    */   
-/*    */   public ResultSet Pesquisartabela(String Descricao_Unidade) throws SQLException {
+/*    */   public ResultSet Pesquisartabela(String descricao_unidade) throws SQLException {
 /* 79 */     this.cs = this.connect.prepareCall("{call  PesquisaUnidade()}");
-/* 80 */     this.cs.setString(1, Descricao_Unidade);
+/* 80 */     this.cs.setString(1, descricao_unidade);
 /* 81 */     this.rs = this.cs.executeQuery();
 /*    */ 
 /*    */     
 /* 84 */     return this.rs;
 /*    */   }
 /*    */ }
+
 
 
 /* Location:              C:\Program Files (x86)\Sistema de vendas\SysVendas.jar!\DataAcessLayer\UnidadeDao.class

@@ -88,9 +88,9 @@
 /*     */ 
 /*     */ 
 /*     */   
-/*     */   public ResultSet Pesquisartabela(String Nome) throws SQLException {
+/*     */   public ResultSet Pesquisartabela(String nome) throws SQLException {
 /*  92 */     this.cs = this.connect.prepareCall("{call  PesquisarProdutos()}");
-/*  93 */     this.cs.setString(1, Nome);
+/*  93 */     this.cs.setString(1, nome);
 /*  94 */     this.rs = this.cs.executeQuery();
 /*     */ 
 /*     */     

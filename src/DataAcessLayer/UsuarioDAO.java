@@ -35,12 +35,12 @@
 /*     */ 
 /*     */ 
 /*     */   
-/*     */   public void cadastrarusuario(String Nome, String Categoria, String Senha) throws SQLException {
+/*     */   public void cadastrarusuario(String nome, String categoria, String senha) throws SQLException {
 /*  38 */     this.cs = this.connect.prepareCall("{call proc_usuario(null,?,?,?)}");
 /*     */     
-/*  40 */     this.cs.setString(1, Nome);
-/*  41 */     this.cs.setString(2, Categoria);
-/*  42 */     this.cs.setString(3, Senha);
+/*  40 */     this.cs.setString(1, nome);
+/*  41 */     this.cs.setString(2, categoria);
+/*  42 */     this.cs.setString(3, senha);
 /*  43 */     this.cs.executeQuery();
 /*     */   }
 /*     */ 
@@ -49,9 +49,9 @@
 /*     */ 
 /*     */ 
 /*     */   
-/*     */   public ResultSet Pesquisatabela(String Nome) throws SQLException {
+/*     */   public ResultSet Pesquisatabela(String nome) throws SQLException {
 /*  52 */     this.cs = this.connect.prepareCall("{call  PesquisaUsuario(?)}");
-/*  53 */     this.cs.setString(1, Nome);
+/*  53 */     this.cs.setString(1, nome);
 /*  54 */     this.rs = this.cs.executeQuery();
 /*     */     
 /*  56 */     return this.rs;
@@ -80,7 +80,7 @@
 /*     */ 
 /*     */   
 /*     */   public int IsUser(String user, String pass) throws SQLException {
-/*  82 */     String sql = "select count(Nome) from `usuario` where Nome =? and Senha =?";
+/*  82 */     String sql = "select count(nome) from `usuario` where nome =? and senha =?";
 /*     */     
 /*  84 */     PreparedStatement stmt = this.connect.prepareStatement(sql);
 /*  85 */     stmt.setString(1, user);
@@ -88,7 +88,7 @@
 /*  87 */     stmt.execute();
 /*  88 */     ResultSet rs = stmt.executeQuery();
 /*  89 */     rs.next();
-/*  90 */     int isUser = Integer.parseInt(rs.getString("count(Nome)"));
+/*  90 */     int isUser = Integer.parseInt(rs.getString("count(nome)"));
 /*     */     
 /*  92 */     return isUser;
 /*     */   }
@@ -126,13 +126,13 @@
 /*     */ 
 /*     */ 
 /*     */   
-/*     */   public void editarusuario(int Codigo, String Nome, String Senha, String Categoria) throws SQLException {
+/*     */   public void editarusuario(int Codigo, String nome, String senha, String categoria) throws SQLException {
 /* 129 */     this.cs = this.connect.prepareCall("{call Editarusuario(?,?,?,?)}");
 /*     */     
 /* 131 */     this.cs.setInt(1, Codigo);
-/* 132 */     this.cs.setString(2, Nome);
-/* 133 */     this.cs.setString(3, Senha);
-/* 134 */     this.cs.setString(4, Categoria);
+/* 132 */     this.cs.setString(2, nome);
+/* 133 */     this.cs.setString(3, senha);
+/* 134 */     this.cs.setString(4, categoria);
 /* 135 */     this.cs.executeQuery();
 /*     */   }
 /*     */ 
@@ -171,7 +171,6 @@
 /* 170 */     return this.rs;
 /*     */   }
 /*     */ }
-
 
 /* Location:              C:\Program Files (x86)\Sistema de vendas\SysVendas.jar!\DataAcessLayer\UsuarioDAO.class
  * Java compiler version: 6 (50.0)
