@@ -34,18 +34,18 @@
 /*    */ 
 /*    */ 
 /*    */   
-/*    */   public void cadastrarcategoria(String Nome) throws SQLException {
+/*    */   public void cadastrarcategoria(String nome) throws SQLException {
 /* 38 */     this.cs = this.connect.prepareCall("{call proc_categoria(?)}");
-/* 39 */     this.cs.setString(1, Nome);
+/* 39 */     this.cs.setString(1, nome);
 /* 40 */     this.cs.executeQuery();
 /*    */   }
 /*    */ 
 /*    */ 
 /*    */   
-/*    */   public void atualizacategoria(int idCategoria, String Nome) throws SQLException {
+/*    */   public void atualizacategoria(int idCategoria, String nome) throws SQLException {
 /* 46 */     this.cs = this.connect.prepareCall("{call AtualizaCategoria(?,?)}");
 /* 47 */     this.cs.setInt(1, idCategoria);
-/* 48 */     this.cs.setString(2, Nome);
+/* 48 */     this.cs.setString(2, nome);
 /* 49 */     this.cs.executeQuery();
 /*    */   }
 /*    */ 
