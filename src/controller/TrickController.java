@@ -7,13 +7,14 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.FXML;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
@@ -21,12 +22,7 @@ import javafx.scene.image.ImageView;
  */
 public class TrickController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
-    
-    
-    @FXML
+      @FXML
     private AnchorPane anchorPane;
 
     @FXML
@@ -42,13 +38,13 @@ public class TrickController implements Initializable {
     private MenuItem menuItemStockListaProdutos;
 
     @FXML
-    private MenuItem menuItemStockSair;
+    private Button btnSair;
 
     @FXML
     private MenuItem menuItemVendasNovaVenda;
 
     @FXML
-    private MenuItem menuItemVendasListaVendas;
+    private MenuItem menuItemVendasListaDeVendas;
 
     @FXML
     private MenuItem menuItemRelatoriosVendasRecentes;
@@ -75,13 +71,10 @@ public class TrickController implements Initializable {
     private MenuItem menuItemAjudaSobre;
 
     @FXML
-    private Button buttonsSair;
+    private Label labelVendas;
 
     @FXML
     private Label labelProdutos;
-
-    @FXML
-    private Label labelVendas;
 
     @FXML
     private Button buttonNovoProduto;
@@ -99,14 +92,14 @@ public class TrickController implements Initializable {
     private Button buttonVendasRecentes;
 
     @FXML
-    private Button ButtonProdutosMaisVendidos;
+    private Button buttonProdutosMaisVendidos;
 
-    @FXML
-    private ImageView imageViewTrickGif;
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
+     public void SairButtonOnAction(ActionEvent event){
+        Stage stage =(Stage) btnSair.getScene().getWindow();
+        stage.close();
+    }
 }
