@@ -140,7 +140,7 @@ public class LoginPage1Controller implements Initializable {
 /*     */       {
 /*     */ 
 /*     */         
-/* 196 */         this.labelLoginPageErro.setText("Nome e senha nao correspondem");
+/* 196 */         this.labelLoginPageErro.setText("Nome e senha do usuario nao correspondem");
 /* 197 */        // this.jLabel2.setIcon(new ImageIcon(getClass().getResource("/images/lock.png")));
 /*     */       }
 /*     */     
