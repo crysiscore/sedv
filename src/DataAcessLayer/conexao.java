@@ -114,7 +114,7 @@ import javax.swing.JOptionPane;
                host = credenciaisConn.get(0).substring(5);
               port = credenciaisConn.get(1).substring(5);
                 bd = credenciaisConn.get(2).substring(3);
-               user = credenciaisConn.get(3).substring(5);
+               user = credenciaisConn.get(3).substring(9);
                password= credenciaisConn.get(4).substring(9);
                
                 if (host.isEmpty()) {
