@@ -9,7 +9,7 @@
 private.properties
 project.properties
 config.properties
-
+private.xml
 # BlueJ files
 *.ctxt
 
