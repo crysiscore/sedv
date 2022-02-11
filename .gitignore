@@ -4,6 +4,12 @@
 # Log file
 *.log
 
+
+# project proprerties
+private.properties
+project.properties
+config.properties
+private.xml
 # BlueJ files
 *.ctxt
 
@@ -23,10 +29,3 @@
 hs_err_pid*
 /build/
 /dist/
-=======
-
-# Netbeans config
-nbproject/private/private.xml
-/nbproject/private/
-nbproject/private/
-
