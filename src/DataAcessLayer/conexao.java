@@ -68,7 +68,7 @@ import javax.swing.JOptionPane;
 /*    */ 
 /*    */   ReadWriteTextFile rwTextFile = new ReadWriteTextFile();
 
-    final static String ficheiro_gravado = "C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sys-vendas\\src\\jdbc\\credenciaisConn.txt";
+    final static String ficheiro_gravado = "C:\\sedv\\credenciaisConn.txt";
     // definir uma lista de frutas
     List <String> credenciais;
 
@@ -113,8 +113,8 @@ import javax.swing.JOptionPane;
 
                host = credenciaisConn.get(0).substring(5);
               port = credenciaisConn.get(1).substring(5);
-                bd = credenciaisConn.get(2).substring(9);
-               user = credenciaisConn.get(3).substring(5);
+                bd = credenciaisConn.get(2).substring(3);
+               user = credenciaisConn.get(3).substring(9);
                password= credenciaisConn.get(4).substring(9);
                
                 if (host.isEmpty()) {
