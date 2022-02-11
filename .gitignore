@@ -4,6 +4,12 @@
 # Log file
 *.log
 
+
+# project proprerties
+private.properties
+project.properties
+config.properties
+
 # BlueJ files
 *.ctxt
 
