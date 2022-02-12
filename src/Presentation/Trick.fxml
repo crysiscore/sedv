@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -12,12 +14,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #E9EEEE;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="controller.TrickController">
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="710.0" prefWidth="1383.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TrickController">
    <children>
-      <VBox prefHeight="29.0" prefWidth="600.0">
+      <VBox prefHeight="29.0" prefWidth="1381.0">
          <children>
-            <MenuBar>
+            <MenuBar prefHeight="53.0" prefWidth="1381.0">
               <menus>
                 <Menu mnemonicParsing="false" text="Stock">
                   <items>
@@ -58,25 +59,25 @@
             </MenuBar>
          </children>
       </VBox>
-      <Button fx:id="btnSair" layoutX="516.0" layoutY="361.0" mnemonicParsing="false" onAction="#SairButtonOnAction" prefHeight="22.0" prefWidth="54.0" text="Sair" textFill="#4a4848">
+      <Button fx:id="btnSair" layoutX="1231.0" layoutY="663.0" mnemonicParsing="false" onAction="#SairButtonOnAction" prefHeight="24.0" prefWidth="87.0" text="Sair" textFill="#4a4848">
          <font>
-            <Font name="Times New Roman" size="12.0" />
+            <Font name="Times New Roman" size="14.0" />
          </font>
       </Button>
-      <Label fx:id="labelVendas" layoutX="273.0" layoutY="123.0" text="Vendas" textFill="#403e3e">
+      <Label fx:id="labelVendas" layoutX="643.0" layoutY="223.0" text="Vendas" textFill="#403e3e">
          <font>
             <Font name="Times New Roman" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="labelProdutos" layoutX="77.0" layoutY="123.0" text="Produtos" textFill="#403e3e">
+      <Label fx:id="labelProdutos" layoutX="344.0" layoutY="223.0" text="Produtos" textFill="#403e3e">
          <font>
             <Font name="Times New Roman" size="18.0" />
          </font>
       </Label>
-      <GridPane layoutX="77.0" layoutY="181.0" prefHeight="90.0" prefWidth="423.0">
+      <GridPane layoutX="344.0" layoutY="282.0" prefHeight="143.0" prefWidth="553.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="196.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="236.0" minWidth="10.0" prefWidth="227.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="300.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="236.0" minWidth="10.0" prefWidth="124.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -84,13 +85,33 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="buttonNovoProduto" mnemonicParsing="false" prefHeight="25.0" prefWidth="151.0" text="Novo Produto" textFill="#4a4848" />
-            <Button fx:id="buttonAdicionarStock" mnemonicParsing="false" prefHeight="25.0" prefWidth="151.0" text="Adicionar Stock" textFill="#4a4848" GridPane.rowIndex="1" />
-            <Button fx:id="buttonListaProdutos" mnemonicParsing="false" prefHeight="25.0" prefWidth="151.0" text="Lista de Produtos" textFill="#4a4848" GridPane.rowIndex="2" />
-            <Button fx:id="buttonNovaVenda" mnemonicParsing="false" prefHeight="25.0" prefWidth="151.0" text="Nova Venda" textFill="#403e3e" GridPane.columnIndex="1" />
-            <Button fx:id="buttonVendasRecentes" mnemonicParsing="false" prefHeight="25.0" prefWidth="151.0" text="Vendas Recentes" textFill="#4a4848" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="buttonProdutosMaisVendidos" mnemonicParsing="false" prefHeight="25.0" prefWidth="151.0" text="Produtos Mais Vendidos " textFill="#4a4848" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="buttonNovoProduto" mnemonicParsing="false" prefHeight="35.0" prefWidth="151.0" text="Novo Produto" textFill="#4a4848" />
+            <Button fx:id="buttonAdicionarStock" mnemonicParsing="false" prefHeight="35.0" prefWidth="151.0" text="Adicionar Stock" textFill="#4a4848" GridPane.rowIndex="1" />
+            <Button fx:id="buttonListaProdutos" mnemonicParsing="false" prefHeight="35.0" prefWidth="151.0" text="Lista de Produtos" textFill="#4a4848" GridPane.rowIndex="2" />
+            <Button fx:id="buttonNovaVenda" mnemonicParsing="false" prefHeight="35.0" prefWidth="151.0" text="Nova Venda" textFill="#403e3e" GridPane.columnIndex="1" />
+            <Button fx:id="buttonVendasRecentes" mnemonicParsing="false" prefHeight="35.0" prefWidth="151.0" text="Vendas Recentes" textFill="#4a4848" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="buttonProdutosMaisVendidos" mnemonicParsing="false" prefHeight="35.0" prefWidth="151.0" text="Produtos Mais Vendidos " textFill="#4a4848" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
+      <ImageView fx:id="imageViewNovoProduto" fitWidth="32.0" layoutX="21.0" layoutY="39.0">
+         <image>
+            <Image url="@../images/database_add.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageViewNovaVenda" layoutX="68.0" layoutY="39.0">
+         <image>
+            <Image url="@../images/shopping_cart.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageViewAdicionarStock" layoutX="110.0" layoutY="39.0">
+         <image>
+            <Image url="@../images/shopping_cart_up.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageViewPrevilegios" fitHeight="24.0" fitWidth="24.0" layoutX="156.0" layoutY="43.0">
+         <image>
+            <Image url="@../images/users_process.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
