@@ -109,7 +109,8 @@ public class LoginPage1Controller implements Initializable {
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
         dialogStage.setResizable(false);
-        
+        //dialogStage.setFullScreen(true);
+        dialogStage.setMaximized(true);
         // Mostra o Dialog e espera até que o usuário o feche
         dialogStage.showAndWait();
           
@@ -129,6 +130,8 @@ public class LoginPage1Controller implements Initializable {
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
         dialogStage.setResizable(false);
+        //dialogStage.setFullScreen(true);
+           dialogStage.setMaximized(true);
 /*     */         // Mostra o Dialog e espera até que o usuário o feche
         dialogStage.showAndWait();
 /*     */         }
