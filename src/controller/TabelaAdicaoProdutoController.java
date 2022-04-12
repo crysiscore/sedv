@@ -9,12 +9,14 @@ import DataAcessLayer.UsuarioDAO;
 import DataAcessLayer.ProdutoDAO;
 import BussinessLogic.Stock;
 import BussinessLogic.Usuario;
+import DataAcessLayer.StockDAO;
 import Model.StockModel;
 import Service.StockServicos;
 import Service.UsuarioServicos;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,6 +32,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -68,18 +71,25 @@ public class TabelaAdicaoProdutoController implements Initializable {
      @FXML
     private Label labelCodUsuario;
    UsuarioServicos usuarioServicos ;
-    Stock stock;
+  // ObservableList <Stock> stockList ;
     StockServicos stServico;
+    //Stock stock;
      Usuario usuario;
      private CadStockController cadStockController;
      private Produto produto;
      private StockModel stockModel = new StockModel();
-
+   ObservableList <Stock> stock =FXCollections.observableArrayList();
 
  //final static String ficheiro_gravado = "C:\\app\\stock.txt";
        
   
-   
+     public void initModel(StockModel model) {
+        if (this.stockModel != null) {
+            throw new IllegalStateException("Model can only be initialized once");
+        }
+        this.stockModel = model;
+    }
+
 
     public void ReceberDadosProduto(Produto produto) {
         this.produto = produto;
@@ -109,7 +119,12 @@ public class TabelaAdicaoProdutoController implements Initializable {
        this.columnData.setCellValueFactory(new PropertyValueFactory<Stock, Date>("data_entrada"));
        this.columnNumeroLote.setCellValueFactory(new PropertyValueFactory<Stock, String>("numero_lote"));
        this.columnFabricante.setCellValueFactory(new PropertyValueFactory<Stock, String>("fabricante"));
-      //tableviewAdicionarStock.setItems(stockModel.getStockList());
+       
+       //stockList= stockModel.getStockList();
+       stock=stockModel.getStockList();
+       tableviewAdicionarStock.setItems(stock);
+       
+       
       //ObservableList<Stock> lista = tableviewAdicionarStock.getItems();
       
        
@@ -141,7 +156,8 @@ public class TabelaAdicaoProdutoController implements Initializable {
          usuarioServicos = new UsuarioServicos();
        
         buscaProdutosController.receberdadosUsuario(usuario);
-       
+        buscaProdutosController.initModel(stockModel);
+        
         // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
         Stage dialogStage = new Stage();
         dialogStage.setTitle("Registo de Stock");
@@ -176,4 +192,24 @@ public class TabelaAdicaoProdutoController implements Initializable {
          //tableViewStock.getItems().remove(selectedID);
      }
      
-}
+     
+         @FXML
+    public void handleMenuItemRegistarStock() throws IOException, SQLException {
+        StockDAO dao = new StockDAO();
+       
+        //for(int i = 0; i < tableviewAdicionarStock.getItems().size(); i++) {
+        
+             
+       //  Integer produto_Cod_Produto = tableviewAdicionarStock.getItems().get(i).produto_Cod_Produto;
+         //    Date data_entrada=tableviewAdicionarStock.getItems().get(i).data_entrada;
+           //  Integer usuario_Cod_Funcionario = stockModel.getStockList().get(i).usuario_Cod_Funcionario;
+          //   String numero_lote = tableviewAdicionarStock.getItems().get(i).numero_lote;
+           //  String fabricante =tableviewAdicionarStock.getItems().get(i).fabricante;
+        
+           dao.RegistarStock(tableviewAdicionarStock.getItems());
+           
+           tableviewAdicionarStock.getItems().clear();
+           JOptionPane.showMessageDialog(null, "O Stock foi Cadastrado com Sucesso!");
+         }
+    }  
+

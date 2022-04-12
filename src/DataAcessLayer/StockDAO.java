@@ -8,6 +8,7 @@ package DataAcessLayer;
 import BussinessLogic.Produto;
 import BussinessLogic.Stock;
 import static DataAcessLayer.conexao.getConnection;
+import Model.StockModel;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
@@ -32,8 +33,10 @@ public class StockDAO {
    private ResultSet rs;
 /*     */   private Connection connect;
 /*  20 */   private CallableStatement cs = null;
-/*     */ 
-
+/*     */   private StockModel stockModel = new StockModel();
+             ObservableList <Stock> stock =FXCollections.observableArrayList();
+           
+            
    public StockDAO(){
        try {
 /*  25 */       conexao conexao = new conexao();
@@ -52,7 +55,7 @@ public class StockDAO {
         String sql = "DELETE FROM vendas WHERE idstock=?";
         try {
             PreparedStatement stmt = connect.prepareStatement(sql);
-            stmt.setInt(1, stock.getIdstock());
+         //   stmt.setInt(1, stock.getIdstock());
             stmt.execute();
             return true;
         } catch (SQLException ex) {
@@ -70,7 +73,7 @@ public class StockDAO {
             ResultSet resultado = stmt.executeQuery();
 
             if (resultado.next()) {
-                retorno.setIdstock(resultado.getInt("max"));
+                //retorno.setIdstock(resultado.getInt("max"));
                 return retorno;
             }
         } catch (SQLException ex) {
@@ -119,20 +122,27 @@ public class StockDAO {
 /*     */   }
     
     
-  public void RegistarStock(Stock stock) throws SQLException {
+       public void RegistarStock( ObservableList <Stock> stock ) throws SQLException {
 /* 103 */    
               this.cs = this.connect.prepareCall("{call RegistarStock(?,?,?,?,?,?)}");
-/* 104 */    
-              this.cs.setInt(1, stock.getQuantidade_recebida());
-/* 105 */     this.cs.setDate(2, stock.getData_entrada());
-/* 106 */     this.cs.setInt(3, stock.getProd().getCod_produto());
-/* 107 */     this.cs.setInt(4, stock.getUser().getCod_Funcionario());
-/* 108 */     this.cs.setString(5, stock.getNumero_lote());
-/* 109 */     this.cs.setString(6, stock.getFabricante());
+              try{
+/* 104 */     for(int i = 0; i < stock.size(); i++) {
+              this.cs.setInt(1, stock.get(i).getQuantidade_recebida());
+/* 105 */     this.cs.setDate(2, stock.get(i).getData_entrada());
+/* 106 */     this.cs.setInt(3, stock.get(i).getProduto_Cod_Produto());
+/* 107 */     this.cs.setInt(4, stock.get(i).getUsuario_Cod_Funcionario());
+/* 108 */     this.cs.setString(5, stock.get(i).getNumero_lote());
+/* 109 */     this.cs.setString(6, stock.get(i).getFabricante());
 /* 110 */     this.cs.executeQuery();
-/* 111 */     this.cs.close();
+/* 111 */     
 /*     */   }
-         
+                  } catch(SQLException ex){ 
+                     Logger.getLogger(StockDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+  }
+       }
     
-}
+        
+
+
  

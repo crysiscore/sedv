@@ -18,7 +18,7 @@
         </columns>
       </TableView>
       <Button fx:id="buttonAdicionarStock" layoutX="87.0" layoutY="392.0" mnemonicParsing="false" onAction="#handleMenuItemStockAdicionar" prefHeight="25.0" prefWidth="139.0" text="Adicionar Stock" />
-      <Button fx:id="buittonRegistarStock" layoutX="236.0" layoutY="392.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" text="RegistrarStock" />
+      <Button fx:id="buittonRegistarStock" layoutX="236.0" layoutY="392.0" mnemonicParsing="false" onAction="#handleMenuItemRegistarStock" prefHeight="25.0" prefWidth="139.0" text="RegistrarStock" />
       <Button fx:id="buttonCancelar" layoutX="384.0" layoutY="392.0" mnemonicParsing="false" onAction="#CancelarButtonOnAction" prefHeight="25.0" prefWidth="139.0" text="Cancelar" />
       <Label fx:id="labelCodUsuario" layoutX="87.0" layoutY="25.0" prefHeight="17.0" prefWidth="109.0" />
       <Label fx:id="labelcopr" layoutX="589.0" layoutY="396.0" />

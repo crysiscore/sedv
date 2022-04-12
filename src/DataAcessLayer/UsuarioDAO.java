@@ -170,6 +170,14 @@
 /* 169 */     this.rs = this.cs.executeQuery();
 /* 170 */     return this.rs;
 /*     */   }
+
+            public ResultSet getDetalhesUsuario(int codUsuario) throws SQLException {
+/*  82 */     this.cs = this.connect.prepareCall("{call  DetalhesUsuario(?)}");
+/*  83 */     this.cs.setInt(1, codUsuario);
+/*  84 */     this.rs = this.cs.executeQuery();
+/*     */     
+/*  86 */     return this.rs;
+/*     */   }
 /*     */ }
 
 /* Location:              C:\Program Files (x86)\Sistema de vendas\SysVendas.jar!\DataAcessLayer\UsuarioDAO.class

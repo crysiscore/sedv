@@ -12,7 +12,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="buttonAdicionarAtabela" prefHeight="511.0" prefWidth="610.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadStockController">
    <children>
-      <GridPane layoutX="103.0" layoutY="34.0" prefHeight="258.0" prefWidth="366.0">
+      <GridPane layoutX="122.0" layoutY="78.0" prefHeight="258.0" prefWidth="366.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="197.0" minWidth="10.0" prefWidth="126.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="263.0" minWidth="10.0" prefWidth="245.0" />
@@ -28,27 +28,25 @@
         </rowConstraints>
          <children>
             <Label text="Nome do Produto" GridPane.rowIndex="1" />
-            <Label text="Codigo do Funcionario" GridPane.rowIndex="4" />
             <Label text="Quantidade Recebida" GridPane.rowIndex="2" />
             <Label text="Data de Entrada" GridPane.rowIndex="3" />
-            <Label text="Numero de Lote" GridPane.rowIndex="5" />
-            <Label text="Fabricante" GridPane.rowIndex="6" />
+            <Label text="Numero de Lote" GridPane.rowIndex="4" />
+            <Label text="Fabricante" GridPane.rowIndex="5" />
             <TextField fx:id="TextFieldCodigoProduto" GridPane.columnIndex="1" />
-            <TextField fx:id="TextFieldCodigoFuncionario" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="TextFieldNumeroLote" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="TextFieldFabricante" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="TextFieldNumeroLote" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="TextFieldFabricante" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <DatePicker fx:id="DatePickerDataEntrada" prefHeight="25.0" prefWidth="271.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <HBox prefHeight="25.0" prefWidth="263.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
                   <TextField fx:id="TextFieldlQuantidadeRecebida" prefHeight="25.0" prefWidth="248.0" />
-                  <Label prefHeight="26.0" prefWidth="43.0" text=" KG" />
                </children>
             </HBox>
             <TextField fx:id="textfieldNomeProduto" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="TextFieldCodigoFuncionario" />
          </children>
       </GridPane>
-      <Button fx:id="buttonAdicionarStockNaTabela" layoutX="103.0" layoutY="410.0" mnemonicParsing="false" onAction="#handleMenuItemStockAdicionarStockNaTabela2" prefHeight="25.0" prefWidth="164.0" text="Adicionar Stock na Tabela" />
-      <Button fx:id="buttonCancelar" layoutX="286.0" layoutY="410.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="25.0" prefWidth="164.0" text="Cancelar" />
+      <Button fx:id="buttonAdicionarStockNaTabela" layoutX="122.0" layoutY="410.0" mnemonicParsing="false" onAction="#handleMenuItemStockAdicionarStockNaTabela" prefHeight="25.0" prefWidth="164.0" text="Adicionar Stock na Tabela" />
+      <Button fx:id="buttonCancelar" layoutX="324.0" layoutY="410.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="25.0" prefWidth="164.0" text="Cancelar" />
       <Label fx:id="labelNomeFuncionario" layoutX="544.0" layoutY="26.0" />
    </children>
 </AnchorPane>

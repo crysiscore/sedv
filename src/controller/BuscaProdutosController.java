@@ -10,6 +10,7 @@ import BussinessLogic.Stock;
 import BussinessLogic.Usuario;
 import DataAcessLayer.ProdutoDAO;
 import DataAcessLayer.UsuarioDAO;
+import Model.StockModel;
 import Service.ProdutosServicos;
 import Service.UsuarioServicos;
 import com.mysql.cj.protocol.Resultset;
@@ -77,7 +78,7 @@ public class BuscaProdutosController implements Initializable {
             Usuario usuario; 
      Produto produto;
      UsuarioServicos usuarioServicos ;
-    
+     private StockModel stockModel;
      
     /**
      * Initializes the controller class.
@@ -85,7 +86,14 @@ public class BuscaProdutosController implements Initializable {
     ProdutosServicos servicoProdutos;
     ObservableList <Produto> produtoObservableList =FXCollections.observableArrayList();
     
-    
+             
+    public void initModel(StockModel model) {
+        if (this.stockModel != null) {
+            throw new IllegalStateException("Model can only be initialized once");
+        }
+        this.stockModel = model ;
+    }
+
     
      public Usuario getUsuario() {
         return usuario;
@@ -98,6 +106,8 @@ public class BuscaProdutosController implements Initializable {
         
         //return usuario;
          }
+         
+
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -213,6 +223,7 @@ public class BuscaProdutosController implements Initializable {
          selectedProduto= servicoProdutos.getDetalhesProduto(Integer.parseInt(codProduto));
          //selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
         cadStockController.ReceberDadosProduto(selectedProduto);
+        cadStockController.initModel(stockModel);
         // Scene scene = new Scene(root);
            
        

@@ -23,10 +23,10 @@
 /*     */ public class UsuarioServicos
 /*     */ {
 /*  25 */   private UsuarioDAO UsuarioDAO = new UsuarioDAO();
+/*     */ ResultSet rs;
+/*     */ private Usuario usuario;
 /*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
+/*     */
 /*     */   
 /*     */   public void cadastrarUsuario(Usuario u) throws SQLException {
 /*  32 */     UsuarioDAO us = new UsuarioDAO();
@@ -178,6 +178,18 @@
 /*     */     }
 /*     */     
 /* 180 */     this.UsuarioDAO.PrevilegiosUsuario(a, b, c, d, e, f, g, h);
+/*     */   }
+
+
+              public Usuario getDetalhesUsuario(int codUsuario) throws SQLException {
+/*  97 */     this.rs = this.UsuarioDAO.getDetalhesUsuario(codUsuario);
+/*  98 */     this.rs.next();
+/*  99 */     this.usuario = new Usuario();
+/* 100 */     this.usuario.setCod_Funcionario(Integer.valueOf(this.rs.getInt("Cod_Funcionario")));
+/* 101 */     this.usuario.setNome(this.rs.getString("nome"));
+/* 102 */     this.usuario.setCategoria(this.rs.getString("categoria"));
+/* 104 */   
+/* 106 */     return this.usuario;
 /*     */   }
 /*     */ }
 

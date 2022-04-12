@@ -73,7 +73,7 @@ public class StockServicos {
       
         
         public void RegistarStock(Stock  st) throws SQLException{
-         stockDAO.RegistarStock(st);
+         //stockDAO.RegistarStock(st);
         
         
         }

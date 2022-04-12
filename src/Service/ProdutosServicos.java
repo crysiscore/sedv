@@ -98,9 +98,8 @@
 /*  98 */     this.rs.next();
 /*  99 */     this.produto = new Produto();
 /* 100 */     this.produto.setCod_produto(Integer.valueOf(this.rs.getInt("Codigo")));
-/* 101 */     this.produto.setNome(this.rs.getString("Nome"));
+/* 101 */     this.produto.setNome(this.rs.getString("nome"));
 /* 102 */     this.produto.setPreco_unitario(Double.valueOf(this.rs.getDouble("Preco")));
-/* 103 */     this.produto.setQuantidadeStock(Integer.valueOf(this.rs.getInt("Quantidade")));
 /* 104 */     this.produto.setUnidade(this.rs.getString("Unidade"));
 /* 105 */     this.produto.setCategoria(this.rs.getString("Categoria"));
 /* 106 */     return this.produto;

@@ -14,7 +14,7 @@ import java.time.LocalDate;
  * @author Neusia
  */
 public class Stock {
-           private Integer idstock;
+           
 /*    */   public Integer quantidade_recebida;
 /*    */   public Date data_entrada;
 /*    */   public Integer produto_Cod_Produto;
@@ -57,13 +57,7 @@ public class Stock {
            this.fabricante=fabricante;
           }
       
-    public Integer getIdstock() {
-        return idstock;
-    }
-
-    public void setIdstock(Integer idstock) {
-        this.idstock = idstock;
-    }
+  
 
     public Integer getQuantidade_recebida() {
         return quantidade_recebida;
