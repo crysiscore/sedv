@@ -14,6 +14,7 @@
 /*    */   public String Nome;
 /*    */   public String Senha;
 /*    */   public String Categoria;
+
 /*    */   
 /*    */   public String getCategoria() {
 /* 19 */     return this.Categoria;

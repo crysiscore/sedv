@@ -24,7 +24,7 @@
                   <items>
                     <MenuItem fx:id="menuItemStockNovoProduto" mnemonicParsing="false" text="Novo Produto" />
                         <MenuItem fx:id="menuItemStockProcurarProduto" mnemonicParsing="false" text="Procurar Produto" />
-                        <MenuItem fx:id="menuItemStockAdicionarStock" mnemonicParsing="false" text="Adicionar Stock" />
+                        <MenuItem fx:id="menuItemStockAdicionarStock" mnemonicParsing="false" onAction="#handleMenuItemStockAdicionarStock" text="Adicionar Stock" />
                         <MenuItem fx:id="menuItemStockListaProdutos" mnemonicParsing="false" text="Lista de Produttos" />
                         <MenuItem fx:id="buttonSair" mnemonicParsing="false" text="Sair" />
                   </items>
@@ -86,7 +86,7 @@
         </rowConstraints>
          <children>
             <Button fx:id="buttonNovoProduto" mnemonicParsing="false" prefHeight="35.0" prefWidth="151.0" text="Novo Produto" textFill="#4a4848" />
-            <Button fx:id="buttonAdicionarStock" mnemonicParsing="false" prefHeight="35.0" prefWidth="151.0" text="Adicionar Stock" textFill="#4a4848" GridPane.rowIndex="1" />
+            <Button fx:id="buttonAdicionarStock" mnemonicParsing="false" onAction="#handleMenuItemStockAdicionarStock" prefHeight="35.0" prefWidth="151.0" text="Adicionar Stock" textFill="#4a4848" GridPane.rowIndex="1" />
             <Button fx:id="buttonListaProdutos" mnemonicParsing="false" prefHeight="35.0" prefWidth="151.0" text="Lista de Produtos" textFill="#4a4848" GridPane.rowIndex="2" />
             <Button fx:id="buttonNovaVenda" mnemonicParsing="false" prefHeight="35.0" prefWidth="151.0" text="Nova Venda" textFill="#403e3e" GridPane.columnIndex="1" />
             <Button fx:id="buttonVendasRecentes" mnemonicParsing="false" prefHeight="35.0" prefWidth="151.0" text="Vendas Recentes" textFill="#4a4848" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -113,5 +113,7 @@
             <Image url="@../images/users_process.png" />
          </image>
       </ImageView>
+      <Label fx:id="labelUsername" layoutX="1290.0" layoutY="35.0" />
+      <Label fx:id="labelUserCod" layoutX="1231.0" layoutY="35.0" />
    </children>
 </AnchorPane>

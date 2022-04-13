@@ -5,11 +5,19 @@
  */
 package controller;
 
+import BussinessLogic.Usuario;
+import DataAcessLayer.UsuarioDAO;
+import Service.ProdutosServicos;
+import Service.UsuarioServicos;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -21,7 +29,7 @@ import javafx.stage.Stage;
  * @author Neusia
  */
 public class TrickController implements Initializable {
-
+    ResultSet rs;
       @FXML
     private AnchorPane anchorPane;
 
@@ -93,6 +101,28 @@ public class TrickController implements Initializable {
 
     @FXML
     private Button buttonProdutosMaisVendidos;
+    
+    @FXML
+    private Label labelUsername;
+
+    @FXML
+    private Label labelUserCod;
+    UsuarioServicos usuarioServicos ;
+    Usuario usuario;
+    ProdutosServicos servicoProdutos;
+      
+    public Usuario getProduto() {
+        return usuario;
+    }
+       
+         public Usuario receberdadosUsuario(Usuario usuario) {
+        this.usuario = usuario;
+      
+        this.labelUserCod.setText(usuario.getCod_Funcionario().toString());
+        this.labelUsername.setText(usuario.getNome());
+       this.labelUserCod.setVisible(false);
+        return usuario;
+         }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -102,4 +132,49 @@ public class TrickController implements Initializable {
         Stage stage =(Stage) btnSair.getScene().getWindow();
         stage.close();
     }
+   
+     
+             
+ 
+    
+        
+    
+    public void handleMenuItemStockAdicionarStock (ActionEvent event){
+         
+          
+/*     */     try {
+/* 159 */       
+/* 165 */      
+/* 166 */         String codUsuario = this.labelUserCod.getText();
+/* 166 */        
+/*     */  FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(TrickController.class.getResource("/Presentation/TabelaAdicaoProduto.fxml"));
+        //loader.setLocation(TrickController.class.getResource("/Presentation/BuscaProdutos.fxml"));
+        AnchorPane page = (AnchorPane) loader.load();
+        
+         TabelaAdicaoProdutoController tabelaAdicaoProdutoController= loader.<TabelaAdicaoProdutoController>getController();
+        //BuscaProdutosController buscaProdutosController= loader.<BuscaProdutosController>getController();
+         //tabelaAdicaoProdutoController.UserInfo(codUsuario);
+         
+        usuarioServicos = new UsuarioServicos();
+        Usuario selectedUsuario = new Usuario();
+        selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
+        tabelaAdicaoProdutoController.receberdadosUsuario(selectedUsuario);
+        //buscaProdutosController.receberdadosUsuario(selectedUsuario);
+        // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Registo de Stock");
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+        dialogStage.setMaximized(false);
+        dialogStage.setResizable(false);
+        // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
+        dialogStage.show();
+/*     */     }
+/* 201 */     catch (Exception ex) {
+/* 202 */       System.out.println("" + ex + ex.getLocalizedMessage());
+                System.out.println("" + ex.toString());
+/*     */     } 
+/*     */   }
+    
 }

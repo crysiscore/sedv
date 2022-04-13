@@ -6,6 +6,7 @@
 package controller;
 
 import BussinessLogic.Previlegio;
+import BussinessLogic.Usuario;
 import DataAcessLayer.UsuarioDAO;
 import Service.UsuarioServicos;
 import java.net.URL;
@@ -34,7 +35,7 @@ public class LoginPage1Controller implements Initializable {
      * Initializes the controller class.
      */
      ResultSet rs;
-    
+     Usuario usuario;
     @FXML
     private AnchorPane anchorPane;
 
@@ -61,7 +62,8 @@ public class LoginPage1Controller implements Initializable {
     
     @FXML
     private Label labelLoginPageErro;
-    
+     UsuarioServicos usuarioServicos ;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -76,10 +78,15 @@ public class LoginPage1Controller implements Initializable {
     
     
     
+   
+    
     public void loginButtonOnAction (ActionEvent event){
-        
+        // Usuario user = new Usuario();
+         
+           
            String username = this.tfUsuario.getText();
-/*     */     
+/*     */     TrickController Trick = new TrickController();
+               
 /* 153 */     String password = this.passwordFieldSenha.getText();
 /* 154 */     UsuarioServicos us = new UsuarioServicos();
 /* 155 */     this.labelLoginPageErro.setText("");
@@ -89,26 +96,52 @@ public class LoginPage1Controller implements Initializable {
 /* 159 */       if (us.AutenticarUsuario(username, password) == true)
 /*     */       {
 /*     */         
+ 
 /* 162 */         UsuarioDAO userDao = new UsuarioDAO();
 /* 163 */         this.rs = userDao.getCategoriaUsuario(username, password);
 /* 164 */         this.rs.next();
 /* 165 */         String categoriaUsuario = this.rs.getString("Categoria");
 /* 166 */         String codUsuario = this.rs.getString("Cod_Funcionario");
-/*     */         
+                  //user.setCod_Funcionario(Integer.parseInt(codUsuario));
+                 // user.setCod_Funcionario(Integer.valueOf(codUsuario));
+/*     */         //user.setCod_Funcionario(Integer.parseInt(this.rs.getString("Cod_Funcionario")));
 /* 168 */         if (categoriaUsuario.contentEquals("Funcionario"))
 /*     */         {
 /* 170 */           Previlegio prev = us.VerificarPrevilegios();
 /* 171 */           us.Login(username, password);
+                    
+                    //Trick.UserInfo(username, codUsuario);
 /* 172 */           FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(TrickController.class.getResource("/Presentation/Trick.fxml"));
-        AnchorPane page = (AnchorPane) loader.load();
+                    
+         //Parent root = (Parent) loader.load();           
+         //CadStockController cadStockController= loader.<CadStockController> getController();
+        // servicoProdutos = new ProdutosServicos();
+        // Produto selectedProduto = new Produto();
+         //selectedProduto= servicoProdutos.getDetalhesProduto(Integer.parseInt(codProduto));
+       // cadStockController.ReceberDadosProduto(selectedProduto);
 
+        loader.setLocation(TrickController.class.getResource("/Presentation/Trick.fxml"));
+        
+        AnchorPane page = (AnchorPane) loader.load();
+        TrickController trickController =loader.<TrickController>getController();
+        
+        usuarioServicos = new UsuarioServicos();
+        Usuario selectedUsuario = new Usuario();
+        selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
+        trickController.receberdadosUsuario(selectedUsuario);
+       // cadStockController.setUsuario(selectedUsuario);
+        //trickController.UserInfo(username,codUsuario);
+       
+         Stage stage =(Stage) btnLogin.getScene().getWindow();
+        stage.close();
+       
         // Criando um Estágio de Diálogo (Stage Dialog)
         Stage dialogStage = new Stage();
         dialogStage.setTitle("Registro de Vendas");
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
         dialogStage.setResizable(false);
+        
         //dialogStage.setFullScreen(true);
         dialogStage.setMaximized(true);
         // Mostra o Dialog e espera até que o usuário o feche
@@ -118,12 +151,28 @@ public class LoginPage1Controller implements Initializable {
 /* 178 */         else if (categoriaUsuario.contentEquals("Gerente"))
 /*     */         {
 /* 180 */           
+
+                         
 /* 181 */            Previlegio prev = us.VerificarPrevilegios();
                     us.Login(username, password);
+                    
+                   // Trick.UserInfo(username, codUsuario);
 /* 172 */           FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(TrickController.class.getResource("/Presentation/Trick.fxml"));
+                  
+         loader.setLocation(TrickController.class.getResource("/Presentation/Trick.fxml"));
         AnchorPane page = (AnchorPane) loader.load();
-
+        TrickController trickController =loader.<TrickController>getController();
+       // CadStockController cadStockController = loader.<CadStockController>getController();
+        
+        usuarioServicos = new UsuarioServicos();
+        Usuario selectedUsuario = new Usuario();
+        selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
+        
+        trickController.receberdadosUsuario(selectedUsuario);
+       // cadStockController.setUsuario(selectedUsuario);
+        Stage stage =(Stage) btnLogin.getScene().getWindow();
+        stage.close();
+        
         // Criando um Estágio de Diálogo (Stage Dialog)
         Stage dialogStage = new Stage();
         dialogStage.setTitle("Registro de Vendas");
@@ -134,6 +183,7 @@ public class LoginPage1Controller implements Initializable {
            dialogStage.setMaximized(true);
 /*     */         // Mostra o Dialog e espera até que o usuário o feche
         dialogStage.showAndWait();
+        
 /*     */         }
 /*     */ 
 /*     */ 

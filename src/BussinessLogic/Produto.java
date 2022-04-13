@@ -1,25 +1,35 @@
 /*    */ package BussinessLogic;
+        import java.sql.Blob;
+
+/*    */ 
+          
 /*    */ 
 /*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ public class Produto
-/*    */ {
-/*    */   private Integer Cod_produto;
+/*    */   public class Produto
+/*    */   {
+/*    */   public Integer Cod_produto;
 /*    */   public String Nome;
 /*    */   public Double Preco_unitario;
-/*    */   public Integer QuantidadeStock;
+/*    */   //public Integer QuantidadeStock;
 /*    */   public String Unidade;
 /*    */   public String Categoria;
-/*    */   public Integer QuantidadeUnidade;
+/*    */  // public Integer QuantidadeUnidade;
 /*    */   public String Descricao;
+           public Blob foto;
+           
+           
+            public Produto() {
+        
+                   }
+
+            public Produto(Integer Cod_produto, String Nome) {
+            this.Cod_produto=Cod_produto;
+            this.Nome= Nome;
+       
+            }
 /*    */   
-/*    */   public Integer getCod_produto() {
+               
+ public Integer getCod_produto() {
 /* 23 */     return this.Cod_produto;
 /*    */   }
 /*    */   
@@ -51,21 +61,21 @@
 /* 51 */     this.Preco_unitario = Preco_unitario;
 /*    */   }
 /*    */   
-/*    */   public Integer getQuantidadeStock() {
-/* 55 */     return this.QuantidadeStock;
-/*    */   }
+/*    */  // public Integer getQuantidadeStock() {
+/* 55 */     //return this.QuantidadeStock;
+/*    */   //}
 /*    */   
-/*    */   public void setQuantidadeStock(Integer QuantidadeStock) {
-/* 59 */     this.QuantidadeStock = QuantidadeStock;
-/*    */   }
+/*    */   //public void setQuantidadeStock(Integer QuantidadeStock) {
+/* 59 */    // this.QuantidadeStock = QuantidadeStock;
+/*    */  // }
 /*    */   
-/*    */   public Integer getQuantidadeUnidade() {
-/* 63 */     return this.QuantidadeUnidade;
-/*    */   }
+/*    */   //public Integer getQuantidadeUnidade() {
+/* 63 */     //return this.QuantidadeUnidade;
+/*    */  // }
 /*    */   
-/*    */   public void setQuantidadeUnidade(Integer QuantidadeUnidade) {
-/* 67 */     this.QuantidadeUnidade = QuantidadeUnidade;
-/*    */   }
+/*    */   //public void setQuantidadeUnidade(Integer QuantidadeUnidade) {
+/* 67 */    // this.QuantidadeUnidade = QuantidadeUnidade;
+/*    */   //}
 /*    */   
 /*    */   public Produto(Integer Cod_produto) {
 /* 71 */     this.Cod_produto = Cod_produto;
@@ -73,7 +83,7 @@
 /*    */ 
 /*    */ 
 /*    */   
-/*    */   public Produto() {}
+/*    */  
 /*    */ 
 /*    */ 
 /*    */   
