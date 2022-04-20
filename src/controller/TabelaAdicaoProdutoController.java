@@ -131,7 +131,11 @@ public class TabelaAdicaoProdutoController implements Initializable {
     }    
     
     
-     
+     @FXML
+     void removerStockdaTabela(ActionEvent event){
+         int selectedID=tableviewAdicionarStock.getSelectionModel().getSelectedIndex();
+         tableviewAdicionarStock.getItems().remove(selectedID);
+     }
    
 
     
