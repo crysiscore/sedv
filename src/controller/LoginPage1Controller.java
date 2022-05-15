@@ -36,32 +36,27 @@ public class LoginPage1Controller implements Initializable {
      */
      ResultSet rs;
      Usuario usuario;
-    @FXML
+   
+        @FXML
     private AnchorPane anchorPane;
 
     @FXML
-    private Label labelUsuario;
-
-    @FXML
-    private Label labelSenha;
-
-    @FXML
-    private TextField tfUsuario;
-
-    @FXML
-    private PasswordField passwordFieldSenha;
-
-    @FXML
-    private ImageView imageViewLock;
+    private Button btnCancel;
 
     @FXML
     private Button btnLogin;
 
     @FXML
-    private Button btnCancel;
-    
+    private ImageView imageViewLock;
+
     @FXML
     private Label labelLoginPageErro;
+
+    @FXML
+    private PasswordField passwordFieldSenha;
+
+    @FXML
+    private TextField tfUsuario;
      UsuarioServicos usuarioServicos ;
 
     @Override

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1360.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane layoutX="632.0" layoutY="-218.0" prefHeight="1080.0" prefWidth="1049.0" style="-fx-background-color: #EC3A3A; -fx-background-radius: 700;">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.35877862572669983" />
+               </color>
+            </DropShadow>
+         </effect>
+         <top>
+            <Pane prefHeight="200.0" prefWidth="1049.0" BorderPane.alignment="CENTER" />
+         </top>
+      </BorderPane>
+      <Pane layoutX="228.0" layoutY="75.0" prefHeight="560.0" prefWidth="836.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
+         <children>
+            <Button layoutX="132.0" layoutY="486.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="85.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Salvar">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.8244274854660034" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <Button layoutX="325.0" layoutY="486.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="85.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Actualizar">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.7824427485466003" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <TableView layoutX="132.0" layoutY="138.0" prefHeight="306.0" prefWidth="369.0" style="-fx-background-radius: 10;">
+              <columns>
+                <TableColumn prefWidth="176.0" text="Código" />
+                <TableColumn prefWidth="192.0" text="Unidade" />
+              </columns>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.805343508720398" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </TableView>
+            <Button layoutX="229.0" layoutY="486.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="85.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Editar">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.8244274854660034" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <Button layoutX="418.0" layoutY="486.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="85.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Cancelar">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.7824427485466003" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <TextField layoutX="129.0" layoutY="76.0" prefHeight="25.0" prefWidth="369.0" promptText="Introduza o Nome da Unidade">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.5954198241233826" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </TextField>
+            <ImageView fitHeight="95.0" fitWidth="108.0" layoutX="721.0" layoutY="7.0">
+               <image>
+                  <Image url="@../icons/Free3dLogo.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="473.0" layoutY="78.0">
+               <image>
+                  <Image url="@../icons/icon-action-search_24px.png" />
+               </image>
+            </ImageView>
+         </children>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.07000000029802322" green="0.06859999895095825" blue="0.06859999895095825" opacity="0.9312977194786072" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Pane>
+      <Text layoutX="274.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastro de Unidade">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.614503800868988" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Text>
+   </children>
+</AnchorPane>
