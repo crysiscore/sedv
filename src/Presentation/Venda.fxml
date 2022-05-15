@@ -8,6 +8,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+
+
 <AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="655.0" prefWidth="1213.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VendaController">
    <children>
       <Label layoutX="51.0" layoutY="62.0" text="Funcionário:" textFill="#575454">
@@ -40,7 +42,7 @@
             <TableColumn fx:id="columnDescricao" minWidth="6.0" prefWidth="131.0" text="Descrição" />
         </columns>
       </TableView>
-      <Button fx:id="btnAdicionar" layoutX="666.0" layoutY="354.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Adicionar" />
+      <Button fx:id="btnAdicionar" layoutX="666.0" layoutY="354.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Adicionar"  />
       <Button fx:id="btnRemover" layoutX="666.0" layoutY="389.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Remover" />
       <Label layoutX="760.0" layoutY="252.0" prefHeight="19.0" prefWidth="129.0" text="Produtos a Vender">
          <font>

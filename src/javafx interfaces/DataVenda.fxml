@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="639.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane layoutX="362.0" layoutY="-117.0" prefHeight="557.0" prefWidth="566.0" style="-fx-background-color: #EC3A3A; -fx-background-radius: 700;">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.35877862572669983" />
+               </color>
+            </DropShadow>
+         </effect>
+         <top>
+            <Pane prefHeight="200.0" prefWidth="1049.0" BorderPane.alignment="CENTER" />
+         </top>
+      </BorderPane>
+      <Text layoutX="116.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data de Venda">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.614503800868988" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Text>
+      <Pane layoutX="62.0" layoutY="89.0" prefHeight="265.0" prefWidth="448.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
+         <children>
+            <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="389.0" layoutY="7.0">
+               <image>
+                  <Image url="@../icons/Free3dLogo.png" />
+               </image>
+            </ImageView>
+            <DatePicker layoutX="153.0" layoutY="77.0" prefHeight="25.0" prefWidth="185.0">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.6603053212165833" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </DatePicker>
+            <Text layoutX="65.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data de Venda">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Text>
+            <Button layoutX="153.0" layoutY="206.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Ok">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.8244274854660034" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <Button layoutX="242.0" layoutY="206.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Cancelar">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.7824427485466003" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+         </children>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.07000000029802322" green="0.06859999895095825" blue="0.06859999895095825" opacity="0.9312977194786072" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Pane>
+   </children>
+</AnchorPane>
