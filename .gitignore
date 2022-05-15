@@ -6,7 +6,10 @@
 
 
 # project proprerties
-private.properties
+nbproject/private/private.properties
+nbproject/private/private.xml
+nbproject/project.properties
+
 project.properties
 config.properties
 private.xml
