@@ -21,7 +21,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 /**
  * FXML Controller class
@@ -30,14 +33,61 @@ import javafx.stage.Stage;
  */
 public class TrickController implements Initializable {
     ResultSet rs;
-      @FXML
-    private AnchorPane anchorPane;
+
+ 
+    @FXML
+    private AnchorPane AnchorPane;
 
     @FXML
-    private MenuItem menuItemStockNovoProduto;
+    private ImageView ImageViewAdicionarProduto;
 
     @FXML
-    private MenuItem menuItemStockProcurarProduto;
+    private Pane PnaePane;
+
+    @FXML
+    private Button btnSair;
+
+    @FXML
+    private MenuItem buttonSair;
+
+    @FXML
+    private ImageView imageViewAdicionarStock;
+
+    @FXML
+    private ImageView imageViewListaProdutos;
+
+    @FXML
+    private ImageView imageViewVenda;
+
+    @FXML
+    private Label labelUserCod;
+
+    @FXML
+    private Label labelUsername;
+
+    @FXML
+    private MenuItem menuItemAjudaSobre;
+
+    @FXML
+    private MenuItem menuItemOutrosCategoriasProdutos;
+
+    @FXML
+    private MenuItem menuItemOutrosPrevilegios;
+
+    @FXML
+    private MenuItem menuItemOutrosUsuarios;
+
+    @FXML
+    private MenuItem menuItemOutrrosUnidadesProdutos;
+
+    @FXML
+    private MenuItem menuItemRelatoriosProdutosMaisVendidos;
+
+    @FXML
+    private MenuItem menuItemRelatoriosVendasPorData;
+
+    @FXML
+    private MenuItem menuItemRelatoriosVendasRecentes;
 
     @FXML
     private MenuItem menuItemStockAdicionarStock;
@@ -46,70 +96,21 @@ public class TrickController implements Initializable {
     private MenuItem menuItemStockListaProdutos;
 
     @FXML
-    private Button btnSair;
+    private MenuItem menuItemStockNovoProduto;
 
     @FXML
-    private MenuItem menuItemVendasNovaVenda;
+    private MenuItem menuItemStockProcurarProduto;
 
     @FXML
     private MenuItem menuItemVendasListaDeVendas;
 
     @FXML
-    private MenuItem menuItemRelatoriosVendasRecentes;
+    private MenuItem menuItemVendasNovaVenda;
 
-    @FXML
-    private MenuItem menuItemRelatoriosVendasPorData;
-
-    @FXML
-    private MenuItem menuItemRelatoriosProdutosMaisVendidos;
-
-    @FXML
-    private MenuItem menuItemOutrrosUnidadesProdutos;
-
-    @FXML
-    private MenuItem menuItemOutrosCategoriasProdutos;
-
-    @FXML
-    private MenuItem menuItemOutrosUsuarios;
-
-    @FXML
-    private MenuItem menuItemOutrosPrevilegios;
-
-    @FXML
-    private MenuItem menuItemAjudaSobre;
-
-    @FXML
-    private Label labelVendas;
-
-    @FXML
-    private Label labelProdutos;
-
-    @FXML
-    private Button buttonNovoProduto;
-
-    @FXML
-    private Button buttonAdicionarStock;
-
-    @FXML
-    private Button buttonListaProdutos;
-
-    @FXML
-    private Button buttonNovaVenda;
-
-    @FXML
-    private Button buttonVendasRecentes;
-
-    @FXML
-    private Button buttonProdutosMaisVendidos;
-    
-    @FXML
-    private Label labelUsername;
-
-    @FXML
-    private Label labelUserCod;
     UsuarioServicos usuarioServicos ;
     Usuario usuario;
     ProdutosServicos servicoProdutos;
+
       
     public Usuario getProduto() {
         return usuario;
@@ -139,7 +140,7 @@ public class TrickController implements Initializable {
     
         
     
-    public void handleMenuItemStockAdicionarStock (ActionEvent event){
+    public void handleMenuItemStockAdicionarStock (){
          
           
 /*     */     try {
@@ -148,7 +149,7 @@ public class TrickController implements Initializable {
 /* 166 */         String codUsuario = this.labelUserCod.getText();
 /* 166 */        
 /*     */  FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(TrickController.class.getResource("/Presentation/TabelaAdicaoProduto.fxml"));
+        loader.setLocation(TrickController.class.getResource("/Presentation/TabelaAdicaoProduto1.fxml"));
         //loader.setLocation(TrickController.class.getResource("/Presentation/BuscaProdutos.fxml"));
         AnchorPane page = (AnchorPane) loader.load();
         
@@ -166,7 +167,7 @@ public class TrickController implements Initializable {
         dialogStage.setTitle("Registo de Stock");
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
-        dialogStage.setMaximized(false);
+        dialogStage.setMaximized(true);
         dialogStage.setResizable(false);
         // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
         dialogStage.show();
@@ -176,5 +177,7 @@ public class TrickController implements Initializable {
                 System.out.println("" + ex.toString());
 /*     */     } 
 /*     */   }
+
+   
     
 }

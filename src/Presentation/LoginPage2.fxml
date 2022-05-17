@@ -16,7 +16,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="755.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginPage1Controller">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="755.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane layoutX="414.0" layoutY="-102.0" prefHeight="557.0" prefWidth="566.0" style="-fx-background-color: #EC3A3A; -fx-background-radius: 700;">
          <effect>
@@ -44,7 +44,7 @@
                   <Font name="Times New Roman" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btnCancel" layoutX="400.0" layoutY="275.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="25.0" prefWidth="83.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Cancel">
+            <Button fx:id="btnCancel" layoutX="400.0" layoutY="275.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Cancel">
                <effect>
                   <DropShadow>
                      <color>
@@ -121,11 +121,11 @@
                   <Image url="@../images/lock.png" />
                </image>
             </ImageView>
-            <Label fx:id="labelLoginPageErro" layoutX="260.0" layoutY="43.0" prefHeight="17.0" prefWidth="261.0" textFill="#a12b2b">
+            <Label fx:id="labelLoginPageErro" layoutX="260.0" layoutY="43.0" prefHeight="17.0" prefWidth="261.0" textFill="#ae3939">
                <effect>
                   <DropShadow>
                      <color>
-                        <Color opacity="0.5458015203475952" />
+                        <Color opacity="0.4580152630805969" />
                      </color></DropShadow>
                </effect>
             </Label>

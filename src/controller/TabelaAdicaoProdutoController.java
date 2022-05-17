@@ -31,6 +31,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
@@ -41,36 +42,53 @@ import javax.swing.JOptionPane;
  */
 public class TabelaAdicaoProdutoController implements Initializable {
      
+     @FXML
+    private AnchorPane AnchorPane;
+
     @FXML
-    private TableView <Stock> tableviewAdicionarStock;
+    private Pane PanePane;
+
+    
+    @FXML
+    private TableView<Stock> tableviewAdicionarStock;
 
     @FXML
     private TableColumn<Stock, Integer> columnCodigoProduto;
 
     @FXML
-    private TableColumn<Stock, Integer> columnQuantidade;
-
-    @FXML
     private TableColumn<Stock, Date> columnData;
-
-    @FXML
-    private TableColumn<Stock, String> columnNumeroLote;
 
     @FXML
     private TableColumn<Stock, String> columnFabricante;
 
     @FXML
+    private TableColumn<Stock, String> columnNumeroLote;
+
+    @FXML
+    private TableColumn<Stock, Integer> columnQuantidade;
+
+    @FXML
+    private Label labelCodUsuario;
+
+    @FXML
+    private Label labelcopr;
+
+    
+    @FXML
+    private Button buittonRegistarStock;
+
+    @FXML
     private Button buttonAdicionarStock;
 
     @FXML
-    private Button buittonRegistarStock;
-    @FXML
-    private Label labelcopr;
-    @FXML
     private Button buttonCancelar;
-     @FXML
-    private Label labelCodUsuario;
-   UsuarioServicos usuarioServicos ;
+
+    @FXML
+    private Button buttonRemover;
+    
+    
+    
+    UsuarioServicos usuarioServicos ;
   // ObservableList <Stock> stockList ;
     StockServicos stServico;
     //Stock stock;
@@ -78,7 +96,7 @@ public class TabelaAdicaoProdutoController implements Initializable {
      private CadStockController cadStockController;
      private Produto produto;
      private StockModel stockModel = new StockModel();
-   ObservableList <Stock> stock =FXCollections.observableArrayList();
+    ObservableList <Stock> stock =FXCollections.observableArrayList();
 
  //final static String ficheiro_gravado = "C:\\app\\stock.txt";
        
@@ -149,7 +167,7 @@ public class TabelaAdicaoProdutoController implements Initializable {
 /* 165 */          //String codUsuario = this.labelCodUsuario.getText();
 /* 166 */        
 /*     */     FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(TrickController.class.getResource("/Presentation/BuscaProdutos.fxml"));
+        loader.setLocation(TrickController.class.getResource("/Presentation/BuscaProduto1.fxml"));
         AnchorPane page = (AnchorPane) loader.load();
         
          //BuscaProdutosController buscaProdutosController= loader.getController();
@@ -167,7 +185,7 @@ public class TabelaAdicaoProdutoController implements Initializable {
         dialogStage.setTitle("Registo de Stock");
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
-        dialogStage.setMaximized(false);
+        dialogStage.setMaximized(true);
         dialogStage.setResizable(false);
         // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
         dialogStage.show();

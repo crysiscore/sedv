@@ -23,6 +23,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 /**
  * FXML Controller class
@@ -37,7 +38,10 @@ public class LoginPage1Controller implements Initializable {
      ResultSet rs;
      Usuario usuario;
    
-        @FXML
+    @FXML
+    private Pane PanePane;
+
+    @FXML
     private AnchorPane anchorPane;
 
     @FXML
@@ -115,7 +119,7 @@ public class LoginPage1Controller implements Initializable {
          //selectedProduto= servicoProdutos.getDetalhesProduto(Integer.parseInt(codProduto));
        // cadStockController.ReceberDadosProduto(selectedProduto);
 
-        loader.setLocation(TrickController.class.getResource("/Presentation/Trick.fxml"));
+        loader.setLocation(TrickController.class.getResource("/Presentation/Trick1.fxml"));
         
         AnchorPane page = (AnchorPane) loader.load();
         TrickController trickController =loader.<TrickController>getController();
@@ -154,7 +158,7 @@ public class LoginPage1Controller implements Initializable {
                    // Trick.UserInfo(username, codUsuario);
 /* 172 */           FXMLLoader loader = new FXMLLoader();
                   
-         loader.setLocation(TrickController.class.getResource("/Presentation/Trick.fxml"));
+         loader.setLocation(TrickController.class.getResource("/Presentation/Trick1.fxml"));
         AnchorPane page = (AnchorPane) loader.load();
         TrickController trickController =loader.<TrickController>getController();
        // CadStockController cadStockController = loader.<CadStockController>getController();
@@ -188,7 +192,7 @@ public class LoginPage1Controller implements Initializable {
 /*     */       {
 /*     */ 
 /*     */         
-/* 196 */         this.labelLoginPageErro.setText("Nome e senha do usuario nao correspondem");
+/* 196 */         this.labelLoginPageErro.setText("Nome e senha do usuário não correspondem!");
 /* 197 */        // this.jLabel2.setIcon(new ImageIcon(getClass().getResource("/images/lock.png")));
 /*     */       }
 /*     */     

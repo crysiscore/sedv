@@ -40,6 +40,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
@@ -48,41 +49,46 @@ import javafx.stage.Stage;
  * @author Neusia
  */
 public class BuscaProdutosController implements Initializable {
-    ResultSet rs;
     
-         @FXML
-    private TableView< Produto> tableviewProdutos;
+      /**
+     * Initializes the controller class.
+     */
+    
+        @FXML
+    private Pane PanePane;
+
+    @FXML
+    private TableView<Produto> tableviewProdutos;
 
     @FXML
     private TableColumn<Produto, Integer> columnCodigoProduto;
 
     @FXML
     private TableColumn<Produto, String> columnNomeProduto;
+    
+    @FXML
+    private Button buttonAdicionarProduto;
+
+    @FXML
+    private Button buttonCancelar;
+
+    @FXML
+    private Label labelCodProduto;
+
+    @FXML
+    private Label labelUsuario;
 
     @FXML
     private TextField textfieldProcurar;
-
-    @FXML
-    private Button buttonProcurar;
-
-    @FXML
-    private Button buttonAdicionarProduto;
-        @FXML
-    private Button buttonCancelar;
     
-        @FXML
-    private Label labelUsuario;
-        
-            @FXML
-    private Label labelCodProduto;
-            Usuario usuario; 
-     Produto produto;
-     UsuarioServicos usuarioServicos ;
-     private StockModel stockModel;
+    
+    ResultSet rs;
+    Usuario usuario; 
+    Produto produto;
+    UsuarioServicos usuarioServicos ;
+    private StockModel stockModel;
      
-    /**
-     * Initializes the controller class.
-     */
+  
     ProdutosServicos servicoProdutos;
     ObservableList <Produto> produtoObservableList =FXCollections.observableArrayList();
     
@@ -207,7 +213,7 @@ public class BuscaProdutosController implements Initializable {
          String codProduto = this.labelCodProduto.getText();
           
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(TrickController.class.getResource("/Presentation/CadStock.fxml"));
+        loader.setLocation(TrickController.class.getResource("/Presentation/CadastroStock1.fxml"));
         //AnchorPane page = (AnchorPane) loader.load();
           
         //    CadStockController cadStockController= loader.getController();
@@ -233,7 +239,7 @@ public class BuscaProdutosController implements Initializable {
         dialogStage.setTitle("Registo de Stock");
         Scene scene = new Scene(root);
         dialogStage.setScene(scene);
-        dialogStage.setMaximized(false);
+        dialogStage.setMaximized(true);
         dialogStage.setResizable(false);
         // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
         dialogStage.show();
