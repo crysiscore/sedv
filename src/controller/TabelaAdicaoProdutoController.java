@@ -185,7 +185,7 @@ public class TabelaAdicaoProdutoController implements Initializable {
         dialogStage.setTitle("Registo de Stock");
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
-        dialogStage.setMaximized(true);
+        dialogStage.setMaximized(false);
         dialogStage.setResizable(false);
         // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
         dialogStage.show();
@@ -218,6 +218,36 @@ public class TabelaAdicaoProdutoController implements Initializable {
          @FXML
     public void handleMenuItemRegistarStock() throws IOException, SQLException {
         StockDAO dao = new StockDAO();
+        
+       if (tableviewAdicionarStock.getItems().isEmpty()) {
+       
+          
+           
+        JOptionPane.showMessageDialog(null, "" + "A Tabela encontra-se Vazia!!!");
+        
+        
+          } else {
+          
+           int response =JOptionPane.showConfirmDialog(null,"Tem a certeza que deseja registrar o Stock introduzido na tabela???", "confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+          
+           if(response==JOptionPane.YES_OPTION){
+               
+                dao.RegistarStock(tableviewAdicionarStock.getItems());
+            tableviewAdicionarStock.getItems().clear();
+           JOptionPane.showMessageDialog(null, "O Stock foi Cadastrado com Sucesso!");
+           
+           
+           }else if(response==JOptionPane.NO_OPTION){
+               JOptionPane.showMessageDialog(null, "O Stock não foi Cadastrado!");
+           
+           
+           }else if(response==JOptionPane.CLOSED_OPTION){
+               JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
+           }
+           
+           
+           }
+       
        
         //for(int i = 0; i < tableviewAdicionarStock.getItems().size(); i++) {
         
@@ -228,10 +258,7 @@ public class TabelaAdicaoProdutoController implements Initializable {
           //   String numero_lote = tableviewAdicionarStock.getItems().get(i).numero_lote;
            //  String fabricante =tableviewAdicionarStock.getItems().get(i).fabricante;
         
-           dao.RegistarStock(tableviewAdicionarStock.getItems());
-           
-           tableviewAdicionarStock.getItems().clear();
-           JOptionPane.showMessageDialog(null, "O Stock foi Cadastrado com Sucesso!");
+         
          }
     }  
 

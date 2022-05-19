@@ -239,7 +239,7 @@ public class BuscaProdutosController implements Initializable {
         dialogStage.setTitle("Registo de Stock");
         Scene scene = new Scene(root);
         dialogStage.setScene(scene);
-        dialogStage.setMaximized(true);
+        dialogStage.setMaximized(false);
         dialogStage.setResizable(false);
         // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
         dialogStage.show();

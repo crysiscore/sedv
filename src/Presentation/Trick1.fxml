@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1360.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TrickController">
+<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1380.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TrickController">
    <children>
       <BorderPane layoutX="572.0" layoutY="-223.0" prefHeight="1080.0" prefWidth="1049.0" style="-fx-background-color: #EC3A3A; -fx-background-radius: 700;">
          <effect>
@@ -29,7 +29,7 @@
             <Pane prefHeight="200.0" prefWidth="1049.0" BorderPane.alignment="CENTER" />
          </top>
       </BorderPane>
-      <Pane fx:id="PnaePane" layoutX="138.0" layoutY="75.0" prefHeight="587.0" prefWidth="1096.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
+      <Pane fx:id="PnaePane" layoutX="138.0" layoutY="62.0" prefHeight="600.0" prefWidth="1096.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
          <children>
             <ImageView fx:id="imageViewVenda" fitHeight="157.0" fitWidth="165.0" layoutX="723.0" layoutY="111.0">
                <image>
@@ -55,19 +55,14 @@
                <image>
                   <Image url="@../icons/depositphotos_25269157-stock-photo-white-plus-sign-isolated-on.png" />
                </image>
-               <effect>
-                  <DropShadow />
-               </effect>
             </ImageView>
-            <MenuBar layoutX="85.0" layoutY="114.0" prefHeight="25.0" prefWidth="62.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
+            <MenuBar layoutX="88.0" layoutY="256.0" prefHeight="25.0" prefWidth="102.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
                <menus>
-                  <Menu mnemonicParsing="false" text="Stock">
+                  <Menu mnemonicParsing="false" text="    Stock">
                      <items>
-                        <MenuItem fx:id="menuItemStockNovoProduto" mnemonicParsing="false" text="Novo Produto" />
-                        <MenuItem fx:id="menuItemStockProcurarProduto" mnemonicParsing="false" text="Procurar produto" />
-                        <MenuItem fx:id="menuItemStockAdicionarStock" mnemonicParsing="false" onAction="#handleMenuItemStockAdicionarStock" text="Adicionar Stock" />
-                        <MenuItem fx:id="menuItemStockListaProdutos" mnemonicParsing="false" text="Lista de Produtos" />
-                        <MenuItem fx:id="buttonSair" mnemonicParsing="false" text="Sair" />
+                        <MenuItem fx:id="menuItemStockAdicionarStock" mnemonicParsing="false" onAction="#handleMenuItemStockAdicionarStock" text="Entrada de Stock" />
+                        <MenuItem fx:id="buttonSair" mnemonicParsing="false" text="Destruir Stock" />
+                        <MenuItem fx:id="buttonSair1" mnemonicParsing="false" text="Inventário de Stock" />
                      </items>
                   </Menu>
                </menus>
@@ -87,36 +82,36 @@
                <effect>
                   <DropShadow>
                      <color>
-                        <Color opacity="0.580152690410614" />
+                        <Color opacity="0.3473282754421234" />
                      </color>
                   </DropShadow>
                </effect>
             </Text>
-            <ImageView fitHeight="46.0" fitWidth="40.0" layoutX="36.0" layoutY="103.0">
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="35.0" layoutY="248.0">
                <image>
                   <Image url="@../icons/icons8-stock-64.png" />
                </image>
                <effect>
                   <DropShadow>
                      <color>
-                        <Color opacity="0.40458017587661743" />
+                        <Color opacity="0.24809162318706512" />
                      </color>
                   </DropShadow>
                </effect>
             </ImageView>
-            <ImageView fitHeight="46.0" fitWidth="40.0" layoutX="36.0" layoutY="178.0">
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="35.0" layoutY="111.0">
                <image>
                   <Image url="@../icons/icons8-sales-64.png" />
                </image>
                <effect>
                   <DropShadow>
                      <color>
-                        <Color opacity="0.40458014607429504" />
+                        <Color opacity="0.24809159338474274" />
                      </color>
                   </DropShadow>
                </effect>
             </ImageView>
-            <MenuBar layoutX="85.0" layoutY="189.0" prefHeight="25.0" prefWidth="70.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
+            <MenuBar layoutX="88.0" layoutY="119.0" prefHeight="25.0" prefWidth="75.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
                <menus>
                   <Menu mnemonicParsing="false" text="Vendas">
                      <items>
@@ -129,48 +124,21 @@
                   <DropShadow />
                </effect>
             </MenuBar>
-            <ImageView fitHeight="46.0" fitWidth="48.0" layoutX="28.0" layoutY="260.0">
-               <image>
-                  <Image url="@../icons/icons8-add-bookmark-50.png" />
-               </image>
-               <effect>
-                  <DropShadow>
-                     <color>
-                        <Color opacity="0.39694657921791077" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </ImageView>
-            <MenuBar layoutX="85.0" layoutY="271.0" prefHeight="25.0" prefWidth="76.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
-               <menus>
-                  <Menu mnemonicParsing="false" text="Outros">
-                     <items>
-                        <MenuItem fx:id="menuItemOutrrosUnidadesProdutos" mnemonicParsing="false" text="Unidades de Produtos" />
-                        <MenuItem fx:id="menuItemOutrosCategoriasProdutos" mnemonicParsing="false" text="Categorias de Produto" />
-                        <MenuItem fx:id="menuItemOutrosUsuarios" mnemonicParsing="false" text="Usuários" />
-                        <MenuItem fx:id="menuItemOutrosPrevilegios" mnemonicParsing="false" text="Previlégios" />
-                     </items>
-                  </Menu>
-               </menus>
-               <effect>
-                  <DropShadow />
-               </effect>
-            </MenuBar>
-            <ImageView fitHeight="46.0" fitWidth="40.0" layoutX="36.0" layoutY="339.0">
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="36.0" layoutY="314.0">
                <image>
                   <Image url="@../icons/icons8-report-66.png" />
                </image>
                <effect>
                   <DropShadow>
                      <color>
-                        <Color opacity="0.40839695930480957" />
+                        <Color opacity="0.31679391860961914" />
                      </color>
                   </DropShadow>
                </effect>
             </ImageView>
-            <MenuBar layoutX="85.0" layoutY="349.0" prefHeight="25.0" prefWidth="92.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
+            <MenuBar layoutX="88.0" layoutY="322.0" prefHeight="25.0" prefWidth="110.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
                <menus>
-                  <Menu mnemonicParsing="false" text=" Relatórios">
+                  <Menu mnemonicParsing="false" text="  Relatórios">
                      <items>
                         <MenuItem fx:id="menuItemRelatoriosVendasRecentes" mnemonicParsing="false" text="Vendas Recentes (Hoje)" />
                         <MenuItem fx:id="menuItemRelatoriosVendasPorData" mnemonicParsing="false" text="Vendas por Data" />
@@ -182,23 +150,26 @@
                   <DropShadow />
                </effect>
             </MenuBar>
-            <ImageView fitHeight="46.0" fitWidth="40.0" layoutX="35.0" layoutY="412.0">
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="36.0" layoutY="386.0">
                <image>
                   <Image url="@../icons/icons8-help-50.png" />
                </image>
                <effect>
                   <DropShadow>
                      <color>
-                        <Color opacity="0.39694657921791077" />
+                        <Color opacity="0.32824429869651794" />
                      </color>
                   </DropShadow>
                </effect>
             </ImageView>
-            <MenuBar layoutX="85.0" layoutY="425.0" prefHeight="25.0" prefWidth="102.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
+            <MenuBar layoutX="88.0" layoutY="393.0" prefHeight="25.0" prefWidth="116.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
                <menus>
-                  <Menu mnemonicParsing="false" text="      Ajuda">
+                  <Menu mnemonicParsing="false" text="   Definições">
                      <items>
-                        <MenuItem fx:id="menuItemAjudaSobre" mnemonicParsing="false" text="        Sobre      " />
+                        <MenuItem fx:id="menuItemAjudaSobre" mnemonicParsing="false" text="Gerir Profiles     " />
+                        <MenuItem fx:id="menuItemAjudaSobre1" mnemonicParsing="false" text="Gerir Funcionalidades" />
+                        <MenuItem fx:id="menuItemAjudaSobre11" mnemonicParsing="false" text="Gerir Utilizadores" />
+                        <MenuItem fx:id="menuItemAjudaSobre111" mnemonicParsing="false" text="Backups e Sync" />
                      </items>
                   </Menu>
                </menus>
@@ -206,7 +177,7 @@
                   <DropShadow />
                </effect>
             </MenuBar>
-            <Button fx:id="btnSair" layoutX="85.0" layoutY="497.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" style="-fx-background-radius: 18; -fx-background-color: #E9EEEE;" text="Sair">
+            <Button fx:id="btnSair" layoutX="88.0" layoutY="513.0" mnemonicParsing="false" onAction="#SairButtonOnAction" prefHeight="25.0" prefWidth="116.0" style="-fx-background-radius: 18; -fx-background-color: #E9EEEE;" text="Sair">
                <effect>
                   <DropShadow />
                </effect>
@@ -216,19 +187,19 @@
                   <Image url="@../icons/Retângulo%2033.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="118.0" fitWidth="127.0" layoutX="965.0" layoutY="2.0">
+            <ImageView fitHeight="111.0" fitWidth="124.0" layoutX="968.0" layoutY="2.0">
                <image>
                   <Image url="@../icons/Free3dLogo.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="46.0" fitWidth="40.0" layoutX="33.0" layoutY="484.0">
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="36.0" layoutY="506.0">
                <image>
                   <Image url="@../icons/icom-png-4.png" />
                </image>
                <effect>
                   <DropShadow>
                      <color>
-                        <Color opacity="0.39312976598739624" />
+                        <Color opacity="0.3320610523223877" />
                      </color>
                   </DropShadow>
                </effect>
@@ -246,7 +217,25 @@
             <Text layoutX="511.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Novo Produto" />
             <Text layoutX="773.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nova Venda" />
             <Text layoutX="510.0" layoutY="508.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lista de Produtos" />
-            <Text layoutX="759.0" layoutY="507.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adicionar Stock" />
+            <Text layoutX="759.0" layoutY="507.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Entrada de Stock" />
+            <MenuBar layoutX="88.0" layoutY="187.0" prefHeight="25.0" prefWidth="83.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
+               <menus>
+                  <Menu mnemonicParsing="false" text="Produtos">
+                     <items>
+                        <MenuItem fx:id="menuItemStockNovoProduto1" mnemonicParsing="false" text="Novo Produto" />
+                        <MenuItem fx:id="menuItemStockListaProdutos1" mnemonicParsing="false" text="Lista de Produtos" />
+                     </items>
+                  </Menu>
+               </menus>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </MenuBar>
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="36.0" layoutY="179.0">
+               <image>
+                  <Image url="@../icons/prod.png" />
+               </image>
+            </ImageView>
          </children>
          <effect>
             <DropShadow>
