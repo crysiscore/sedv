@@ -62,17 +62,12 @@
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label text="Quantidade" GridPane.rowIndex="3">
+                  <Label text="Unidade" GridPane.rowIndex="3">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label text="Unidade" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="Times New Roman" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label text="Categoria" GridPane.rowIndex="5">
+                  <Label text="Categoria" GridPane.rowIndex="4">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
@@ -104,20 +99,11 @@
                         </DropShadow>
                      </effect>
                   </TextField>
-                  <TextField prefHeight="28.0" prefWidth="476.0" style="-fx-background-radius: 6;" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              <Color opacity="0.4465648829936981" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </TextField>
-                  <ComboBox prefHeight="25.0" prefWidth="204.0" style="-fx-background-radius: 6; -fx-background-color: #E9EEEE;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <ComboBox prefHeight="25.0" prefWidth="204.0" style="-fx-background-radius: 6; -fx-background-color: #E9EEEE;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <effect>
                         <DropShadow />
                      </effect></ComboBox>
-                  <ComboBox prefHeight="25.0" prefWidth="205.0" style="-fx-background-radius: 6; -fx-background-color: #E9EEEE;" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <ComboBox prefHeight="25.0" prefWidth="205.0" style="-fx-background-radius: 6; -fx-background-color: #E9EEEE;" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <effect>
                         <DropShadow />
                      </effect></ComboBox>
@@ -147,7 +133,7 @@
                      </color>
                   </DropShadow>
                </effect></Button>
-            <ImageView fitHeight="129.0" fitWidth="119.0" layoutX="765.0" layoutY="-5.0">
+            <ImageView fitHeight="111.0" fitWidth="119.0" layoutX="765.0" layoutY="2.0">
                <image>
                   <Image url="@../icons/Free3dLogo.png" />
                </image>

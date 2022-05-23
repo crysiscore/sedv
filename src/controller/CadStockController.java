@@ -65,6 +65,40 @@ import javax.swing.JOptionPane;
  * @author Neusia
  */
 public class CadStockController implements Initializable {
+    
+    
+    @FXML
+    private AnchorPane AnchorPane;
+
+    @FXML
+    private DatePicker DatePickerDataEntrada;
+
+    @FXML
+    private TextField TextFieldCodigoFuncionario;
+
+    @FXML
+    private TextField TextFieldCodigoProduto;
+
+    @FXML
+    private TextField TextFieldFabricante;
+
+    @FXML
+    private TextField TextFieldNumeroLote;
+
+    @FXML
+    private TextField TextFieldlQuantidadeRecebida;
+
+    @FXML
+    private Button buttonAdicionarStockNaTabela;
+
+    @FXML
+    private Button buttonCancelar;
+
+    @FXML
+    private Label labelNomeFuncionario;
+
+    @FXML
+    private TextField textfieldNomeProduto;
 
     Usuario usuario;
     ProdutosServicos prodServ;
@@ -74,43 +108,12 @@ public class CadStockController implements Initializable {
     private Stage dialogStage2;
     private StockModel stockModel;
 
-    @FXML
-    private TextField TextFieldCodigoProduto;
-
-    @FXML
-    private TextField TextFieldCodigoFuncionario;
-
-    @FXML
-    private TextField TextFieldNumeroLote;
-
-    @FXML
-    private TextField TextFieldFabricante;
-
-    @FXML
-    private DatePicker DatePickerDataEntrada;
-
-    @FXML
-    private TextField TextFieldlQuantidadeRecebida;
-
-    @FXML
-    private Button buttonCancelar;
-
-    @FXML
-    private TextField textfieldNomeProduto;
-
-    @FXML
-    private Button buttonAdicionarStockNaTabela;
-
-    @FXML
-    private Label labelNomeFuncionario;
-
     private StockDAO dao;
     //private ObservableList<Stock> stock;
     StockServicos stockServicos;
     ProdutosServicos servicoProdutos;
 
-    @FXML
-    private TextField textFieldIdStock;
+   
 
     public Produto getProduto() {
         return produto;
@@ -150,10 +153,6 @@ public class CadStockController implements Initializable {
     }
 
 
-// ReadWriteTextFile rwTextFile = new ReadWriteTextFile();
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -202,48 +201,7 @@ public class CadStockController implements Initializable {
  /* 122 */ return fds;
         /*     */    }
 
-    @FXML
-    void submit(ActionEvent event) {
-        if (!verificadados()) {
 
-            //Stock stock= new Stock(Integer.parseInt(TextFieldlQuantidadeRecebida.getText()),
-            //Date.valueOf(DatePickerDataEntrada.getValue()),
-            // Integer.parseInt(TextFieldCodigoProduto.getText()),
-            //Integer.parseInt(TextFieldCodigoFuncionario.getText()),
-            //TextFieldNumeroLote.getText(),
-            //Date data_entrada = Date.from(DatePickerDataEntrada.atStartOfDay(ZoneId.systemDefault()).toInstant());
-            //LocalDate data_Entrada= LocalDate.parse(DatePickerDataEntrada.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-            // TextFieldFabricante.getText());
-            //ObservableList <Stock> stocks = tableViewStock.getItems();
-            //stocks.add(stock);
-            // tableViewStock.setItems(stocks);
-            //registoStock();
-        }
-    }
-
-    public void registoStock() throws SQLException {
-        Integer idstock = Integer.parseInt(textFieldIdStock.getText());
-        Integer quantidade_recebida = Integer.parseInt(TextFieldlQuantidadeRecebida.getText());
-        Date data_entrada = java.sql.Date.valueOf(DatePickerDataEntrada.getValue());
-        // String data_entrada =stockss.getData_entrada().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-        //data_entrada = DatePickerDataEntrada.getValue();   
-
-        //StockServicos ss =new StockServicos();
-        Integer produto_Cod_Produto = Integer.parseInt(TextFieldCodigoProduto.getText());
-        Integer usuario_Cod_Funcionario = Integer.parseInt(TextFieldCodigoFuncionario.getText());
-        String numero_lote = TextFieldNumeroLote.getText();
-        String fabricante = TextFieldFabricante.getText();
-
-        //StockDAO dao = new StockDAO();
-        //dao.RegistarStock(idstock,quantidade_recebida, data_entrada, produto_Cod_Produto, usuario_Cod_Funcionario, numero_lote, fabricante);
-    }
-
-    ObservableList<Stock> lista() {
-        ObservableList<Stock> lista = FXCollections.observableArrayList();
-
-        // lista.add(new Stock(Integer.parseInt(TextFieldlQuantidadeRecebida.getText()),java.sql.Date.valueOf(DatePickerDataEntrada.getValue()),TextFieldNumeroLote.getText(),TextFieldFabricante.getText()));
-        return lista;
-    }
 
     @FXML
     public void handleMenuItemStockAdicionarStockNaTabela() throws IOException {
@@ -269,7 +227,7 @@ public class CadStockController implements Initializable {
                  stockModel.addStock(s);
            Stage stage =(Stage) buttonAdicionarStockNaTabela.getScene().getWindow();
         stage.close();
-
+        
               
 
                 /*     */            } /* 201 */ catch (Exception ex) {
