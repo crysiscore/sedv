@@ -76,7 +76,15 @@
 /*     */     
 /*  77 */     return this.rs;
 /*     */   }
-/*     */ 
+/*     */  
+            // áo inves de mostrar o codigo da unidade e categoria mostra os respectivos nomes
+             public ResultSet ListagemdeProduto() throws SQLException {
+/*  74 */     this.cs = this.connect.prepareCall("{call  ListagemdeProduto()}");
+/*  75 */     this.rs = this.cs.executeQuery();
+/*     */     
+/*  77 */     return this.rs;
+/*     */   }
+/*     */  
 /*     */   
 /*     */   public ResultSet getDetalhesProduto(int codProduto) throws SQLException {
 /*  82 */     this.cs = this.connect.prepareCall("{call  DetalhesProdutos(?)}");

@@ -180,4 +180,43 @@ public class TrickController implements Initializable {
 
    
     
+    
+    public void handleMenuItemProdutoRegistrarProduto (){
+         
+          
+/*     */     try {
+/* 159 */       
+/* 165 */      
+/* 166 */         String codUsuario = this.labelUserCod.getText();
+/* 166 */        
+/*     */  FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(TrickController.class.getResource("/Presentation/ListadeProdutos.fxml"));
+        
+        AnchorPane page = (AnchorPane) loader.load();
+        
+         ListadeProdutosController tabelaAdicaoProdutoController= loader.<ListadeProdutosController>getController();
+        
+         
+        usuarioServicos = new UsuarioServicos();
+        Usuario selectedUsuario = new Usuario();
+        selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
+        //ListadeProdutosController.receberdadosUsuario(selectedUsuario);
+        
+        
+        // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Registo de Produtos");
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+        dialogStage.setMaximized(false);
+        dialogStage.setResizable(false);
+        // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
+        dialogStage.show();
+/*     */     }
+/* 201 */     catch (Exception ex) {
+/* 202 */       System.out.println("" + ex + ex.getLocalizedMessage());
+                System.out.println("" + ex.toString());
+/*     */     } 
+/*     */   }
+
 }

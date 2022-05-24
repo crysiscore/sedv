@@ -51,7 +51,7 @@
                   </DropShadow>
                </effect>
             </ImageView>
-            <ImageView fx:id="ImageViewAdicionarProduto" fitHeight="157.0" fitWidth="165.0" layoutX="466.0" layoutY="111.0">
+            <ImageView fx:id="ImageViewAdicionarProduto" fitHeight="157.0" fitWidth="165.0" layoutX="466.0" layoutY="111.0" onMouseClicked="#handleMenuItemProdutoRegistrarProduto">
                <image>
                   <Image url="@../icons/depositphotos_25269157-stock-photo-white-plus-sign-isolated-on.png" />
                </image>
@@ -204,7 +204,7 @@
                   </DropShadow>
                </effect>
             </ImageView>
-            <ImageView fx:id="imageViewListaProdutos" fitHeight="157.0" fitWidth="165.0" layoutX="473.0" layoutY="334.0">
+            <ImageView fx:id="imageViewListaProdutos" fitHeight="157.0" fitWidth="165.0" layoutX="473.0" layoutY="334.0" onMouseClicked="#handleMenuItemProdutoRegistrarProduto">
                <image>
                   <Image url="@../icons/3d-illustration-of-notepad-check-list-with-pencil-over-white-background-MAMJTX.png" />
                </image>

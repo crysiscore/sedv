@@ -27,7 +27,20 @@
             this.Nome= Nome;
        
             }
+            
+            public Produto(Integer Cod_produto, String Nome,String Categoria,String Unidade,
+            String Descricao,Double Preco_unitario) {
+            this.Cod_produto=Cod_produto;
+            this.Nome= Nome;
+            this.Preco_unitario=Preco_unitario;
+            this.Unidade= Unidade;
+            this.Categoria= Categoria;
+            this.Descricao= Descricao;
+       
+            }
 /*    */   
+
+    
                
  public Integer getCod_produto() {
 /* 23 */     return this.Cod_produto;
