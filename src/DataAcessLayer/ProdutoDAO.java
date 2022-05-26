@@ -1,5 +1,6 @@
 /*     */ package DataAcessLayer;
 /*     */ 
+import java.sql.Blob;
 /*     */ import java.sql.CallableStatement;
 /*     */ import java.sql.Connection;
 /*     */ import java.sql.ResultSet;
@@ -107,14 +108,16 @@
 /*     */ 
 /*     */ 
 /*     */   
-/*     */   public void cadastrarprodutos(String nome, double preco_unitario, int quantidadeStock, int unidade, int categoria, String descricao) throws SQLException {
-/* 103 */     this.cs = this.connect.prepareCall("{call CadProduto(null,?,?,?,?,?,?)}");
+/*     */   public void cadastrarprodutos(String nome, double preco_unitario, int unidade, int categoria, String descricao) throws SQLException {
+/* 103 */     this.cs = this.connect.prepareCall("{call CadProduto(null,?,?,?,?,?,null)}");
 /* 104 */     this.cs.setString(1, nome);
 /* 105 */     this.cs.setDouble(2, preco_unitario);
-/* 106 */     this.cs.setInt(3, quantidadeStock);
-/* 107 */     this.cs.setInt(4, unidade);
-/* 108 */     this.cs.setInt(5, categoria);
-/* 109 */     this.cs.setString(6, descricao);
+/* 107 */     this.cs.setInt(3, unidade);
+/* 108 */     this.cs.setInt(4, categoria);
+/* 109 */     this.cs.setString(5, descricao);
+             // this.cs.setBlob(6, foto);
+              
+              
 /* 110 */     this.cs.executeQuery();
 /* 111 */     this.cs.close();
 /*     */   }

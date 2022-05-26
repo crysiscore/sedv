@@ -169,49 +169,51 @@ public class CadStockController implements Initializable {
         stage.close();
     }
 
-    public boolean verificadados() {
-        /*  77 */ boolean fds = false;
-        /*     */
- /*  87 */ if (this.TextFieldlQuantidadeRecebida.getText().equals("")) {
-            /*     */
- /*  94 */ JOptionPane.showMessageDialog(null, "INTRODUZA A QUANTIDADE RECEBIDA ");
-            /*  95 */ fds = true;
-            /*     */
- /*     */        } /* 102 */ // else if (this.DatePickerDataEntrada.getValue().equals("")) {
+            public boolean verificadados() {
+             boolean fds = false;
+    
+            if (this.TextFieldlQuantidadeRecebida.getText().equals("")) {
+       
+            JOptionPane.showMessageDialog(null, "INTRODUZA A QUANTIDADE RECEBIDA ");
+                   fds = true;
+ 
+              } 
+          
+          /*   102 */ // else if (this.DatePickerDataEntrada.getValue().equals("")) {
         /*     */ /* 104 */ //JOptionPane.showMessageDialog(null, "INTRODUZA  A DATA DE REGISTO");
         /* 105 */ //fds = true;
         //}
-        /* 106 */ else if (this.TextFieldCodigoProduto.getText().equals("")) {
-            /*     */
- /*  94 */ JOptionPane.showMessageDialog(null, "INTRODUZA O CODIGO DO PRODUTO ");
-            /*  95 */ fds = true;
-            /*     */
- /*     */        } /*     */ else if (this.TextFieldNumeroLote.getText().equals("")) {
-            /*     */
- /*  94 */ JOptionPane.showMessageDialog(null, "INTRODUZA O NUMERO DO LOTE ");
-            /*  95 */ fds = true;
-            /*     */
- /*     */        } /*     */ /*     */ else if (this.TextFieldFabricante.getText().equals("")) {
-            /*     */
- /*  94 */ JOptionPane.showMessageDialog(null, "INTRODUZA O NOME DO FABRICANTE ");
-            /*  95 */ fds = true;
-            /*     */
- /*     */        }
-        /*     */
- /* 122 */ return fds;
-        /*     */    }
+              else if (this.TextFieldCodigoProduto.getText().equals("")) {
+           
+                 JOptionPane.showMessageDialog(null, "INTRODUZA O CODIGO DO PRODUTO ");
+                 fds = true;
+          
+                  }  else if (this.TextFieldNumeroLote.getText().equals("")) {
+            
+                  JOptionPane.showMessageDialog(null, "INTRODUZA O NUMERO DO LOTE ");
+                  fds = true;
+             
+                }  else if (this.TextFieldFabricante.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "INTRODUZA O NOME DO FABRICANTE ");
+                 fds = true;
+           
+                }
+      
+                 return fds;
+                   }
 
 
 
-    @FXML
-    public void handleMenuItemStockAdicionarStockNaTabela() throws IOException {
+                @FXML
+                public void handleMenuItemStockAdicionarStockNaTabela() throws IOException {
 
-        //Integer idstock= Integer.parseInt(textFieldIdStock.getText());
-        if (!verificadados()) {
+         
+                 if (!verificadados()) {
 
-            /*     */ try {
+                 try {
+                     
                 Integer produto_Cod_Produto = Integer.parseInt(TextFieldCodigoProduto.getText());
-                /* 166 */ Integer quantidade_recebida = Integer.parseInt(TextFieldlQuantidadeRecebida.getText());
+                Integer quantidade_recebida = Integer.parseInt(TextFieldlQuantidadeRecebida.getText());
                 Date data_entrada = java.sql.Date.valueOf(DatePickerDataEntrada.getValue());
 
                 //Integer prod =Integer.parseInt(TextFieldCodigoProduto.getText());
@@ -220,23 +222,22 @@ public class CadStockController implements Initializable {
                 String fabricante = TextFieldFabricante.getText();
 
              
-             
                 Stock s = new Stock(Integer.parseInt(TextFieldCodigoProduto.getText()), Integer.parseInt(TextFieldlQuantidadeRecebida.getText()),
                         java.sql.Date.valueOf(DatePickerDataEntrada.getValue()), Integer.parseInt(TextFieldCodigoFuncionario.getText()),
                         TextFieldNumeroLote.getText(), TextFieldFabricante.getText());
-                 stockModel.addStock(s);
-           Stage stage =(Stage) buttonAdicionarStockNaTabela.getScene().getWindow();
-        stage.close();
+                        stockModel.addStock(s);
+                        Stage stage =(Stage) buttonAdicionarStockNaTabela.getScene().getWindow();
+                        stage.close();
         
               
 
-                /*     */            } /* 201 */ catch (Exception ex) {
+                       }  catch (Exception ex) {
          
-                System.out.println("" + ex.toString());
-                /*     */            }
-            /*     */
-        }
-    }
+                         System.out.println("" + ex.toString());
+                        }
+            
+                   }
+             }
 
 
    

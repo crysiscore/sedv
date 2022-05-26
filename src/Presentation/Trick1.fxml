@@ -182,7 +182,7 @@
                   <DropShadow />
                </effect>
             </Button>
-            <ImageView fitHeight="593.0" fitWidth="1.0" layoutX="367.0" layoutY="-3.0">
+            <ImageView fitHeight="606.0" fitWidth="1.0" layoutX="367.0" layoutY="-3.0">
                <image>
                   <Image url="@../icons/Retângulo%2033.png" />
                </image>

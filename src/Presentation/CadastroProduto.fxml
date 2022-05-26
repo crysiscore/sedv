@@ -15,7 +15,7 @@
 
 <AnchorPane fx:id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1360.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroProdutoController">
    <children>
-      <BorderPane layoutX="656.0" layoutY="-226.0" prefHeight="1080.0" prefWidth="1049.0" style="-fx-background-color: #040f13; -fx-background-radius: 700;">
+      <BorderPane layoutX="656.0" layoutY="-226.0" prefHeight="1080.0" prefWidth="1049.0" style="-fx-background-color: #DE3030; -fx-background-radius: 700;">
          <top>
             <Pane prefHeight="200.0" prefWidth="1049.0" BorderPane.alignment="CENTER" />
          </top>
@@ -27,9 +27,9 @@
             </DropShadow>
          </effect>
       </BorderPane>
-      <Pane layoutX="166.0" layoutY="75.0" prefHeight="586.0" prefWidth="1041.0" style="-fx-background-color: fff; -fx-background-radius: 3;">
+      <Pane layoutX="166.0" layoutY="75.0" prefHeight="586.0" prefWidth="1041.0" style="-fx-background-color: fff; -fx-background-radius: 20;">
          <children>
-            <Button fx:id="buttonVerProdutos" layoutX="543.0" layoutY="523.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="189.0" style="-fx-background-radius: 12; -fx-background-color: #0b2d39;" text="Ver Produtos Cadastrados" textFill="WHITE">
+            <Button fx:id="buttonVerProdutos" layoutX="543.0" layoutY="523.0" mnemonicParsing="false" onAction="#handleButtonVerProdutosCadastrados" prefHeight="28.0" prefWidth="189.0" style="-fx-background-radius: 12; -fx-background-color: #0b2d39;" text="Ver Produtos Cadastrados" textFill="WHITE">
                <effect>
                   <DropShadow>
                      <color>
@@ -38,7 +38,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <Button fx:id="buttonSalvar" layoutX="775.0" layoutY="365.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="189.0" style="-fx-background-radius: 12; -fx-background-color: #0b2d39;" text="Salvar" textFill="WHITE">
+            <Button fx:id="buttonSalvar" layoutX="775.0" layoutY="365.0" mnemonicParsing="false" onAction="#handleButtonCadastrarProdutos" prefHeight="28.0" prefWidth="189.0" style="-fx-background-radius: 12; -fx-background-color: #0b2d39;" text="Salvar" textFill="WHITE">
                <effect>
                   <DropShadow>
                      <color>
@@ -47,9 +47,9 @@
                   </DropShadow>
                </effect>
             </Button>
-            <ImageView fitHeight="586.0" fitWidth="474.0">
+            <ImageView fitHeight="586.0" fitWidth="477.0" layoutX="-3.0">
                <image>
-                  <Image url="@../icons/produts.jpg" />
+                  <Image url="@../icons/produts.png" />
                </image>
                <effect>
                   <DropShadow>
@@ -62,7 +62,7 @@
             <Text layoutX="543.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome do produto" />
             <Text layoutX="775.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrição" />
             <Text layoutX="543.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Preço Unitário" />
-            <TextField fx:id="textfieldNomeProduto" layoutX="543.0" layoutY="161.0" prefHeight="30.0" prefWidth="189.0" promptText="insira o nome do produto">
+            <TextField fx:id="textfieldNomeProduto" layoutX="543.0" layoutY="161.0" prefHeight="30.0" prefWidth="189.0" promptText="Insira o nome do produto">
                <effect>
                   <DropShadow>
                      <color>
@@ -80,7 +80,7 @@
                   </DropShadow>
                </effect>
             </TextField>
-            <TextField fx:id="textFieldPreco" layoutX="543.0" layoutY="263.0" prefHeight="30.0" prefWidth="189.0" promptText="insira o preço">
+            <TextField fx:id="textFieldPreco" layoutX="543.0" layoutY="263.0" prefHeight="30.0" prefWidth="189.0" promptText="Insira o preço">
                <effect>
                   <DropShadow>
                      <color>
@@ -109,7 +109,7 @@
                   </DropShadow>
                </effect>
             </ComboBox>
-            <ImageView fx:id="imageViewFoto" fitHeight="127.0" fitWidth="196.0" layoutX="845.0" layoutY="458.0">
+            <ImageView fx:id="imageViewFoto" fitHeight="140.0" fitWidth="196.0" layoutX="845.0" layoutY="446.0">
                <image>
                   <Image url="@../icons/produtoSemIm.png" />
                </image>
@@ -128,7 +128,7 @@
             </DropShadow>
          </effect>
       </Pane>
-      <Text layoutX="323.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastro de Produtos">
+      <Text layoutX="384.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastro de Produtos">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>

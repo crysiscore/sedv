@@ -16,6 +16,8 @@
 /*    */  // public Integer QuantidadeUnidade;
 /*    */   public String Descricao;
            public Blob foto;
+
+ 
            
            
             public Produto() {
@@ -42,7 +44,7 @@
 
     
                
- public Integer getCod_produto() {
+          public Integer getCod_produto() {
 /* 23 */     return this.Cod_produto;
 /*    */   }
 /*    */   
@@ -74,31 +76,12 @@
 /* 51 */     this.Preco_unitario = Preco_unitario;
 /*    */   }
 /*    */   
-/*    */  // public Integer getQuantidadeStock() {
-/* 55 */     //return this.QuantidadeStock;
-/*    */   //}
-/*    */   
-/*    */   //public void setQuantidadeStock(Integer QuantidadeStock) {
-/* 59 */    // this.QuantidadeStock = QuantidadeStock;
-/*    */  // }
-/*    */   
-/*    */   //public Integer getQuantidadeUnidade() {
-/* 63 */     //return this.QuantidadeUnidade;
-/*    */  // }
-/*    */   
-/*    */   //public void setQuantidadeUnidade(Integer QuantidadeUnidade) {
-/* 67 */    // this.QuantidadeUnidade = QuantidadeUnidade;
-/*    */   //}
+
 /*    */   
 /*    */   public Produto(Integer Cod_produto) {
 /* 71 */     this.Cod_produto = Cod_produto;
 /*    */   }
-/*    */ 
-/*    */ 
-/*    */   
-/*    */  
-/*    */ 
-/*    */ 
+ 
 /*    */   
 /*    */   public String getCategoria() {
 /* 81 */     return this.Categoria;
@@ -115,10 +98,14 @@
 /*    */   public void setUnidade(String Unidade) {
 /* 93 */     this.Unidade = Unidade;
 /*    */   }
-/*    */ }
 
+      
 
-/* Location:              C:\Program Files (x86)\Sistema de vendas\SysVendas.jar!\BussinessLogic\Produto.class
- * Java compiler version: 6 (50.0)
- * JD-Core Version:       1.1.3
- */
+           public Blob getFoto() {
+            return foto;
+            }
+
+           public void setFoto(Blob foto) {
+            this.foto = foto;
+          }
+          }

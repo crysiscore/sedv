@@ -162,12 +162,9 @@ public class ListadeProdutosController implements Initializable {
     public void handleMenuItemProdutoRegistrarProduto (){
          
           
-/*     */     try {
-/* 159 */       
-/* 165 */      
-/* 166 */         
-/* 166 */        
-/*     */  FXMLLoader loader = new FXMLLoader();
+        try {
+      
+        FXMLLoader loader = new FXMLLoader();
         loader.setLocation(TrickController.class.getResource("/Presentation/CadastroProduto.fxml"));
         
         AnchorPane page = (AnchorPane) loader.load();
@@ -178,7 +175,7 @@ public class ListadeProdutosController implements Initializable {
         //usuarioServicos = new UsuarioServicos();
         Usuario selectedUsuario = new Usuario();
        // selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
-        //ListadeProdutosController.receberdadosUsuario(selectedUsuario);
+        //CadastroProdutoController.receberdadosUsuario(selectedUsuario);
         
         
         // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
@@ -190,12 +187,12 @@ public class ListadeProdutosController implements Initializable {
         dialogStage.setResizable(false);
         // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
         dialogStage.show();
-/*     */     }
-/* 201 */     catch (Exception ex) {
-/* 202 */       System.out.println("" + ex + ex.getLocalizedMessage());
+           }
+             catch (Exception ex) {
+          System.out.println("" + ex + ex.getLocalizedMessage());
                 System.out.println("" + ex.toString());
-/*     */     } 
-/*     */   }
+          } 
+            }
 
          
          

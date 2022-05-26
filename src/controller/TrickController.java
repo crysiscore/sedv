@@ -143,12 +143,11 @@ public class TrickController implements Initializable {
     public void handleMenuItemStockAdicionarStock (){
          
           
-/*     */     try {
-/* 159 */       
-/* 165 */      
-/* 166 */         String codUsuario = this.labelUserCod.getText();
-/* 166 */        
-/*     */  FXMLLoader loader = new FXMLLoader();
+        try {
+       
+        String codUsuario = this.labelUserCod.getText();
+          
+        FXMLLoader loader = new FXMLLoader();
         loader.setLocation(TrickController.class.getResource("/Presentation/TabelaAdicaoProduto1.fxml"));
         //loader.setLocation(TrickController.class.getResource("/Presentation/BuscaProdutos.fxml"));
         AnchorPane page = (AnchorPane) loader.load();
@@ -171,12 +170,12 @@ public class TrickController implements Initializable {
         dialogStage.setResizable(false);
         // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
         dialogStage.show();
-/*     */     }
-/* 201 */     catch (Exception ex) {
-/* 202 */       System.out.println("" + ex + ex.getLocalizedMessage());
+          }
+          catch (Exception ex) {
+           System.out.println("" + ex + ex.getLocalizedMessage());
                 System.out.println("" + ex.toString());
-/*     */     } 
-/*     */   }
+            } 
+             }
 
    
     
@@ -184,17 +183,17 @@ public class TrickController implements Initializable {
     public void handleMenuItemProdutoRegistrarProduto (){
          
           
-/*     */     try {
-/* 159 */       
-/* 165 */      
-/* 166 */         String codUsuario = this.labelUserCod.getText();
-/* 166 */        
-/*     */  FXMLLoader loader = new FXMLLoader();
+         try {
+       
+      
+        String codUsuario = this.labelUserCod.getText();
+         
+        FXMLLoader loader = new FXMLLoader();
         loader.setLocation(TrickController.class.getResource("/Presentation/ListadeProdutos.fxml"));
         
         AnchorPane page = (AnchorPane) loader.load();
         
-         ListadeProdutosController tabelaAdicaoProdutoController= loader.<ListadeProdutosController>getController();
+         ListadeProdutosController listadeProdutosController= loader.<ListadeProdutosController>getController();
         
          
         usuarioServicos = new UsuarioServicos();
@@ -212,11 +211,11 @@ public class TrickController implements Initializable {
         dialogStage.setResizable(false);
         // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
         dialogStage.show();
-/*     */     }
-/* 201 */     catch (Exception ex) {
-/* 202 */       System.out.println("" + ex + ex.getLocalizedMessage());
+         }
+          catch (Exception ex) {
+            System.out.println("" + ex + ex.getLocalizedMessage());
                 System.out.println("" + ex.toString());
-/*     */     } 
-/*     */   }
+          } 
+          }
 
-}
+          }
