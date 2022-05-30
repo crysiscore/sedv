@@ -1,4 +1,5 @@
 /*    */ package BussinessLogic;
+import java.io.FileInputStream;
         import java.sql.Blob;
 
 /*    */ 
@@ -7,15 +8,17 @@
 /*    */ 
 /*    */   public class Produto
 /*    */   {
-/*    */   public Integer Cod_produto;
-/*    */   public String Nome;
-/*    */   public Double Preco_unitario;
+/*    */   private Integer Cod_produto;
+/*    */   private String Nome;
+/*    */   private Double Preco_unitario;
 /*    */   //public Integer QuantidadeStock;
-/*    */   public String Unidade;
-/*    */   public String Categoria;
+/*    */   private String Unidade;
+/*    */   private String Categoria;
 /*    */  // public Integer QuantidadeUnidade;
-/*    */   public String Descricao;
-           public Blob foto;
+/*    */   private String Descricao;
+           private FileInputStream foto;
+
+ 
            
            
             public Produto() {
@@ -27,9 +30,22 @@
             this.Nome= Nome;
        
             }
+            
+            public Produto(Integer Cod_produto, String Nome,String Categoria,String Unidade,
+            String Descricao,Double Preco_unitario) {
+            this.Cod_produto=Cod_produto;
+            this.Nome= Nome;
+            this.Preco_unitario=Preco_unitario;
+            this.Unidade= Unidade;
+            this.Categoria= Categoria;
+            this.Descricao= Descricao;
+       
+            }
 /*    */   
+
+    
                
- public Integer getCod_produto() {
+          public Integer getCod_produto() {
 /* 23 */     return this.Cod_produto;
 /*    */   }
 /*    */   
@@ -61,31 +77,12 @@
 /* 51 */     this.Preco_unitario = Preco_unitario;
 /*    */   }
 /*    */   
-/*    */  // public Integer getQuantidadeStock() {
-/* 55 */     //return this.QuantidadeStock;
-/*    */   //}
-/*    */   
-/*    */   //public void setQuantidadeStock(Integer QuantidadeStock) {
-/* 59 */    // this.QuantidadeStock = QuantidadeStock;
-/*    */  // }
-/*    */   
-/*    */   //public Integer getQuantidadeUnidade() {
-/* 63 */     //return this.QuantidadeUnidade;
-/*    */  // }
-/*    */   
-/*    */   //public void setQuantidadeUnidade(Integer QuantidadeUnidade) {
-/* 67 */    // this.QuantidadeUnidade = QuantidadeUnidade;
-/*    */   //}
+
 /*    */   
 /*    */   public Produto(Integer Cod_produto) {
 /* 71 */     this.Cod_produto = Cod_produto;
 /*    */   }
-/*    */ 
-/*    */ 
-/*    */   
-/*    */  
-/*    */ 
-/*    */ 
+ 
 /*    */   
 /*    */   public String getCategoria() {
 /* 81 */     return this.Categoria;
@@ -102,10 +99,16 @@
 /*    */   public void setUnidade(String Unidade) {
 /* 93 */     this.Unidade = Unidade;
 /*    */   }
-/*    */ }
+
+    public FileInputStream getFoto() {
+        return foto;
+    }
+
+    public void setFoto(FileInputStream foto) {
+        this.foto = foto;
+    }
+
+      
 
 
-/* Location:              C:\Program Files (x86)\Sistema de vendas\SysVendas.jar!\BussinessLogic\Produto.class
- * Java compiler version: 6 (50.0)
- * JD-Core Version:       1.1.3
- */
+          }

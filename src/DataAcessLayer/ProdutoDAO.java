@@ -1,5 +1,9 @@
 /*     */ package DataAcessLayer;
 /*     */ 
+import BussinessLogic.Produto;
+import com.mysql.cj.protocol.Resultset;
+import java.io.FileInputStream;
+import java.sql.Blob;
 /*     */ import java.sql.CallableStatement;
 /*     */ import java.sql.Connection;
 /*     */ import java.sql.ResultSet;
@@ -18,6 +22,7 @@
 /*     */   private ResultSet rs;
 /*     */   private Connection connect;
 /*  20 */   private CallableStatement cs = null;
+            private Produto product;
 /*     */ 
 /*     */   
 /*     */   public ProdutoDAO() {
@@ -76,11 +81,19 @@
 /*     */     
 /*  77 */     return this.rs;
 /*     */   }
-/*     */ 
+/*     */  
+            // áo inves de mostrar o codigo da unidade e categoria mostra os respectivos nomes
+             public ResultSet ListagemdeProduto() throws SQLException {
+/*  74 */     this.cs = this.connect.prepareCall("{call  ListagemdeProduto()}");
+/*  75 */     this.rs = this.cs.executeQuery();
+/*     */     
+/*  77 */     return this.rs;
+/*     */   }
+/*     */  
 /*     */   
-/*     */   public ResultSet getDetalhesProduto(int codProduto) throws SQLException {
+/*     */   public ResultSet getDetalhesProduto(int codProd) throws SQLException {
 /*  82 */     this.cs = this.connect.prepareCall("{call  DetalhesProdutos(?)}");
-/*  83 */     this.cs.setInt(1, codProduto);
+/*  83 */     this.cs.setInt(1, codProd);
 /*  84 */     this.rs = this.cs.executeQuery();
 /*     */     
 /*  86 */     return this.rs;
@@ -99,16 +112,16 @@
 /*     */ 
 /*     */ 
 /*     */   
-/*     */   public void cadastrarprodutos(String nome, double preco_unitario, int quantidadeStock, int unidade, int categoria, String descricao) throws SQLException {
-/* 103 */     this.cs = this.connect.prepareCall("{call CadProduto(null,?,?,?,?,?,?)}");
-/* 104 */     this.cs.setString(1, nome);
-/* 105 */     this.cs.setDouble(2, preco_unitario);
-/* 106 */     this.cs.setInt(3, quantidadeStock);
-/* 107 */     this.cs.setInt(4, unidade);
-/* 108 */     this.cs.setInt(5, categoria);
-/* 109 */     this.cs.setString(6, descricao);
-/* 110 */     this.cs.executeQuery();
-/* 111 */     this.cs.close();
+/*     */   public ResultSet RegistarProduto(Produto prod) throws SQLException {
+/* 103 */      cs = this.connect.prepareCall("{call CadProduto(null,?,?,?,?,?,?)}");
+/* 104 */     cs.setString(1, prod.getNome());
+/* 105 */     cs.setDouble(2, prod.getPreco_unitario());
+/* 107 */     cs.setInt(3,  Integer.parseInt(prod.getUnidade()));
+/* 108 */     cs.setInt(4, Integer.parseInt(prod.getCategoria()));
+/* 109 */     cs.setString(5, prod.getDescricao());
+              cs.setBlob(6, prod.getFoto());         
+/* 110 */     this.rs = cs.executeQuery();         
+              return this.rs;
 /*     */   }
 /*     */ 
 /*     */ 
