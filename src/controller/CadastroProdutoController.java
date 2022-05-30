@@ -6,9 +6,11 @@
 package controller;
 
 import BussinessLogic.Categoria;
+import BussinessLogic.Produto;
 import DataAcessLayer.ProdutoDAO;
 import Service.ProdutosServicos;
 import java.io.File;
+import java.io.FileInputStream;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -189,12 +191,20 @@ public class CadastroProdutoController implements Initializable {
         private void selecionarFoto() {
         FileChooser f = new FileChooser();
         f.getExtensionFilters().add(new ExtensionFilter("Pictures", "*.jpg", "*.png", "*.jpeg"));
-        File file = f.showOpenDialog(new Stage());
-        if (file !=null){
+ 
+            try {
+                       File file = f.showOpenDialog(new Stage());
+                        if (file !=null){
         imageViewFoto.setImage(new Image("file:///"+file.getAbsolutePath()));
         caminhoFoto =file.getAbsolutePath();
+                
+            }
+            }catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+
         }
-    }
+    
         
         
                 
@@ -236,38 +246,52 @@ public class CadastroProdutoController implements Initializable {
            
               
               
-              public void cadastroProduto() throws SQLException {
-                  
+              public void cadastroProduto() {
+              try {  
               Double preco_unitario = Double.valueOf(0.0D);
-              
-
               String nome = this.textfieldNomeProduto.getText();
               preco_unitario = Double.valueOf(Double.parseDouble(this.textFieldPreco.getText()));
-     
               ProdutosServicos ps = new ProdutosServicos();
               Integer unidade = Integer.valueOf(ps.CapturaIdUnidade(this.comboBoxUnidade.getSelectionModel().getSelectedItem().toString()));
               Integer categoria = Integer.valueOf(ps.CapturaIdCategoria(this.comboBoxCategoria.getSelectionModel().getSelectedItem().toString()));
               String descricao = this.textFieldDescricao.getText();
-              //Blob foto = new Image(imageViewFoto.getBlob("foto").getBinaryStream(), false);
+              // Blob foto = new Image(imageViewFoto.getBlob("foto").getBinaryStream(), false);
+              // Read the file    
+              File file = new File(caminhoFoto);
+              FileInputStream imagestream = new FileInputStream(file);
+              Produto product = new Produto();
+              product.setNome(nome);
+              product.setPreco_unitario(preco_unitario);
+              product.setUnidade(unidade.toString());
+              product.setCategoria(categoria.toString());
+              product.setDescricao(descricao);
+              product.setFoto(imagestream);
+                
+              ProdutosServicos  produtoServico= new ProdutosServicos();
+              boolean status =  produtoServico.RegistarProduto(product);
+                 if(status){
+                   JOptionPane.showMessageDialog(null, " Produto : " + product.getNome() + " Registado com sucesso");
+                 }else {
+                 JOptionPane.showMessageDialog(null, " Erro ao registar o Produto. Tente novamente");
+                 }       
+                  } catch (NumberFormatException e) {
+                      //TODO  Tratar erro de introducao de preco 
+                       
+                  } catch (Exception e) {
                       
-              ProdutoDAO dao = new ProdutoDAO();
-              dao.cadastrarprodutos(nome, preco_unitario.doubleValue(), unidade.intValue(), categoria.intValue(), descricao);
-      
-              JOptionPane.showMessageDialog(null, "O Produto foi Cadastrado com Sucesso");
+                       JOptionPane.showMessageDialog(null, " Erro ao gravar o produto: " +  e.getCause().toString());
+                       JOptionPane.showMessageDialog(null, " Erro ao gravar o produto: " +  e.getMessage().toString());
+                  } 
+                 
+             
              }
               
               
               public void handleButtonCadastrarProdutos (ActionEvent E) {
-                  if (!verificadados()) {
-       
-                try {
+              if (!verificadados()) {
                 cadastroProduto();
         
-             
-               } catch (Exception e) {
-          
-             JOptionPane.showMessageDialog(null, "O Produto Nao foi Cadastrado com Sucesso" + e);
-              } 
+
              }
              }
               

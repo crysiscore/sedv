@@ -1,4 +1,5 @@
 /*    */ package BussinessLogic;
+import java.io.FileInputStream;
         import java.sql.Blob;
 
 /*    */ 
@@ -7,15 +8,15 @@
 /*    */ 
 /*    */   public class Produto
 /*    */   {
-/*    */   public Integer Cod_produto;
-/*    */   public String Nome;
-/*    */   public Double Preco_unitario;
+/*    */   private Integer Cod_produto;
+/*    */   private String Nome;
+/*    */   private Double Preco_unitario;
 /*    */   //public Integer QuantidadeStock;
-/*    */   public String Unidade;
-/*    */   public String Categoria;
+/*    */   private String Unidade;
+/*    */   private String Categoria;
 /*    */  // public Integer QuantidadeUnidade;
-/*    */   public String Descricao;
-           public Blob foto;
+/*    */   private String Descricao;
+           private FileInputStream foto;
 
  
            
@@ -99,13 +100,15 @@
 /* 93 */     this.Unidade = Unidade;
 /*    */   }
 
+    public FileInputStream getFoto() {
+        return foto;
+    }
+
+    public void setFoto(FileInputStream foto) {
+        this.foto = foto;
+    }
+
       
 
-           public Blob getFoto() {
-            return foto;
-            }
 
-           public void setFoto(Blob foto) {
-            this.foto = foto;
-          }
           }
