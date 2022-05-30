@@ -109,7 +109,7 @@
                   </DropShadow>
                </effect>
             </ComboBox>
-            <ImageView fx:id="imageViewFoto" fitHeight="140.0" fitWidth="196.0" layoutX="845.0" layoutY="446.0">
+            <ImageView fx:id="imageViewFoto" fitHeight="146.0" fitWidth="221.0" layoutX="820.0" layoutY="440.0">
                <image>
                   <Image url="@../icons/produtoSemIm.png" />
                </image>
