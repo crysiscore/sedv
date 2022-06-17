@@ -19,6 +19,9 @@
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="755.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginPage1Controller">
    <children>
       <BorderPane layoutX="414.0" layoutY="-102.0" prefHeight="557.0" prefWidth="566.0" style="-fx-background-color: #EC3A3A; -fx-background-radius: 700;">
+         <top>
+            <Pane prefHeight="200.0" prefWidth="1049.0" BorderPane.alignment="CENTER" />
+         </top>
          <effect>
             <DropShadow>
                <color>
@@ -26,35 +29,28 @@
                </color>
             </DropShadow>
          </effect>
-         <top>
-            <Pane prefHeight="200.0" prefWidth="1049.0" BorderPane.alignment="CENTER" />
-         </top>
       </BorderPane>
       <Pane fx:id="PanePane" layoutX="67.0" layoutY="50.0" prefHeight="330.0" prefWidth="589.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
          <children>
-            <Button fx:id="btnLogin" layoutX="310.0" layoutY="275.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="25.0" prefWidth="83.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Login">
-               <effect>
-                  <DropShadow>
-                     <color>
-                        <Color opacity="0.8244274854660034" />
-                     </color>
-                  </DropShadow>
-               </effect>
+            <Button fx:id="btnLogin" layoutX="323.0" layoutY="275.0" mnemonicParsing="false" onAction="#loginButtonOnAction" onKeyPressed="#loginComEnter" onMouseClicked="#mudacorloginEntered" prefHeight="25.0" prefWidth="96.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Login">
                <font>
                   <Font name="Times New Roman" size="12.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Button>
-            <Button fx:id="btnCancel" layoutX="400.0" layoutY="275.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="25.0" prefWidth="83.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Cancel">
-               <effect>
-                  <DropShadow>
-                     <color>
-                        <Color opacity="0.7824427485466003" />
-                     </color>
-                  </DropShadow>
-               </effect>
+            <Button fx:id="btnCancel" layoutX="433.0" layoutY="275.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" onMouseEntered="#mudacorcancel" prefHeight="25.0" prefWidth="96.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Cancel">
                <font>
                   <Font name="Times New Roman" size="12.0" />
                </font>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.03947368264198303" green="0.03947368264198303" blue="0.03947368264198303" />
+                     </color>
+                  </DropShadow>
+               </effect>
             </Button>
             <GridPane layoutX="258.0" layoutY="112.0" prefHeight="80.0" prefWidth="271.0">
                <columnConstraints>

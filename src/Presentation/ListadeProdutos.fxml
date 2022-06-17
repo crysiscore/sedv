@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -43,7 +44,7 @@
                   <DropShadow />
                </effect>
             </TableView>
-            <Button fx:id="buttonCancelar" layoutX="724.0" layoutY="493.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: #0b2d39;" text="Cancelar" textFill="WHITE">
+            <Button fx:id="buttonCancelar" layoutX="724.0" layoutY="493.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Fechar">
                <effect>
                   <DropShadow>
                      <color>
@@ -53,7 +54,7 @@
                </effect>
             </Button>
             <TextField fx:id="textFieldPesquisaProdutos" layoutX="132.0" layoutY="63.0" prefHeight="25.0" prefWidth="327.0" promptText="Introduza o nome ou código do produto para procurar" />
-            <ImageView fitHeight="92.0" fitWidth="99.0" layoutX="922.0" layoutY="14.0">
+            <ImageView fitHeight="84.0" fitWidth="92.0" layoutX="929.0" layoutY="10.0">
                <image>
                   <Image url="@../icons/Free3dLogo.png" />
                </image>
@@ -63,12 +64,41 @@
                   <Image url="@../icons/icon-action-search_24px.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="imageViewAdicionarProduto" fitHeight="65.0" fitWidth="71.0" layoutX="777.0" layoutY="39.0" onMouseClicked="#handleMenuItemProdutoRegistrarProduto">
+            <ImageView fx:id="imageViewAdicionarProduto" fitHeight="56.0" fitWidth="57.0" layoutX="784.0" layoutY="43.0" onMouseClicked="#handleMenuItemProdutoRegistrarProduto">
                <image>
-                  <Image url="@../icons/depositphotos_25269157-stock-photo-white-plus-sign-isolated-on.jpg" />
+                  <Image url="@../icons/botao-adicionar%20(1).png" />
                </image>
             </ImageView>
             <Text fill="#544d4d" layoutX="787.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adicionar" />
+            <Button fx:id="buttonEditarProduto" layoutX="381.0" layoutY="493.0" mnemonicParsing="false" onAction="#handleEditarProduto" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: #0b2d39;" text="Editar" textFill="WHITE">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.7824427485466003" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <Button fx:id="buttonImprimirProduto" layoutX="497.0" layoutY="493.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Imprimir" textFill="#141414">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.7824427485466003" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <Button fx:id="buttonAnular" layoutX="610.0" layoutY="493.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: #0b2d39;" text="Anular" textFill="WHITE">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.7824427485466003" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <Label fx:id="labelCodProduto" layoutX="939.0" layoutY="96.0" prefHeight="17.0" prefWidth="50.0" />
+            <ImageView fx:id="imagevie1" fitHeight="115.0" fitWidth="124.0" layoutX="867.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true" />
          </children>
          <effect>
             <DropShadow>

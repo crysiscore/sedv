@@ -9,14 +9,24 @@ import BussinessLogic.Categoria;
 import BussinessLogic.Produto;
 import DataAcessLayer.ProdutoDAO;
 import Service.ProdutosServicos;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
+import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +42,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 /**
@@ -52,6 +63,9 @@ public class CadastroProdutoController implements Initializable {
 
     @FXML
     private Button buttonSalvar;
+    
+    @FXML
+    private Button buttonEditar;
 
     @FXML
     private Button buttonVerProdutos;
@@ -77,7 +91,12 @@ public class CadastroProdutoController implements Initializable {
     @FXML
     private ImageView imageViewCloseWindow;
     
+    @FXML
+    private TextField textfieldImageNome;
+    
+    
     private String caminhoFoto;
+    private Produto produto;
     
     
     
@@ -85,26 +104,31 @@ public class CadastroProdutoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        textfieldImageNome.setVisible(false);
          populacomboUnidade();
          populacomboCategoria();
          
          imageViewFoto.setOnMouseClicked((MouseEvent e)->{
         selecionarFoto();
     });
-         
-    
+
     }    
-    
-    
-    
-    
+
    
       public void CancelButtonOnAction(){
         Stage stage =(Stage) imageViewCloseWindow.getScene().getWindow();
         stage.close();
     }
-  
+     
+      
+        public void OcultarBotaoEditar(){
+         buttonEditar.setVisible(false);
+    }
     
+         public void OcultarBotaoSalvar(){
+         buttonSalvar.setVisible(false);
+    }
+        
         public void populacomboUnidade() {
             
             ObservableList<String> listaUnidade = FXCollections.observableArrayList();
@@ -149,6 +173,7 @@ public class CadastroProdutoController implements Initializable {
                  comboBoxCategoria.setItems(listaCategoria);
                     }
         
+    
            
                        
     public void handleButtonVerProdutosCadastrados(ActionEvent e){
@@ -163,13 +188,7 @@ public class CadastroProdutoController implements Initializable {
         
          ListadeProdutosController listadeProdutosController= loader.<ListadeProdutosController>getController();
         
-         
-        //usuarioServicos = new UsuarioServicos();
-        //Usuario selectedUsuario = new Usuario();
-       // selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
-        //ListadeProdutosController.receberdadosUsuario(selectedUsuario);
-        
-        
+
         // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
         Stage dialogStage = new Stage();
         dialogStage.setTitle("Registo de Produtos");
@@ -186,18 +205,21 @@ public class CadastroProdutoController implements Initializable {
           } 
             }
 
-    
-    
+        BufferedImage imagem;
         private void selecionarFoto() {
-        FileChooser f = new FileChooser();
+      
+      FileChooser f = new FileChooser();
+      File file = f.showOpenDialog(new Stage());
         f.getExtensionFilters().add(new ExtensionFilter("Pictures", "*.jpg", "*.png", "*.jpeg"));
  
             try {
-                       File file = f.showOpenDialog(new Stage());
+                      
                         if (file !=null){
         imageViewFoto.setImage(new Image("file:///"+file.getAbsolutePath()));
         caminhoFoto =file.getAbsolutePath();
-                
+                textfieldImageNome.setText(file.getName());
+                 imagem= ImageIO.read(file);
+                 textfieldImageNome.setVisible(false);
             }
             }catch (Exception e) {
                     JOptionPane.showMessageDialog(null, e.getMessage());
@@ -210,6 +232,7 @@ public class CadastroProdutoController implements Initializable {
                 
               public boolean verificadados() {
                 boolean fds = false;
+                
                 
                 if (this.textfieldNomeProduto.getText().equals("")) {
         
@@ -229,25 +252,40 @@ public class CadastroProdutoController implements Initializable {
                fds = true;
      
               }
-               else if (this.comboBoxCategoria.getSelectionModel().getSelectedItem().isEmpty()) {
+               else if (this.comboBoxCategoria.getSelectionModel().isEmpty()) {
        
              JOptionPane.showMessageDialog(null, "SELECIONE A CATEGORIA DO PRODUTO");
                fds = true;
       
              }
-            else if (this.comboBoxUnidade.getSelectionModel().getSelectedItem().isEmpty()) {
+            else if (this.comboBoxUnidade.getSelectionModel().isEmpty()) {
         
             JOptionPane.showMessageDialog(null, "SELECIONE A UNIDADE DO PRODUTO");
             fds = true;
             } 
-      
+                
+           
              return fds;
              }
-           
+              
+              
+            private void limparcampos(){
+                
+                textfieldNomeProduto.setText("");
+                textFieldPreco.setText("");
+                textFieldDescricao.setText("");
+                comboBoxCategoria.setValue(null);
+                comboBoxUnidade.setValue(null);
+                imageViewFoto.setImage(null);
+            }
               
               
               public void cadastroProduto() {
-              try {  
+               
+                  
+                   if (caminhoFoto==null){
+                      try {  
+                 
               Double preco_unitario = Double.valueOf(0.0D);
               String nome = this.textfieldNomeProduto.getText();
               preco_unitario = Double.valueOf(Double.parseDouble(this.textFieldPreco.getText()));
@@ -257,20 +295,25 @@ public class CadastroProdutoController implements Initializable {
               String descricao = this.textFieldDescricao.getText();
               // Blob foto = new Image(imageViewFoto.getBlob("foto").getBinaryStream(), false);
               // Read the file    
-              File file = new File(caminhoFoto);
-              FileInputStream imagestream = new FileInputStream(file);
+              
+              
               Produto product = new Produto();
               product.setNome(nome);
               product.setPreco_unitario(preco_unitario);
               product.setUnidade(unidade.toString());
               product.setCategoria(categoria.toString());
               product.setDescricao(descricao);
-              product.setFoto(imagestream);
+             
                 
               ProdutosServicos  produtoServico= new ProdutosServicos();
-              boolean status =  produtoServico.RegistarProduto(product);
+              boolean status =  produtoServico.RegistarProdutoSemFoto(product);
+              
+              limparcampos();
+              
                  if(status){
                    JOptionPane.showMessageDialog(null, " Produto : " + product.getNome() + " Registado com sucesso");
+                  
+                   
                  }else {
                  JOptionPane.showMessageDialog(null, " Erro ao registar o Produto. Tente novamente");
                  }       
@@ -283,7 +326,57 @@ public class CadastroProdutoController implements Initializable {
                        JOptionPane.showMessageDialog(null, " Erro ao gravar o produto: " +  e.getMessage().toString());
                   } 
                  
-             
+                   
+              
+                  } else{
+                  try {  
+                 
+              Double preco_unitario = Double.valueOf(0.0D);
+              String nome = this.textfieldNomeProduto.getText();
+              preco_unitario = Double.valueOf(Double.parseDouble(this.textFieldPreco.getText()));
+              ProdutosServicos ps = new ProdutosServicos();
+              Integer unidade = Integer.valueOf(ps.CapturaIdUnidade(this.comboBoxUnidade.getSelectionModel().getSelectedItem().toString()));
+              Integer categoria = Integer.valueOf(ps.CapturaIdCategoria(this.comboBoxCategoria.getSelectionModel().getSelectedItem().toString()));
+              String descricao = this.textFieldDescricao.getText();
+              // Blob foto = new Image(imageViewFoto.getBlob("foto").getBinaryStream(), false);
+              // Read the file    
+              
+   
+           
+              String Location ="C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\"+textfieldImageNome.getText();
+              String format="PNG";
+              ImageIO.write(imagem, format, new File(Location));
+              
+              Produto product = new Produto();
+              product.setNome(nome);
+              product.setPreco_unitario(preco_unitario);
+              product.setUnidade(unidade.toString());
+              product.setCategoria(categoria.toString());
+              product.setDescricao(descricao);
+              product.setFoto(Location);
+              
+              ProdutosServicos  produtoServico= new ProdutosServicos();
+              boolean status =  produtoServico.RegistarProduto(product);
+              
+              limparcampos();
+              
+                 if(status){
+                   JOptionPane.showMessageDialog(null, " Produto : " + product.getNome() + " Registado com sucesso");
+                  
+                   
+                 }else {
+                 JOptionPane.showMessageDialog(null, " Erro ao registar o Produto. Tente novamente");
+                 }       
+                  } catch (NumberFormatException e) {
+                      //TODO  Tratar erro de introducao de preco 
+                       
+                  } catch (Exception e) {
+                      
+                       JOptionPane.showMessageDialog(null, " Erro ao gravar o produto: " +  e.getCause().toString());
+                       JOptionPane.showMessageDialog(null, " Erro ao gravar o produto: " +  e.getMessage().toString());
+                  } 
+                 
+                   }
              }
               
               
@@ -295,5 +388,172 @@ public class CadastroProdutoController implements Initializable {
              }
              }
               
+              
+        public Produto getProduto() {
+            
+        return produto;
+        
+        }   
            
+        public void ReceberDadosProduto(Produto produto)   {
+        
+        this.produto = produto;
+         textfieldImageNome.setVisible(false);
+        
+        if(produto.getFoto()==null){
+            
+        this.textFieldDescricao.setText(produto.getDescricao());
+        this.textFieldPreco.setText(produto.getPreco_unitario().toString());
+        this.textfieldNomeProduto.setText(produto.getNome());
+        this.comboBoxCategoria.setValue(produto.getCategoria());
+        this.comboBoxUnidade.setValue(produto.getUnidade());
+        
+        }else{
+            
+        this.textFieldDescricao.setText(produto.getDescricao());
+        this.textFieldPreco.setText(produto.getPreco_unitario().toString());
+        this.textfieldNomeProduto.setText(produto.getNome());
+        this.comboBoxCategoria.setValue(produto.getCategoria());
+        this.comboBoxUnidade.setValue(produto.getUnidade());
+        this.textfieldImageNome.setText(produto.getFoto());
+        Image image= new Image("file:"+produto.getFoto());
+        imageViewFoto.setImage(image);
+       
+        }
+
                 }
+   
+              public void EditarProduto()  {
+               
+                           
+                   if (textfieldImageNome.getText().equals("")){
+                      try {  
+              
+              Double preco_unitario = Double.valueOf(0.0D);
+              String nome = this.textfieldNomeProduto.getText();
+              preco_unitario = Double.valueOf(Double.parseDouble(this.textFieldPreco.getText()));
+              ProdutosServicos ps = new ProdutosServicos();
+              Integer unidade = Integer.valueOf(ps.CapturaIdUnidade(this.comboBoxUnidade.getSelectionModel().getSelectedItem().toString()));
+              Integer categoria = Integer.valueOf(ps.CapturaIdCategoria(this.comboBoxCategoria.getSelectionModel().getSelectedItem().toString()));
+              String descricao = this.textFieldDescricao.getText();
+   
+              
+              produto.setNome(nome);
+              produto.setPreco_unitario(preco_unitario);
+              produto.setUnidade(unidade.toString());
+              produto.setCategoria(categoria.toString());
+              produto.setDescricao(descricao);
+              produto.setFoto(produto.getFoto());
+                
+              ProdutosServicos  produtoServico= new ProdutosServicos();
+              produtoServico.EditarProdutoComFoto(produto);
+                limparcampos();
+                 
+                     
+                   JOptionPane.showMessageDialog(null, " Produto Editado com sucesso");
+                  
+                  
+                   //TODO FECHAR A TELA 
+                   Stage stage =(Stage) buttonEditar.getScene().getWindow();
+                   stage.close();
+                       
+                  } catch (NumberFormatException e) {
+                      //TODO  Tratar erro de introducao de preco 
+                       
+                  } catch (Exception e) {
+                      
+                     JOptionPane.showMessageDialog(null, " Erro ao gravar o produto: " +  e.getCause().toString());
+                      JOptionPane.showMessageDialog(null, " Erro ao gravar o produto: " +  e.getMessage().toString());
+                  }  
+                      
+                      
+                   }else if(caminhoFoto==null){
+                       
+                       
+                       
+                  try {  
+                      
+              
+              Double preco_unitario = Double.valueOf(0.0D);
+              String nome = this.textfieldNomeProduto.getText();
+              preco_unitario = Double.valueOf(Double.parseDouble(this.textFieldPreco.getText()));
+              ProdutosServicos ps = new ProdutosServicos();
+              Integer unidade = Integer.valueOf(ps.CapturaIdUnidade(this.comboBoxUnidade.getSelectionModel().getSelectedItem().toString()));
+              Integer categoria = Integer.valueOf(ps.CapturaIdCategoria(this.comboBoxCategoria.getSelectionModel().getSelectedItem().toString()));
+              String descricao = this.textFieldDescricao.getText();
+            
+            
+              produto.setNome(nome);
+              produto.setPreco_unitario(preco_unitario);
+              produto.setUnidade(unidade.toString());
+              produto.setCategoria(categoria.toString());
+              produto.setDescricao(descricao);
+              produto.setFoto(produto.getFoto());
+              
+                  
+              ProdutosServicos  produtoServico= new ProdutosServicos();
+              produtoServico.EditarProdutoComFoto(produto);
+              JOptionPane.showMessageDialog(null, " Produto : " + produto.getNome() + " Editado com sucesso");
+              Stage stage =(Stage) buttonEditar.getScene().getWindow();
+              stage.close();
+              
+               } catch (NumberFormatException e) {
+                      //TODO  Tratar erro de introducao de preco 
+                       
+                  } catch (Exception e) {
+                      
+                     JOptionPane.showMessageDialog(null, " Erro ao gravar o produto: " +  e.getCause().toString());
+                      JOptionPane.showMessageDialog(null, " Erro ao gravar o produto: " +  e.getMessage().toString());
+                  }  
+              }else if (caminhoFoto!=null){
+                  try {  
+                      
+              
+              Double preco_unitario = Double.valueOf(0.0D);
+              String nome = this.textfieldNomeProduto.getText();
+              preco_unitario = Double.valueOf(Double.parseDouble(this.textFieldPreco.getText()));
+              ProdutosServicos ps = new ProdutosServicos();
+              Integer unidade = Integer.valueOf(ps.CapturaIdUnidade(this.comboBoxUnidade.getSelectionModel().getSelectedItem().toString()));
+              Integer categoria = Integer.valueOf(ps.CapturaIdCategoria(this.comboBoxCategoria.getSelectionModel().getSelectedItem().toString()));
+              String descricao = this.textFieldDescricao.getText();
+              
+              String Location ="C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\"+textfieldImageNome.getText();
+              String format="PNG";
+              ImageIO.write(imagem, format, new File(Location));
+               
+            
+              
+              produto.setNome(nome);
+              produto.setPreco_unitario(preco_unitario);
+              produto.setUnidade(unidade.toString());
+              produto.setCategoria(categoria.toString());
+              produto.setDescricao(descricao);
+              produto.setFoto(Location);
+            
+        
+                
+              ProdutosServicos  produtoServico= new ProdutosServicos();
+              produtoServico.EditarProdutoComFoto(produto);
+              
+              limparcampos();
+              
+                
+                   JOptionPane.showMessageDialog(null, " Produto : " + produto.getNome() + " Editado com sucesso");
+                   Stage stage =(Stage) buttonEditar.getScene().getWindow();
+                   stage.close();
+                      
+                  } catch (NumberFormatException e) {
+                      //TODO  Tratar erro de introducao de preco 
+                       
+                  } catch (Exception e) {
+                      
+             JOptionPane.showMessageDialog(null, " Erro ao gravar o produto: " +  e.getCause().toString());
+             JOptionPane.showMessageDialog(null, " Erro ao gravar o produto: " +  e.getMessage().toString());
+                  } 
+                 
+                   }
+              }
+              
+                
+              
+ }

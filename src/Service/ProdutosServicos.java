@@ -6,6 +6,7 @@
 /*     */ import BussinessLogic.Venda;
 /*     */ import DataAcessLayer.ProdutoDAO;
 /*     */ import DataAcessLayer.VendaDao;
+import java.io.FileInputStream;
 /*     */ import java.sql.ResultSet;
 /*     */ import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -112,6 +113,8 @@ import javax.swing.JOptionPane;
         /* 102 */ this.produto.setPreco_unitario(Double.valueOf(this.rs.getDouble("Preco")));
         /* 104 */ this.produto.setUnidade(this.rs.getString("Unidade"));
         /* 105 */ this.produto.setCategoria(this.rs.getString("Categoria"));
+                  this.produto.setDescricao(this.rs.getString("Descricao"));
+                  this.produto.setFoto( this.rs.getString("foto"));
         /* 106 */ return this.produto;
         /*     */    }
 
@@ -144,7 +147,38 @@ import javax.swing.JOptionPane;
                           }                  
         /*     */
         return status;
-    }
+        }
+ 
+ 
+           public boolean RegistarProdutoSemFoto(Produto prod) throws SQLException{
+            boolean status = false;
+            rs = prodDAO.RegistarProduto(prod);
+                      rs.next();
+                          if( rs.getString(1).contentEquals("Sucesso")){
+                                    status = true;
+                          }                  
+        /*     */
+        return status;
+        }
+ 
+            public void EditarProdutoComFoto(Produto prod) throws SQLException{
+          
+            ProdutoDAO prodDAO= new ProdutoDAO();
+                      prodDAO.EditarprodutoComFoto(prod);
+               
+               }
+            
+             public boolean EditarProdutoSemFoto(Produto prod) throws SQLException{
+            boolean status = false;
+            rs = prodDAO.EditarprodutoSemFoto(prod);
+                      rs.next();
+                          if( rs.getString(1).contentEquals("Sucesso")){
+                                    status = true;
+                          }                  
+
+               return status;
+               }
+             
 
     /*     *//*     */
  /*     */ public void AdicionarStock(Produto produto, int quant) {
