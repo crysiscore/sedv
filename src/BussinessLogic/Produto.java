@@ -1,6 +1,10 @@
 /*    */ package BussinessLogic;
+import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
         import java.sql.Blob;
+import javafx.scene.image.Image;
 
 /*    */ 
           
@@ -16,11 +20,9 @@ import java.io.FileInputStream;
 /*    */   private String Categoria;
 /*    */  // public Integer QuantidadeUnidade;
 /*    */   private String Descricao;
-           private FileInputStream foto;
-
- 
+           private String foto;
            
-           
+   
             public Produto() {
         
                    }
@@ -32,16 +34,20 @@ import java.io.FileInputStream;
             }
             
             public Produto(Integer Cod_produto, String Nome,String Categoria,String Unidade,
-            String Descricao,Double Preco_unitario) {
+            String Descricao,Double Preco_unitario,String foto) {
             this.Cod_produto=Cod_produto;
             this.Nome= Nome;
             this.Preco_unitario=Preco_unitario;
             this.Unidade= Unidade;
             this.Categoria= Categoria;
             this.Descricao= Descricao;
-       
+            this.foto= foto;
+            
             }
 /*    */   
+
+
+
 
     
                
@@ -100,15 +106,12 @@ import java.io.FileInputStream;
 /* 93 */     this.Unidade = Unidade;
 /*    */   }
 
-    public FileInputStream getFoto() {
-        return foto;
-    }
+            public String getFoto() {
+            return foto;
+           }
 
-    public void setFoto(FileInputStream foto) {
-        this.foto = foto;
-    }
-
-      
-
+            public void setFoto(String foto) {
+            this.foto = foto;
+            }
 
           }

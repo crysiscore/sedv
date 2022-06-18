@@ -5,10 +5,8 @@
         <group>
             <file>file:/C:/Users/Neusia/Documents/NetBeansProjects/sedv/src/controller/CadastroProdutoController.java</file>
             <file>file:/C:/Users/Neusia/Documents/NetBeansProjects/sedv/src/BussinessLogic/Produto.java</file>
-            <file>file:/C:/Users/Neusia/Documents/NetBeansProjects/sedv/src/controller/TrickController.java</file>
-            <file>file:/C:/Users/Neusia/Documents/NetBeansProjects/sedv/src/controller/ListadeProdutosController.java</file>
-            <file>file:/C:/Users/Neusia/Documents/NetBeansProjects/sedv/src/Service/ProdutosServicos.java</file>
             <file>file:/C:/Users/Neusia/Documents/NetBeansProjects/sedv/src/DataAcessLayer/ProdutoDAO.java</file>
+            <file>file:/C:/Users/Neusia/Documents/NetBeansProjects/sedv/src/controller/ListadeProdutosController.java</file>
         </group>
     </open-files>
 </project-private>

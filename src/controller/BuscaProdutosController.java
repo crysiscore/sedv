@@ -42,6 +42,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -202,7 +203,7 @@ public class BuscaProdutosController implements Initializable {
       }
 
 
-@FXML
+    @FXML
     public void handleMenuItemStockAdicionarProduto() throws IOException {
       
                  
@@ -212,6 +213,11 @@ public class BuscaProdutosController implements Initializable {
         // String codUsuario=this.labelUsuario.getText();
          String codProduto = this.labelCodProduto.getText();
           
+         if (labelCodProduto.getText().isEmpty()){
+          JOptionPane.showMessageDialog(null, " Produto Não Selecionado!");
+
+         }
+         else{
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(TrickController.class.getResource("/Presentation/CadastroStock1.fxml"));
         //AnchorPane page = (AnchorPane) loader.load();
@@ -246,6 +252,7 @@ public class BuscaProdutosController implements Initializable {
         
          Stage stage =(Stage) buttonAdicionarProduto.getScene().getWindow();
         stage.close();
+    }
     }
     catch (Exception ex) {
       System.out.println("" + ex + ex.getLocalizedMessage());
