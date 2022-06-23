@@ -27,9 +27,9 @@
             </DropShadow>
          </effect>
       </BorderPane>
-      <Pane layoutX="166.0" layoutY="75.0" prefHeight="586.0" prefWidth="1041.0" style="-fx-background-color: fff; -fx-background-radius: 25;">
+      <Pane layoutX="166.0" layoutY="75.0" prefHeight="586.0" prefWidth="1041.0" style="-fx-background-color: fff;">
          <children>
-            <Button fx:id="buttonVerProdutos" layoutX="543.0" layoutY="523.0" mnemonicParsing="false" onAction="#handleButtonVerProdutosCadastrados" prefHeight="28.0" prefWidth="189.0" style="-fx-background-radius: 12; -fx-background-color: #0b2d39;" text="Ver Produtos Cadastrados" textFill="WHITE">
+            <Button fx:id="buttonVerProdutos" layoutX="543.0" layoutY="523.0" mnemonicParsing="false" onAction="#handleButtonVerProdutosCadastrados" prefHeight="28.0" prefWidth="189.0" style="-fx-background-radius: 12; -fx-background-color: #0b2d39;" text="Ver Produtos registrados" textFill="WHITE">
                <effect>
                   <DropShadow>
                      <color>
@@ -109,10 +109,10 @@
             </ImageView>
             <ImageView fitHeight="587.0" fitWidth="516.0" layoutX="-4.0" layoutY="-1.0">
                <image>
-                  <Image url="@../icons/produts.png" />
+                  <Image url="@../icons/produts.jpg" />
                </image>
             </ImageView>
-            <Button fx:id="buttonEditar" layoutX="775.0" layoutY="365.0" mnemonicParsing="false" onAction="#EditarProduto" prefHeight="28.0" prefWidth="189.0" style="-fx-background-radius: 12; -fx-background-color: #0b2d39;" text="Editar" textFill="WHITE">
+            <Button fx:id="buttonEditar" layoutX="775.0" layoutY="365.0" mnemonicParsing="false" onAction="#EditarProduto" prefHeight="28.0" prefWidth="189.0" style="-fx-background-radius: 12; -fx-background-color: #0b2d39;" text="Salvar" textFill="WHITE">
                <effect>
                   <DropShadow>
                      <color>

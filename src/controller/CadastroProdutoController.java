@@ -7,6 +7,7 @@ package controller;
 
 import BussinessLogic.Categoria;
 import BussinessLogic.Produto;
+import DataAcessLayer.LeituraImagens;
 import DataAcessLayer.ProdutoDAO;
 import Service.ProdutosServicos;
 import java.awt.image.BufferedImage;
@@ -341,9 +342,10 @@ public class CadastroProdutoController implements Initializable {
               // Blob foto = new Image(imageViewFoto.getBlob("foto").getBinaryStream(), false);
               // Read the file    
               
-   
-           
-              String Location ="C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\"+textfieldImageNome.getText();
+              LeituraImagens location = new LeituraImagens();
+              String loc=location.getDirectorio_Imagens();
+              
+              String Location =loc+textfieldImageNome.getText();
               String format="PNG";
               ImageIO.write(imagem, format, new File(Location));
               
@@ -517,7 +519,11 @@ public class CadastroProdutoController implements Initializable {
               Integer categoria = Integer.valueOf(ps.CapturaIdCategoria(this.comboBoxCategoria.getSelectionModel().getSelectedItem().toString()));
               String descricao = this.textFieldDescricao.getText();
               
-              String Location ="C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\"+textfieldImageNome.getText();
+              LeituraImagens location = new LeituraImagens();
+              String loc=location.getDirectorio_Imagens();
+              
+              String Location =loc+textfieldImageNome.getText();
+              //String Location ="C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\"+textfieldImageNome.getText();
               String format="PNG";
               ImageIO.write(imagem, format, new File(Location));
                

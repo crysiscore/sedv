@@ -25,7 +25,11 @@ import javax.swing.JOptionPane;
 /*    */   private static String user;
 /*    */   private static String password;
 /*    */   
-/*    */   public static String getBd() {
+
+/*    */
+
+
+          public static String getBd() {
 /* 27 */     return bd;
 /*    */   }
 /*    */   
@@ -69,11 +73,14 @@ import javax.swing.JOptionPane;
 /*    */   ReadWriteTextFile rwTextFile = new ReadWriteTextFile();
 
     final static String ficheiro_gravado = "C:\\sedv\\credenciaisConn.txt";
+    
     // definir uma lista de frutas
     List <String> credenciais;
 
     
     List <String> credenciaisConn;
+    
+    
     /**
      * Creates new form Frutinha
      */
@@ -91,8 +98,7 @@ import javax.swing.JOptionPane;
           return credenciaisConn;
      }
         
-       
-    
+
     
 /*    */   public conexao(String host, String port, String bd, String user, String password) {
 /* 69 */     conexao.host = host;
@@ -100,9 +106,10 @@ import javax.swing.JOptionPane;
 /* 71 */     conexao.bd = bd;
 /* 72 */     conexao.user = user;
 /* 73 */     conexao.password = password;
-
-           
+  
 /*    */   }
+
+
 
 /*    */   public conexao() {
      // ler o ficheiro

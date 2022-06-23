@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Neusia/Documents/NetBeansProjects/sedv/src/DataAcessLayer/conexao.java</file>
+            <file>file:/C:/Users/Neusia/Documents/NetBeansProjects/sedv/src/DataAcessLayer/Criaconexao.java</file>
             <file>file:/C:/Users/Neusia/Documents/NetBeansProjects/sedv/src/controller/CadastroProdutoController.java</file>
             <file>file:/C:/Users/Neusia/Documents/NetBeansProjects/sedv/src/BussinessLogic/Produto.java</file>
             <file>file:/C:/Users/Neusia/Documents/NetBeansProjects/sedv/src/DataAcessLayer/ProdutoDAO.java</file>
-            <file>file:/C:/Users/Neusia/Documents/NetBeansProjects/sedv/src/controller/ListadeProdutosController.java</file>
+            <file>file:/C:/Users/Neusia/Documents/NetBeansProjects/sedv/src/DataAcessLayer/ReadWriteTextFile.java</file>
+            <file>file:/C:/Users/Neusia/Documents/NetBeansProjects/sedv/src/DataAcessLayer/LeituraImagens.java</file>
         </group>
     </open-files>
 </project-private>
