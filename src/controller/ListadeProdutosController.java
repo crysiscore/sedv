@@ -270,7 +270,9 @@ public class ListadeProdutosController implements Initializable {
             if (labelCodProduto.getText().isEmpty()){
                 
                 JOptionPane.showMessageDialog(null, " Produto Não Selecionado!");
-                
+                 Stage stage =(Stage)buttonEditarProduto.getScene().getWindow();
+                 stage.setAlwaysOnTop(true);
+               
                 }else{
       
         FXMLLoader loader = new FXMLLoader();

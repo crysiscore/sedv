@@ -224,7 +224,8 @@ public class TabelaAdicaoProdutoController implements Initializable {
           
            
         JOptionPane.showMessageDialog(null, "" + "A Tabela encontra-se Vazia!!!");
-        
+        Stage stage =(Stage)buittonRegistarStock.getScene().getWindow();
+                 stage.setAlwaysOnTop(true);
         
           } else {
           
