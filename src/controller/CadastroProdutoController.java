@@ -95,6 +95,9 @@ public class CadastroProdutoController implements Initializable {
     @FXML
     private TextField textfieldImageNome;
     
+    @FXML
+    private ImageView imagemCarrinhoProduto;
+
     
     private String caminhoFoto;
     private Produto produto;
@@ -217,6 +220,7 @@ public class CadastroProdutoController implements Initializable {
                       
                         if (file !=null){
         imageViewFoto.setImage(new Image("file:///"+file.getAbsolutePath()));
+        imagemCarrinhoProduto.setImage(new Image("file:///"+file.getAbsolutePath()));
         caminhoFoto =file.getAbsolutePath();
                 textfieldImageNome.setText(file.getName());
                  imagem= ImageIO.read(file);
@@ -271,13 +275,13 @@ public class CadastroProdutoController implements Initializable {
               
               
             private void limparcampos(){
-                
+              //  Image image1= new Image("file:"+"@..\\icons\\produts.jpg");
                 textfieldNomeProduto.setText("");
                 textFieldPreco.setText("");
                 textFieldDescricao.setText("");
                 comboBoxCategoria.setValue(null);
                 comboBoxUnidade.setValue(null);
-                imageViewFoto.setImage(null);
+               // imageViewFoto.setImage(image1);
             }
               
               
@@ -420,7 +424,7 @@ public class CadastroProdutoController implements Initializable {
         this.textfieldImageNome.setText(produto.getFoto());
         Image image= new Image("file:"+produto.getFoto());
         imageViewFoto.setImage(image);
-       
+        imagemCarrinhoProduto.setImage(image);
         }
 
                 }

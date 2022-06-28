@@ -33,7 +33,7 @@ public class LeituraImagens {
     ReadWriteTextFile rwTextFile = new ReadWriteTextFile();
 
    
-    final static String ficheiro_Imagens = "C:\\config.txt";
+    final static String ficheiro_Imagens = "C:\\sedv\\config\\config.txt";
   
     List <String> sedv_Imagens;
     

@@ -1,1 +1,1 @@
-image_dir:C:\\sedv\\
+image_dir:C:\sedv\img\
