@@ -34,13 +34,7 @@ public class StockServicos {
         this.prodserv = new  ProdutosServicos();
     }
     
-    
-    
-    
-    
-    
-    
-    
+
     
      public Stock getDetalhesStock(int codProduto) throws SQLException {
 /*  97 */     this.rs = this.stockDAO.getDetalhesStock(codProduto);
@@ -57,9 +51,21 @@ public class StockServicos {
 /* 105 */     this.stock.setFabricante(this.rs.getString("fabricante"));
 /* 106 */     return this.stock;
 /*     */   }
-   
-/*     */ 
+           
      
+     public Stock getDetalhesStockTotal(int codProduto) throws SQLException {
+        /*  97 */ this.rs = this.stockDAO.getDetalhesStockLevel(codProduto);
+        /*  98 */ this.rs.next();
+        /*  99 */ this.stock = new Stock();
+        /* 100 */ this.stock.setProduto_Cod_Produto(Integer.valueOf(this.rs.getInt("Codigo")));
+        /* 101 */ this.stock.setQuantidade_recebida(Integer.valueOf(this.rs.getInt("Codigo")));
+        /* 10
+        /* 106 */ return this.stock;
+        /*     */    }
+     
+
+     
+
      
      
       //public Stock  criarStock(Produto prod, Usuario user , int quantidade, String fabricante , String nrLote, Date  data){

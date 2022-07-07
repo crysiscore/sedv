@@ -6,9 +6,12 @@
 package controller;
 
 import BussinessLogic.Produto;
+import BussinessLogic.Stock;
+import BussinessLogic.StockLevel;
 import BussinessLogic.Usuario;
 import DataAcessLayer.ProdutoDAO;
 import Service.ProdutosServicos;
+import Service.StockServicos;
 import Service.UsuarioServicos;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -74,9 +77,9 @@ public class ListadeProdutosController implements Initializable {
 
     @FXML
     private Button buttonEditarProduto;
-
+    
     @FXML
-    private Button buttonImprimirProduto;
+    private Button buttonDetalhes;
     
     @FXML
     private ImageView imageViewAdicionarProduto;
@@ -112,15 +115,21 @@ public class ListadeProdutosController implements Initializable {
     private ImageView imagevie1;
     
     Produto produto;
+    Stock stock;
     ProdutosServicos servicoProdutos;
+    StockServicos stockServicos;
     UsuarioServicos usuarioServicos;
     ObservableList <Produto> produtoObservableList =FXCollections.observableArrayList();
+    ObservableList <Stock> stockObservableList = FXCollections.observableArrayList();
     private Image image;
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         setCellValueFromTableToTextField();
         
+
            ProdutoDAO produtodao = new ProdutoDAO();
              try {
                 
@@ -134,10 +143,12 @@ public class ListadeProdutosController implements Initializable {
                  String QueryDescricao = rs.getString("Descricao");
                  Double QueryPreco = rs.getDouble("Preco_unitario");
                  String  foto= rs.getString("foto"); 
-               
-           
-               
-                 produtoObservableList.add(new Produto(QueryProductId,QueryNome,QueryCategoria,QueryUnidade,QueryDescricao,QueryPreco,foto));
+                 //Double Queryunidade_stock=rs.getDouble("unidades_stock");
+                 
+                 StockLevel stock = new StockLevel();
+                 stock.unidades_stock =rs.getDouble("unidades_stock");
+                
+                 produtoObservableList.add(new Produto(QueryProductId,QueryNome,QueryCategoria,QueryUnidade,QueryDescricao,QueryPreco,foto,stock));
                  }
                  
                  
@@ -195,6 +206,7 @@ public class ListadeProdutosController implements Initializable {
     }
     
     
+   
     
     
       private void setCellValueFromTableToTextField(){
@@ -204,10 +216,10 @@ public class ListadeProdutosController implements Initializable {
             @Override
             public void handle(MouseEvent event){
                 
-                Produto pr =tableViewListaProdutos.getItems().get(tableViewListaProdutos.getSelectionModel().getSelectedIndex());
-                 labelCodProduto.setText(String.valueOf(pr.getCod_produto()));
-                //produto.setCod_produto(Integer.parseInt(labelCodProduto.getText()));
-               labelCodProduto.setVisible(false);
+            Produto pr =tableViewListaProdutos.getItems().get(tableViewListaProdutos.getSelectionModel().getSelectedIndex());
+            labelCodProduto.setText(String.valueOf(pr.getCod_produto()));
+            //produto.setCod_produto(Integer.parseInt(labelCodProduto.getText()));
+            labelCodProduto.setVisible(false);
               
             }
             });
@@ -293,7 +305,7 @@ public class ListadeProdutosController implements Initializable {
 
         // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Registo de Stock");
+        dialogStage.setTitle("Registo de Produtos");
         Scene scene = new Scene(root);
         dialogStage.setScene(scene);
         dialogStage.setMaximized(false);
@@ -314,8 +326,128 @@ public class ListadeProdutosController implements Initializable {
     
       
    }
+
+       
+        @FXML
+       public void handleDetalhesProduto() throws IOException {
     
+        try {
+        String codProduto = this.labelCodProduto.getText();
+            if (labelCodProduto.getText().isEmpty()){
+                
+               handleMenuAlert1();
+            
+               
+                }else{
+      
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(TrickController.class.getResource("/Presentation/CadastroProduto.fxml"));
+       
+         Parent root = (Parent) loader.load();           
+         CadastroProdutoController cadastroProdutoController= loader.<CadastroProdutoController> getController();
          
-    }    
+         servicoProdutos = new ProdutosServicos();
+         usuarioServicos = new UsuarioServicos();
+         Produto selectedProduto = new Produto();
+        // Stock selectedProduto1  = new Stock();    
+         
+         selectedProduto= servicoProdutos.getDetalhesProduto(Integer.parseInt(codProduto));
+         //selectedProduto1 = stockServicos.getDetalhesStockTotal(Integer.parseInt(codProduto));
+         //selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
+        cadastroProdutoController.detalhesProdutos(selectedProduto);
+       // cadastroProdutoController.detalhesStockProdutos(selectedProduto1);
+        
+        cadastroProdutoController.camposBloqueiados();
+
+        // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Registo de Prdoutos");
+        Scene scene = new Scene(root);
+        dialogStage.setScene(scene);
+        dialogStage.setMaximized(false);
+        dialogStage.setResizable(false);
+        // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
+        dialogStage.show();
+        
+         Stage stage =(Stage)buttonEditarProduto.getScene().getWindow();
+        stage.close();
+        
+            
+            }          
+    }
+    catch (Exception ex) {
+      System.out.println("" + ex + ex.getLocalizedMessage());
+                System.out.println("" + ex.toString());
+    }
+    
+      
+   }
+       
+       public void mudacorAnularEntered(){
+       buttonAnular.setStyle("-fx-background-color: #FFF");
+       buttonAnular.setStyle("-fx-background-radius: 13");
+    } 
+    
+       public void mouseexitbuttonAnular(){
+       buttonAnular.setStyle("-fx-background-color: #FFF");
+       buttonAnular.setStyle("-fx-background-radius: 13");
+   }
+       
+       public void mudacorEditarEntered(){
+       buttonEditarProduto.setStyle("-fx-background-color: #FFF");
+       buttonEditarProduto.setStyle("-fx-background-radius: 13");
+    } 
+    
+       public void mouseexitEditar(){
+       buttonEditarProduto.setStyle("-fx-background-color: #FFF");
+       buttonEditarProduto.setStyle("-fx-background-radius: 13");
+   }
+       public void mudacorCancelarEntered(){
+       buttonCancelar.setStyle("-fx-background-color: #FFF");
+       buttonCancelar.setStyle("-fx-background-radius: 13");
+    } 
+    
+       public void mouseexitCancelarRegistar(){
+       buttonCancelar.setStyle("-fx-background-color: #FFF");
+       buttonCancelar.setStyle("-fx-background-radius: 13");
+       }
+       
+       public void mudacorDetalhesEntered(){
+       buttonDetalhes.setStyle("-fx-background-color: #FFF");
+       buttonDetalhes.setStyle("-fx-background-radius: 13");
+    } 
+    
+       public void mouseexitDetalhes(){
+       buttonDetalhes.setStyle("-fx-background-color: #FFF");
+       buttonDetalhes.setStyle("-fx-background-radius: 13");
+       }
+       
+       public void handleMenuAlert1() {
+             
+        try {
+        
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(TrickController.class.getResource("/Presentation/alert1.fxml"));
+        AnchorPane page = (AnchorPane) loader.load();
+        
+
+        // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("ALERTA");
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+        dialogStage.setMaximized(false);
+        dialogStage.setResizable(false);
+        
+        // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
+        dialogStage.show();
+        
+          }
+          catch (Exception ex) {
+          System.out.println("" + ex + ex.getLocalizedMessage());
+          System.out.println("" + ex.toString());
+              } 
+                }
+       }    
     
 

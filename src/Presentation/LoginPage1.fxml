@@ -32,7 +32,7 @@
       </BorderPane>
       <Pane fx:id="PanePane" layoutX="67.0" layoutY="50.0" prefHeight="330.0" prefWidth="589.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
          <children>
-            <Button fx:id="btnLogin" layoutX="323.0" layoutY="275.0" mnemonicParsing="false" onAction="#loginButtonOnAction" onKeyPressed="#loginComEnter" onMouseClicked="#mudacorloginEntered" prefHeight="25.0" prefWidth="96.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Login">
+            <Button fx:id="btnLogin" layoutX="323.0" layoutY="275.0" mnemonicParsing="false" onAction="#loginButtonOnAction" onMouseEntered="#mudacorloginEntered" onMouseExited="#mouseexitbuttonlogin" prefHeight="25.0" prefWidth="96.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Login">
                <font>
                   <Font name="Times New Roman" size="12.0" />
                </font>

@@ -3,6 +3,7 @@
 /*     */
  /*     */ import BussinessLogic.DetalhesVenda;
 /*     */ import BussinessLogic.Produto;
+import BussinessLogic.StockLevel;
 /*     */ import BussinessLogic.Venda;
 /*     */ import DataAcessLayer.ProdutoDAO;
 /*     */ import DataAcessLayer.VendaDao;
@@ -31,6 +32,7 @@ import javax.swing.JOptionPane;
 
     /*     */ ResultSet rs;
     /*     */    private Produto produto;
+                 private StockLevel stock;
     /*  30 */    private ProdutoDAO prodDAO = new ProdutoDAO();
     /*  31 */    private VendaDao vendaDao = new VendaDao();
 
@@ -108,6 +110,7 @@ import javax.swing.JOptionPane;
         /*  97 */ this.rs = this.prodDAO.getDetalhesProduto(codProduto);
         /*  98 */ this.rs.next();
         /*  99 */ this.produto = new Produto();
+                  StockLevel sl = new StockLevel();
         /* 100 */ this.produto.setCod_produto(Integer.valueOf(this.rs.getInt("Codigo")));
         /* 101 */ this.produto.setNome(this.rs.getString("nome"));
         /* 102 */ this.produto.setPreco_unitario(Double.valueOf(this.rs.getDouble("Preco")));
@@ -115,6 +118,10 @@ import javax.swing.JOptionPane;
         /* 105 */ this.produto.setCategoria(this.rs.getString("Categoria"));
                   this.produto.setDescricao(this.rs.getString("Descricao"));
                   this.produto.setFoto( this.rs.getString("foto"));
+                  
+                  sl.setUnidades_stock(Double.valueOf(this.rs.getDouble("unidades_stock")));
+                  
+                  this.produto.setStock(sl);
         /* 106 */ return this.produto;
         /*     */    }
 

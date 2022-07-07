@@ -3,7 +3,7 @@ import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-        import java.sql.Blob;
+import java.sql.Blob;
 import javafx.scene.image.Image;
 
 /*    */ 
@@ -15,13 +15,22 @@ import javafx.scene.image.Image;
 /*    */   private Integer Cod_produto;
 /*    */   private String Nome;
 /*    */   private Double Preco_unitario;
-/*    */   //public Integer QuantidadeStock;
 /*    */   private String Unidade;
 /*    */   private String Categoria;
-/*    */  // public Integer QuantidadeUnidade;
 /*    */   private String Descricao;
            private String foto;
            
+           public StockLevel stock;
+           
+
+  
+    public StockLevel getStock() {
+        return stock;
+    }
+
+    public void setStock(StockLevel stock) {
+        this.stock = stock;
+    }
    
             public Produto() {
         
@@ -34,7 +43,7 @@ import javafx.scene.image.Image;
             }
             
             public Produto(Integer Cod_produto, String Nome,String Categoria,String Unidade,
-            String Descricao,Double Preco_unitario,String foto) {
+            String Descricao,Double Preco_unitario,String foto, StockLevel stock) {
             this.Cod_produto=Cod_produto;
             this.Nome= Nome;
             this.Preco_unitario=Preco_unitario;
@@ -42,6 +51,9 @@ import javafx.scene.image.Image;
             this.Categoria= Categoria;
             this.Descricao= Descricao;
             this.foto= foto;
+            //this.stock=new StockLevel();
+            this.stock=stock;
+            
             
             }
 /*    */   

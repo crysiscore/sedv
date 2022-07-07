@@ -18,6 +18,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,6 +31,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -97,7 +100,7 @@ public class TabelaAdicaoProdutoController implements Initializable {
      private Produto produto;
      private StockModel stockModel = new StockModel();
     ObservableList <Stock> stock =FXCollections.observableArrayList();
-
+   
  //final static String ficheiro_gravado = "C:\\app\\stock.txt";
        
   
@@ -123,13 +126,15 @@ public class TabelaAdicaoProdutoController implements Initializable {
       
         this.labelCodUsuario.setText(usuario.getCod_Funcionario().toString());
         this.labelCodUsuario.setVisible(false);
-       // return usuario;
+       
          }
          
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-       
+        
+        
+    
       this.columnCodigoProduto.setCellValueFactory(new PropertyValueFactory<Stock, Integer>("produto_Cod_Produto"));
       
        this.columnQuantidade.setCellValueFactory(new PropertyValueFactory<Stock, Integer>("quantidade_recebida"));
@@ -137,36 +142,51 @@ public class TabelaAdicaoProdutoController implements Initializable {
        this.columnData.setCellValueFactory(new PropertyValueFactory<Stock, Date>("data_entrada"));
        this.columnNumeroLote.setCellValueFactory(new PropertyValueFactory<Stock, String>("numero_lote"));
        this.columnFabricante.setCellValueFactory(new PropertyValueFactory<Stock, String>("fabricante"));
-       
-       //stockList= stockModel.getStockList();
+      
        stock=stockModel.getStockList();
        tableviewAdicionarStock.setItems(stock);
        
+       buittonRegistarStock.disableProperty().bind(Bindings.size(stock).isEqualTo(0));
+       buttonRemover.disableProperty().bind(Bindings.size(stock).isEqualTo(0));
        
-      //ObservableList<Stock> lista = tableviewAdicionarStock.getItems();
-      
-       
-    }    
+     
+       }
     
+
     
      @FXML
-     void removerStockdaTabela(ActionEvent event){
-         int selectedID=tableviewAdicionarStock.getSelectionModel().getSelectedIndex();
-         tableviewAdicionarStock.getItems().remove(selectedID);
+     void removerStockdaTabela(){
+        
+          int response =JOptionPane.showConfirmDialog(null,"O Produto foi selecionado???", "confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+          
+           if(response==JOptionPane.YES_OPTION){
+               
+              
+          int selectedID=tableviewAdicionarStock.getSelectionModel().getSelectedIndex();
+          tableviewAdicionarStock.getItems().remove(selectedID);
+        
+          JOptionPane.showMessageDialog(null, "O Produto foi removido!");
+           
+           
+           }else if(response==JOptionPane.NO_OPTION){
+             JOptionPane.showMessageDialog(null, "Selecione o Produto se desejar removê-lo!");
+           
+           
+           }else if(response==JOptionPane.CLOSED_OPTION){
+               JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
+           }
+        
+      
+
      }
-   
+         
 
-    
-
-    
          @FXML
     public void handleMenuItemStockAdicionar() throws IOException {
-    
-/*     */     try {
-/* 159 */       
-/* 165 */          //String codUsuario = this.labelCodUsuario.getText();
-/* 166 */        
-/*     */     FXMLLoader loader = new FXMLLoader();
+             
+         try {
+
+        FXMLLoader loader = new FXMLLoader();
         loader.setLocation(TrickController.class.getResource("/Presentation/BuscaProduto1.fxml"));
         AnchorPane page = (AnchorPane) loader.load();
         
@@ -187,45 +207,32 @@ public class TabelaAdicaoProdutoController implements Initializable {
         dialogStage.setScene(scene);
         dialogStage.setMaximized(false);
         dialogStage.setResizable(false);
+        
         // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
         dialogStage.show();
         
-/*     */     }
-/* 201 */     catch (Exception ex) {
-/* 202 */       System.out.println("" + ex + ex.getLocalizedMessage());
+         }
+          catch (Exception ex) {
+          System.out.println("" + ex + ex.getLocalizedMessage());
                 System.out.println("" + ex.toString());
-/*     */     } 
-/*     */   }
+           } 
+           }
     
     
     
         public void CancelarButtonOnAction(ActionEvent event){
         Stage stage =(Stage) buttonCancelar.getScene().getWindow();
         stage.close();
-    }
+        }
         
-        
-            @FXML
 
-     void removerStock(ActionEvent event)  {
-         
-         
-        // int selectedID=tableViewStock.getSelectionModel().getSelectedIndex();
-         //tableViewStock.getItems().remove(selectedID);
-     }
-     
-     
          @FXML
-    public void handleMenuItemRegistarStock() throws IOException, SQLException {
+        public void handleMenuItemRegistarStock() throws IOException, SQLException {
         StockDAO dao = new StockDAO();
-        
+         
        if (tableviewAdicionarStock.getItems().isEmpty()) {
-       
-          
-           
-        JOptionPane.showMessageDialog(null, "" + "A Tabela encontra-se Vazia!!!");
-        Stage stage =(Stage)buittonRegistarStock.getScene().getWindow();
-                 stage.setAlwaysOnTop(true);
+       handleMenuAlert();
+         
         
           } else {
           
@@ -245,10 +252,46 @@ public class TabelaAdicaoProdutoController implements Initializable {
            }else if(response==JOptionPane.CLOSED_OPTION){
                JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
            }
+       }
+         }
+  
            
            
-           }
        
+         @FXML
+    public void handleMenuAlert() {
+             
+/*     */     try {
+/* 159 */       
+/* 165 */          //String codUsuario = this.labelCodUsuario.getText();
+/* 166 */        
+/*     */     FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(TrickController.class.getResource("/Presentation/alert.fxml"));
+        AnchorPane page = (AnchorPane) loader.load();
+        
+         //BuscaProdutosController buscaProdutosController= loader.getController();
+         
+        AlertController alertController= loader.<AlertController>getController();
+      
+        
+        // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("ALERTA");
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+        dialogStage.setMaximized(false);
+        dialogStage.setResizable(false);
+        
+        // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
+        dialogStage.show();
+        
+/*     */     }
+/* 201 */     catch (Exception ex) {
+/* 202 */       System.out.println("" + ex + ex.getLocalizedMessage());
+                System.out.println("" + ex.toString());
+/*     */     } 
+/*     */   }
+    
        
         //for(int i = 0; i < tableviewAdicionarStock.getItems().size(); i++) {
         
@@ -259,7 +302,73 @@ public class TabelaAdicaoProdutoController implements Initializable {
           //   String numero_lote = tableviewAdicionarStock.getItems().get(i).numero_lote;
            //  String fabricante =tableviewAdicionarStock.getItems().get(i).fabricante;
         
+               
+        public void handleMenuAlert1() {
+             
+/*     */     try {
+        
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(TrickController.class.getResource("/Presentation/alert1.fxml"));
+        AnchorPane page = (AnchorPane) loader.load();
+        
+
+        // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("ALERTA");
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+        dialogStage.setMaximized(false);
+        dialogStage.setResizable(false);
+        
+        // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
+        dialogStage.show();
+        
+/*     */     }
+/* 201 */     catch (Exception ex) {
+/* 202 */       System.out.println("" + ex + ex.getLocalizedMessage());
+                System.out.println("" + ex.toString());
+/*     */     } 
+/*     */   }
+    
          
-         }
+
+      public void mudacorRegistarEntered(){
+        buittonRegistarStock.setStyle("-fx-background-color: #FFFF");
+         buittonRegistarStock.setStyle("-fx-background-radius: 12");
+    } 
+    
+       public void mouseexitbuttonRegistar(){
+       buittonRegistarStock.setStyle("-fx-background-color: #E9EEEE");
+       buittonRegistarStock.setStyle("-fx-background-radius: 12");
+   }
+       
+       public void mudacorAdicionarEntered(){
+       buttonAdicionarStock.setStyle("-fx-background-color: #FFFF");
+       buttonAdicionarStock.setStyle("-fx-background-radius: 12");
+    } 
+    
+       public void mouseexitAdicionarRegistar(){
+       buttonAdicionarStock.setStyle("-fx-background-color: #E9EEEE");
+       buttonAdicionarStock.setStyle("-fx-background-radius: 12");
+   }
+       public void mudacorCancelarEntered(){
+       buttonCancelar.setStyle("-fx-background-color: #FFFF");
+       buttonCancelar.setStyle("-fx-background-radius: 12");
+    } 
+    
+       public void mouseexitCancelarRegistar(){
+       buttonCancelar.setStyle("-fx-background-color: #E9EEEE");
+       buttonCancelar.setStyle("-fx-background-radius: 12");
+       }
+       
+       public void mudacorRemoverEntered(){
+       buttonRemover.setStyle("-fx-background-color: #FFFF");
+       buttonRemover.setStyle("-fx-background-radius: 12");
+    } 
+    
+       public void mouseexitRemoverRegistar(){
+       buttonRemover.setStyle("-fx-background-color: #E9EEEE");
+       buttonRemover.setStyle("-fx-background-radius: 12");
+       }
     }  
 

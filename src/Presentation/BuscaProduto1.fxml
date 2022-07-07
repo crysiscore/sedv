@@ -36,7 +36,7 @@
                   <Image url="@../icons/Free3dLogo.png" />
                </image>
             </ImageView>
-            <Button fx:id="buttonAdicionarProduto" layoutX="315.0" layoutY="494.0" mnemonicParsing="false" onAction="#handleMenuItemStockAdicionarProduto" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Adicionar Produto">
+            <Button fx:id="buttonAdicionarProduto" layoutX="315.0" layoutY="494.0" mnemonicParsing="false" onAction="#handleMenuItemStockAdicionarProduto" onMouseEntered="#mudacorAdicionarEntered" onMouseExited="#mouseexitbuttonAdicionar" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Adicionar stock">
                <effect>
                   <DropShadow>
                      <color>
@@ -45,7 +45,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <Button fx:id="buttonCancelar" layoutX="446.0" layoutY="494.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Cancelar">
+            <Button fx:id="buttonCancelar" layoutX="446.0" layoutY="494.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" onMouseEntered="#mudacorcancel" onMouseExited="#mouseexitbuttonCancel" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Cancelar">
                <effect>
                   <DropShadow>
                      <color>

@@ -120,6 +120,14 @@ public class StockDAO {
 /*     */     
 /*  86 */     return this.rs;
 /*     */   }
+      
+       public ResultSet getDetalhesStockLevel(int codProduto) throws SQLException {
+/*  82 */     this.cs = this.connect.prepareCall("{call  BuscaStock(?)}");
+/*  83 */     this.cs.setInt(1, codProduto);
+/*  84 */     this.rs = this.cs.executeQuery();
+/*     */     
+/*  86 */     return this.rs;
+/*     */   }
     
     
        public void RegistarStock( ObservableList <Stock> stock ) throws SQLException {
@@ -140,6 +148,15 @@ public class StockDAO {
                      Logger.getLogger(StockDAO.class.getName()).log(Level.SEVERE, null, ex);
                     }
   }
+       
+       
+       public ResultSet getStockTotal(int codProd) throws SQLException {
+/*  82 */     this.cs = this.connect.prepareCall("{call  BuscaStock(?)}");
+/*  83 */     this.cs.setInt(1, codProd);
+/*  84 */     this.rs = this.cs.executeQuery();
+/*     */     
+/*  86 */     return this.rs;
+/*     */   }
        }
     
         
