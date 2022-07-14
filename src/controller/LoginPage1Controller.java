@@ -100,7 +100,7 @@ public class LoginPage1Controller implements Initializable {
     }
     
     public void mouseexitbuttonlogin(){
-       btnLogin.setStyle("-fx-background-color: #FFFF");
+       btnLogin.setStyle("-fx-background-color: #E9EEEE");
        btnLogin.setStyle("-fx-background-radius: 12");
    }
     
@@ -175,6 +175,7 @@ public class LoginPage1Controller implements Initializable {
         // Criando um Estágio de Diálogo (Stage Dialog)
         Stage dialogStage = new Stage();
         dialogStage.setTitle("Registro de Vendas");
+        dialogStage.setAlwaysOnTop(false);
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
         dialogStage.setResizable(false);
@@ -213,6 +214,7 @@ public class LoginPage1Controller implements Initializable {
         // Criando um Estágio de Diálogo (Stage Dialog)
         Stage dialogStage = new Stage();
         dialogStage.setTitle("Registro de Vendas");
+        dialogStage.setAlwaysOnTop(false);
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
         dialogStage.setResizable(false);

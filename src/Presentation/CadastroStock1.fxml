@@ -77,24 +77,6 @@
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="TextFieldCodigoProduto" prefHeight="28.0" prefWidth="476.0" style="-fx-background-radius: 6;" GridPane.columnIndex="1">
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              <Color opacity="0.45038166642189026" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </TextField>
-                  <TextField fx:id="textfieldNomeProduto" prefHeight="28.0" prefWidth="476.0" style="-fx-background-radius: 6;" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              <Color opacity="0.4465648829936981" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </TextField>
                   <TextField fx:id="TextFieldlQuantidadeRecebida" prefHeight="28.0" prefWidth="376.0" style="-fx-background-radius: 6;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <effect>
                         <DropShadow>
@@ -103,8 +85,10 @@
                            </color>
                         </DropShadow>
                      </effect>
+                     <font>
+                        <Font name="Times New Roman Bold" size="14.0" />
+                     </font>
                   </TextField>
-                  <TextField fx:id="TextFieldCodigoFuncionario" layoutX="130.0" layoutY="119.0" prefHeight="28.0" prefWidth="476.0" style="-fx-background-radius: 6;" />
                   <TextField fx:id="TextFieldNumeroLote" prefHeight="28.0" prefWidth="376.0" style="-fx-background-radius: 6;" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <effect>
                         <DropShadow>
@@ -113,6 +97,9 @@
                            </color>
                         </DropShadow>
                      </effect>
+                     <font>
+                        <Font name="Times New Roman Bold" size="14.0" />
+                     </font>
                   </TextField>
                   <TextField fx:id="TextFieldFabricante" prefHeight="28.0" prefWidth="376.0" style="-fx-background-radius: 6;" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <effect>
@@ -122,6 +109,9 @@
                            </color>
                         </DropShadow>
                      </effect>
+                     <font>
+                        <Font name="Times New Roman Bold" size="14.0" />
+                     </font>
                   </TextField>
                   <DatePicker fx:id="DatePickerDataEntrada" prefHeight="28.0" prefWidth="376.0" style="-fx-background-radius: 6;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <effect>
@@ -132,9 +122,38 @@
                         </DropShadow>
                      </effect>
                   </DatePicker>
+                  <Label text="Código do Produto">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="textfieldNomeProduto" prefHeight="27.0" prefWidth="44.0" style="-fx-background-radius: 6;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color opacity="0.4465648829936981" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <font>
+                        <Font name="Times New Roman Bold" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="TextFieldCodigoProduto" prefHeight="28.0" prefWidth="44.0" style="-fx-background-radius: 6;" GridPane.columnIndex="1">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color opacity="0.45038166642189026" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <font>
+                        <Font name="Times New Roman Bold" size="14.0" />
+                     </font>
+                  </TextField>
                </children>
             </GridPane>
-            <Button fx:id="buttonAdicionarStockNaTabela" layoutX="356.0" layoutY="457.0" mnemonicParsing="false" onAction="#handleMenuItemStockAdicionarStockNaTabela" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Adicionar Stock">
+            <Button fx:id="buttonAdicionarStockNaTabela" layoutX="356.0" layoutY="457.0" mnemonicParsing="false" onAction="#handleMenuItemStockAdicionarStockNaTabela" onMouseEntered="#mudacorAdicionarEntered" onMouseExited="#mouseexitbuttonAdicionar" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Adicionar Stock">
                <effect>
                   <DropShadow>
                      <color>
@@ -142,7 +161,7 @@
                      </color>
                   </DropShadow>
                </effect></Button>
-            <Button fx:id="buttonCancelar" layoutX="488.0" layoutY="457.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Cancelar">
+            <Button fx:id="buttonCancelar" layoutX="488.0" layoutY="457.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" onMouseEntered="#mudacorcancel" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Cancelar">
                <effect>
                   <DropShadow>
                      <color>
@@ -156,6 +175,8 @@
                </image>
             </ImageView>
             <Label fx:id="labelNomeFuncionario" layoutX="753.0" layoutY="48.0" prefHeight="17.0" prefWidth="44.0" />
+            <TextField fx:id="TextFieldCodigoFuncionario" layoutX="77.0" layoutY="54.0" prefHeight="28.0" prefWidth="155.0" style="-fx-background-radius: 6;" />
+            <ImageView fx:id="imageViewFotoProduto" fitHeight="146.0" fitWidth="175.0" layoutX="57.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true" />
          </children>
          <effect>
             <DropShadow>

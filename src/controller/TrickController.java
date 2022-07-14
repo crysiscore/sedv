@@ -7,6 +7,7 @@ package controller;
 
 import BussinessLogic.Usuario;
 import DataAcessLayer.UsuarioDAO;
+import Model.StockModel;
 import Service.ProdutosServicos;
 import Service.UsuarioServicos;
 import java.io.IOException;
@@ -111,7 +112,7 @@ public class TrickController implements Initializable {
     Usuario usuario;
     ProdutosServicos servicoProdutos;
 
-      
+    
     public Usuario getProduto() {
         return usuario;
     }
@@ -160,6 +161,7 @@ public class TrickController implements Initializable {
         Usuario selectedUsuario = new Usuario();
         selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
         tabelaAdicaoProdutoController.receberdadosUsuario(selectedUsuario);
+        // tabelaAdicaoProdutoController.desabilitabotoes();
         //buscaProdutosController.receberdadosUsuario(selectedUsuario);
         // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
         Stage dialogStage = new Stage();
@@ -168,6 +170,7 @@ public class TrickController implements Initializable {
         dialogStage.setScene(scene);
         dialogStage.setMaximized(false);
         dialogStage.setResizable(false);
+        
         // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
         dialogStage.show();
           }
@@ -180,7 +183,7 @@ public class TrickController implements Initializable {
    
     
     
-    public void handleMenuItemProdutoRegistrarProduto (){
+    public void handleMenuItemProdutoListaProduto (){
          
           
          try {
@@ -218,4 +221,44 @@ public class TrickController implements Initializable {
           } 
           }
 
+    
+    public void handleMenuItemProdutoRegistrarProduto (){
+         
+          
+        try {
+      
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(TrickController.class.getResource("/Presentation/CadastroProduto.fxml"));
+        
+        AnchorPane page = (AnchorPane) loader.load();
+        
+         CadastroProdutoController cadastroProdutoProdutoController= loader.<CadastroProdutoController>getController();
+        
+         
+        //usuarioServicos = new UsuarioServicos();
+        Usuario selectedUsuario = new Usuario();
+       // selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
+        //CadastroProdutoController.receberdadosUsuario(selectedUsuario);
+        
+       
+        
+        cadastroProdutoProdutoController.OcultarBotaoEditar();
+        // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Registo de Produtos");
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+        dialogStage.setMaximized(false);
+        dialogStage.setResizable(false);
+        
+        // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
+        dialogStage.show();
+           }
+             catch (Exception ex) {
+          System.out.println("" + ex + ex.getLocalizedMessage());
+                System.out.println("" + ex.toString());
+          } 
+            }
+
+    
           }

@@ -204,7 +204,7 @@
                   </DropShadow>
                </effect>
             </ImageView>
-            <ImageView fx:id="imageViewListaProdutos" fitHeight="157.0" fitWidth="165.0" layoutX="473.0" layoutY="334.0" onMouseClicked="#handleMenuItemProdutoRegistrarProduto">
+            <ImageView fx:id="imageViewListaProdutos" fitHeight="157.0" fitWidth="165.0" layoutX="473.0" layoutY="334.0" onMouseClicked="#handleMenuItemProdutoListaProduto">
                <image>
                   <Image url="@../icons/3d-illustration-of-notepad-check-list-with-pencil-over-white-background-MAMJTX.png" />
                </image>
@@ -222,8 +222,8 @@
                <menus>
                   <Menu mnemonicParsing="false" text="Produtos">
                      <items>
-                        <MenuItem fx:id="menuItemStockNovoProduto1" mnemonicParsing="false" text="Novo Produto" />
-                        <MenuItem fx:id="menuItemStockListaProdutos1" mnemonicParsing="false" text="Lista de Produtos" />
+                        <MenuItem fx:id="menuItemStockNovoProduto1" mnemonicParsing="false" onAction="#handleMenuItemProdutoRegistrarProduto" text="Novo Produto" />
+                        <MenuItem fx:id="menuItemStockListaProdutos1" mnemonicParsing="false" onAction="#handleMenuItemProdutoListaProduto" text="Lista de Produtos" />
                      </items>
                   </Menu>
                </menus>

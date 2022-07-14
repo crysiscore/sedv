@@ -206,15 +206,14 @@ public class BuscaProdutosController implements Initializable {
     @FXML
     public void handleMenuItemStockAdicionarProduto() throws IOException {
       
-                 
-            
+       
     try {
          //produto.setCod_produto(Integer.parseInt(labelCodProduto.getText()));
         // String codUsuario=this.labelUsuario.getText();
          String codProduto = this.labelCodProduto.getText();
           
          if (labelCodProduto.getText().isEmpty()){
-          JOptionPane.showMessageDialog(null, " Produto Não Selecionado!");
+          handleMenuAlert1();
 
          }
          else{
@@ -247,6 +246,7 @@ public class BuscaProdutosController implements Initializable {
         dialogStage.setScene(scene);
         dialogStage.setMaximized(false);
         dialogStage.setResizable(false);
+        
         // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
         dialogStage.show();
         
@@ -262,4 +262,51 @@ public class BuscaProdutosController implements Initializable {
       
    }
     
+    public void handleMenuAlert1() {
+             
+        try {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(TrickController.class.getResource("/Presentation/alert1.fxml"));
+        AnchorPane page = (AnchorPane) loader.load();
+
+       
+      
+        
+        // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("ALERTA");
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+        dialogStage.setMaximized(false);
+        dialogStage.setResizable(false);
+        
+        // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
+        dialogStage.show();
+        
+/*     */     }
+/* 201 */     catch (Exception ex) {
+/* 202 */       System.out.println("" + ex + ex.getLocalizedMessage());
+                System.out.println("" + ex.toString());
+/*     */     } 
+/*     */   }
+    
+     public void mudacorAdicionarEntered(){
+         buttonAdicionarProduto.setStyle("-fx-background-color: #FFFF");
+         buttonAdicionarProduto.setStyle("-fx-background-radius: 12");
+    }
+    
+    public void mouseexitbuttonAdicionar(){
+       buttonAdicionarProduto.setStyle("-fx-background-color: #E9EEEE");
+       buttonAdicionarProduto.setStyle("-fx-background-radius: 12");
+   }
+    
+     public void mudacorcancel(){
+          buttonCancelar.setStyle("-fx-background-color: #FFFF");
+       buttonCancelar.setStyle("-fx-background-radius: 12");
+    }
+     
+    public void mouseexitbuttonCancel(){
+       buttonCancelar.setStyle("-fx-background-color: #E9EEEE");
+       buttonCancelar.setStyle("-fx-background-radius: 12");
+   }
 }

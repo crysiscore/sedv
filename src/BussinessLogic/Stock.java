@@ -106,4 +106,6 @@ public class Stock {
     public void setFabricante(String fabricante) {
         this.fabricante = fabricante;
     }
+
+   
 }

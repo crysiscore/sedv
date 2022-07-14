@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `mydb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `mydb`;
 -- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
 --
 -- Host: localhost    Database: mydb
@@ -117,7 +119,7 @@ CREATE TABLE `produto` (
   KEY `fk_produto_catgoria1` (`categoria`),
   CONSTRAINT `produto_ibfk_1` FOREIGN KEY (`unidade`) REFERENCES `unidade` (`idUnidade`) ON DELETE SET NULL ON UPDATE SET NULL,
   CONSTRAINT `produto_ibfk_2` FOREIGN KEY (`categoria`) REFERENCES `categoria` (`idCategoria`) ON DELETE SET NULL ON UPDATE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +128,7 @@ CREATE TABLE `produto` (
 
 LOCK TABLES `produto` WRITE;
 /*!40000 ALTER TABLE `produto` DISABLE KEYS */;
-INSERT INTO `produto` VALUES (11,'Nivea For Man',180,11,13,'Loção corporal','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\nivea.jpg'),(12,'Sabao Maeva',235,11,15,'Sabão C','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\sabao.jpg'),(21,'Tubo PVC 50',850,11,16,'Tubo de canalizacao','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\depositphotos_25269157-stock-photo-white-plus-sign-isolated-on.jpg'),(22,'Alicate de Corte Universal',250,11,16,'Alicate de Corte Universal',NULL),(25,'Chapa de Zinco IBR',535,11,18,'Chapa de Zinco IBR',NULL),(26,'Regua Modular',495,11,19,'Regua Modular','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\depositphotos_25269157-stock-photo-white-plus-sign-isolated-on.jpg'),(27,'Ferro 8 SA',128,11,18,'Ferro 8 SA',NULL),(28,'Cimento Limak 42',380,11,18,'Cimento Limak 42',NULL),(29,'Cimento Limak 32',267,11,18,'Cimento Limak 32',NULL),(30,'Martelo',550,11,19,'Martelo',NULL),(31,'Chave de Fenda',250,11,19,'Chave de fenda',NULL),(32,'Chave de Fenda',300,11,19,'Chave de Fenda',NULL),(33,'Chave Estrela',350,11,19,'Chave Estrela',NULL),(34,'Chave Estrelao',330,11,19,'Chave Estrelao',NULL),(35,'Chavinha',200,11,19,'Chavinha',NULL),(36,'Chaves',100,11,16,'chaves',NULL),(37,'ddd',333,11,15,'cc',NULL),(38,'Tinta 5L',2000,11,18,'Tinta 5L','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\carrinho-de-compras-vermelho-do-mercado-conceito-d-do-disconto-30551366.jpg'),(39,'Tinta 1L',400,11,18,'Tinta 1L',NULL),(40,'PortaChaves',200,11,18,'PortaChaves',NULL),(41,'Sabao Universal',50,11,15,'sabao',NULL),(42,'OMO',450,10,15,'sabao','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\carrinho-de-compras-vermelho-do-mercado-conceito-d-do-disconto-30551366.jpg'),(43,'ddd',33,11,15,'sss',NULL),(45,'uvinha',530,10,13,'fruta','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\Grapes-PNG-Transparent-Image.png'),(46,'orange',230,12,13,'fruta','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\Laranja.jpg.png'),(47,'uva',178,10,13,'fruta','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\Grapes-PNG-Transparent-Image.png.png'),(48,'chaveEstrelinha',470,11,19,'chaveEstrelinha','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\chave fenda.png'),(49,'chaveEstrelinha2',500,11,19,'chaveEstrelinha2','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\chave fenda.png.png'),(50,'bilha',44,11,18,'bilha',NULL);
+INSERT INTO `produto` VALUES (11,'Nivea For Man',180,11,14,'Loção corporal','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\nivea.jpg'),(12,'Sabao Maeva',235,11,15,'Sabão C','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\sabao.jpg'),(21,'Tubo PVC 50',850,11,16,'Tubo de canalizacao','C:\\sedv\\img\\tubo.jpg'),(22,'Alicate de Corte Universal',250,11,16,'Alicate de Corte Universal',NULL),(25,'Chapa de Zinco IBR',535,11,18,'Chapa de Zinco IBR',NULL),(26,'Regua Modular',495,11,19,'Regua Modular','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\depositphotos_25269157-stock-photo-white-plus-sign-isolated-on.jpg'),(27,'Ferro 8 SA',128,11,18,'Ferro 8 SA',NULL),(28,'Cimento Limak 42',380,11,18,'Cimento Limak 42',NULL),(29,'Cimento Limak 32',267,11,18,'Cimento Limak 32',NULL),(30,'Martelo',550,11,19,'Martelo',NULL),(31,'Chave de Fenda',250,11,19,'Chave de fenda',NULL),(32,'Chave de Fenda',300,11,19,'Chave de Fenda',NULL),(33,'Chave Estrela',350,11,19,'Chave Estrela',NULL),(34,'Chave Estrelao',330,11,19,'Chave Estrelao',NULL),(35,'Chavinha',200,11,19,'Chavinha',NULL),(36,'Chaves',100,11,16,'chaves',NULL),(37,'ddd',333,11,15,'cc',NULL),(38,'Tinta 5L',2000,11,18,'Tinta 5L','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\carrinho-de-compras-vermelho-do-mercado-conceito-d-do-disconto-30551366.jpg'),(39,'Tinta 1L',400,11,18,'Tinta 1L',NULL),(40,'PortaChaves',200,11,18,'PortaChaves',NULL),(41,'Sabao Universal',50,11,15,'sabao',NULL),(42,'OMO',450,10,15,'sabao em pó','C:\\\\sedv\\\\img\\\\omo.jpg'),(43,'ddd',33,11,15,'sss',NULL),(45,'uvinha',530,10,13,'fruta','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\Grapes-PNG-Transparent-Image.png'),(46,'orange',230,12,13,'fruta','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\Laranja.jpg.png'),(47,'uva',178,10,13,'fruta','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\Grapes-PNG-Transparent-Image.png.png'),(48,'chaveEstrelinha',470,11,19,'chaveEstrelinha','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\chave fenda.png'),(49,'chaveEstrelinha2',500,11,19,'chaveEstrelinha2','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\chave fenda.png.png'),(50,'bilha',44,11,18,'bilha',NULL),(51,'ameixa',20,11,13,'fruta','C:\\\\sedv\\\\Grapes-PNG-Transparent-Image.png'),(52,'Ameixas',33,10,13,'fruits','C:\\\\sedvGrapes-PNG-Transparent-Image.png'),(53,'orang',33,10,13,'frutas','C:\\\\sedv\\\\Laranja.jpg'),(61,'sdsds',444,10,15,'dsdsd','C:\\sedv\\img\\chave fenda.png'),(62,'dsdsd',33,10,14,'ddsds',NULL);
 /*!40000 ALTER TABLE `produto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -166,7 +168,7 @@ CREATE TABLE `stock` (
   KEY `fk_stock_usuario1_idx` (`usuario_Cod_Funcionario`),
   CONSTRAINT `fk_stock_produto1` FOREIGN KEY (`produto_Cod_Produto`) REFERENCES `produto` (`Cod_Produto`),
   CONSTRAINT `fk_stock_usuario1` FOREIGN KEY (`usuario_Cod_Funcionario`) REFERENCES `usuario` (`Cod_Funcionario`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,7 +177,7 @@ CREATE TABLE `stock` (
 
 LOCK TABLES `stock` WRITE;
 /*!40000 ALTER TABLE `stock` DISABLE KEYS */;
-INSERT INTO `stock` VALUES (1,20,'2022-02-18',11,7,'zbsdhdfdd','zbsdhdfdd'),(2,10,'2022-02-21',12,8,'dfdf','cerlac'),(3,23,'2022-05-10',11,7,'ewew','Mylan'),(4,2,'2022-04-12',11,7,'ee','dd'),(5,2,'2022-04-12',11,7,'ee','dd'),(6,2,'2022-04-12',11,7,'ee','dd'),(7,3,'2022-04-12',11,7,'ff','ff'),(8,3,'2022-04-12',12,7,'ee','fffg'),(9,3,'2022-04-12',11,7,'ffff','xddd'),(10,2,'2022-04-12',12,7,'ee','dd'),(11,2,'2022-04-12',11,7,'ww','dd'),(12,2,'2022-04-05',12,7,'ww','ee'),(13,4,'2022-05-15',11,7,'mjjmjm','kkk'),(14,3,'2022-05-17',11,7,'fffddddddd','fffffvvvvvvvvvv'),(15,7,'2022-05-17',12,7,'kkkkkk','dsdd'),(16,3,'2022-05-19',12,7,'ee','dd'),(17,3,'2022-05-19',12,7,'eee','dd'),(18,3,'2022-05-19',12,7,'ww','ee'),(19,3,'2022-05-19',11,7,'jjjjjjjj','ww');
+INSERT INTO `stock` VALUES (1,20,'2022-02-18',11,7,'zbsdhdfdd','zbsdhdfdd'),(2,10,'2022-02-21',12,8,'dfdf','cerlac'),(3,23,'2022-05-10',11,7,'ewew','Mylan'),(4,2,'2022-04-12',11,7,'ee','dd'),(5,2,'2022-04-12',11,7,'ee','dd'),(6,2,'2022-04-12',11,7,'ee','dd'),(7,3,'2022-04-12',11,7,'ff','ff'),(8,3,'2022-04-12',12,7,'ee','fffg'),(9,3,'2022-04-12',11,7,'ffff','xddd'),(10,2,'2022-04-12',12,7,'ee','dd'),(11,2,'2022-04-12',11,7,'ww','dd'),(12,2,'2022-04-05',12,7,'ww','ee'),(13,4,'2022-05-15',11,7,'mjjmjm','kkk'),(14,3,'2022-05-17',11,7,'fffddddddd','fffffvvvvvvvvvv'),(15,7,'2022-05-17',12,7,'kkkkkk','dsdd'),(16,3,'2022-05-19',12,7,'ee','dd'),(17,3,'2022-05-19',12,7,'eee','dd'),(18,3,'2022-05-19',12,7,'ww','ee'),(19,3,'2022-05-19',11,7,'jjjjjjjj','ww'),(20,6,'2022-06-30',11,7,'dfdf','rfrfrf'),(21,3,'2022-06-30',11,7,'kjk','hhghg');
 /*!40000 ALTER TABLE `stock` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -205,12 +207,12 @@ DROP TABLE IF EXISTS `stocklevel`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `stocklevel` (
   `idstocklevel` int NOT NULL AUTO_INCREMENT,
-  `unidades_stock` int DEFAULT NULL,
+  `unidades_stock` double DEFAULT NULL,
   `produto_Cod_Produto` int NOT NULL,
   PRIMARY KEY (`idstocklevel`),
   KEY `fk_stocklevel_produto1_idx` (`produto_Cod_Produto`),
   CONSTRAINT `fk_stocklevel_produto1` FOREIGN KEY (`produto_Cod_Produto`) REFERENCES `produto` (`Cod_Produto`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -219,7 +221,7 @@ CREATE TABLE `stocklevel` (
 
 LOCK TABLES `stocklevel` WRITE;
 /*!40000 ALTER TABLE `stocklevel` DISABLE KEYS */;
-INSERT INTO `stocklevel` VALUES (1,47,11),(2,23,12),(3,0,21),(4,0,22),(7,0,25),(8,0,26),(9,0,27),(10,0,28),(11,0,29),(12,0,30),(13,0,31),(14,0,32),(15,0,33),(16,0,34),(17,0,35),(18,0,36),(19,0,37),(20,0,38),(21,0,39),(22,0,40),(23,0,41),(24,0,42),(25,0,43),(27,0,45),(28,0,46),(29,0,47),(30,0,48),(31,0,49),(32,0,50);
+INSERT INTO `stocklevel` VALUES (1,56,11),(2,23,12),(3,0,21),(4,0,22),(7,0,25),(8,0,26),(9,0,27),(10,0,28),(11,0,29),(12,0,30),(13,0,31),(14,0,32),(15,0,33),(16,0,34),(17,0,35),(18,0,36),(19,0,37),(20,0,38),(21,0,39),(22,0,40),(23,0,41),(24,0,42),(25,0,43),(27,0,45),(28,0,46),(29,0,47),(30,0,48),(31,0,49),(32,0,50),(33,0,51),(34,0,52),(35,0,53),(43,0,61),(44,0,62);
 /*!40000 ALTER TABLE `stocklevel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -473,6 +475,27 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `BuscaStock` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `BuscaStock`()
+BEGIN
+SELECT distinct sl.produto_cod_Produto, sl.unidades_stock
+FROM stocklevel sl, stock st
+WHERE sl.produto_cod_Produto= st.produto_cod_Produto;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `CadProduto` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -568,9 +591,9 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `DetalhesProdutos`(in codProduto int)
 BEGIN
-SELECT distinct `Cod_Produto` AS Codigo, P.`nome`,`preco_unitario` AS Preco, U.descricao_unidade AS Unidade, C.nome as Categoria, descricao, foto
- FROM produto P, categoria C, unidade U
- WHERE `Cod_Produto`= codProduto and P.`unidade`=U.idUnidade and P.`categoria`=C.idCategoria;
+SELECT distinct `Cod_Produto` AS Codigo, P.`nome`,`preco_unitario` AS Preco, U.descricao_unidade AS Unidade, C.nome as Categoria, descricao, foto, St.unidades_stock
+ FROM produto P, categoria C, unidade U, stocklevel St
+ WHERE `Cod_Produto`= codProduto and P.`unidade`=U.idUnidade and P.`categoria`= C.idCategoria and St.produto_Cod_Produto= P.Cod_Produto;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -757,9 +780,9 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Listagemdeproduto`()
 BEGIN
-SELECT distinct `Cod_Produto` , P.`nome`,`preco_unitario`, C.nome as Categoria, U.descricao_unidade AS Unidade, P.descricao, foto
- FROM produto P, categoria C, unidade U
- WHERE P.`unidade`=U.idUnidade and P.`categoria`=C.idCategoria;
+SELECT distinct `Cod_Produto` , P.`nome`,`preco_unitario`, C.nome as Categoria, U.descricao_unidade AS Unidade, P.descricao, foto, st.unidades_stock
+ FROM produto P, categoria C, unidade U, stocklevel St
+ WHERE P.`unidade`=U.idUnidade and P.`categoria`=C.idCategoria and st.produto_Cod_Produto= P.Cod_Produto;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1290,4 +1313,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-18 10:15:09
+-- Dump completed on 2022-07-07  6:22:02

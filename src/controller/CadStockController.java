@@ -55,6 +55,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
@@ -99,7 +101,12 @@ public class CadStockController implements Initializable {
 
     @FXML
     private TextField textfieldNomeProduto;
-
+    
+     @FXML
+    private ImageView imageViewFotoProduto;
+ 
+  
+       
     Usuario usuario;
     ProdutosServicos prodServ;
     StockServicos stServico;
@@ -132,11 +139,13 @@ public class CadStockController implements Initializable {
         //  this.TextFieldCodigoFuncionario.setText();
         //this.TextFieldCodigoFuncionario.setText(String.valueOf(user.getCod_Funcionario()));
         this.TextFieldCodigoProduto.setText(produto.getCod_produto().toString());
-        this.TextFieldCodigoProduto.setVisible(false);
-
+        this.TextFieldCodigoProduto.setVisible(true);
+         this.TextFieldCodigoProduto.setEditable(false);
         this.textfieldNomeProduto.setText(produto.getNome());
-        //this.TextFieldCodigoProduto.setText(String.valueOf(produto.getCod_produto()));
-        //this.TextFieldCodigoFuncionario.setVisible(true);
+        this.textfieldNomeProduto.setEditable(false);
+        Image image= new Image("file:"+produto.getFoto());
+        this.imageViewFotoProduto.setImage(image);
+        
     }
 
     public Usuario getUsuario() {
@@ -149,6 +158,7 @@ public class CadStockController implements Initializable {
         this.TextFieldCodigoFuncionario.setText(usuario.getCod_Funcionario().toString());
         this.TextFieldCodigoFuncionario.setVisible(false);
         this.labelNomeFuncionario.setText(usuario.getNome());
+        
         // return usuario;
     }
 
@@ -209,9 +219,11 @@ public class CadStockController implements Initializable {
 
          
                  if (!verificadados()) {
-
+                    
+                   
                  try {
-                     
+                 
+        
                 Integer produto_Cod_Produto = Integer.parseInt(TextFieldCodigoProduto.getText());
                 Integer quantidade_recebida = Integer.parseInt(TextFieldlQuantidadeRecebida.getText());
                 Date data_entrada = java.sql.Date.valueOf(DatePickerDataEntrada.getValue());
@@ -220,17 +232,18 @@ public class CadStockController implements Initializable {
                 Integer user = Integer.parseInt(TextFieldCodigoFuncionario.getText());
                 String numero_lote = TextFieldNumeroLote.getText();
                 String fabricante = TextFieldFabricante.getText();
-
+                
+               
              
                 Stock s = new Stock(Integer.parseInt(TextFieldCodigoProduto.getText()), Integer.parseInt(TextFieldlQuantidadeRecebida.getText()),
                         java.sql.Date.valueOf(DatePickerDataEntrada.getValue()), Integer.parseInt(TextFieldCodigoFuncionario.getText()),
                         TextFieldNumeroLote.getText(), TextFieldFabricante.getText());
                         stockModel.addStock(s);
+
                         Stage stage =(Stage) buttonAdicionarStockNaTabela.getScene().getWindow();
                         stage.close();
-        
-              
-
+                        
+ 
                        }  catch (Exception ex) {
          
                          System.out.println("" + ex.toString());
@@ -239,6 +252,24 @@ public class CadStockController implements Initializable {
                    }
              }
 
-
+     public void mudacorAdicionarEntered(){
+         buttonAdicionarStockNaTabela.setStyle("-fx-background-color: #FFFF");
+         buttonAdicionarStockNaTabela.setStyle("-fx-background-radius: 12");
+    }
+    
+     public void mouseexitbuttonAdicionar(){
+       buttonAdicionarStockNaTabela.setStyle("-fx-background-color: #E9EEEE");
+       buttonAdicionarStockNaTabela.setStyle("-fx-background-radius: 12");
+   }
+    
+     public void mudacorcancel(){
+          buttonCancelar.setStyle("-fx-background-color: #FFFF");
+       buttonCancelar.setStyle("-fx-background-radius: 12");
+    }
+     
+     public void mouseexitbuttonCancel(){
+       buttonCancelar.setStyle("-fx-background-color: #E9EEEE");
+       buttonCancelar.setStyle("-fx-background-radius: 12");
+   }
    
 }

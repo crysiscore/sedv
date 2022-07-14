@@ -7,8 +7,10 @@ package controller;
 
 import BussinessLogic.Categoria;
 import BussinessLogic.Produto;
+import BussinessLogic.Stock;
 import DataAcessLayer.LeituraImagens;
 import DataAcessLayer.ProdutoDAO;
+import DataAcessLayer.StockDAO;
 import Service.ProdutosServicos;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -25,6 +27,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
@@ -35,6 +38,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -97,11 +101,24 @@ public class CadastroProdutoController implements Initializable {
     
     @FXML
     private ImageView imagemCarrinhoProduto;
+    
+    @FXML
+    private TextField textfieldCodigoProduto;
+      
+    @FXML
+    private TextField textfieldQuantidadeDeStock;
+    
+    @FXML
+    private Label labelCodigoProduto;
+
+    @FXML
+    private Label labelQuantidadeStock;
+
 
     
     private String caminhoFoto;
     private Produto produto;
-    
+    private Stock stock;
     
     
     
@@ -109,6 +126,7 @@ public class CadastroProdutoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         textfieldImageNome.setVisible(false);
+       
          populacomboUnidade();
          populacomboCategoria();
          
@@ -127,11 +145,36 @@ public class CadastroProdutoController implements Initializable {
       
         public void OcultarBotaoEditar(){
          buttonEditar.setVisible(false);
+          textfieldCodigoProduto.setVisible(false);
+          textfieldQuantidadeDeStock.setVisible(false);
+          labelCodigoProduto.setVisible(false);
+          labelQuantidadeStock.setVisible(false);
     }
     
          public void OcultarBotaoSalvar(){
          buttonSalvar.setVisible(false);
-    }
+        textfieldCodigoProduto.setVisible(false);
+        textfieldQuantidadeDeStock.setVisible(false);
+         labelCodigoProduto.setVisible(false);
+          labelQuantidadeStock.setVisible(false);
+         
+    }   
+         
+         public void camposBloqueiados(){
+         buttonSalvar.setVisible(false);
+         buttonEditar.setVisible(false);
+         buttonVerProdutos.setVisible(false);
+         textfieldQuantidadeDeStock.setVisible(true);
+         textFieldDescricao.setEditable(false);
+         textFieldPreco.setEditable(false);
+         textfieldNomeProduto.setEditable(false);
+         textfieldNomeProduto.setEditable(false);
+         textfieldCodigoProduto.setEditable(false);
+         textfieldQuantidadeDeStock.setEditable(false);
+         comboBoxCategoria.setEditable(false);
+         comboBoxUnidade.setEditable(false);
+        
+         }
         
         public void populacomboUnidade() {
             
@@ -202,6 +245,9 @@ public class CadastroProdutoController implements Initializable {
         dialogStage.setResizable(false);
         // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
         dialogStage.show();
+        Stage stage =(Stage) buttonVerProdutos.getScene().getWindow();
+        stage.close();
+        
            }
              catch (Exception ex) {
           System.out.println("" + ex + ex.getLocalizedMessage());
@@ -241,31 +287,36 @@ public class CadastroProdutoController implements Initializable {
                 
                 if (this.textfieldNomeProduto.getText().equals("")) {
         
-               JOptionPane.showMessageDialog(null, "INTRODUZA O NOME DO PRODUTO ");
+               //JOptionPane.showMessageDialog(null, "INTRODUZA O NOME DO PRODUTO ");
+               handleMenuAlert2();
                fds = true;
                  }
                 else if (this.textFieldPreco.getText().equals("")) {
        
-                JOptionPane.showMessageDialog(null, "INTRODUZA O PRECO UNITARIO ");
+               JOptionPane.showMessageDialog(null, "INTRODUZA O PRECO UNITARIO ");
+             
                fds = true;
      
               }
                 
                else if (this.textFieldDescricao.getText().equals("")) {
        
-                JOptionPane.showMessageDialog(null, "DESCREVA O PRODUTO ");
+               JOptionPane.showMessageDialog(null, "DESCREVA O PRODUTO ");
+              
                fds = true;
      
               }
                else if (this.comboBoxCategoria.getSelectionModel().isEmpty()) {
        
              JOptionPane.showMessageDialog(null, "SELECIONE A CATEGORIA DO PRODUTO");
+          
                fds = true;
       
              }
             else if (this.comboBoxUnidade.getSelectionModel().isEmpty()) {
         
             JOptionPane.showMessageDialog(null, "SELECIONE A UNIDADE DO PRODUTO");
+            
             fds = true;
             } 
                 
@@ -426,8 +477,26 @@ public class CadastroProdutoController implements Initializable {
         imageViewFoto.setImage(image);
         imagemCarrinhoProduto.setImage(image);
         }
+        }
+        
+        public void detalhesProdutos(Produto produto) throws SQLException{
+            
+        this.produto = produto;
+        this.textFieldDescricao.setText(produto.getDescricao());
+        this.textFieldPreco.setText(produto.getPreco_unitario().toString());
+        this.textfieldNomeProduto.setText(produto.getNome());
+        this.comboBoxCategoria.setValue(produto.getCategoria());
+        this.comboBoxUnidade.setValue(produto.getUnidade());
+        this.textfieldImageNome.setText(produto.getFoto());
+        Image image= new Image("file:"+produto.getFoto());
+        imageViewFoto.setImage(image);
+        imagemCarrinhoProduto.setImage(image);
+        this.textfieldCodigoProduto.setText(produto.getCod_produto().toString());
+        this.textfieldQuantidadeDeStock.setText(produto.getStock().getUnidades_stock().toString());
 
                 }
+        
+       
    
               public void EditarProduto()  {
                
@@ -564,6 +633,62 @@ public class CadastroProdutoController implements Initializable {
                    }
               }
               
-                
-              
- }
+    
+
+   public void mudacorSalvararEntered(){
+       
+       buttonSalvar.setStyle("-fx-background-color: #FFFF");
+       buttonSalvar.setStyle("-fx-background-radius: 12");
+    } 
+    
+       public void mouseexitbuttonSalvar(){
+       buttonSalvar.setStyle("-fx-background-color: #E9EEEE");
+       buttonSalvar.setStyle("-fx-background-radius: 12");
+   }
+       
+       public void mudacorEditarEntered(){
+       buttonEditar.setStyle("-fx-background-color: #FFFF");
+       buttonEditar.setStyle("-fx-background-radius: 12");
+    } 
+    
+       public void mouseexitEditarRegistar(){
+       buttonEditar.setStyle("-fx-background-color: #E9EEEE");
+       buttonEditar.setStyle("-fx-background-radius: 12");
+   }
+       public void mudacorVerProdutosEntered(){
+       buttonVerProdutos.setStyle("-fx-background-color: #FFFF");
+       buttonVerProdutos.setStyle("-fx-background-radius: 12");
+    } 
+    
+       public void mouseexitVerProdutos(){
+       buttonVerProdutos.setStyle("-fx-background-color: #E9EEEE");
+       buttonVerProdutos.setStyle("-fx-background-radius: 12");
+       }
+       
+       public void handleMenuAlert2() {
+             
+/*     */     try {
+        
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(TrickController.class.getResource("/Presentation/alert2.fxml"));
+        AnchorPane page = (AnchorPane) loader.load();
+        
+
+        // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("ALERTA");
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+        dialogStage.setMaximized(false);
+        dialogStage.setResizable(false);
+        
+        // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
+        dialogStage.show();
+        
+/*     */     }
+/* 201 */     catch (Exception ex) {
+/* 202 */       System.out.println("" + ex + ex.getLocalizedMessage());
+                System.out.println("" + ex.toString());
+/*     */     } 
+    }        
+}
