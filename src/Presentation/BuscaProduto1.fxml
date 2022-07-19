@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -36,24 +37,6 @@
                   <Image url="@../icons/Free3dLogo.png" />
                </image>
             </ImageView>
-            <Button fx:id="buttonAdicionarProduto" layoutX="315.0" layoutY="494.0" mnemonicParsing="false" onAction="#handleMenuItemStockAdicionarProduto" onMouseEntered="#mudacorAdicionarEntered" onMouseExited="#mouseexitbuttonAdicionar" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Adicionar stock">
-               <effect>
-                  <DropShadow>
-                     <color>
-                        <Color opacity="0.8244274854660034" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </Button>
-            <Button fx:id="buttonCancelar" layoutX="446.0" layoutY="494.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" onMouseEntered="#mudacorcancel" onMouseExited="#mouseexitbuttonCancel" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Cancelar">
-               <effect>
-                  <DropShadow>
-                     <color>
-                        <Color opacity="0.7824427485466003" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </Button>
             <TextField fx:id="textfieldProcurar" layoutX="183.0" layoutY="110.0" prefHeight="25.0" prefWidth="382.0" promptText="Introduza o Nome ou o Código para procurar o produto">
                <font>
                   <Font name="Times New Roman" size="12.0" />
@@ -82,6 +65,24 @@
             </ImageView>
             <Label fx:id="labelUsuario" layoutX="614.0" layoutY="30.0" prefHeight="17.0" prefWidth="119.0" />
             <Label fx:id="labelCodProduto" layoutX="614.0" layoutY="60.0" prefHeight="17.0" prefWidth="132.0" />
+            <Button fx:id="buttonAdicionarProduto" cancelButton="true" layoutX="315.0" layoutY="494.0" mnemonicParsing="false" onAction="#handleMenuItemStockAdicionarProduto" onMouseEntered="#mudacorAdicionarProduto" onMouseExited="#exitAdicionar" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Adicionar Stock">
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.6392157077789307" green="0.615686297416687" blue="0.615686297416687" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </Button>
+            <Button fx:id="buttonCancelar" cancelButton="true" layoutX="444.0" layoutY="494.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" onMouseEntered="#mudacorcancel" onMouseExited="#mouseexitbuttonCancel" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Cancelar">
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.6392157077789307" green="0.615686297416687" blue="0.615686297416687" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </Button>
          </children>
          <effect>
             <DropShadow>

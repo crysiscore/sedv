@@ -30,6 +30,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -89,6 +90,12 @@ public class TabelaAdicaoProdutoController implements Initializable {
     @FXML
     private Button buttonRemover;
     
+    @FXML
+    private Label labelNomeUsuario;
+    
+    @FXML
+    private TextField textfieldcodfunc;
+    
     
     
     UsuarioServicos usuarioServicos ;
@@ -126,7 +133,8 @@ public class TabelaAdicaoProdutoController implements Initializable {
       
         this.labelCodUsuario.setText(usuario.getCod_Funcionario().toString());
         this.labelCodUsuario.setVisible(false);
-       
+        this.labelNomeUsuario.setText(usuario.getNome());
+        
          }
          
     @Override
@@ -333,41 +341,41 @@ public class TabelaAdicaoProdutoController implements Initializable {
          
 
       public void mudacorRegistarEntered(){
-        buittonRegistarStock.setStyle("-fx-background-color: #FFFF");
+        buittonRegistarStock.setStyle("-fx-background-color: #FFF");
          buittonRegistarStock.setStyle("-fx-background-radius: 12");
     } 
     
        public void mouseexitbuttonRegistar(){
-       buittonRegistarStock.setStyle("-fx-background-color: #E9EEEE");
+       buittonRegistarStock.setStyle("-fx-background-color: #FFF");
        buittonRegistarStock.setStyle("-fx-background-radius: 12");
    }
        
        public void mudacorAdicionarEntered(){
-       buttonAdicionarStock.setStyle("-fx-background-color: #FFFF");
+       buttonAdicionarStock.setStyle("-fx-background-color: #FFF");
        buttonAdicionarStock.setStyle("-fx-background-radius: 12");
     } 
     
        public void mouseexitAdicionarRegistar(){
-       buttonAdicionarStock.setStyle("-fx-background-color: #E9EEEE");
+       buttonAdicionarStock.setStyle("-fx-background-color: #FFF");
        buttonAdicionarStock.setStyle("-fx-background-radius: 12");
    }
        public void mudacorCancelarEntered(){
-       buttonCancelar.setStyle("-fx-background-color: #FFFF");
+       buttonCancelar.setStyle("-fx-background-color: #FFF");
        buttonCancelar.setStyle("-fx-background-radius: 12");
     } 
     
        public void mouseexitCancelarRegistar(){
-       buttonCancelar.setStyle("-fx-background-color: #E9EEEE");
+       buttonCancelar.setStyle("-fx-background-color: #FFF");
        buttonCancelar.setStyle("-fx-background-radius: 12");
        }
        
        public void mudacorRemoverEntered(){
-       buttonRemover.setStyle("-fx-background-color: #FFFF");
+       buttonRemover.setStyle("-fx-background-color: #FFF");
        buttonRemover.setStyle("-fx-background-radius: 12");
     } 
     
        public void mouseexitRemoverRegistar(){
-       buttonRemover.setStyle("-fx-background-color: #E9EEEE");
+       buttonRemover.setStyle("-fx-background-color: #FFF");
        buttonRemover.setStyle("-fx-background-radius: 12");
        }
     }  

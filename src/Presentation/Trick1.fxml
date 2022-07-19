@@ -6,6 +6,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -46,7 +47,7 @@
                <effect>
                   <DropShadow>
                      <color>
-                        <Color opacity="0.8511450290679932" />
+                        <Color opacity="0.9961832165718079" />
                      </color>
                   </DropShadow>
                </effect>
@@ -55,6 +56,9 @@
                <image>
                   <Image url="@../icons/depositphotos_25269157-stock-photo-white-plus-sign-isolated-on.png" />
                </image>
+               <effect>
+                  <DropShadow />
+               </effect>
             </ImageView>
             <MenuBar layoutX="88.0" layoutY="256.0" prefHeight="25.0" prefWidth="102.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
                <menus>
@@ -111,7 +115,7 @@
                   </DropShadow>
                </effect>
             </ImageView>
-            <MenuBar layoutX="88.0" layoutY="119.0" prefHeight="25.0" prefWidth="75.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
+            <MenuBar fx:id="menubarvendas" layoutX="88.0" layoutY="119.0" prefHeight="25.0" prefWidth="75.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
                <menus>
                   <Menu mnemonicParsing="false" text="Vendas">
                      <items>
@@ -177,11 +181,6 @@
                   <DropShadow />
                </effect>
             </MenuBar>
-            <Button fx:id="btnSair" layoutX="88.0" layoutY="513.0" mnemonicParsing="false" onAction="#SairButtonOnAction" prefHeight="25.0" prefWidth="116.0" style="-fx-background-radius: 18; -fx-background-color: #E9EEEE;" text="Sair">
-               <effect>
-                  <DropShadow />
-               </effect>
-            </Button>
             <ImageView fitHeight="606.0" fitWidth="1.0" layoutX="367.0" layoutY="-3.0">
                <image>
                   <Image url="@../icons/Retângulo%2033.png" />
@@ -236,6 +235,27 @@
                   <Image url="@../icons/prod.png" />
                </image>
             </ImageView>
+            <Button fx:id="buttnSair" layoutX="82.0" layoutY="514.0" mnemonicParsing="false" onAction="#SairButtonOnAction" prefHeight="25.0" prefWidth="131.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Sair">
+               <font>
+                  <Font name="Times New Roman" size="12.0" />
+               </font>
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.6392157077789307" green="0.615686297416687" blue="0.615686297416687" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </Button>
+            <Button fx:id="btnSair" cancelButton="true" layoutX="81.0" layoutY="514.0" mnemonicParsing="false" onAction="#SairButtonOnAction" prefHeight="25.0" prefWidth="140.0" style="-fx-background-radius: 13;" text="Sair">
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.7236841917037964" green="0.6935306787490845" blue="0.6935306787490845" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </Button>
          </children>
          <effect>
             <DropShadow>

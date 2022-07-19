@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -46,11 +47,11 @@
             </TableView>
             <Button fx:id="buttonCancelar" layoutX="724.0" layoutY="493.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" onMouseEntered="#mudacorCancelarEntered" onMouseExited="#mouseexitCancelarRegistar" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Fechar">
                <effect>
-                  <DropShadow>
+                  <InnerShadow>
                      <color>
-                        <Color opacity="0.7824427485466003" />
+                        <Color red="0.6431372761726379" green="0.615686297416687" blue="0.615686297416687" />
                      </color>
-                  </DropShadow>
+                  </InnerShadow>
                </effect>
             </Button>
             <TextField fx:id="textFieldPesquisaProdutos" layoutX="132.0" layoutY="63.0" prefHeight="25.0" prefWidth="327.0" promptText="Introduza o nome ou código do produto para procurar" />
@@ -75,29 +76,29 @@
                </font></Text>
             <Button fx:id="buttonEditarProduto" layoutX="381.0" layoutY="493.0" mnemonicParsing="false" onAction="#handleEditarProduto" onMouseEntered="#mudacorEditarEntered" onMouseExited="#mouseexitEditar" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Editar" textFill="#0d0d0d">
                <effect>
-                  <DropShadow>
+                  <InnerShadow>
                      <color>
-                        <Color opacity="0.7824427485466003" />
+                        <Color red="0.6431372761726379" green="0.615686297416687" blue="0.615686297416687" />
                      </color>
-                  </DropShadow>
+                  </InnerShadow>
                </effect>
             </Button>
             <Button fx:id="buttonDetalhes" layoutX="497.0" layoutY="493.0" mnemonicParsing="false" onAction="#handleDetalhesProduto" onMouseEntered="#mudacorDetalhesEntered" onMouseExited="#mouseexitDetalhes" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Detalhes" textFill="#141414">
                <effect>
-                  <DropShadow>
+                  <InnerShadow>
                      <color>
-                        <Color opacity="0.7824427485466003" />
+                        <Color red="0.6431372761726379" green="0.615686297416687" blue="0.615686297416687" />
                      </color>
-                  </DropShadow>
+                  </InnerShadow>
                </effect>
             </Button>
             <Button fx:id="buttonAnular" layoutX="610.0" layoutY="493.0" mnemonicParsing="false" onMouseEntered="#mudacorAnularEntered" onMouseExited="#mouseexitbuttonAnular" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Anular" textFill="#171717">
                <effect>
-                  <DropShadow>
+                  <InnerShadow>
                      <color>
-                        <Color opacity="0.7824427485466003" />
+                        <Color red="0.6431372761726379" green="0.615686297416687" blue="0.615686297416687" />
                      </color>
-                  </DropShadow>
+                  </InnerShadow>
                </effect>
             </Button>
             <Label fx:id="labelCodProduto" layoutX="939.0" layoutY="96.0" prefHeight="17.0" prefWidth="50.0" />

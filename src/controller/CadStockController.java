@@ -253,23 +253,23 @@ public class CadStockController implements Initializable {
              }
 
      public void mudacorAdicionarEntered(){
-         buttonAdicionarStockNaTabela.setStyle("-fx-background-color: #FFFF");
-         buttonAdicionarStockNaTabela.setStyle("-fx-background-radius: 12");
+         buttonAdicionarStockNaTabela.setStyle("-fx-background-color: #FFF");
+         buttonAdicionarStockNaTabela.setStyle("-fx-background-radius: 13");
     }
     
      public void mouseexitbuttonAdicionar(){
-       buttonAdicionarStockNaTabela.setStyle("-fx-background-color: #E9EEEE");
-       buttonAdicionarStockNaTabela.setStyle("-fx-background-radius: 12");
+       buttonAdicionarStockNaTabela.setStyle("-fx-background-color: #FFF");
+       buttonAdicionarStockNaTabela.setStyle("-fx-background-radius: 13");
    }
     
      public void mudacorcancel(){
-          buttonCancelar.setStyle("-fx-background-color: #FFFF");
-       buttonCancelar.setStyle("-fx-background-radius: 12");
+          buttonCancelar.setStyle("-fx-background-color: #FFF");
+       buttonCancelar.setStyle("-fx-background-radius: 13");
     }
      
      public void mouseexitbuttonCancel(){
-       buttonCancelar.setStyle("-fx-background-color: #E9EEEE");
-       buttonCancelar.setStyle("-fx-background-radius: 12");
+       buttonCancelar.setStyle("-fx-background-color: #FFF");
+       buttonCancelar.setStyle("-fx-background-radius: 13");
    }
    
 }
