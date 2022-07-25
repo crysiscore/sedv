@@ -326,13 +326,18 @@ public class CadastroProdutoController implements Initializable {
               
               
             private void limparcampos(){
-              //  Image image1= new Image("file:"+"@..\\icons\\produts.jpg");
+                
+                File arquivo1 = new File("src\\icons\\produtoSemIm.png");
+                File arquivo2 = new File("src\\icons\\produts.jpg");
+                Image image1= new Image("file:"+arquivo1.getAbsolutePath());
+                Image image2= new Image("file:"+arquivo2.getAbsolutePath());
                 textfieldNomeProduto.setText("");
                 textFieldPreco.setText("");
                 textFieldDescricao.setText("");
                 comboBoxCategoria.setValue(null);
                 comboBoxUnidade.setValue(null);
-               // imageViewFoto.setImage(image1);
+                imageViewFoto.setImage(image1);
+                imagemCarrinhoProduto.setImage(image2);
             }
               
               

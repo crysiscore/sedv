@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -153,28 +154,31 @@
                   </TextField>
                </children>
             </GridPane>
-            <Button fx:id="buttonAdicionarStockNaTabela" layoutX="356.0" layoutY="457.0" mnemonicParsing="false" onAction="#handleMenuItemStockAdicionarStockNaTabela" onMouseEntered="#mudacorAdicionarEntered" onMouseExited="#mouseexitbuttonAdicionar" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Adicionar Stock">
+            <Button fx:id="buttonAdicionarStockNaTabela" cancelButton="true" layoutX="356.0" layoutY="457.0" mnemonicParsing="false" onAction="#handleMenuItemStockAdicionarStockNaTabela" onMouseEntered="#mudacorAdicionarEntered" onMouseExited="#mouseexitbuttonAdicionar" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Adicionar Stock">
                <effect>
-                  <DropShadow>
+                  <InnerShadow>
                      <color>
-                        <Color opacity="0.8244274854660034" />
+                        <Color red="0.6392157077789307" green="0.615686297416687" blue="0.615686297416687" />
                      </color>
-                  </DropShadow>
+                  </InnerShadow>
                </effect></Button>
-            <Button fx:id="buttonCancelar" layoutX="488.0" layoutY="457.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" onMouseEntered="#mudacorcancel" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Cancelar">
+            <Button fx:id="buttonCancelar" cancelButton="true" layoutX="488.0" layoutY="457.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" onMouseEntered="#mudacorcancel" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Cancelar">
                <effect>
-                  <DropShadow>
+                  <InnerShadow>
                      <color>
-                        <Color opacity="0.7824427485466003" />
+                        <Color red="0.6392157077789307" green="0.615686297416687" blue="0.615686297416687" />
                      </color>
-                  </DropShadow>
+                  </InnerShadow>
                </effect></Button>
             <ImageView fitHeight="83.0" fitWidth="92.0" layoutX="788.0" layoutY="14.0">
                <image>
                   <Image url="@../icons/Free3dLogo.png" />
                </image>
             </ImageView>
-            <Label fx:id="labelNomeFuncionario" layoutX="753.0" layoutY="48.0" prefHeight="17.0" prefWidth="44.0" />
+            <Label fx:id="labelNomeFuncionario" layoutX="753.0" layoutY="48.0" prefHeight="17.0" prefWidth="44.0">
+               <font>
+                  <Font name="Times New Roman" size="12.0" />
+               </font></Label>
             <TextField fx:id="TextFieldCodigoFuncionario" layoutX="77.0" layoutY="54.0" prefHeight="28.0" prefWidth="155.0" style="-fx-background-radius: 6;" />
             <ImageView fx:id="imageViewFotoProduto" fitHeight="146.0" fitWidth="175.0" layoutX="57.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true" />
          </children>

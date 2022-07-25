@@ -95,18 +95,18 @@ public class LoginPage1Controller implements Initializable {
     
     
  public void mudacorloginEntered(){
-         btnLogin.setStyle("-fx-background-color: #FFFF");
-         btnLogin.setStyle("-fx-background-radius: 12");
+         btnLogin.setStyle("-fx-background-color: #FFF");
+         btnLogin.setStyle("-fx-background-radius: 13");
     }
     
     public void mouseexitbuttonlogin(){
-       btnLogin.setStyle("-fx-background-color: #E9EEEE");
-       btnLogin.setStyle("-fx-background-radius: 12");
+       btnLogin.setStyle("-fx-background-color: #FFF");
+       btnLogin.setStyle("-fx-background-radius: 13");
    }
     
      public void mudacorcancel(){
-          btnCancel.setStyle("-fx-background-color: #FFFF");
-       btnCancel.setStyle("-fx-background-radius: 12");
+          btnCancel.setStyle("-fx-background-color: #FFF");
+       btnCancel.setStyle("-fx-background-radius: 13");
     }
    
      

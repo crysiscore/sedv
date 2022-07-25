@@ -21,6 +21,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -46,7 +47,7 @@ public class TrickController implements Initializable {
     private Pane PnaePane;
 
     @FXML
-    private Button btnSair;
+    private Button buttnSair;
 
     @FXML
     private MenuItem buttonSair;
@@ -107,6 +108,15 @@ public class TrickController implements Initializable {
 
     @FXML
     private MenuItem menuItemVendasNovaVenda;
+    
+    @FXML
+    private MenuBar menubarvendas;
+    
+    @FXML
+    private Button btnSair;
+
+   
+
 
     UsuarioServicos usuarioServicos ;
     Usuario usuario;
@@ -129,9 +139,11 @@ public class TrickController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+     
     }    
      public void SairButtonOnAction(ActionEvent event){
-        Stage stage =(Stage) btnSair.getScene().getWindow();
+      Stage stage =(Stage) btnSair.getScene().getWindow();
+     
         stage.close();
     }
    
@@ -226,7 +238,7 @@ public class TrickController implements Initializable {
          
           
         try {
-      
+       String codUsuario = this.labelUserCod.getText();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(TrickController.class.getResource("/Presentation/CadastroProduto.fxml"));
         
@@ -261,4 +273,10 @@ public class TrickController implements Initializable {
             }
 
     
-          }
+ 
+     
+    public void mouseexitbuttonCancel(){
+       buttnSair.setStyle("-fx-background-color: #FFF");
+       buttnSair.setStyle("-fx-background-radius: 13");
+   }
+}
