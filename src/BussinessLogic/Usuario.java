@@ -1,4 +1,7 @@
 /*    */ package BussinessLogic;
+
+import javax.persistence.*;
+
 /*    */ 
 /*    */ 
 /*    */ 
@@ -7,15 +10,37 @@
 /*    */ 
 /*    */ 
 /*    */ 
-/*    */ 
+/*    */ @Entity
+         @Table(name="usuario")
 /*    */ public class Usuario
 /*    */ {
+           @Id
+           @GeneratedValue(strategy = GenerationType.AUTO)
+           @Column(name="id_usuario")
 /*    */   private Integer Cod_Funcionario;
-/*    */   public String Nome;
-/*    */   public String Senha;
-/*    */   public String Categoria;
+           
+           @Column(name="nome")
+/*    */   private String Nome;
+           
+           @Column(name="senha")
+/*    */   private String Senha;
+           
+           @Column(name="categoria")
+/*    */   private String Categoria;
+           
+           @Column(name="esta_autenticado")
+           private String esta_autenticado;
+            
+           @OneToMany (mappedBy ="usuario_Cod_Funcionario" )
+/*    */    private Factura factura;
 
-/*    */   
+
+/*    */   @OneToMany (mappedBy ="usuario_Cod_Funcionario" )
+/*    */    private Stock stock;
+
+           @OneToMany (mappedBy ="usuario_Cod_Funcionario" )
+/*    */    private Venda venda;
+
 /*    */   public String getCategoria() {
 /* 19 */     return this.Categoria;
 /*    */   }

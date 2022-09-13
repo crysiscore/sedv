@@ -7,32 +7,55 @@ package BussinessLogic;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import javax.persistence.*;
+
 
 
 /**
  *
  * @author Neusia
  */
-public class Stock {
+
+         @Entity
+         @Table(name="stock")
+          public class Stock {
+           @Id
+           @GeneratedValue(strategy = GenerationType.AUTO)
+           @Column(name="id_stock")
+           private Integer id_stock;
            
-/*    */   public Integer quantidade_recebida;
-/*    */   public Date data_entrada;
-/*    */   public Integer produto_Cod_Produto;
-           public Usuario user;
+           @Column(name="quantidade_recebida")
+/*    */   private Integer quantidade_recebida;
+           
+           @Column(name="data_entrada")
+/*    */   private Date data_entrada;
+           
+         
+           @ManyToOne
+           @MapsId
+           @JoinColumn(name = "produto_Cod_Produto")
            private Produto prod;
-/*    */   public Integer usuario_Cod_Funcionario;
-/*    */   public String numero_lote;
-/*    */   public String fabricante;
+           
+           @OneToOne
+           @MapsId
+           @JoinColumn(name = "usuario_Cod_Funcionario")  
+           private Usuario usuario_Cod_Funcionario;
+           
+           @Column(name="numero_lote")
+/*    */   private String numero_lote;
+           
+           @Column(name="fabricante")
+/*    */   private String fabricante;
 /*    */   
 /*    */     public Stock() {
           }
 
     public Usuario getUser() {
-        return user;
+        return usuario_Cod_Funcionario;
     }
 
-    public void setUser(Usuario user) {
-        this.user = user;
+    public void setUser(Usuario usuario_Cod_Funcionario) {
+        this.usuario_Cod_Funcionario = usuario_Cod_Funcionario;
     }
 
     public Produto getProd() {
@@ -48,10 +71,10 @@ public class Stock {
             Integer usuario_Cod_Funcionario, String numero_lote, String fabricante ){
            
              //this.prod=prod;
-             this.produto_Cod_Produto= produto_Cod_Produto;
+          //   this.produto_Cod_Produto= produto_Cod_Produto;
            this.quantidade_recebida=quantidade_recebida;
            this.data_entrada=data_entrada;
-          this.usuario_Cod_Funcionario=usuario_Cod_Funcionario;
+          //this.usuario_Cod_Funcionario=usuario_Cod_Funcionario;
           // this.prod = prod;
            this.numero_lote=numero_lote;
            this.fabricante=fabricante;
@@ -75,21 +98,13 @@ public class Stock {
         this.data_entrada = data_entrada;
     }
 
-    public Integer getProduto_Cod_Produto() {
-      return produto_Cod_Produto;
+    public Produto getProduto_Cod_Produto() {
+      return prod;
    }
 
-    public void setProduto_Cod_Produto(Integer produto_Cod_Produto) {
-        this.produto_Cod_Produto = produto_Cod_Produto;
+    public void setProduto_Cod_Produto(Produto prod) {
+        this.prod = prod;
    }
-
-    public Integer getUsuario_Cod_Funcionario() {
-       return usuario_Cod_Funcionario;
-    }
-
-    public void setUsuario_Cod_Funcionario(Integer usuario_Cod_Funcionario) {
-        this.usuario_Cod_Funcionario = usuario_Cod_Funcionario;
-    }
 
     public String getNumero_lote() {
         return numero_lote;

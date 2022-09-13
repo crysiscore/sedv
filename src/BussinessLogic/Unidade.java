@@ -1,4 +1,7 @@
 /*    */ package BussinessLogic;
+
+         import javax.persistence.*;
+
 /*    */ 
 /*    */ 
 /*    */ 
@@ -7,11 +10,22 @@
 /*    */ 
 /*    */ 
 /*    */ 
-/*    */ 
+/*    */ @Entity
+         @Table(name="unidade")
 /*    */ public class Unidade
 /*    */ {
+           @Id
+           @GeneratedValue(strategy = GenerationType.AUTO)
+           @Column(name="id_unidade")
 /*    */   private int Cod_unidade;
-/*    */   public String Descricao_Unidade;
+           
+           @Column(name="descricao_unidade")
+/*    */   public String descricao_unidade;
+
+
+            
+            @OneToMany (mappedBy ="unidade" )
+/*    */    private Produto produto;
 /*    */   
 /*    */   public int getCod_unidade() {
 /* 17 */     return this.Cod_unidade;
@@ -22,11 +36,11 @@
 /*    */   }
 /*    */   
 /*    */   public String getDescricao_Unidade() {
-/* 25 */     return this.Descricao_Unidade;
+/* 25 */     return this.descricao_unidade;
 /*    */   }
 /*    */   
-/*    */   public void setDescricao_Unidade(String Descricao_Unidade) {
-/* 29 */     this.Descricao_Unidade = Descricao_Unidade;
+/*    */   public void setDescricao_Unidade(String descricao_unidade) {
+/* 29 */     this.descricao_unidade = descricao_unidade;
 /*    */   }
 /*    */ }
 

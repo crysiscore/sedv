@@ -1,4 +1,7 @@
 /*    */ package BussinessLogic;
+
+import javax.persistence.*;
+
 /*    */ 
 /*    */ 
 /*    */ 
@@ -6,17 +9,27 @@
 /*    */ 
 /*    */ 
 /*    */ 
-/*    */ 
+/*    */ @Entity
+         @Table(name="previlegio")
 /*    */ public class Previlegio
 /*    */ {
+           @Column(name="produtosPodeRegistar")
 /*    */   boolean produtosPodeRegistar = false;
+           @Column(name="produtosPodeAlterarDados")
 /*    */   boolean produtosPodeAlterarDados = false;
+           @Column(name="ProdutosPodeAdicionarStock")
 /*    */   boolean ProdutosPodeAdicionarStock = false;
+           @Column(name="produtosPodeRegistarCat")
 /*    */   boolean produtosPodeRegistarCat = false;
+           @Column(name="produtosPodeRegistarUnid")
 /*    */   boolean produtosPodeRegistarUnid = false;
+           @Column(name="vendasPodeVerRecentes")
 /*    */   boolean vendasPodeVerRecentes = false;
+           @Column(name="relatoriosVendasRecentes")
 /*    */   boolean relatoriosVendasRecentes = false;
+           @Column(name="relatoriosVendasPorDaata")
 /*    */   boolean relatoriosVendasPorDaata = false;
+           @Column(name="relatoriosProdutosMaisVendidos")
 /*    */   boolean relatoriosProdutosMaisVendidos = false;
 /*    */   
 /*    */   public boolean isProdutosPodeRegistarCat() {

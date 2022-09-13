@@ -1,6 +1,8 @@
 /*     */ package DataAcessLayer;
 /*     */ 
+import BussinessLogic.Categoria;
 import BussinessLogic.Produto;
+import BussinessLogic.Unidade;
 import com.mysql.cj.protocol.Resultset;
 import java.io.FileInputStream;
 import java.sql.Blob;
@@ -23,7 +25,8 @@ import java.sql.Blob;
 /*     */   private Connection connect;
 /*  20 */   private CallableStatement cs = null;
             private Produto product;
-/*     */ 
+/*     */   private Categoria categoria;
+            private Unidade unidade;
 /*     */   
 /*     */   public ProdutoDAO() {
 /*     */     try {
@@ -116,8 +119,11 @@ import java.sql.Blob;
 /* 103 */      cs = this.connect.prepareCall("{call CadProduto(null,?,?,?,?,?,?)}");
 /* 104 */     cs.setString(1, prod.getNome());
 /* 105 */     cs.setDouble(2, prod.getPreco_unitario());
-/* 107 */     cs.setInt(3,  Integer.parseInt(prod.getUnidade()));
-/* 108 */     cs.setInt(4, Integer.parseInt(prod.getCategoria()));
+/* 107 */    // cs.setInt(3,  Integer.parseInt(prod.getUnidade()));
+              
+              cs.setInt(3, prod.getUnidade().getCod_unidade());
+/* 108 */     cs.setInt(4, Integer.parseInt(prod.getCategoria().getNome()));
+              
 /* 109 */     cs.setString(5, prod.getDescricao());
               cs.setString(6, prod.getFoto());         
 /* 110 */     this.rs = cs.executeQuery();         
@@ -128,8 +134,8 @@ import java.sql.Blob;
 /* 103 */      cs = this.connect.prepareCall("{call CadProduto(null,?,?,?,?,?,?)}");
 /* 104 */     cs.setString(1, prod.getNome());
 /* 105 */     cs.setDouble(2, prod.getPreco_unitario());
-/* 107 */     cs.setInt(3,  Integer.parseInt(prod.getUnidade()));
-/* 108 */     cs.setInt(4, Integer.parseInt(prod.getCategoria()));
+/* 107 */    // cs.setInt(3,  Integer.parseInt(prod.getUnidade()));
+/* 108 */     cs.setInt(4, Integer.parseInt(prod.getCategoria().getNome()));
 /* 109 */     cs.setString(5, prod.getDescricao());
              // cs.setBlob(6, prod.getFoto());         
 /* 110 */     this.rs = cs.executeQuery();         
@@ -182,8 +188,9 @@ import java.sql.Blob;
 /* 160 */     cs.setInt(1, prod.getCod_produto());
 /* 161 */     cs.setString(2, prod.getNome());
 /* 162 */     cs.setDouble(3, prod.getPreco_unitario());
-/* 164 */     cs.setInt(4, Integer.parseInt(prod.getUnidade()));
-/* 165 */     cs.setInt(5, Integer.parseInt(prod.getCategoria()));
+/* 164 */     //cs.setInt(4, Integer.parseInt(prod.getUnidade()));
+              cs.setInt(4, prod.getUnidade().getCod_unidade());
+/* 165 */     cs.setInt(5, Integer.parseInt(prod.getCategoria().getNome()));
 /* 166 */     cs.setString(6, prod.getDescricao());
               cs.setString(7, prod.getFoto());
 /* 167 */     cs.executeQuery();
@@ -195,8 +202,9 @@ import java.sql.Blob;
 /* 160 */     cs.setInt(1, prod.getCod_produto());
 /* 161 */     cs.setString(2, prod.getNome());
 /* 162 */     cs.setDouble(3, prod.getPreco_unitario());
-/* 164 */     cs.setInt(4, Integer.parseInt(prod.getUnidade()));
-/* 165 */     cs.setInt(5, Integer.parseInt(prod.getCategoria()));
+/* 164 */     //cs.setInt(4, Integer.parseInt(prod.getUnidade()));
+              cs.setInt(4, prod.getUnidade().getCod_unidade());
+/* 165 */     cs.setInt(5, Integer.parseInt(prod.getCategoria().getNome()));
 /* 166 */     cs.setString(6, prod.getDescricao());
 /* 167 */     cs.executeQuery();
               return this.rs;

@@ -1,4 +1,5 @@
 /*    */ package BussinessLogic;
+/*    */ import javax.persistence.*;
 /*    */ 
 /*    */ 
 /*    */ 
@@ -6,12 +7,23 @@
 /*    */ 
 /*    */ 
 /*    */ 
-/*    */ 
-/*    */ 
+/*    */ @Entity
+         @Table(name="categoria")
 /*    */ public class Categoria
 /*    */ {
-/*    */   private Integer idCategoria;
+            
+           @Id
+           @GeneratedValue(strategy = GenerationType.AUTO)
+           @Column(name="id_categoria")
+            private Integer idCategoria;
+           
+           @OneToOne(mappedBy = "Categoria")
+           @PrimaryKeyJoinColumn
+           private Produto produto;
+           
+           @Column(name="nome")
 /*    */   public String Nome;
+          
 /*    */   
 /*    */   public String getNome() {
 /* 17 */     return this.Nome;

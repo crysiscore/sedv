@@ -57,7 +57,8 @@ public class StockServicos {
         /*  97 */ this.rs = this.stockDAO.getDetalhesStockLevel(codProduto);
         /*  98 */ this.rs.next();
         /*  99 */ this.stock = new Stock();
-        /* 100 */ this.stock.setProduto_Cod_Produto(Integer.valueOf(this.rs.getInt("Codigo")));
+        /* 100 */ //this.stock.setProduto_Cod_Produto(Integer.valueOf(this.rs.getInt("Codigo")));
+                   this.stock.setProd(produto);
         /* 101 */ this.stock.setQuantidade_recebida(Integer.valueOf(this.rs.getInt("Codigo")));
         /* 10
         /* 106 */ return this.stock;

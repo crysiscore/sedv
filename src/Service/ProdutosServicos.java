@@ -1,9 +1,11 @@
 /*     */ package Service;
 
 /*     */
+import BussinessLogic.Categoria;
  /*     */ import BussinessLogic.DetalhesVenda;
 /*     */ import BussinessLogic.Produto;
 import BussinessLogic.StockLevel;
+import BussinessLogic.Unidade;
 /*     */ import BussinessLogic.Venda;
 /*     */ import DataAcessLayer.ProdutoDAO;
 /*     */ import DataAcessLayer.VendaDao;
@@ -36,7 +38,8 @@ import javax.swing.JOptionPane;
     /*  30 */    private ProdutoDAO prodDAO = new ProdutoDAO();
     /*  31 */    private VendaDao vendaDao = new VendaDao();
 
-    /*     */
+    /*     */ private Categoria categoria;
+              private Unidade unidade;
  /*     */
  /*     */
  /*     */
@@ -114,8 +117,10 @@ import javax.swing.JOptionPane;
         /* 100 */ this.produto.setCod_produto(Integer.valueOf(this.rs.getInt("Codigo")));
         /* 101 */ this.produto.setNome(this.rs.getString("nome"));
         /* 102 */ this.produto.setPreco_unitario(Double.valueOf(this.rs.getDouble("Preco")));
-        /* 104 */ this.produto.setUnidade(this.rs.getString("Unidade"));
-        /* 105 */ this.produto.setCategoria(this.rs.getString("Categoria"));
+        /* 104 */ //this.produto.setUnidade(this.rs.getString("Unidade"));
+                  this.produto.setUnidade(unidade);
+        /* 105 */ // this.produto.setCategoria(this.rs.getString("Categoria"));
+                  this.produto.setCategoria(categoria);
                   this.produto.setDescricao(this.rs.getString("Descricao"));
                   this.produto.setFoto( this.rs.getString("foto"));
                   
@@ -129,7 +134,7 @@ import javax.swing.JOptionPane;
  /*     */
  /*     */
  /*     */ public void VenderProduto(Venda v) throws SQLException {
-        /* 112 */ this.vendaDao.VenderProduto(v.getTotal_Venda().doubleValue(), v.getNome_cliente(), v.getUsuario_Cod_Funcionario().intValue());
+        /* 112 */ //this.vendaDao.VenderProduto(v.getTotal_Venda().doubleValue(), v.getNome_cliente(), v.getUsuario_Cod_Funcionario().intValue());
         /*     */    }
 
     /*     */
@@ -137,7 +142,7 @@ import javax.swing.JOptionPane;
  /*     */
  /*     */
  /*     */ public void DetalhesVenda(DetalhesVenda dv) throws SQLException {
-        /* 119 */ this.vendaDao.DetalhesVenda(dv.getProduto_Cod_produto().intValue(), dv.getVenda_Cod_produto().intValue(), dv.getPreco().doubleValue(), dv.getQuantidade().intValue());
+     //   /* 119 */ this.vendaDao.DetalhesVenda(dv.getProduto_Cod_produto().intValue(), dv.getVenda_Cod_produto().intValue(), dv.getPreco().doubleValue(), dv.getQuantidade().intValue());
         /*     */    }
 
     /*     */

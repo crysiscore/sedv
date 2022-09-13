@@ -5,12 +5,25 @@
  */
 package BussinessLogic;
 
+import javax.persistence.*;
+
 /**
  *
  * @author Neusia
  */
 public class StockLevel {
-    public Double unidades_stock;
+           @Id
+           @GeneratedValue(strategy = GenerationType.AUTO)
+           @Column(name="id_stockLevel")
+           public Integer id_stock_level;
+           
+           @Column(name="unidades_stock")
+           public Double unidades_stock;
+           
+           @OneToOne
+           @MapsId
+           @JoinColumn(name = "produto_Cod_Produto")
+           private Produto prod;
 
     public Double getUnidades_stock() {
         return unidades_stock;

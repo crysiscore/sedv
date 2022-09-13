@@ -5,9 +5,11 @@
  */
 package controller;
 
+import BussinessLogic.Categoria;
 import BussinessLogic.Produto;
 import BussinessLogic.Stock;
 import BussinessLogic.StockLevel;
+import BussinessLogic.Unidade;
 import BussinessLogic.Usuario;
 import DataAcessLayer.ProdutoDAO;
 import Service.ProdutosServicos;
@@ -138,17 +140,23 @@ public class ListadeProdutosController implements Initializable {
                  while(rs.next()){
                  Integer QueryProductId= rs.getInt("Cod_produto");
                  String QueryNome = rs.getString("Nome");
-                 String QueryCategoria = rs.getString("Categoria");
-                 String QueryUnidade = rs.getString("Unidade");
+                 //String QueryCategoria = rs.getString("Categoria");
+                 //String QueryUnidade = rs.getString("Unidade");
                  String QueryDescricao = rs.getString("Descricao");
                  Double QueryPreco = rs.getDouble("Preco_unitario");
                  String  foto= rs.getString("foto"); 
                  //Double Queryunidade_stock=rs.getDouble("unidades_stock");
                  
+                 Categoria categoria=new Categoria();
+                 categoria.Nome=rs.getString("Categoria");
+                 
+                 Unidade unidade =new Unidade();
+                 unidade.descricao_unidade=rs.getString("Unidade");
+                 
                  StockLevel stock = new StockLevel();
                  stock.unidades_stock =rs.getDouble("unidades_stock");
                 
-                 produtoObservableList.add(new Produto(QueryProductId,QueryNome,QueryCategoria,QueryUnidade,QueryDescricao,QueryPreco,foto,stock));
+                 produtoObservableList.add(new Produto(QueryProductId,QueryNome,categoria,unidade,QueryDescricao,QueryPreco,foto,stock));
                  }
                  
                  

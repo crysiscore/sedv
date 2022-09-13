@@ -1,4 +1,9 @@
 /*    */ package BussinessLogic;
+
+import java.util.Set;
+        import javax.persistence.Column;
+import javax.persistence.*;
+
 /*    */ 
 /*    */ 
 /*    */ 
@@ -7,12 +12,27 @@
 /*    */ 
 /*    */ 
 /*    */ 
-/*    */ 
+/*    */ @Entity
+         @Table(name="detalhesvenda")
 /*    */ public class DetalhesVenda
 /*    */ {
-/*    */   private Integer CodProduto;
-/*    */   public Integer VendaCod;
+           @Id
+           @GeneratedValue(strategy = GenerationType.AUTO)
+           @Column(name="id_detalhes")
+           private Integer id_detalhes;
+           
+      
+           @OneToMany (mappedBy ="detalhesVenda" )
+/*    */   private Produto produto;
+           
+           @ManyToOne
+           @JoinColumn(name = "id_venda")
+           private Venda venda;
+           
+           @Column(name="preco")
 /*    */   public Double Preco;
+           
+           @Column(name="quantidade")
 /*    */   public Integer Quantidade;
 /*    */   
 /*    */   public Double getPreco() {
@@ -23,13 +43,7 @@
 /* 23 */     this.Preco = Preco;
 /*    */   }
 /*    */   
-/*    */   public Integer getProduto_Cod_produto() {
-/* 27 */     return this.CodProduto;
-/*    */   }
-/*    */   
-/*    */   public void setProduto_Cod_produto(Integer Produto_Cod_produto) {
-/* 31 */     this.CodProduto = Produto_Cod_produto;
-/*    */   }
+
 /*    */   
 /*    */   public Integer getQuantidade() {
 /* 35 */     return this.Quantidade;
@@ -39,13 +53,7 @@
 /* 39 */     this.Quantidade = Quantidade;
 /*    */   }
 /*    */   
-/*    */   public Integer getVenda_Cod_produto() {
-/* 43 */     return this.VendaCod;
-/*    */   }
-/*    */   
-/*    */   public void setVenda_Cod_produto(Integer Venda_Cod_produto) {
-/* 47 */     this.VendaCod = Venda_Cod_produto;
-/*    */   }
+/* 
 /*    */ }
 
 

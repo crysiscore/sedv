@@ -7,6 +7,7 @@ package DataAcessLayer;
 
 import BussinessLogic.Produto;
 import BussinessLogic.Stock;
+import BussinessLogic.Usuario;
 import static DataAcessLayer.conexao.getConnection;
 import Model.StockModel;
 import java.sql.CallableStatement;
@@ -35,8 +36,8 @@ public class StockDAO {
 /*  20 */   private CallableStatement cs = null;
 /*     */   private StockModel stockModel = new StockModel();
              ObservableList <Stock> stock =FXCollections.observableArrayList();
-           
-            
+           private Produto prod;
+           private Usuario user;
    public StockDAO(){
        try {
 /*  25 */       conexao conexao = new conexao();
@@ -137,8 +138,10 @@ public class StockDAO {
 /* 104 */     for(int i = 0; i < stock.size(); i++) {
               this.cs.setInt(1, stock.get(i).getQuantidade_recebida());
 /* 105 */     this.cs.setDate(2, stock.get(i).getData_entrada());
-/* 106 */     this.cs.setInt(3, stock.get(i).getProduto_Cod_Produto());
-/* 107 */     this.cs.setInt(4, stock.get(i).getUsuario_Cod_Funcionario());
+/* 106 */     //this.cs.setInt(3, stock.get(i).getProduto_Cod_Produto());
+              this.cs.setInt(3, stock.get(i).getProd().getCod_produto());
+/* 107 */     //this.cs.setInt(4, stock.get(i).getUsuario_Cod_Funcionario());
+              this.cs.setInt(4, stock.get(i).getUser().getCod_Funcionario());
 /* 108 */     this.cs.setString(5, stock.get(i).getNumero_lote());
 /* 109 */     this.cs.setString(6, stock.get(i).getFabricante());
 /* 110 */     this.cs.executeQuery();

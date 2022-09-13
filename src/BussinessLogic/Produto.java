@@ -5,49 +5,79 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.sql.Blob;
 import javafx.scene.image.Image;
+import javax.persistence.*;
 
 /*    */ 
           
 /*    */ 
-/*    */ 
+/*    */ @Entity
+         @Table(name="produto")
 /*    */   public class Produto
 /*    */   {
-/*    */   private Integer Cod_produto;
+    
+/*    */
+           @Id
+           @GeneratedValue(strategy = GenerationType.AUTO)
+           @Column(name="cod_produto")
+           private Integer cod_produto;
+           
+          @OneToOne
+          @MapsId
+          @JoinColumn(name = "id_categoria")
+          private Categoria Categoria;
+          
+          @Column(name="nome")
 /*    */   private String Nome;
+          
+          @Column(name="preco_unitario")
 /*    */   private Double Preco_unitario;
-/*    */   private String Unidade;
-/*    */   private String Categoria;
+           
+          @OneToOne
+          @MapsId
+          @JoinColumn(name = "unidade")
+          private Unidade unidade;
+
+   
+/*    */   
+          @Column(name="descricao")
 /*    */   private String Descricao;
+          
+          @Column(name="nome")
            private String foto;
            
-           public StockLevel stock;
+          @OneToOne (mappedBy ="prod" )
+/*    */    private Stock stock1;
+          
+          @OneToMany (mappedBy ="prod" )
+/*    */    private Venda venda;
+          
+          @OneToMany (mappedBy ="prod" )
+/*    */    private StockLevel stockLevel;
+          
+           @ManyToOne
+           @JoinColumn(name="id_detalhes")
+           private DetalhesVenda detalhesVenda;
            
-
+           public StockLevel stock;
   
-    public StockLevel getStock() {
-        return stock;
-    }
 
-    public void setStock(StockLevel stock) {
-        this.stock = stock;
-    }
    
             public Produto() {
         
                    }
 
             public Produto(Integer Cod_produto, String Nome) {
-            this.Cod_produto=Cod_produto;
+            this.cod_produto=Cod_produto;
             this.Nome= Nome;
        
             }
             
-            public Produto(Integer Cod_produto, String Nome,String Categoria,String Unidade,
+            public Produto(Integer cod_produto, String Nome,Categoria Categoria,Unidade Unidade,
             String Descricao,Double Preco_unitario,String foto, StockLevel stock) {
-            this.Cod_produto=Cod_produto;
+            this.cod_produto=cod_produto;
             this.Nome= Nome;
             this.Preco_unitario=Preco_unitario;
-            this.Unidade= Unidade;
+            this.unidade= Unidade;
             this.Categoria= Categoria;
             this.Descricao= Descricao;
             this.foto= foto;
@@ -59,16 +89,28 @@ import javafx.scene.image.Image;
 /*    */   
 
 
+          public StockLevel getStock() {
+        return stock;
+    }
 
+    public void setStock(StockLevel stock) {
+        this.stock = stock;
+    }
 
-    
+      public Categoria getCategoria() {
+        return Categoria;
+      }
+
+      public void setCategoria(Categoria Categoria) {
+      this.Categoria = Categoria;
+      }
                
           public Integer getCod_produto() {
-/* 23 */     return this.Cod_produto;
+/* 23 */     return this.cod_produto;
 /*    */   }
 /*    */   
 /*    */   public void setCod_produto(Integer Cod_produto) {
-/* 27 */     this.Cod_produto = Cod_produto;
+/* 27 */     this.cod_produto = Cod_produto;
 /*    */   }
 /*    */   
 /*    */   public String getDescricao() {
@@ -98,25 +140,25 @@ import javafx.scene.image.Image;
 
 /*    */   
 /*    */   public Produto(Integer Cod_produto) {
-/* 71 */     this.Cod_produto = Cod_produto;
+/* 71 */     this.cod_produto = Cod_produto;
 /*    */   }
- 
+           
+            public Unidade getUnidade() {
+        return unidade;
+    }
+
+         public void setUnidade(Unidade unidade) {
+        this.unidade = unidade;
+    }
+
 /*    */   
-/*    */   public String getCategoria() {
-/* 81 */     return this.Categoria;
-/*    */   }
+/*    */  // public String getUnidade() {
+/* 89 */    // return this.Unidade;
+/*    */  // }
 /*    */   
-/*    */   public void setCategoria(String Categoria) {
-/* 85 */     this.Categoria = Categoria;
-/*    */   }
-/*    */   
-/*    */   public String getUnidade() {
-/* 89 */     return this.Unidade;
-/*    */   }
-/*    */   
-/*    */   public void setUnidade(String Unidade) {
-/* 93 */     this.Unidade = Unidade;
-/*    */   }
+/*    */  // public void setUnidade(String Unidade) {
+/* 93 */    // this.Unidade = Unidade;
+/*    */   //}
 
             public String getFoto() {
             return foto;

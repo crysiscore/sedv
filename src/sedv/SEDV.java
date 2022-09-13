@@ -5,6 +5,7 @@
  */
 package sedv;
 
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -14,6 +15,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 /**
  *
@@ -21,23 +24,29 @@ import javafx.stage.Stage;
  */
 public class SEDV extends Application {
     
-    @Override
+   // @Override
      public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/Presentation/LoginPage1.fxml"));
+      //  Parent root = FXMLLoader.load(getClass().getResource("/Presentation/LoginPage1.fxml"));
         
-        Scene scene = new Scene(root);
+       // Scene scene = new Scene(root);
         
-        stage.setScene(scene);
-        stage.setTitle("Sistema de Vendas");
-        stage.setResizable(false);
-        stage.show();
+        //stage.setScene(scene);
+        //stage.setTitle("Sistema de Vendas");
+        //stage.setResizable(false);
+        //stage.show();
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
+       
+        
+        SessionFactory sf = NewHibernateUtil.getSessionFactory();
+        Session session = sf.openSession();
+        session.close();
+        
+        
     }
     
 }
