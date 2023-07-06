@@ -34,9 +34,9 @@
             <TableView fx:id="tableViewListaProdutos" layoutX="94.0" layoutY="240.0" prefHeight="227.0" prefWidth="562.0" style="-fx-background-radius: 10;">
                <columns>
                   <TableColumn fx:id="columnCodVenda" prefWidth="60.6666259765625" text="N* Venda" />
-                  <TableColumn fx:id="tableColumnNome" prefWidth="187.33331298828125" text="Nome do produto" />
-                  <TableColumn fx:id="tableColumnQUantidade" prefWidth="158.66668701171875" text="Quantidade Vendida" />
-                  <TableColumn fx:id="tableColumnPreco" prefWidth="82.6666259765625" text="Preço" />
+                  <TableColumn fx:id="tableColumnNome" prefWidth="215.33331298828125" text="Nome do produto" />
+                  <TableColumn fx:id="tableColumnQUantidade" prefWidth="140.6666259765625" text="Quantidade Vendida" />
+                  <TableColumn fx:id="tableColumnPreco" prefWidth="75.3333740234375" text="Preço" />
                   <TableColumn fx:id="tableColumnsubtotal" prefWidth="68.0" text="Subtotal" />
                </columns>
                <effect>
