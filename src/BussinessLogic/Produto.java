@@ -12,6 +12,12 @@ import javafx.scene.image.Image;
 /*    */ 
 /*    */   public class Produto
 /*    */   {
+
+    public Produto(StockLevel stock) {
+        this.stock = stock;
+    }
+
+
 /*    */   private Integer Cod_produto;
 /*    */   private String Nome;
 /*    */   private Double Preco_unitario;
@@ -20,10 +26,26 @@ import javafx.scene.image.Image;
 /*    */   private String Descricao;
            private String foto;
            
+           public Stock sk;
+ 
            public StockLevel stock;
+
+           public DetalhesVenda detalhesVenda;
+
+
+            //this.stock=new StockLevel();
+          
+
+    public DetalhesVenda getDetalhesVenda() {
+        return detalhesVenda;
+    }
+
+    public void setDetalhesVenda(DetalhesVenda detalhesVenda) {
+        this.detalhesVenda = detalhesVenda;
+    }
+    
            
 
-  
     public StockLevel getStock() {
         return stock;
     }
@@ -31,10 +53,25 @@ import javafx.scene.image.Image;
     public void setStock(StockLevel stock) {
         this.stock = stock;
     }
+
+    public Stock getSk() {
+        return sk;
+    }
+
+    public void setSk(Stock sk) {
+        this.sk = sk;
+    }
    
             public Produto() {
         
                    }
+            
+           public Produto(Integer Cod_produto,String Nome, Double Preco_unitario,StockLevel stock) {
+           this.Cod_produto = Cod_produto;
+           this.Nome= Nome;
+           this.Preco_unitario = Preco_unitario;
+           this.stock=stock;
+    }
 
             public Produto(Integer Cod_produto, String Nome) {
             this.Cod_produto=Cod_produto;

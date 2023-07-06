@@ -106,7 +106,7 @@ public class BuscaProdutosController implements Initializable {
         return usuario;
     }
        
-         public void receberdadosUsuario(Usuario usuario) {
+        public void receberdadosUsuario(Usuario usuario) {
         this.usuario = usuario;
       
         // this.labelUsuario.setText(usuario.getCod_Funcionario().toString());

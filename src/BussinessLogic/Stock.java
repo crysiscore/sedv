@@ -23,8 +23,17 @@ public class Stock {
 /*    */   public Integer usuario_Cod_Funcionario;
 /*    */   public String numero_lote;
 /*    */   public String fabricante;
-/*    */   
-/*    */     public Stock() {
+/*    */   public StockLevel stock;
+/*    */
+
+    public StockLevel getStock() {
+        return stock;
+    }
+
+    public void setStock(StockLevel stock) {
+        this.stock = stock;
+    }
+ public Stock() {
           }
 
     public Usuario getUser() {
@@ -58,7 +67,7 @@ public class Stock {
           }
       
   
-
+       
     public Integer getQuantidade_recebida() {
         return quantidade_recebida;
     }

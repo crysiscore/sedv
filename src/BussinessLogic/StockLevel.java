@@ -10,7 +10,21 @@ package BussinessLogic;
  * @author Neusia
  */
 public class StockLevel {
+
+
+    public Produto produto_Cod_Produto;
     public Double unidades_stock;
+
+    public Produto getProduto_Cod_Produto() {
+        return produto_Cod_Produto;
+    }
+
+    public void setProduto_Cod_Produto(Produto produto_Cod_Produto) {
+        this.produto_Cod_Produto = produto_Cod_Produto;
+    }
+    
+    
+    
 
     public Double getUnidades_stock() {
         return unidades_stock;

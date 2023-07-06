@@ -90,7 +90,12 @@ import java.sql.Blob;
 /*  77 */     return this.rs;
 /*     */   }
 /*     */  
-/*     */   
+/*     */   public ResultSet ListaStockLeveldoProduto() throws SQLException {
+/*  74 */     this.cs = this.connect.prepareCall("{call  ListaStockLeveldoProduto()()}");
+/*  75 */     this.rs = this.cs.executeQuery();
+/*     */     
+/*  77 */     return this.rs;
+/*     */   }
 /*     */   public ResultSet getDetalhesProduto(int codProd) throws SQLException {
 /*  82 */     this.cs = this.connect.prepareCall("{call  DetalhesProdutos(?)}");
 /*  83 */     this.cs.setInt(1, codProd);
