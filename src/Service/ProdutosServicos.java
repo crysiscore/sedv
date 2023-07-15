@@ -101,35 +101,38 @@ import javax.swing.JOptionPane;
  /*  91 */ return CodCategoria;
         /*     */    }
 
-    /*     */
- /*     */
- /*     *//*     */
- /*     */
- /*     */
- /*     */ public Produto getDetalhesProduto(int codProduto) throws SQLException {
-        /*  97 */ this.rs = this.prodDAO.getDetalhesProduto(codProduto);
-        /*  98 */ this.rs.next();
-        /*  99 */ this.produto = new Produto();
-                  StockLevel sl = new StockLevel();
-        /* 100 */ this.produto.setCod_produto(Integer.valueOf(this.rs.getInt("Codigo")));
-        /* 101 */ this.produto.setNome(this.rs.getString("nome"));
-        /* 102 */ this.produto.setPreco_unitario(Double.valueOf(this.rs.getDouble("Preco")));
-        /* 104 */ this.produto.setUnidade(this.rs.getString("Unidade"));
-        /* 105 */ this.produto.setCategoria(this.rs.getString("Categoria"));
-                  this.produto.setDescricao(this.rs.getString("Descricao"));
-                  this.produto.setFoto( this.rs.getString("foto"));
-                  
-                  sl.setUnidades_stock(Double.valueOf(this.rs.getDouble("unidades_stock")));
-                  
-                  this.produto.setStock(sl);
-        /* 106 */ return this.produto;
-        /*     */    }
+ 
+     public Produto getDetalhesProduto(int codProduto) throws SQLException {
+         this.rs = this.prodDAO.getDetalhesProduto(codProduto);
 
-    /*     */
- /*     */
+         if (!this.rs.next()) {
+             // Produto não encontrado, retornar null
+             return null;
+         }
+
+         this.produto = new Produto();
+         StockLevel sl = new StockLevel();
+
+         this.produto.setCod_produto(Integer.valueOf(this.rs.getInt("Codigo")));
+         this.produto.setNome(this.rs.getString("nome"));
+         this.produto.setPreco_unitario(Double.valueOf(this.rs.getDouble("Preco")));
+         this.produto.setUnidade(this.rs.getString("Unidade"));
+         this.produto.setCategoria(this.rs.getString("Categoria"));
+         this.produto.setDescricao(this.rs.getString("Descricao"));
+         this.produto.setFoto(this.rs.getString("foto"));
+         sl.setUnidades_stock(Double.valueOf(this.rs.getDouble("unidades_stock")));
+         this.produto.setStock(sl);
+
+         return this.produto;
+     }
+
+ 
+ 
+ 
+ 
  /*     */
  /*     */ public void VenderProduto(Venda v) throws SQLException {
-        /* 112 */ this.vendaDao.VenderProduto(v.getTotal_Venda().doubleValue(), v.getNome_cliente(), v.getUsuario_Cod_Funcionario().intValue());
+        /* 112 */ this.vendaDao.VenderProduto(v.getTotal_Venda().doubleValue(), v.getNome_cliente(), v.User.getCod_Funcionario().intValue());
         /*     */    }
 
     /*     */
@@ -137,7 +140,7 @@ import javax.swing.JOptionPane;
  /*     */
  /*     */
  /*     */ public void DetalhesVenda(DetalhesVenda dv) throws SQLException {
-        /* 119 */ this.vendaDao.DetalhesVenda(dv.getProduto_Cod_produto().intValue(), dv.getVenda_Cod_produto().intValue(), dv.getPreco().doubleValue(), dv.getQuantidade().intValue());
+        /* 119 */ this.vendaDao.DetalhesVenda(dv.getProduto_Cod_produto().intValue(), dv.getVenda_Cod_venda().intValue(), dv.getPreco().doubleValue(), dv.getQuantidade().intValue());
         /*     */    }
 
     /*     */

@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Neusia/Documents/NetBeansProjects/sedv/src/controller/CadastroProdutoController.java</file>
-            <file>file:/C:/Users/Neusia/Documents/NetBeansProjects/sedv/src/BussinessLogic/Produto.java</file>
-            <file>file:/C:/Users/Neusia/Documents/NetBeansProjects/sedv/src/controller/TrickController.java</file>
-            <file>file:/C:/Users/Neusia/Documents/NetBeansProjects/sedv/src/controller/ListadeProdutosController.java</file>
-            <file>file:/C:/Users/Neusia/Documents/NetBeansProjects/sedv/src/controller/TabelaAdicaoProdutoController.java</file>
+            <file>file:/C:/Users/Neusia%20Hilario/Documents/NetBeansProjects/sedv/src/controller/DetalhesVendaController.java</file>
+            <file>file:/C:/Users/Neusia%20Hilario/Documents/NetBeansProjects/sedv/src/controller/VendaController.java</file>
+            <file>file:/C:/Users/Neusia%20Hilario/Documents/NetBeansProjects/sedv/src/controller/Lista_VendaController.java</file>
+            <file>file:/C:/Users/Neusia%20Hilario/Documents/NetBeansProjects/sedv/src/Service/VendaServicos.java</file>
+            <file>file:/C:/Users/Neusia%20Hilario/Documents/NetBeansProjects/sedv/src/controller/ListadeProdutosController.java</file>
         </group>
     </open-files>
 </project-private>

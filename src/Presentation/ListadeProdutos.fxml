@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1360.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListadeProdutosController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1360.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListadeProdutosController">
    <children>
       <BorderPane layoutX="632.0" layoutY="-218.0" prefHeight="1080.0" prefWidth="1049.0" style="-fx-background-color: #EC3A3A; -fx-background-radius: 700;">
          <top>
@@ -32,7 +32,7 @@
       </BorderPane>
       <Pane layoutX="173.0" layoutY="75.0" prefHeight="586.0" prefWidth="1027.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
          <children>
-            <TableView fx:id="tableViewListaProdutos" layoutX="132.0" layoutY="157.0" prefHeight="306.0" prefWidth="701.0" style="-fx-background-radius: 10;">
+            <TableView fx:id="tableViewListaProdutos" layoutX="132.0" layoutY="157.0" prefHeight="306.0" prefWidth="695.0" style="-fx-background-radius: 10;">
               <columns>
                 <TableColumn fx:id="tableColumnCodigo" prefWidth="83.0" text="Código" />
                 <TableColumn fx:id="tableColumnNome" prefWidth="165.0" text="Nome" />
@@ -45,7 +45,7 @@
                   <DropShadow />
                </effect>
             </TableView>
-            <Button fx:id="buttonCancelar" layoutX="724.0" layoutY="493.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" onMouseEntered="#mudacorCancelarEntered" onMouseExited="#mouseexitCancelarRegistar" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Fechar">
+            <Button fx:id="buttonCancelar" layoutX="715.0" layoutY="493.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" onMouseEntered="#mudacorCancelarEntered" onMouseExited="#mouseexitCancelarRegistar" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Fechar">
                <effect>
                   <InnerShadow>
                      <color>
@@ -74,7 +74,7 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Text>
-            <Button fx:id="buttonEditarProduto" layoutX="381.0" layoutY="493.0" mnemonicParsing="false" onAction="#handleEditarProduto" onMouseEntered="#mudacorEditarEntered" onMouseExited="#mouseexitEditar" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Editar" textFill="#0d0d0d">
+            <Button fx:id="buttonEditarProduto" layoutX="483.0" layoutY="493.0" mnemonicParsing="false" onAction="#handleEditarProduto" onMouseEntered="#mudacorEditarEntered" onMouseExited="#mouseexitEditar" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Editar" textFill="#0d0d0d">
                <effect>
                   <InnerShadow>
                      <color>
@@ -83,16 +83,7 @@
                   </InnerShadow>
                </effect>
             </Button>
-            <Button fx:id="buttonDetalhes" layoutX="497.0" layoutY="493.0" mnemonicParsing="false" onAction="#handleDetalhesProduto" onMouseEntered="#mudacorDetalhesEntered" onMouseExited="#mouseexitDetalhes" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Detalhes" textFill="#141414">
-               <effect>
-                  <InnerShadow>
-                     <color>
-                        <Color red="0.6431372761726379" green="0.615686297416687" blue="0.615686297416687" />
-                     </color>
-                  </InnerShadow>
-               </effect>
-            </Button>
-            <Button fx:id="buttonAnular" layoutX="610.0" layoutY="493.0" mnemonicParsing="false" onMouseEntered="#mudacorAnularEntered" onMouseExited="#mouseexitbuttonAnular" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Anular" textFill="#171717">
+            <Button fx:id="buttonDetalhes" layoutX="597.0" layoutY="493.0" mnemonicParsing="false" onAction="#handleDetalhesProduto" onMouseEntered="#mudacorDetalhesEntered" onMouseExited="#mouseexitDetalhes" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Detalhes" textFill="#141414">
                <effect>
                   <InnerShadow>
                      <color>

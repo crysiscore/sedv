@@ -1,79 +1,335 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-
-<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="655.0" prefWidth="1213.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VendaController">
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="655.0" prefWidth="1334.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VendaController">
    <children>
-      <Label layoutX="51.0" layoutY="62.0" text="Funcionário:" textFill="#575454">
+      <Label fx:id="labelUsuario" layoutX="225.0" layoutY="62.0" prefHeight="19.0" prefWidth="138.0" text="Funcionário:" textFill="#575454">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="lblFuncionario" layoutX="146.0" layoutY="63.0" prefHeight="17.0" prefWidth="121.0" />
-      <Label layoutX="51.0" layoutY="108.0" text="Nome do Cliente" textFill="#403e3e">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <TextField layoutX="161.0" layoutY="105.0" prefHeight="25.0" prefWidth="229.0" />
-      <TextField fx:id="tfProcurar" layoutX="51.0" layoutY="190.0" prefHeight="25.0" prefWidth="267.0" />
-      <Button fx:id="btnProcurar" layoutX="323.0" layoutY="190.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Procurar" />
-      <Label layoutX="51.0" layoutY="252.0" text="Lista de Produtos" textFill="#434242">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <TableView fx:id="tableViewVendaListaProduto" layoutX="54.0" layoutY="294.0" prefHeight="200.0" prefWidth="599.0" style="-fx-background-color: #B6B9B9;">
-        <columns>
-          <TableColumn fx:id="columnCodigo" prefWidth="56.0" text="Código" />
-          <TableColumn fx:id="columnNome" prefWidth="115.0" text="Nome" />
-            <TableColumn fx:id="columnPrecoUnitario" prefWidth="95.0" text="Preço Unitário" />
-            <TableColumn fx:id="columnQuantidade" text="Quantidade" />
-            <TableColumn fx:id="columnUnidade" prefWidth="71.0" text="Unidade" />
-            <TableColumn fx:id="columnCategoria" prefWidth="71.0" text="Categoria" />
-            <TableColumn fx:id="columnDescricao" minWidth="6.0" prefWidth="131.0" text="Descrição" />
-        </columns>
-      </TableView>
-      <Button fx:id="btnAdicionar" layoutX="666.0" layoutY="354.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Adicionar"  />
-      <Button fx:id="btnRemover" layoutX="666.0" layoutY="389.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Remover" />
-      <Label layoutX="760.0" layoutY="252.0" prefHeight="19.0" prefWidth="129.0" text="Produtos a Vender">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <TableView layoutX="760.0" layoutY="294.0" prefHeight="200.0" prefWidth="417.0" style="-fx-background-color: #B6B9B9;">
-        <columns>
-            <TableColumn fx:id="columnCodigo2" prefWidth="61.0" text="Código" />
-            <TableColumn fx:id="columnNome2" prefWidth="89.0" text="Nome" />
-          <TableColumn fx:id="columnPreco2" prefWidth="64.0" text="Preço" />
-          <TableColumn fx:id="columnQuantidade2" prefWidth="140.0" text="Quantidade Comprada" />
-            <TableColumn fx:id="columnSubtotal" prefWidth="62.0" text="Subtotal" />
-        </columns>
-      </TableView>
-      <Button fx:id="btnVender" layoutX="760.0" layoutY="533.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="121.0" text="Vender" />
-      <Button fx:id="btnCancelar" layoutX="884.0" layoutY="533.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="121.0" text="Cancelar" />
-      <Label layoutX="1051.0" layoutY="537.0" text="Total:">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblMT" layoutX="1159.0" layoutY="537.0" text="Mt">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblTotal" layoutX="1093.0" layoutY="537.0" prefHeight="19.0" prefWidth="68.0">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
+      <AnchorPane fx:id="anchorPane1" layoutX="36.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="642.0" prefWidth="1324.0" style="-fx-background-color: #E9EEEE;">
+         <children>
+            <BorderPane layoutX="632.0" layoutY="-218.0" prefHeight="1080.0" prefWidth="1049.0" style="-fx-background-color: #EC3A3A; -fx-background-radius: 700;">
+               <top>
+                  <Pane prefHeight="200.0" prefWidth="1049.0" BorderPane.alignment="CENTER" />
+               </top>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.35877862572669983" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </BorderPane>
+            <Pane fx:id="buttonCancelaVenda" layoutX="51.0" layoutY="37.0" prefHeight="569.0" prefWidth="1105.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
+               <children>
+                  <TableView fx:id="tableViewListaProdutos" layoutX="108.0" layoutY="209.0" prefHeight="284.0" prefWidth="555.0" style="-fx-background-radius: 10;">
+                     <columns>
+                        <TableColumn fx:id="tableColumnNome" prefWidth="198.66664123535156" text="Nome" />
+                        <TableColumn fx:id="tableColumnPreco" prefWidth="114.0" text="Preço" />
+                        <TableColumn fx:id="tableColumnQuantidade" prefWidth="96.0" text="Quantidade" />
+                        <TableColumn fx:id="tableColumnSubtotal" prefWidth="150.0" text="Subtotal" />
+                     </columns>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </TableView>
+                  <ImageView fitHeight="84.0" fitWidth="92.0" layoutX="1009.0" layoutY="14.0">
+                     <image>
+                        <Image url="@../icons/Free3dLogo.png" />
+                     </image>
+                  </ImageView>
+                  <Pane layoutX="697.0" layoutY="108.0" prefHeight="426.0" prefWidth="312.0" style="-fx-background-color: fff; -fx-background-radius: 18;">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.3100000023841858" green="0.28519999980926514" blue="0.28519999980926514" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <children>
+                        <GridPane layoutX="30.0" layoutY="23.0" prefHeight="113.0" prefWidth="232.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.3333740234375" minWidth="10.0" prefWidth="129.3333740234375" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.6666259765625" minWidth="10.0" prefWidth="70.6666259765625" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="30.666661580403648" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="63.666671752929695" minHeight="10.0" prefHeight="27.999984741210938" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="77.33334859212239" minHeight="0.0" prefHeight="31.33334350585939" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Subtotal">
+                                 <font>
+                                    <Font name="Times New Roman Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="47.0" text="Total" textFill="#e86e58" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Times New Roman Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="labelSubtotal" prefHeight="14.0" prefWidth="81.0" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font name="Times New Roman" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="labelTotal" prefHeight="16.0" prefWidth="83.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Times New Roman Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </GridPane>
+                        <Pane layoutX="17.0" layoutY="118.0" prefHeight="74.0" prefWidth="279.0" style="-fx-background-color: fff; -fx-background-radius: 12;">
+                           <effect>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="0.3100000023841858" green="0.28519999980926514" blue="0.28519999980926514" opacity="0.3984771966934204" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                           <children>
+                              <Label layoutX="14.0" layoutY="8.0" text="PAGO">
+                                 <font>
+                                    <Font name="Times New Roman" size="12.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="textfieldPago" layoutX="14.0" layoutY="34.0" prefHeight="25.0" prefWidth="175.0" />
+                              <Label layoutX="164.0" layoutY="38.0" text="MT" />
+                           </children>
+                        </Pane>
+                        <ImageView fx:id="ImageViewMpesa" fitHeight="36.0" fitWidth="61.0" layoutX="17.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/-M-pesa-logo-removebg-preview.png" />
+                           </image>
+                           <effect>
+                              <DropShadow>
+                                 <color>
+                                    <Color opacity="0.06852792203426361" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </ImageView>
+                        <ImageView fx:id="ImageViewCash" fitHeight="47.0" fitWidth="42.0" layoutX="73.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/dollar.png" />
+                           </image>
+                           <effect>
+                              <DropShadow>
+                                 <color>
+                                    <Color opacity="0.06852792203426361" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </ImageView>
+                        <ImageView fx:id="ImageViewCard" fitHeight="36.0" fitWidth="47.0" layoutX="128.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/atm-card.png" />
+                           </image>
+                           <effect>
+                              <DropShadow>
+                                 <color>
+                                    <Color opacity="0.06852792203426361" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </ImageView>
+                        <Label fx:id="labelCash" layoutX="238.0" layoutY="275.0" prefHeight="17.0" prefWidth="42.0" text="0.0" />
+                        <Label layoutX="280.0" layoutY="275.0" prefHeight="17.0" prefWidth="24.0" text="MT" />
+                        <Button fx:id="btnFinalizarVenda" layoutY="399.0" mnemonicParsing="false" onAction="#handleMenuItemRegistarVenda" prefHeight="27.0" prefWidth="165.0" style="-fx-background-color: E86E58;" text="Finalizar Venda">
+                           <effect>
+                              <DropShadow>
+                                 <color>
+                                    <Color opacity="0.4365482032299042" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                           <font>
+                              <Font name="Times New Roman" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnCancelarVenda" layoutX="163.0" layoutY="399.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: E86E58;" text="Cancelar Venda">
+                           <effect>
+                              <DropShadow>
+                                 <color>
+                                    <Color opacity="0.4365482032299042" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                           <font>
+                              <Font name="Times New Roman" size="12.0" />
+                           </font>
+                        </Button>
+                        <ComboBox fx:id="comboBoxFormaPagamento" layoutX="14.0" layoutY="268.0" prefHeight="30.0" prefWidth="218.0" promptText="Selecione a forma de pagamento" style="-fx-background-color: fff;">
+                           <effect>
+                              <DropShadow>
+                                 <color>
+                                    <Color opacity="0.6335877776145935" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </ComboBox>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="108.0" layoutY="108.0" prefHeight="65.0" prefWidth="555.0" style="-fx-background-color: fff; -fx-background-radius: 12;">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.3199999928474426" green="0.29120001196861267" blue="0.29120001196861267" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <children>
+                        <TextField fx:id="textFieldPesquisaProdutos1" layoutX="14.0" layoutY="20.0" prefHeight="25.0" prefWidth="296.0" promptText="Introduza o nome ou código do produto para procurar" style="-fx-background-radius: 12;">
+                           <font>
+                              <Font name="Times New Roman" size="12.0" />
+                           </font>
+                        </TextField>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="286.0" layoutY="21.0">
+                           <image>
+                              <Image url="@../icons/icon-action-search_24px.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btnAdicionarProduto" layoutX="428.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleMenuItemAdicionarProduto" prefHeight="27.0" prefWidth="113.0" style="-fx-background-radius: 10; -fx-background-color: E86E58;" text="Procurar Produto">
+                           <effect>
+                              <DropShadow>
+                                 <color>
+                                    <Color opacity="0.4365482032299042" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                           <font>
+                              <Font name="Times New Roman" size="12.0" />
+                           </font>
+                        </Button>
+                        <TextField fx:id="textFieldQuantty" layoutX="334.0" layoutY="20.0" prefHeight="25.0" prefWidth="72.0" promptText="Quantidade" style="-fx-background-radius: 12;">
+                           <font>
+                              <Font name="Times New Roman" size="12.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </Pane>
+                  <TextField fx:id="textfieldNomeCliente" layoutX="108.0" layoutY="521.0" prefHeight="27.0" prefWidth="171.0" promptText="Nome do Cliente" style="-fx-background-color: fff;">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color opacity="0.3832487165927887" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <font>
+                        <Font name="Times New Roman" size="12.0" />
+                     </font>
+                  </TextField>
+                  <ImageView fitHeight="25.0" fitWidth="34.0" layoutX="254.0" layoutY="522.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/icons8-user-40.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="labelFuncionario" layoutX="953.0" layoutY="48.0" prefHeight="17.0" prefWidth="61.0">
+                     <font>
+                        <Font name="Times New Roman" size="12.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnCalcular" layoutX="519.0" layoutY="182.0" mnemonicParsing="false" onAction="#adicionarprodutonatabela" prefHeight="27.0" prefWidth="144.0" style="-fx-background-color: E86E58;" text="CALCULAR">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color opacity="0.4365482032299042" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <font>
+                        <Font name="Times New Roman" size="12.0" />
+                     </font>
+                  </Button>
+                  <DatePicker fx:id="DatePickerDATA" layoutX="488.0" layoutY="522.0" promptText="Insira a Data" />
+                  <TextField fx:id="textfieldNuitCliente" layoutX="300.0" layoutY="521.0" prefHeight="27.0" prefWidth="171.0" promptText="Nuit Cliente" style="-fx-background-color: fff;">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color opacity="0.3832487165927887" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <font>
+                        <Font name="Times New Roman" size="12.0" />
+                     </font>
+                  </TextField>
+                  <Label fx:id="labelNomeUsuario" layoutX="777.0" layoutY="57.0" prefHeight="17.0" prefWidth="113.0" />
+                  <Button fx:id="btnLista_Vendas" layoutX="853.0" layoutY="74.0" mnemonicParsing="false" onAction="#handleMenuItemListaVendas" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: E86E58;" text="Lista de Vendas">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color opacity="0.4365482032299042" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <font>
+                        <Font name="Times New Roman" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnRemoverProduto" layoutX="488.0" layoutY="521.0" mnemonicParsing="false" onAction="#removerProdutodaTabela" prefHeight="27.0" prefWidth="165.0" style="-fx-background-color: E86E58;" text="Remover Produto">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color opacity="0.4365482032299042" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <font>
+                        <Font name="Times New Roman" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.07000000029802322" green="0.06859999895095825" blue="0.06859999895095825" opacity="0.9312977194786072" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Pane>
+            <Text layoutX="321.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vendas">
+               <font>
+                  <Font name="Times New Roman" size="24.0" />
+               </font>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.614503800868988" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Text>
+            <Label fx:id="labelCod" layoutX="128.0" layoutY="620.0" />
+            <Label fx:id="labelprice" layoutX="170.0" layoutY="620.0" />
+            <Label fx:id="labelSub" layoutX="281.0" layoutY="620.0" />
+            <Label fx:id="labelname" layoutX="329.0" layoutY="619.0" />
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageviewFotoProduto" fitHeight="84.0" fitWidth="103.0" layoutX="100.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

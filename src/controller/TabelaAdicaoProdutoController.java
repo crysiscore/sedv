@@ -162,28 +162,30 @@ public class TabelaAdicaoProdutoController implements Initializable {
     
 
     
-     @FXML
-     void removerStockdaTabela(){
-        
-          int response =JOptionPane.showConfirmDialog(null,"O Produto foi selecionado???", "confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-          
-           if(response==JOptionPane.YES_OPTION){
-               
-              
-          int selectedID=tableviewAdicionarStock.getSelectionModel().getSelectedIndex();
-          tableviewAdicionarStock.getItems().remove(selectedID);
-        
-          JOptionPane.showMessageDialog(null, "O Produto foi removido!");
-           
-           
-           }else if(response==JOptionPane.NO_OPTION){
-             JOptionPane.showMessageDialog(null, "Selecione o Produto se desejar removê-lo!");
-           
-           
-           }else if(response==JOptionPane.CLOSED_OPTION){
-               JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
-           }
-        
+    @FXML
+    void removerStockdaTabela() {
+
+        int response = JOptionPane.showConfirmDialog(null, "O Produto foi selecionado???", "confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        if (response == JOptionPane.YES_OPTION) {
+
+            Stock selecionada = tableviewAdicionarStock.getSelectionModel().getSelectedItem();
+            if (selecionada != null) {
+                int selectedID = tableviewAdicionarStock.getSelectionModel().getSelectedIndex();
+                tableviewAdicionarStock.getItems().remove(selectedID);
+
+                JOptionPane.showMessageDialog(null, "O Produto foi removido!");
+            } else {
+                JOptionPane.showMessageDialog(null, "O Item não foi selecionado!");
+            }
+
+        } else if (response == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(null, "Selecione o Produto se desejar removê-lo!");
+
+        } else if (response == JOptionPane.CLOSED_OPTION) {
+            JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
+        }
+
       
 
      }

@@ -179,38 +179,35 @@ public class CadStockController implements Initializable {
         stage.close();
     }
 
-            public boolean verificadados() {
-             boolean fds = false;
-    
-            if (this.TextFieldlQuantidadeRecebida.getText().equals("")) {
-       
+        public boolean verificadados() {
+        boolean fds = false;
+
+        if (this.TextFieldlQuantidadeRecebida.getText().equals("")) {
+
             JOptionPane.showMessageDialog(null, "INTRODUZA A QUANTIDADE RECEBIDA ");
-                   fds = true;
- 
-              } 
-          
-          /*   102 */ // else if (this.DatePickerDataEntrada.getValue().equals("")) {
-        /*     */ /* 104 */ //JOptionPane.showMessageDialog(null, "INTRODUZA  A DATA DE REGISTO");
-        /* 105 */ //fds = true;
-        //}
-              else if (this.TextFieldCodigoProduto.getText().equals("")) {
-           
-                 JOptionPane.showMessageDialog(null, "INTRODUZA O CODIGO DO PRODUTO ");
-                 fds = true;
-          
-                  }  else if (this.TextFieldNumeroLote.getText().equals("")) {
-            
-                  JOptionPane.showMessageDialog(null, "INTRODUZA O NUMERO DO LOTE ");
-                  fds = true;
-             
-                }  else if (this.TextFieldFabricante.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "INTRODUZA O NOME DO FABRICANTE ");
-                 fds = true;
-           
-                }
-      
-                 return fds;
-                   }
+            fds = true;
+
+        } else if (DatePickerDataEntrada.getValue() == null) {
+            JOptionPane.showMessageDialog(null, "INTRODUZA  A DATA DE REGISTO");
+            fds = true;
+        } else if (this.TextFieldCodigoProduto.getText().equals("")) {
+
+            JOptionPane.showMessageDialog(null, "INTRODUZA O CODIGO DO PRODUTO ");
+            fds = true;
+
+        } else if (this.TextFieldNumeroLote.getText().equals("")) {
+
+            JOptionPane.showMessageDialog(null, "INTRODUZA O NUMERO DO LOTE ");
+            fds = true;
+
+        } else if (this.TextFieldFabricante.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "INTRODUZA O NOME DO FABRICANTE ");
+            fds = true;
+
+        }
+
+        return fds;
+    }
 
 
 

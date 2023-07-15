@@ -162,19 +162,16 @@ public class TrickController implements Initializable {
           
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(TrickController.class.getResource("/Presentation/TabelaAdicaoProduto1.fxml"));
-        //loader.setLocation(TrickController.class.getResource("/Presentation/BuscaProdutos.fxml"));
+        
         AnchorPane page = (AnchorPane) loader.load();
         
          TabelaAdicaoProdutoController tabelaAdicaoProdutoController= loader.<TabelaAdicaoProdutoController>getController();
-        //BuscaProdutosController buscaProdutosController= loader.<BuscaProdutosController>getController();
-         //tabelaAdicaoProdutoController.UserInfo(codUsuario);
-         
+       
         usuarioServicos = new UsuarioServicos();
         Usuario selectedUsuario = new Usuario();
         selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
         tabelaAdicaoProdutoController.receberdadosUsuario(selectedUsuario);
-        // tabelaAdicaoProdutoController.desabilitabotoes();
-        //buscaProdutosController.receberdadosUsuario(selectedUsuario);
+        
         // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
         Stage dialogStage = new Stage();
         dialogStage.setTitle("Registo de Stock");
@@ -193,7 +190,44 @@ public class TrickController implements Initializable {
              }
 
    
-    
+    public void handleMenuItemVendaAdicionarVenda(){
+         
+          
+        try {
+       
+        String codUsuario = this.labelUserCod.getText();
+          
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(TrickController.class.getResource("/Presentation/Venda.fxml"));
+        
+        AnchorPane page = (AnchorPane) loader.load();
+        
+        VendaController vendaController= loader.<VendaController>getController();
+
+         
+        usuarioServicos = new UsuarioServicos();
+        Usuario selectedUsuario = new Usuario();
+        selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
+        vendaController.receberdadosUsuario(selectedUsuario);
+        // tabelaAdicaoProdutoController.desabilitabotoes();
+        //buscaProdutosController.receberdadosUsuario(selectedUsuario);
+        // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Vendas");
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+        dialogStage.setMaximized(false);
+        dialogStage.setResizable(false);
+        
+        // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
+        dialogStage.show();
+          }
+          catch (Exception ex) {
+           System.out.println("" + ex + ex.getLocalizedMessage());
+                System.out.println("" + ex.toString());
+            } 
+             }
+
     
     public void handleMenuItemProdutoListaProduto (){
          
@@ -271,6 +305,32 @@ public class TrickController implements Initializable {
                 System.out.println("" + ex.toString());
           } 
             }
+    
+    
+     public void handleMenuItemListaVendas() {
+
+        try {
+           
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(TrickController.class.getResource("/Presentation/Lista_Venda.fxml"));
+
+            AnchorPane page = (AnchorPane) loader.load();
+
+            Lista_VendaController listaVendaController = loader.<Lista_VendaController>getController();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Registo de Produtos");
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            dialogStage.setMaximized(false);
+            dialogStage.setResizable(false);
+            // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
+            dialogStage.show();
+        } catch (Exception ex) {
+            System.out.println("" + ex + ex.getLocalizedMessage());
+            System.out.println("" + ex.toString());
+        }
+    }
 
     
  

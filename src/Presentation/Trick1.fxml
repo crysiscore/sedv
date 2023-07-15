@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1380.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TrickController">
+<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1380.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TrickController">
    <children>
       <BorderPane layoutX="572.0" layoutY="-223.0" prefHeight="1080.0" prefWidth="1049.0" style="-fx-background-color: #EC3A3A; -fx-background-radius: 700;">
          <effect>
@@ -32,7 +32,7 @@
       </BorderPane>
       <Pane fx:id="PnaePane" layoutX="138.0" layoutY="62.0" prefHeight="600.0" prefWidth="1096.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
          <children>
-            <ImageView fx:id="imageViewVenda" fitHeight="157.0" fitWidth="165.0" layoutX="723.0" layoutY="111.0">
+            <ImageView fx:id="imageViewVenda" fitHeight="157.0" fitWidth="165.0" layoutX="723.0" layoutY="111.0" onMouseClicked="#handleMenuItemVendaAdicionarVenda">
                <image>
                   <Image url="@../icons/carrinho-de-compras-vermelho-do-mercado-conceito-d-do-disconto-30551366.png" />
                </image>
@@ -52,7 +52,7 @@
                   </DropShadow>
                </effect>
             </ImageView>
-            <ImageView fx:id="ImageViewAdicionarProduto" fitHeight="157.0" fitWidth="165.0" layoutX="466.0" layoutY="111.0" onMouseClicked="#handleMenuItemProdutoRegistrarProduto">
+            <ImageView fx:id="ImageViewAdicionarProduto" fitHeight="157.0" fitWidth="165.0" layoutX="466.0" layoutY="109.0" onMouseClicked="#handleMenuItemProdutoRegistrarProduto">
                <image>
                   <Image url="@../icons/depositphotos_25269157-stock-photo-white-plus-sign-isolated-on.png" />
                </image>
@@ -119,8 +119,8 @@
                <menus>
                   <Menu mnemonicParsing="false" text="Vendas">
                      <items>
-                        <MenuItem fx:id="menuItemVendasNovaVenda" mnemonicParsing="false" text="Nova Venda" />
-                        <MenuItem fx:id="menuItemVendasListaDeVendas" mnemonicParsing="false" text="Lista de Vendas" />
+                        <MenuItem fx:id="menuItemVendasNovaVenda" mnemonicParsing="false" onAction="#handleMenuItemVendaAdicionarVenda" text="Nova Venda" />
+                        <MenuItem fx:id="menuItemVendasListaDeVendas" mnemonicParsing="false" onAction="#handleMenuItemListaVendas" text="Lista de Vendas" />
                      </items>
                   </Menu>
                </menus>
@@ -211,7 +211,10 @@
                   <DropShadow />
                </effect>
             </ImageView>
-            <Label fx:id="labelUsername" layoutX="933.0" layoutY="55.0" prefHeight="17.0" prefWidth="40.0" />
+            <Label fx:id="labelUsername" layoutX="933.0" layoutY="55.0" prefHeight="17.0" prefWidth="40.0">
+               <font>
+                  <Font name="Times New Roman" size="12.0" />
+               </font></Label>
             <Label fx:id="labelUserCod" layoutX="871.0" layoutY="68.0" prefHeight="17.0" prefWidth="92.0" />
             <Text layoutX="511.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Novo Produto" />
             <Text layoutX="773.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nova Venda" />
