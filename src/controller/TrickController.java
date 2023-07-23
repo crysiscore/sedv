@@ -12,7 +12,11 @@ import Service.ProdutosServicos;
 import Service.UsuarioServicos;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -20,6 +24,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -28,6 +33,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import jdbc.ConnectionFactory;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 /**
  * FXML Controller class
  *
@@ -90,6 +103,12 @@ public class TrickController implements Initializable {
 
     @FXML
     private MenuItem menuItemRelatoriosVendasRecentes;
+    
+    @FXML
+    private MenuItem menuItemRelatoriosProdutosPoucoStock;
+    
+    @FXML
+    private MenuItem menuItemProdutosExistentes;
 
     @FXML
     private MenuItem menuItemStockAdicionarStock;
@@ -114,6 +133,9 @@ public class TrickController implements Initializable {
     
     @FXML
     private Button btnSair;
+    
+    @FXML
+    private DatePicker DatepickerData;
 
    
 
@@ -122,23 +144,23 @@ public class TrickController implements Initializable {
     Usuario usuario;
     ProdutosServicos servicoProdutos;
 
-    
     public Usuario getProduto() {
         return usuario;
     }
-       
-         public Usuario receberdadosUsuario(Usuario usuario) {
+
+    public Usuario receberdadosUsuario(Usuario usuario) {
         this.usuario = usuario;
-      
+
         this.labelUserCod.setText(usuario.getCod_Funcionario().toString());
         this.labelUsername.setText(usuario.getNome());
-       this.labelUserCod.setVisible(false);
+        this.labelUserCod.setVisible(false);
         return usuario;
-         }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+      DatepickerData.setVisible(false);
      
     }    
      public void SairButtonOnAction(ActionEvent event){
@@ -339,4 +361,120 @@ public class TrickController implements Initializable {
        buttnSair.setStyle("-fx-background-color: #FFF");
        buttnSair.setStyle("-fx-background-radius: 13");
    }
+    
+    
+     public void handlePrintProdutosComPoucoStock(){
+
+        try{
+            JasperDesign jDesign = JRXmlLoader.load("C:\\Users\\Neusia Hilario\\Documents\\NetBeansProjects\\sedv\\src\\relatorios\\Produtos_Com_Pouco_Stock.jrxml");
+        
+            JasperReport jReport = JasperCompileManager.compileReport(jDesign);
+            
+            JasperPrint jPrint = JasperFillManager.fillReport(jReport, null, ConnectionFactory.getSakilaConnection());
+            
+            JasperViewer viewer = new JasperViewer(jPrint, false);
+            
+            viewer.setTitle("Lista de Produtos com Pouco Stock");
+            viewer.show();
+            
+        }catch(Exception e){}
+    }
+     
+     
+       
+     public void handlePrintVendaPorData(){
+         try {
+           
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(TrickController.class.getResource("/Presentation/DataVenda1.fxml"));
+
+            AnchorPane page = (AnchorPane) loader.load();
+
+            DataVendaController dataVendaController = loader.<DataVendaController>getController();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Data de Venda");
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            dialogStage.setMaximized(false);
+            dialogStage.setResizable(false);
+            // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
+            dialogStage.show();
+        } catch (Exception ex) {
+            System.out.println("" + ex + ex.getLocalizedMessage());
+            System.out.println("" + ex.toString());
+        }
+    }
+     
+       public void handlePrintVendaPorPeriodo(){
+         try {
+           
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(TrickController.class.getResource("/Presentation/Datas_Venda.fxml"));
+
+            AnchorPane page = (AnchorPane) loader.load();
+
+            Datas_VendaController datas_VendaController = loader.<Datas_VendaController>getController();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Data de Venda");
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            dialogStage.setMaximized(false);
+            dialogStage.setResizable(false);
+            // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
+            dialogStage.show();
+        } catch (Exception ex) {
+            System.out.println("" + ex + ex.getLocalizedMessage());
+            System.out.println("" + ex.toString());
+        }
+    }
+     
+       public void handleprintProdutosExistentes(){
+  
+        
+        try{
+            JasperDesign jDesign = JRXmlLoader.load("C:\\Users\\Neusia Hilario\\Documents\\NetBeansProjects\\sedv\\src\\relatorios\\ListaProdutos_Blue.jrxml");
+        
+            JasperReport jReport = JasperCompileManager.compileReport(jDesign);
+            
+            JasperPrint jPrint = JasperFillManager.fillReport(jReport, null, ConnectionFactory.getSakilaConnection());
+            
+            JasperViewer viewer = new JasperViewer(jPrint, false);
+            
+            viewer.setTitle("Lista de Produtos Existentes");
+            viewer.show();
+            
+        }catch(Exception e){}
+    }
+       
+     
+             
+    public void handlePrintVendaRecente() {
+        DatepickerData.setValue(LocalDate.now());
+        Date Data_Venda = java.sql.Date.valueOf(DatepickerData.getValue());
+        
+        try {
+            JasperDesign jDesign = JRXmlLoader.load("C:\\Users\\Neusia Hilario\\Documents\\NetBeansProjects\\sedv\\src\\relatorios\\Venda_Recente.jrxml");
+
+            JasperReport jReport = JasperCompileManager.compileReport(jDesign);
+
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("Data_Venda", Data_Venda); 
+
+            JasperPrint jPrint = JasperFillManager.fillReport(jReport, parametros, ConnectionFactory.getSakilaConnection());
+
+            JasperViewer viewer = new JasperViewer(jPrint, false);
+
+            viewer.setTitle("Detalhes de Venda de Hoje");
+            viewer.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+    }
+        
+
+       
+       
+    }
 }

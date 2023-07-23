@@ -16,10 +16,14 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -41,6 +45,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 /**
  * FXML Controller class
@@ -109,83 +114,105 @@ public class Lista_VendaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
       
-        
+                VendaDao vendaDao = new VendaDao();
+        try {
 
-           VendaDao vendaDao = new VendaDao();
-             try {
-                
-                 ResultSet rs=vendaDao.Listagem_Venda();
-                 
-                 while(rs.next()){
-                 Integer QueryVendaId= rs.getInt("Cod_Venda");
-                 Date QueryData = rs.getDate("Data_Venda");
-                 Double QueryToatalVenda = rs.getDouble("Total_Venda");
-                 String QueryCliente = rs.getString("Nome_cliente");
-                 Integer QueryNuit = rs.getInt("Nuit_cliente");
+            ResultSet rs = vendaDao.Listagem_Venda();
+
+            while (rs.next()) {
+                Integer QueryVendaId = rs.getInt("Cod_Venda");
+                Date QueryData = rs.getDate("Data_Venda");
+                Double QueryToatalVenda = rs.getDouble("Total_Venda");
+                String QueryCliente = rs.getString("Nome_cliente");
+                Integer QueryNuit = rs.getInt("Nuit_cliente");
                 // Integer QueryUser = rs.getInt("usuario_Cod_Funcionario");
-                // Usuario user = new Usuario();
-                // user.setNome(rs.getString("Nome"));
-                 String Queryuser = rs.getString("nome");
-                 String  QueryFormaPagamento= rs.getString("Forma_Pagamento"); 
-                 
-                
-                 vendaObservableList.add(new Venda(QueryVendaId,QueryData,QueryToatalVenda,QueryCliente,QueryNuit,Queryuser,QueryFormaPagamento));
-                 }
-                 
-                 
-                 tableColumnCodigo.setCellValueFactory(new PropertyValueFactory<>("Cod_Venda"));
-                 tableColumnData.setCellValueFactory(new PropertyValueFactory<>("Data_Venda"));
-                 tableColumnTotal.setCellValueFactory(new PropertyValueFactory<>("Total_Venda"));
-                 tableColumnCliente.setCellValueFactory(new PropertyValueFactory<>("Nome_cliente"));
-                 tableColumnNuit.setCellValueFactory(new PropertyValueFactory<>("Nuit_cliente"));
-                // tableColumnUsuario.setCellValueFactory(new PropertyValueFactory<>("Nome"));
-                 tableColumnUsuario.setCellValueFactory(new PropertyValueFactory<>("usuario"));                 
-                 Forma_Pagamento.setCellValueFactory(new PropertyValueFactory<>("Forma_Pagamento"));
+                Usuario user = new Usuario();
+                user.setNome(rs.getString("Nome"));
 
-                 tableViewListaVenda.setItems(vendaObservableList);
-                  
+                String QueryFormaPagamento = rs.getString("Forma_Pagamento");
+
+                vendaObservableList.add(new Venda(QueryVendaId, QueryData, QueryToatalVenda, QueryCliente, QueryNuit, user, QueryFormaPagamento));
+            }
+
+            tableColumnCodigo.setCellValueFactory(new PropertyValueFactory<>("Cod_Venda"));
+            tableColumnData.setCellValueFactory(new PropertyValueFactory<>("Data_Venda"));
+            tableColumnTotal.setCellValueFactory(new PropertyValueFactory<>("Total_Venda"));
+            tableColumnCliente.setCellValueFactory(new PropertyValueFactory<>("Nome_cliente"));
+            tableColumnNuit.setCellValueFactory(new PropertyValueFactory<>("Nuit_cliente"));
+            // tableColumnUsuario.setCellValueFactory(new PropertyValueFactory<>("Nome"));
+            // tableColumnUsuario.setCellValueFactory(new PropertyValueFactory<>("usuario"));  
+
+            tableColumnUsuario.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Venda, String>, ObservableValue<String>>() {
+                @Override
+                public ObservableValue<String> call(TableColumn.CellDataFeatures<Venda, String> param) {
+                    return new SimpleStringProperty(param.getValue().getUser().getNome());
+                }
+            });
+
+            tableColumnUsuario.setCellFactory(column -> new TableCell<Venda, String>() {
+                @Override
+                protected void updateItem(String user, boolean empty) {
+                    super.updateItem(user, empty);
+                    if (user == null || empty) {
+                        setText(null);
+                    } else {
+                        setText(user);
+                    }
+                }
+            });
+
+            Forma_Pagamento.setCellValueFactory(new PropertyValueFactory<>("Forma_Pagamento"));
             
-                 
-                 FilteredList<Venda> filteredData =new FilteredList<> (vendaObservableList, b ->true);
-                 
-                 textFieldPesquisaProdutos.textProperty().addListener((observable, oldValue, newValue) ->{
-                 filteredData.setPredicate(venda -> {
-                     if(newValue.isEmpty()|| newValue == null){
-                         
-                         return true;
-                     }
-                     
-                     
-                     String searchKeyword = newValue.toLowerCase();
+            vendaObservableList.sort(Comparator.comparing(Venda::getData_Venda).reversed());
 
-                     if (venda.getData_Venda().toString().toLowerCase().contains(searchKeyword)) {
-                         return true;
-                     } else if (venda.getNuit_cliente().toString().toLowerCase().contains(searchKeyword)) {
-                         return true;
+            tableViewListaVenda.setItems(vendaObservableList);
 
-                     }else
-                         
-                     return false;
-                     
-                 });
-                 
-                 });
-                 
-  
-                
-                 SortedList <Venda> sortdData = new SortedList <>(filteredData);
-                 
-                 sortdData.comparatorProperty().bind(tableViewListaVenda.comparatorProperty());
-                 
-                 tableViewListaVenda.setItems(sortdData);
-                 
-             } catch (SQLException ex) {
-                 Logger.getLogger(BuscaProdutosController.class.getName()).log(Level.SEVERE, null, ex);
-                 
+            FilteredList<Venda> filteredData = new FilteredList<>(vendaObservableList, b -> true);
+
+            textFieldPesquisaProdutos.textProperty().addListener((observable, oldValue, newValue) -> {
+                filteredData.setPredicate(venda -> {
+                    if (newValue.isEmpty() || newValue == null) {
+
+                        return true;
+                    }
+
+                    String searchKeyword = newValue.toLowerCase();
+
+                    if (venda.getData_Venda().toString().toLowerCase().contains(searchKeyword)) {
+                        return true;
+                    } else if (venda.getNuit_cliente().toString().toLowerCase().contains(searchKeyword)) {
+                        return true;
+
+                    } else if (venda.getCod_Venda().toString().toLowerCase().contains(searchKeyword)) {
+                        return true;
+                    } else if (venda.getTotal_Venda().toString().toLowerCase().contains(searchKeyword)) {
+                        return true;
+
+                    } else {
+                        return false;
+                    }
+
+                });
+
+            });
+
+            SortedList<Venda> sortdData = new SortedList<>(filteredData);
+
+            sortdData.comparatorProperty().bind(tableViewListaVenda.comparatorProperty());
+            
+                 // Ordenar a tabela pelas últimas inserções (ordem decrescente de data de venda)
+            //Comparator<Venda> ultimasInsercoesComparator = Comparator.comparing(Venda::getData_Venda).reversed();
+            //sortdData.setComparator(ultimasInsercoesComparator);
+
+            tableViewListaVenda.setItems(sortdData);
        
-              } 
+
+        } catch (SQLException ex) {
+            Logger.getLogger(BuscaProdutosController.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
     }
-    
+
 
     
     @FXML

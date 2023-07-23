@@ -168,6 +168,8 @@ public class CadStockController implements Initializable {
 
         // TODO
         dao = new StockDAO();
+        
+        DatePickerDataEntrada.setValue(LocalDate.now());
 
     }
 

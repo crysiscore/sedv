@@ -19,6 +19,38 @@ import java.sql.Blob;
 /*     */ 
 /*     */ public class ProdutoDAO
 /*     */ {
+
+    public ResultSet getRs() {
+        return rs;
+    }
+
+    public void setRs(ResultSet rs) {
+        this.rs = rs;
+    }
+
+    public Connection getConnect() {
+        return connect;
+    }
+
+    public void setConnect(Connection connect) {
+        this.connect = connect;
+    }
+
+    public CallableStatement getCs() {
+        return cs;
+    }
+
+    public void setCs(CallableStatement cs) {
+        this.cs = cs;
+    }
+
+    public Produto getProduct() {
+        return product;
+    }
+
+    public void setProduct(Produto product) {
+        this.product = product;
+    }
 /*     */   private ResultSet rs;
 /*     */   private Connection connect;
 /*  20 */   private CallableStatement cs = null;

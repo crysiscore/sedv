@@ -2,14 +2,17 @@
 /*    */ 
 import BussinessLogic.DetalhesVenda;
 import BussinessLogic.Venda;
+import com.sun.javafx.collections.MappingChange.Map;
 /*    */ import java.sql.CallableStatement;
 /*    */ import java.sql.Connection;
 /*    */ import java.sql.ResultSet;
 /*    */ import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import java.util.HashMap;
 /*    */ 
 /*    */ 
 /*    */ 
@@ -145,6 +148,9 @@ import javafx.collections.ObservableList;
 /*     */     
 /*  86 */     return this.rs;
 /*     */   }
+              
+
+
 /*    */ }
 
 

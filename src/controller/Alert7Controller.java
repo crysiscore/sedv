@@ -7,14 +7,31 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
  * @author Neusia Hilario
  */
-public class ListaDeVendaController implements Initializable {
+public class Alert7Controller implements Initializable {
+    
+      @FXML
+    private Button btnOK;
+
+    @FXML
+    private Label labelAlert;
+
+    @FXML
+    void fecharTela(ActionEvent event) {
+        Stage stage = (Stage) btnOK.getScene().getWindow();
+        stage.close();
+    }
 
     /**
      * Initializes the controller class.

@@ -101,7 +101,7 @@
 /*     */ 
 /*     */   
 /*     */   public static Connection getSakilaConnection() throws SQLException {
-/* 104 */     return getConnection("jdbc:mysql://localhost/mydb", "root", "");
+/* 104 */     return getConnection("jdbc:mysql://localhost/mydb", "root", "123456789");
 /*     */   }
 /*     */ }
 

@@ -384,6 +384,11 @@ public class VendaController implements Initializable {
         
     public void limparcampos(){
         textFieldPesquisaProdutos1.clear();
+              labelSubtotal.setText("");
+            labelTotal.setText("");
+            textfieldPago.setText("");
+ 
+        
     }
     public Usuario getUsuario() {
         return usuario;
@@ -481,6 +486,7 @@ public class VendaController implements Initializable {
                 dao.RegistarVendasemnuitesemnome(venda);
                 JOptionPane.showMessageDialog(null, "A venda foi Cadastrada com Sucesso!");
                 tableViewListaProdutos.getItems().clear();
+                limparcampos();
                 
             } else if (response == JOptionPane.NO_OPTION) {
                 JOptionPane.showMessageDialog(null, "A venda não foi Cadastrada!");
@@ -529,6 +535,7 @@ public class VendaController implements Initializable {
                 dao.RegistarVenda(venda);
                 JOptionPane.showMessageDialog(null, "A venda foi Cadastrada com Sucesso!");
                 tableViewListaProdutos.getItems().clear();
+                limparcampos();
                 
             } else if (response == JOptionPane.NO_OPTION) {
                 JOptionPane.showMessageDialog(null, "A venda não foi Cadastrada!");
@@ -723,6 +730,17 @@ public class VendaController implements Initializable {
             if (selecionada != null) {
                 int selectedID = tableViewListaProdutos.getSelectionModel().getSelectedIndex();
                 tableViewListaProdutos.getItems().remove(selectedID);
+                 Double somaSubtotal = 0.0;
+            ObservableList<DetalhesVenda> dt = tableViewListaProdutos.getItems();
+            tableColumnSubtotal = (TableColumn<DetalhesVenda, Double>) tableViewListaProdutos.getColumns().get(3);
+            for (int i = 0; i < dt.size(); i++) {
+                somaSubtotal += tableColumnSubtotal.getCellData(dt.get(i));
+                tableViewListaProdutos.refresh();
+            }
+
+            labelSubtotal.setText(somaSubtotal.toString());
+            labelTotal.setText(somaSubtotal.toString());
+            textfieldPago.setText(labelTotal.getText());
 
                 JOptionPane.showMessageDialog(null, "O Produto foi removido!");
             } else {

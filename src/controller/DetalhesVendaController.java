@@ -11,7 +11,9 @@ import BussinessLogic.Venda;
 import Model.DetalhesVendaModel;
 import Service.UsuarioServicos;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -26,6 +28,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import jdbc.ConnectionFactory;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  * FXML Controller class
@@ -177,4 +187,29 @@ public class DetalhesVendaController implements Initializable {
             this.labelCliente.setText(venda.getNome_cliente());
             
         }
+        
+        
+        public void print() {
+            
+            int codigoVenda = Integer.parseInt(labelDetalheVenda.getText());
+    try {
+        JasperDesign jDesign = JRXmlLoader.load("C:\\Users\\Neusia Hilario\\Documents\\NetBeansProjects\\sedv\\src\\relatorios\\Detalhes_Venda.jrxml");
+
+        JasperReport jReport = JasperCompileManager.compileReport(jDesign);
+
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("Cod_Venda", codigoVenda);  // Defina o valor do parâmetro Cod_Venda
+
+        JasperPrint jPrint = JasperFillManager.fillReport(jReport, parametros, ConnectionFactory.getSakilaConnection());
+
+        JasperViewer viewer = new JasperViewer(jPrint, false);
+
+        viewer.setTitle("Detalhes de Venda");
+        viewer.show();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
 }

@@ -79,7 +79,7 @@
                   <Label layoutX="116.0" layoutY="88.0" text="MT" />
                </children>
             </Pane>
-            <Button layoutX="725.0" layoutY="522.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: fff;" text="Imprimir Extrato">
+            <Button layoutX="725.0" layoutY="522.0" mnemonicParsing="false" onMouseClicked="#print" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: fff;" text="Imprimir Extrato">
                <font>
                   <Font name="Times New Roman" size="12.0" />
                </font>
