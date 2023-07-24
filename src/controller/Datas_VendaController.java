@@ -71,7 +71,7 @@ public class Datas_VendaController implements Initializable {
             Date dataVendaFinal = java.sql.Date.valueOf(dataVendaFinalValue);
 
             try {
-                JasperDesign jDesign = JRXmlLoader.load("C:\\Users\\Neusia Hilario\\Documents\\NetBeansProjects\\sedv\\src\\relatorios\\Vendas_em_um_Periodo.jrxml");
+                JasperDesign jDesign = JRXmlLoader.load("src\\relatorios\\Vendas_em_um_Periodo.jrxml");
 
                 JasperReport jReport = JasperCompileManager.compileReport(jDesign);
 

@@ -58,7 +58,7 @@ public class DataVendaController implements Initializable {
 
          Date Data_Venda = java.sql.Date.valueOf(DatePickerData.getValue());
     try {
-        JasperDesign jDesign = JRXmlLoader.load("C:\\Users\\Neusia Hilario\\Documents\\NetBeansProjects\\sedv\\src\\relatorios\\Venda_Por_Data.jrxml");
+        JasperDesign jDesign = JRXmlLoader.load("src\\relatorios\\Venda_Por_Data.jrxml");
 
         JasperReport jReport = JasperCompileManager.compileReport(jDesign);
 
