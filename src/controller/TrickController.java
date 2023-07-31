@@ -366,7 +366,7 @@ public class TrickController implements Initializable {
      public void handlePrintProdutosComPoucoStock(){
 
         try{
-            JasperDesign jDesign = JRXmlLoader.load("C:\\Users\\Neusia Hilario\\Documents\\NetBeansProjects\\sedv\\src\\relatorios\\Produtos_Com_Pouco_Stock.jrxml");
+            JasperDesign jDesign = JRXmlLoader.load("src\\relatorios\\Produtos_Com_Pouco_Stock.jrxml");
         
             JasperReport jReport = JasperCompileManager.compileReport(jDesign);
             
@@ -434,7 +434,7 @@ public class TrickController implements Initializable {
   
         
         try{
-            JasperDesign jDesign = JRXmlLoader.load("C:\\Users\\Neusia Hilario\\Documents\\NetBeansProjects\\sedv\\src\\relatorios\\ListaProdutos_Blue.jrxml");
+            JasperDesign jDesign = JRXmlLoader.load("src\\relatorios\\ListaProdutos_Blue.jrxml");
         
             JasperReport jReport = JasperCompileManager.compileReport(jDesign);
             
@@ -455,7 +455,7 @@ public class TrickController implements Initializable {
         Date Data_Venda = java.sql.Date.valueOf(DatepickerData.getValue());
         
         try {
-            JasperDesign jDesign = JRXmlLoader.load("C:\\Users\\Neusia Hilario\\Documents\\NetBeansProjects\\sedv\\src\\relatorios\\Venda_Recente.jrxml");
+            JasperDesign jDesign = JRXmlLoader.load("src\\relatorios\\Venda_Recente.jrxml");
 
             JasperReport jReport = JasperCompileManager.compileReport(jDesign);
 

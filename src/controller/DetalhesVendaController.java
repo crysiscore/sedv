@@ -193,7 +193,7 @@ public class DetalhesVendaController implements Initializable {
             
             int codigoVenda = Integer.parseInt(labelDetalheVenda.getText());
     try {
-        JasperDesign jDesign = JRXmlLoader.load("C:\\Users\\Neusia Hilario\\Documents\\NetBeansProjects\\sedv\\src\\relatorios\\Detalhes_Venda.jrxml");
+        JasperDesign jDesign = JRXmlLoader.load("src\\relatorios\\Detalhes_Venda.jrxml");
 
         JasperReport jReport = JasperCompileManager.compileReport(jDesign);
 

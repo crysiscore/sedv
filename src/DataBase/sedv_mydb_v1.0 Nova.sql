@@ -59,7 +59,7 @@ CREATE TABLE `detalhesvenda` (
   KEY `fk_Produto_has_Venda_Venda1_idx` (`Venda_Cod_venda`),
   KEY `fk_Produto_has_Venda_Produto1_idx` (`Produto_Cod_Produto`),
   CONSTRAINT `detalhesvenda_ibfk_3` FOREIGN KEY (`Produto_Cod_Produto`) REFERENCES `produto` (`Cod_Produto`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +68,7 @@ CREATE TABLE `detalhesvenda` (
 
 LOCK TABLES `detalhesvenda` WRITE;
 /*!40000 ALTER TABLE `detalhesvenda` DISABLE KEYS */;
-INSERT INTO `detalhesvenda` VALUES (10,11,40,180,1,180),(11,63,40,120,1,120),(12,11,41,180,6,1080),(13,12,41,235,3,705),(14,63,42,120,2,240),(15,63,43,120,1,120),(26,63,47,120,2,240),(27,63,48,120,1,120),(28,11,48,180,2,360),(29,12,49,235,2,470),(30,11,50,180,2,360),(31,12,50,235,2,470),(32,63,51,120,1,120);
+INSERT INTO `detalhesvenda` VALUES (10,11,40,180,1,180),(11,63,40,120,1,120),(12,11,41,180,6,1080),(13,12,41,235,3,705),(14,63,42,120,2,240),(15,63,43,120,1,120),(26,63,47,120,2,240),(27,63,48,120,1,120),(28,11,48,180,2,360),(29,12,49,235,2,470),(30,11,50,180,2,360),(31,12,50,235,2,470),(32,63,51,120,1,120),(33,63,52,120,1,120),(34,63,53,120,1,120),(35,63,54,120,1,120);
 /*!40000 ALTER TABLE `detalhesvenda` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -170,6 +170,38 @@ DELIMITER ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
+-- Table structure for table `produto_history`
+--
+
+DROP TABLE IF EXISTS `produto_history`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `produto_history` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `data` date DEFAULT NULL,
+  `cod_Produto` int DEFAULT NULL,
+  `quantidade_anterior` int DEFAULT NULL,
+  `quantidade_introduzida` int DEFAULT NULL,
+  `cod_usuario` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `cod_Produto` (`cod_Produto`),
+  KEY `cod_usuario` (`cod_usuario`),
+  CONSTRAINT `produto_history_ibfk_1` FOREIGN KEY (`cod_Produto`) REFERENCES `produto` (`Cod_Produto`),
+  CONSTRAINT `produto_history_ibfk_2` FOREIGN KEY (`cod_usuario`) REFERENCES `usuario` (`Cod_Funcionario`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `produto_history`
+--
+
+LOCK TABLES `produto_history` WRITE;
+/*!40000 ALTER TABLE `produto_history` DISABLE KEYS */;
+INSERT INTO `produto_history` VALUES (1,'2023-07-20',11,39,12,7),(2,'2023-07-20',11,41,2,7);
+/*!40000 ALTER TABLE `produto_history` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `stock`
 --
 
@@ -189,7 +221,7 @@ CREATE TABLE `stock` (
   KEY `fk_stock_usuario1_idx` (`usuario_Cod_Funcionario`),
   CONSTRAINT `fk_stock_produto1` FOREIGN KEY (`produto_Cod_Produto`) REFERENCES `produto` (`Cod_Produto`),
   CONSTRAINT `fk_stock_usuario1` FOREIGN KEY (`usuario_Cod_Funcionario`) REFERENCES `usuario` (`Cod_Funcionario`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -198,7 +230,7 @@ CREATE TABLE `stock` (
 
 LOCK TABLES `stock` WRITE;
 /*!40000 ALTER TABLE `stock` DISABLE KEYS */;
-INSERT INTO `stock` VALUES (1,20,'2022-02-18',11,7,'zbsdhdfdd','zbsdhdfdd'),(2,10,'2022-02-21',12,8,'dfdf','cerlac'),(3,23,'2022-05-10',11,7,'ewew','Mylan'),(4,2,'2022-04-12',11,7,'ee','dd'),(5,2,'2022-04-12',11,7,'ee','dd'),(6,2,'2022-04-12',11,7,'ee','dd'),(7,3,'2022-04-12',11,7,'ff','ff'),(8,3,'2022-04-12',12,7,'ee','fffg'),(9,3,'2022-04-12',11,7,'ffff','xddd'),(10,2,'2022-04-12',12,7,'ee','dd'),(11,2,'2022-04-12',11,7,'ww','dd'),(12,2,'2022-04-05',12,7,'ww','ee'),(13,4,'2022-05-15',11,7,'mjjmjm','kkk'),(14,3,'2022-05-17',11,7,'fffddddddd','fffffvvvvvvvvvv'),(15,7,'2022-05-17',12,7,'kkkkkk','dsdd'),(16,3,'2022-05-19',12,7,'ee','dd'),(17,3,'2022-05-19',12,7,'eee','dd'),(18,3,'2022-05-19',12,7,'ww','ee'),(19,3,'2022-05-19',11,7,'jjjjjjjj','ww'),(20,6,'2022-06-30',11,7,'dfdf','rfrfrf'),(21,3,'2022-06-30',11,7,'kjk','hhghg'),(22,120,'2023-04-13',63,7,'21221','dssds'),(23,5,'2023-05-10',12,7,'333','fdd'),(24,3,'2023-05-12',12,7,'eee','vffv'),(25,20,'2023-06-13',63,7,'rgtgtgt','efrfrfr');
+INSERT INTO `stock` VALUES (1,20,'2022-02-18',11,7,'zbsdhdfdd','zbsdhdfdd'),(2,10,'2022-02-21',12,8,'dfdf','cerlac'),(3,23,'2022-05-10',11,7,'ewew','Mylan'),(4,2,'2022-04-12',11,7,'ee','dd'),(5,2,'2022-04-12',11,7,'ee','dd'),(6,2,'2022-04-12',11,7,'ee','dd'),(7,3,'2022-04-12',11,7,'ff','ff'),(8,3,'2022-04-12',12,7,'ee','fffg'),(9,3,'2022-04-12',11,7,'ffff','xddd'),(10,2,'2022-04-12',12,7,'ee','dd'),(11,2,'2022-04-12',11,7,'ww','dd'),(12,2,'2022-04-05',12,7,'ww','ee'),(13,4,'2022-05-15',11,7,'mjjmjm','kkk'),(14,3,'2022-05-17',11,7,'fffddddddd','fffffvvvvvvvvvv'),(15,7,'2022-05-17',12,7,'kkkkkk','dsdd'),(16,3,'2022-05-19',12,7,'ee','dd'),(17,3,'2022-05-19',12,7,'eee','dd'),(18,3,'2022-05-19',12,7,'ww','ee'),(19,3,'2022-05-19',11,7,'jjjjjjjj','ww'),(20,6,'2022-06-30',11,7,'dfdf','rfrfrf'),(21,3,'2022-06-30',11,7,'kjk','hhghg'),(22,120,'2023-04-13',63,7,'21221','dssds'),(23,5,'2023-05-10',12,7,'333','fdd'),(24,3,'2023-05-12',12,7,'eee','vffv'),(25,20,'2023-06-13',63,7,'rgtgtgt','efrfrfr'),(26,12,'2023-07-20',11,7,'sdsd','dsds'),(27,2,'2023-07-20',11,7,'dssd','sdds');
 /*!40000 ALTER TABLE `stock` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -213,6 +245,27 @@ DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `update_stock_level` AFTER INSERT ON `stock` FOR EACH ROW update stocklevel as  stl set
     stl.unidades_stock =  stl.unidades_stock + new.quantidade_recebida
      where stl.produto_Cod_Produto = new.produto_Cod_Produto */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `updatehistory_AFTER_INSERT` AFTER INSERT ON `stock` FOR EACH ROW BEGIN
+    DECLARE quantidade_anterior INT;
+    SELECT unidades_stock INTO quantidade_anterior FROM stocklevel WHERE produto_Cod_Produto = NEW.produto_Cod_Produto;
+    INSERT INTO produto_history (data, cod_Produto, quantidade_anterior, quantidade_introduzida, cod_usuario)
+    VALUES (CURDATE(), NEW.produto_Cod_Produto, quantidade_anterior, NEW.quantidade_recebida, NEW.usuario_Cod_Funcionario
+);
+END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -242,7 +295,7 @@ CREATE TABLE `stocklevel` (
 
 LOCK TABLES `stocklevel` WRITE;
 /*!40000 ALTER TABLE `stocklevel` DISABLE KEYS */;
-INSERT INTO `stocklevel` VALUES (1,27,11),(2,21,12),(3,0,21),(4,0,22),(7,0,25),(8,0,26),(9,0,27),(10,0,28),(11,0,29),(12,0,30),(13,0,31),(14,0,32),(15,0,33),(16,0,34),(17,0,35),(18,0,36),(19,0,37),(20,0,38),(21,0,39),(22,0,40),(23,0,41),(24,0,42),(25,0,43),(27,0,45),(28,0,46),(29,0,47),(30,0,48),(31,0,49),(32,0,50),(33,0,51),(34,0,52),(35,0,53),(43,0,61),(44,0,62),(45,112,63),(46,0,64),(47,0,65),(53,0,71),(55,0,73);
+INSERT INTO `stocklevel` VALUES (1,41,11),(2,21,12),(3,0,21),(4,0,22),(7,0,25),(8,0,26),(9,0,27),(10,0,28),(11,0,29),(12,0,30),(13,0,31),(14,0,32),(15,0,33),(16,0,34),(17,0,35),(18,0,36),(19,0,37),(20,0,38),(21,0,39),(22,0,40),(23,0,41),(24,0,42),(25,0,43),(27,0,45),(28,0,46),(29,0,47),(30,0,48),(31,0,49),(32,0,50),(33,0,51),(34,0,52),(35,0,53),(43,0,61),(44,0,62),(45,109,63),(46,0,64),(47,0,65),(53,0,71),(55,0,73);
 /*!40000 ALTER TABLE `stocklevel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -315,7 +368,7 @@ CREATE TABLE `venda` (
   PRIMARY KEY (`Cod_venda`),
   KEY `fk_venda_usuario1` (`usuario_Cod_Funcionario`),
   CONSTRAINT `venda_ibfk_1` FOREIGN KEY (`usuario_Cod_Funcionario`) REFERENCES `usuario` (`Cod_Funcionario`) ON DELETE SET NULL ON UPDATE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -324,7 +377,7 @@ CREATE TABLE `venda` (
 
 LOCK TABLES `venda` WRITE;
 /*!40000 ALTER TABLE `venda` DISABLE KEYS */;
-INSERT INTO `venda` VALUES (40,'2023-06-13',300,'Neu',7,123,'MPESA'),(41,'2023-06-13',1785,'Nadia',7,1234,'CASH'),(42,'2023-06-14',240,'Neusia',7,12,'CARTÃO DE CRÉDITO'),(43,'2023-06-14',120,'neu',7,12,'CASH'),(47,'2023-06-19',240,NULL,7,NULL,'CARTÃO DE CRÉDITO'),(48,'2023-06-29',480,NULL,7,NULL,'MPESA'),(49,'2023-06-30',470,NULL,7,NULL,'CASH'),(50,'2023-07-06',830,NULL,7,NULL,'MPESA'),(51,'2023-07-06',120,NULL,7,NULL,'CASH');
+INSERT INTO `venda` VALUES (40,'2023-06-13',300,'Neu',7,123,'MPESA'),(41,'2023-06-13',1785,'Nadia',7,1234,'CASH'),(42,'2023-06-14',240,'Neusia',7,12,'CARTÃO DE CRÉDITO'),(43,'2023-06-14',120,'neu',7,12,'CASH'),(47,'2023-06-19',240,NULL,7,NULL,'CARTÃO DE CRÉDITO'),(48,'2023-06-29',480,NULL,7,NULL,'MPESA'),(49,'2023-06-30',470,NULL,7,NULL,'CASH'),(50,'2023-07-06',830,NULL,7,NULL,'MPESA'),(51,'2023-07-06',120,NULL,7,NULL,'CASH'),(52,'2023-07-13',120,NULL,7,NULL,'MPESA'),(53,'2023-07-18',120,NULL,7,NULL,'CASH'),(54,'2023-07-20',120,NULL,7,NULL,'CARTÃO DE CRÉDITO');
 /*!40000 ALTER TABLE `venda` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -1409,6 +1462,29 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Venda_Por_Mes_Por_Ano` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Venda_Por_Mes_Por_Ano`()
+BEGIN
+SELECT COUNT(Cod_venda), EXTRACT(YEAR FROM data_venda) AS ano, EXTRACT(MONTH FROM data_venda) AS mes
+FROM venda
+GROUP BY ano, mes
+ORDER BY ano, mes;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -1419,4 +1495,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-06 22:07:11
+-- Dump completed on 2023-07-24 17:51:50

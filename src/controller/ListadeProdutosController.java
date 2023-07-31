@@ -480,7 +480,7 @@ public class ListadeProdutosController implements Initializable {
        
          public void OpenProdutoReport() {
              
-              String jasperFilePath = "C:\\Users\\Neusia Hilario\\Documents\\NetBeansProjects\\sedv\\src\\relatorios\\ListaProdutos_Blue.jasper";
+              String jasperFilePath = "src\\relatorios\\ListaProdutos_Blue.jasper";
 
          
          try {
