@@ -25,9 +25,13 @@ import java.net.URL;
 import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -42,6 +46,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -52,8 +57,21 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
+import jdbc.ConnectionFactory;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.view.JasperViewer;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrintManager;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import util.ReportUtils;
 
 /**
  * FXML Controller class
@@ -104,12 +122,20 @@ public class ListadeProdutosController implements Initializable {
 
     @FXML
     private TableColumn<Produto, String> tableColumnUnidade;
+    
+    @FXML
+    private TableColumn<Produto, Double> tablecolumnStock;
+
 
     @FXML
     private TextField textFieldPesquisaProdutos;
     
     @FXML
     private Label labelCodProduto;
+    
+    @FXML
+    private Button buttonImprimir;
+
     
      @FXML
     private ImageView imagevie1;
@@ -144,10 +170,11 @@ public class ListadeProdutosController implements Initializable {
                  Double QueryPreco = rs.getDouble("Preco_unitario");
                  String  foto= rs.getString("foto"); 
                  //Double Queryunidade_stock=rs.getDouble("unidades_stock");
+             
                  
                  StockLevel stock = new StockLevel();
-                 stock.unidades_stock =rs.getDouble("unidades_stock");
-                
+                 stock.setUnidades_stock(rs.getDouble("unidades_stock"));
+                 
                  produtoObservableList.add(new Produto(QueryProductId,QueryNome,QueryCategoria,QueryUnidade,QueryDescricao,QueryPreco,foto,stock));
                  }
                  
@@ -158,7 +185,26 @@ public class ListadeProdutosController implements Initializable {
                  tableColumnDescricao.setCellValueFactory(new PropertyValueFactory<>("Descricao"));
                  tableColumnUnidade.setCellValueFactory(new PropertyValueFactory<>("Unidade"));
                  tableColumnPreco.setCellValueFactory(new PropertyValueFactory<>("Preco_unitario"));
-                 
+                 //    tablecolumnStock.setCellValueFactory(new PropertyValueFactory<>("stock"));
+
+                 tablecolumnStock.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Produto, Double>, ObservableValue<Double>>() {
+                     @Override
+                     public ObservableValue<Double> call(TableColumn.CellDataFeatures<Produto, Double> param) {
+                         return new SimpleDoubleProperty(param.getValue().getStock().getUnidades_stock()).asObject();
+                     }
+                 });
+                 tablecolumnStock.setCellFactory(column -> new TableCell<Produto, Double>() {
+                     @Override
+                     protected void updateItem(Double stock, boolean empty) {
+                         super.updateItem(stock, empty);
+                         if (stock == null || empty) {
+                             setText(null);
+                         } else {
+                             setText(String.valueOf(stock));
+                         }
+                     }
+                 });
+
                  tableViewListaProdutos.setItems(produtoObservableList);
                   
             
@@ -422,6 +468,40 @@ public class ListadeProdutosController implements Initializable {
        buttonDetalhes.setStyle("-fx-background-radius: 13");
        }
        
+       public void mudacorImprimirEntered(){
+       buttonImprimir.setStyle("-fx-background-color: #FFF");
+       buttonImprimir.setStyle("-fx-background-radius: 13");
+    } 
+    
+       public void mouseexitImprimir(){
+       buttonImprimir.setStyle("-fx-background-color: #FFF");
+       buttonImprimir.setStyle("-fx-background-radius: 13");
+       }
+       
+         public void OpenProdutoReport() {
+             
+              String jasperFilePath = "C:\\Users\\Neusia Hilario\\Documents\\NetBeansProjects\\sedv\\src\\relatorios\\ListaProdutos_Blue.jasper";
+
+         
+         try {
+             //  InputStream inputStream = getClass().getResourceAsStream(jasperFilePath);
+             FileInputStream inputStream = new FileInputStream(jasperFilePath);
+             
+                     Map<Object, Object> parametros = new HashMap<Object, Object>();
+              
+                   parametros.put("cod_produto",11);
+                ReportUtils.openReport("Produto Report", inputStream, parametros, ConnectionFactory.getSakilaConnection());
+      
+
+          }
+       catch (Exception exc) {
+            
+  
+            
+          exc.printStackTrace();
+          } 
+        }
+       
        public void handleMenuAlert1() {
              
         try {
@@ -448,6 +528,32 @@ public class ListadeProdutosController implements Initializable {
           System.out.println("" + ex.toString());
               } 
                 }
-       }    
+       
+       public void handleImprimir() throws JRException{
+                   
+           OpenProdutoReport();
+
+    }
+       
+       public void print(){
+  
+        
+        try{
+            JasperDesign jDesign = JRXmlLoader.load("C:\\Users\\Neusia Hilario\\Documents\\NetBeansProjects\\sedv\\src\\relatorios\\ListaProdutos_Blue.jrxml");
+        
+            JasperReport jReport = JasperCompileManager.compileReport(jDesign);
+            
+            JasperPrint jPrint = JasperFillManager.fillReport(jReport, null, ConnectionFactory.getSakilaConnection());
+            
+            JasperViewer viewer = new JasperViewer(jPrint, false);
+            
+            viewer.setTitle("Lista de Produtos");
+            viewer.show();
+            
+        }catch(Exception e){}
+    }
+        
+       }
+          
     
 

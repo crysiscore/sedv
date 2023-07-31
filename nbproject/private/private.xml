@@ -6,8 +6,11 @@
             <file>file:/C:/Users/Neusia%20Hilario/Documents/NetBeansProjects/sedv/src/controller/DetalhesVendaController.java</file>
             <file>file:/C:/Users/Neusia%20Hilario/Documents/NetBeansProjects/sedv/src/controller/VendaController.java</file>
             <file>file:/C:/Users/Neusia%20Hilario/Documents/NetBeansProjects/sedv/src/controller/Lista_VendaController.java</file>
-            <file>file:/C:/Users/Neusia%20Hilario/Documents/NetBeansProjects/sedv/src/Service/VendaServicos.java</file>
-            <file>file:/C:/Users/Neusia%20Hilario/Documents/NetBeansProjects/sedv/src/controller/ListadeProdutosController.java</file>
+            <file>file:/C:/Users/Neusia%20Hilario/Documents/NetBeansProjects/sedv/src/Presentation/Datas_Venda.fxml</file>
+            <file>file:/C:/Users/Neusia%20Hilario/Documents/NetBeansProjects/sedv/src/controller/TabelaAdicaoProdutoController.java</file>
+            <file>file:/C:/Users/Neusia%20Hilario/Documents/NetBeansProjects/sedv/src/controller/DataVendaController.java</file>
+            <file>file:/C:/Users/Neusia%20Hilario/Documents/NetBeansProjects/sedv/src/controller/Datas_VendaController.java</file>
+            <file>file:/C:/Users/Neusia%20Hilario/Documents/NetBeansProjects/sedv/src/controller/TrickController.java</file>
         </group>
     </open-files>
 </project-private>

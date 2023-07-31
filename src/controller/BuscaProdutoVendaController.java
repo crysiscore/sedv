@@ -21,6 +21,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -35,6 +37,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -45,6 +48,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import javax.swing.JOptionPane;
 
 /**
@@ -157,6 +161,24 @@ public class BuscaProdutoVendaController implements Initializable {
                  columnNomeProduto.setCellValueFactory(new PropertyValueFactory<>("Nome"));
                  columnPreco.setCellValueFactory(new PropertyValueFactory<>("Preco_unitario"));
                 // columnStock.setCellValueFactory(new PropertyValueFactory<>("unidades_stock"));
+                columnStock.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Produto, Double>, ObservableValue<Double>>() {
+                     @Override
+                     public ObservableValue<Double> call(TableColumn.CellDataFeatures<Produto, Double> param) {
+                         return new SimpleDoubleProperty(param.getValue().getStock().getUnidades_stock()).asObject();
+                     }
+                 });
+                 columnStock.setCellFactory(column -> new TableCell<Produto, Double>() {
+                     @Override
+                     protected void updateItem(Double stock, boolean empty) {
+                         super.updateItem(stock, empty);
+                         if (stock == null || empty) {
+                             setText(null);
+                         } else {
+                             setText(String.valueOf(stock));
+                         }
+                     }
+                 });
+
                  tableviewProdutos.setItems(produtoObservableList);
                 
                  

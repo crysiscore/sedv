@@ -45,11 +45,12 @@
                   <DropShadow />
                </effect>
             </TextField>
-            <TableView fx:id="tableviewProdutos" layoutX="183.0" layoutY="158.0" prefHeight="286.0" prefWidth="490.0" style="-fx-background-radius: 10;">
+            <TableView fx:id="tableviewProdutos" layoutX="183.0" layoutY="158.0" prefHeight="286.0" prefWidth="538.0" style="-fx-background-radius: 10;">
                <columns>
                   <TableColumn fx:id="columnCodigoProduto" prefWidth="76.0" text="Código" />
-                  <TableColumn fx:id="columnNomeProduto" minWidth="0.0" prefWidth="296.00006103515625" text="Nome" />
-                  <TableColumn fx:id="columnPreco" prefWidth="116.6666259765625" text="Preço" />
+                  <TableColumn fx:id="columnNomeProduto" minWidth="0.0" prefWidth="261.3332824707031" text="Nome" />
+                  <TableColumn fx:id="columnPreco" prefWidth="103.33331298828125" text="Preço" />
+                  <TableColumn fx:id="columnStock" prefWidth="94.6666259765625" text="Stock" />
                </columns>
                <effect>
                   <DropShadow>

@@ -17,7 +17,7 @@ import java.sql.Date;
 /*    */   public String Nome_cliente;
            public Integer Nuit_cliente;
            public Usuario User;
-           String usuario;
+        
            public Integer usuario_Cod_Funcionario;
            public Produto Prod;
            public Double Desconto;
@@ -26,13 +26,13 @@ import java.sql.Date;
            
            public DetalhesVenda detalhesVenda;
 
-    public Venda(Integer Cod_Venda, Date Data_Venda, Double Total_Venda, String Nome_cliente, Integer Nuit_cliente, String usuario, String Forma_Pagamento) {
+    public Venda(Integer Cod_Venda, Date Data_Venda, Double Total_Venda, String Nome_cliente, Integer Nuit_cliente, Usuario User, String Forma_Pagamento) {
         this.Cod_Venda = Cod_Venda;
         this.Data_Venda = Data_Venda;
         this.Total_Venda = Total_Venda;
         this.Nome_cliente = Nome_cliente;
         this.Nuit_cliente = Nuit_cliente;
-        this.usuario = usuario;
+        this.User = User;
         this.Forma_Pagamento = Forma_Pagamento;
     }
            
@@ -152,13 +152,6 @@ import java.sql.Date;
         this.Forma_Pagamento = Forma_Pagamento;
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
 
 
 
