@@ -54,11 +54,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.converter.DoubleStringConverter;
+import javafx.util.converter.IntegerStringConverter;
 import javax.swing.JOptionPane;
 
 /**
@@ -170,6 +173,30 @@ public class CadStockController implements Initializable {
         dao = new StockDAO();
         
         DatePickerDataEntrada.setValue(LocalDate.now());
+        
+        
+        // Definindo o filtro com uma expressão regular para permitir apenas números inteiros ou doubles
+        TextFormatter<Integer> textFormatter = new TextFormatter<>(
+                new IntegerStringConverter(),
+                0,
+                c -> {
+                    if (c.getControlNewText().matches("\\d*|\\d+\\.\\d*")) {
+                        return c;
+                    } else {
+                        return null;
+                    }
+                });
+
+        TextFieldlQuantidadeRecebida.setTextFormatter(textFormatter);
+
+        // Adicionando um evento de escuta para verificar se o texto contém letras
+        textFormatter.valueProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue == null && !TextFieldlQuantidadeRecebida.getText().isEmpty()) {
+                // Exibe uma mensagem de erro caso letras sejam inseridas
+                JOptionPane.showMessageDialog(null,"Digite apenas números inteiros ou decimais válidos!");
+                TextFieldlQuantidadeRecebida.setText(oldValue.toString()); // Restaura o valor anterior
+            }
+        });
 
     }
 

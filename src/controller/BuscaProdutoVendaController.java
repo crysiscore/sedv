@@ -255,6 +255,14 @@ public class BuscaProdutoVendaController implements Initializable {
 
     @FXML
     public void handleMenuItemAdicionarProdutoNaTabela() throws IOException {
+        
+        int selectedIndex = tableviewProdutos.getSelectionModel().getSelectedIndex();
+
+        // Verifica se um produto foi selecionado na tabela
+        if (selectedIndex < 0) {
+            handleMenuAlert1(); // Função que exibe um alerta informando que um produto deve ser selecionado
+            return;
+    }
         Produto pr = tableviewProdutos.getItems().get(tableviewProdutos.getSelectionModel().getSelectedIndex());
        textfieldQuantidadeProduto.setText("1");
         try {
@@ -327,6 +335,30 @@ public class BuscaProdutoVendaController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(TrickController.class.getResource("/Presentation/alert4.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("ALERTA");
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            dialogStage.setMaximized(false);
+            dialogStage.setResizable(false);
+
+            // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
+            dialogStage.show();
+
+        } catch (Exception ex) {
+            System.out.println("" + ex + ex.getLocalizedMessage());
+            System.out.println("" + ex.toString());
+        }
+    }
+    
+     public void handleMenuAlert1() {
+
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(TrickController.class.getResource("/Presentation/alert1.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
 
             // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
