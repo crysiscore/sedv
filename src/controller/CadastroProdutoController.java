@@ -40,6 +40,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -47,8 +48,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import javafx.util.converter.DoubleStringConverter;
 import javax.imageio.ImageIO;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  * FXML Controller class
@@ -132,8 +137,33 @@ public class CadastroProdutoController implements Initializable {
          
          imageViewFoto.setOnMouseClicked((MouseEvent e)->{
         selecionarFoto();
+        
     });
 
+         
+        // Definindo o filtro com uma expressão regular para permitir apenas números inteiros ou doubles
+        TextFormatter<Double> textFormatter = new TextFormatter<>(
+                new DoubleStringConverter(),
+                0.0,
+                c -> {
+                    if (c.getControlNewText().matches("\\d*|\\d+\\.\\d*")) {
+                        return c;
+                    } else {
+                        return null;
+                    }
+                });
+
+        textFieldPreco.setTextFormatter(textFormatter);
+
+        // Adicionando um evento de escuta para verificar se o texto contém letras
+        textFormatter.valueProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue == null && !textFieldPreco.getText().isEmpty()) {
+                // Exibe uma mensagem de erro caso letras sejam inseridas
+                JOptionPane.showMessageDialog(null,"Digite apenas números inteiros ou decimais válidos!");
+                textFieldPreco.setText(oldValue.toString()); // Restaura o valor anterior
+            }
+        });
+         
     }    
 
    
@@ -423,11 +453,17 @@ public class CadastroProdutoController implements Initializable {
               limparcampos();
               
                  if(status){
-                   JOptionPane.showMessageDialog(null, " Produto : " + product.getNome() + " Registado com sucesso");
+                     
+                       mostrarMensagem(" Produto : " + product.getNome() + " Registado com sucesso");
+
+                  // JOptionPane.showMessageDialog(null, " Produto : " + product.getNome() + " Registado com sucesso");
                   
                    
                  }else {
-                 JOptionPane.showMessageDialog(null, " Erro ao registar o Produto. Tente novamente");
+                     
+                 //JOptionPane.showMessageDialog(null, " Erro ao registar o Produto. Tente novamente");
+                 mostrarMensagem("Erro ao registrar o produto. Tente novamente.");
+    
                  }       
                   } catch (NumberFormatException e) {
                       //TODO  Tratar erro de introducao de preco 
@@ -450,6 +486,18 @@ public class CadastroProdutoController implements Initializable {
              }
              }
               
+              
+       private static void mostrarMensagem(String mensagem) {
+        JPanel panel = new JPanel();
+        panel.add(new JLabel(mensagem));
+        JDialog dialog = new JDialog();
+        dialog.setModal(true); // Torna o JDialog modal
+        //dialog.setTitle(titulo);
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        dialog.add(panel);
+        dialog.pack();
+        dialog.setVisible(true);
+    }
               
         public Produto getProduto() {
             

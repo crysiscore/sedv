@@ -298,8 +298,8 @@ public class VendaController implements Initializable {
         this.textFieldPesquisaProdutos1.textProperty().addListener((observable, oldValue, newValue) -> {
             // Verifica se o novo valor inserido no TextField é diferente de vazio
             if (!newValue.isEmpty()) {
-               // scheduleButtonAction(); quando quiser que o botao acione rapido, é so comentar essa parte e descomentar a parte a seguir
-                btnCalcular.fire(); 
+                scheduleButtonAction(); //quando quiser que o botao acione rapido, é so comentar essa parte e descomentar a parte a seguir
+               // btnCalcular.fire(); 
 
             }
         });
@@ -323,7 +323,7 @@ public class VendaController implements Initializable {
             String codProduto = this.textFieldPesquisaProdutos1.getText();
             if (textFieldPesquisaProdutos1.getText().isEmpty()) {
 
-                JOptionPane.showMessageDialog(null, "Introduza o codigo do produto!");
+               // JOptionPane.showMessageDialog(null, "Introduza o codigo do produto!");
 
             } else {
                 servicoProdutos = new ProdutosServicos();
@@ -331,7 +331,8 @@ public class VendaController implements Initializable {
 
                 if (selectedProduto == null) {
                     // O produto não foi encontrado no banco de dados
-                    JOptionPane.showMessageDialog(null, "O produto não foi encontrado!");
+                    //JOptionPane.showMessageDialog(null, "O produto não foi encontrado!");
+                    handleMenuAlert8();
                     limparcampos();
 
                     usuarioServicos = new UsuarioServicos();
@@ -642,6 +643,34 @@ public class VendaController implements Initializable {
 
             //BuscaProdutosController buscaProdutosController= loader.getController();
             Alert4Controller alert4Controller = loader.<Alert4Controller>getController();
+
+            // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("ALERTA");
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            dialogStage.setMaximized(false);
+            dialogStage.setResizable(false);
+
+            // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
+            dialogStage.show();
+            
+        } catch (Exception ex) {
+            System.out.println("" + ex + ex.getLocalizedMessage());
+            System.out.println("" + ex.toString());
+        }
+    }
+    
+        public void handleMenuAlert8() {
+        
+        try {
+            
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(TrickController.class.getResource("/Presentation/alert8.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            //BuscaProdutosController buscaProdutosController= loader.getController();
+            Alert8Controller alert8Controller = loader.<Alert8Controller>getController();
 
             // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
             Stage dialogStage = new Stage();

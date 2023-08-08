@@ -359,8 +359,8 @@ public class ListadeProdutosController implements Initializable {
         // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
         dialogStage.show();
         
-         Stage stage =(Stage)buttonEditarProduto.getScene().getWindow();
-        stage.close();
+        // Stage stage =(Stage)buttonEditarProduto.getScene().getWindow();
+       // stage.close();
         
             
             }          
@@ -415,8 +415,8 @@ public class ListadeProdutosController implements Initializable {
         // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
         dialogStage.show();
         
-         Stage stage =(Stage)buttonEditarProduto.getScene().getWindow();
-        stage.close();
+       // Stage stage =(Stage)buttonEditarProduto.getScene().getWindow();
+       // stage.close();
         
             
             }          

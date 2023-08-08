@@ -217,9 +217,15 @@ public class Lista_VendaController implements Initializable {
     
     @FXML
     public void handleDetalhesVenda() throws IOException {
+        int selectedIndex = tableViewListaVenda.getSelectionModel().getSelectedIndex();
 
+        // Verifica se um produto foi selecionado na tabela
+        if (selectedIndex < 0) {
+            handleMenuAlert9(); // Função que exibe um alerta informando que um produto deve ser selecionado
+            return;
+        }
         try {
-            
+
             Venda venda =tableViewListaVenda.getItems().get(tableViewListaVenda.getSelectionModel().getSelectedIndex());
             labelCodVenda.setText(String.valueOf(venda.getCod_Venda()));
             //produto.setCod_produto(Integer.parseInt(labelCodProduto.getText()));
@@ -358,6 +364,30 @@ public class Lista_VendaController implements Initializable {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(TrickController.class.getResource("/Presentation/alert5.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("ALERTA");
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            dialogStage.setMaximized(false);
+            dialogStage.setResizable(false);
+
+            // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
+            dialogStage.show();
+
+        } catch (Exception ex) {
+            System.out.println("" + ex + ex.getLocalizedMessage());
+            System.out.println("" + ex.toString());
+        }
+    }
+    
+     public void handleMenuAlert9() {
+
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(TrickController.class.getResource("/Presentation/alert9.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
 
             // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)

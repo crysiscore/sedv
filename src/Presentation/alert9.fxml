@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+
+<AnchorPane id="AnchorPane" prefHeight="125.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Alert9Controller">
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="123.0" prefWidth="391.0">
+         <children>
+            <Label fx:id="labelAlert" layoutX="141.0" layoutY="37.0" prefHeight="17.0" prefWidth="117.0" text="SELECIONE A VENDA!" />
+            <Button fx:id="btnOK" layoutX="150.0" layoutY="80.0" mnemonicParsing="false" onAction="#fecharTela" prefHeight="28.0" prefWidth="100.0" style="-fx-background-radius: 12; -fx-background-color: #0b2d39;" text="OK" textFill="WHITE">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.5839694738388062" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
