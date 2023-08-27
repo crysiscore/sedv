@@ -250,8 +250,7 @@ public class VendaController implements Initializable {
             labelTotal.setText(somaSubtotal.toString());
             textfieldPago.setText(labelTotal.getText());
  
-    
-            
+
             
         });
     
@@ -299,7 +298,7 @@ public class VendaController implements Initializable {
             // Verifica se o novo valor inserido no TextField é diferente de vazio
             if (!newValue.isEmpty()) {
                 scheduleButtonAction(); //quando quiser que o botao acione rapido, é so comentar essa parte e descomentar a parte a seguir
-               // btnCalcular.fire(); 
+               btnCalcular.fire(); 
 
             }
         });
