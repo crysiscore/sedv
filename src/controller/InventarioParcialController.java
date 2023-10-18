@@ -5,7 +5,9 @@
  */
 package controller;
 
+
 import BussinessLogic.DetalhesVenda;
+import BussinessLogic.Inventario;
 import BussinessLogic.Produto;
 import BussinessLogic.Stock;
 import BussinessLogic.StockLevel;
@@ -13,6 +15,7 @@ import BussinessLogic.Usuario;
 import BussinessLogic.Venda;
 import DataAcessLayer.ProdutoDAO;
 import Model.DetalhesVendaModel;
+import Model.InventarioModel;
 import Service.ProdutosServicos;
 import java.io.IOException;
 import java.net.URL;
@@ -56,9 +59,10 @@ import javax.swing.JOptionPane;
  *
  * @author Neusia Hilario
  */
-public class BuscaProdutoVendaController implements Initializable {
+public class InventarioParcialController implements Initializable {
     
-    @FXML
+    
+     @FXML
     private Pane PanePane;
 
     @FXML
@@ -67,7 +71,7 @@ public class BuscaProdutoVendaController implements Initializable {
     @FXML
     private Button buttonCancelar;
     
-     @FXML
+    @FXML
     private TableView<Produto> tableviewProdutos;
 
     @FXML
@@ -82,6 +86,7 @@ public class BuscaProdutoVendaController implements Initializable {
     @FXML
     private TableColumn<Produto, Double> columnStock;
     
+
     @FXML
     private ImageView imageviewFotoProduto;
 
@@ -89,52 +94,72 @@ public class BuscaProdutoVendaController implements Initializable {
     private Label labelCodProduto;
 
     @FXML
-    private Label labelUsuario;
-    
-    @FXML
     private Label labelNomeProduto;
 
     @FXML
     private Label labelPrecoProduto;
-    
+
+    @FXML
+    private Label labelUsuario;
+
     @FXML
     private Label labelsubtotal;
+
     @FXML
     private Label labelsubtotal2;
+    
+     @FXML
+    private Label labelDiferenca;
+     
+       @FXML
+    private Label labelGeral;
+     
+     
+    @FXML
+    private Label labelStock;
+    
+    @FXML
+    private Label labelquantidadecontada;
 
     @FXML
     private TextField textfieldProcurarProduto;
-    
+
     @FXML
     private TextField textfieldQuantidadeProduto;
-
+    
+    
     Stock stock;
     Usuario usuario; 
     Produto produto;
     Venda venda;
     private DetalhesVendaModel detalhesVendaModel;
-    
+    private InventarioModel inventarioModel;
     ProdutosServicos servicoProdutos;
     ObservableList <Produto> produtoObservableList =FXCollections.observableArrayList();
    
 
     
-     public void initModel(DetalhesVendaModel model) {
-        if (this.detalhesVendaModel != null) {
+     public void initModel(InventarioModel model) {
+        if (this.inventarioModel != null) {
             throw new IllegalStateException("Model can only be initialized once");
         }
-        this.detalhesVendaModel = model;
+        this.inventarioModel = model;
     }
-    
-    /**
-     * Initializes the controller class.
-     */
+
+     
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
-
-        textfieldQuantidadeProduto.setVisible(false);
+         labelDiferenca.setText("0.0");
+         labelDiferenca.setVisible(false);
+         this.labelGeral.setVisible(false);
+       
+       
+       labelquantidadecontada.setVisible(false);
+      labelStock.setVisible(false);
+    
+     textfieldQuantidadeProduto.setVisible(false);
         setCellValueFromTableToTextField();
         
         ProdutoDAO produtodao = new ProdutoDAO();
@@ -234,6 +259,8 @@ public class BuscaProdutoVendaController implements Initializable {
                 labelCodProduto.setText(String.valueOf(pr.getCod_produto()));
                 labelNomeProduto.setText(pr.getNome());
                 labelPrecoProduto.setText(String.valueOf(pr.getPreco_unitario()));
+                labelStock.setText(String.valueOf(pr.stock.getUnidades_stock()));
+                labelquantidadecontada.setText(String.valueOf(pr.stock.getUnidades_stock()));
                 //produto.setCod_produto(Integer.parseInt(labelCodProduto.getText()));
                 labelCodProduto.setVisible(false);
                 labelPrecoProduto.setVisible(false);
@@ -256,49 +283,70 @@ public class BuscaProdutoVendaController implements Initializable {
     @FXML
     public void handleMenuItemAdicionarProdutoNaTabela() throws IOException {
         
+        
+ 
+          inventarioModel.setTipoDeInventario("Parcial");
+        
         int selectedIndex = tableviewProdutos.getSelectionModel().getSelectedIndex();
 
-        // Verifica se um produto foi selecionado na tabela
-        if (selectedIndex < 0) {
+  if (selectedIndex < 0) {
             handleMenuAlert1(); // Função que exibe um alerta informando que um produto deve ser selecionado
             return;
     }
-        Produto pr = tableviewProdutos.getItems().get(tableviewProdutos.getSelectionModel().getSelectedIndex());
-       textfieldQuantidadeProduto.setText("1");
         try {
-            if (textfieldQuantidadeProduto.getText().isEmpty()) {
-                handleMenuAlert3();
 
-            } else if(pr.stock.getUnidades_stock()>=Double.parseDouble(textfieldQuantidadeProduto.getText())) {
+            Integer Produto_Cod_Produto = Integer.parseInt(labelCodProduto.getText());
+            Double stock = Double.parseDouble(labelStock.getText());
+            String Nome_Produto = labelNomeProduto.getText();
+            Double Quantidade_Contada = Double.parseDouble(labelquantidadecontada.getText());
+            Double Diferenca = Double.parseDouble(labelDiferenca.getText());
 
-                Integer Produto_Cod_Produto = Integer.parseInt(labelCodProduto.getText());
-                Double Quantidade = Double.parseDouble(textfieldQuantidadeProduto.getText());
-                Double Preco = Double.parseDouble(labelPrecoProduto.getText());
-                String Nome_Produto = labelNomeProduto.getText();
-                Double Subtotal = Preco * Quantidade;
-                labelsubtotal.setText(Subtotal.toString());
-                Produto pro= new Produto();
-                
-                DetalhesVenda DV = new DetalhesVenda(Integer.parseInt(labelCodProduto.getText()),
-                        Double.parseDouble(labelPrecoProduto.getText()),
-                        Double.parseDouble(textfieldQuantidadeProduto.getText()), Double.parseDouble(labelsubtotal.getText()),
-                        labelNomeProduto.getText());
-                detalhesVendaModel.addStock(DV);
-              
-                Stage stage = (Stage) buttonAdicionarProduto.getScene().getWindow();
-                stage.close();
+            Produto pro = new Produto();
 
-            }else{
-                handleMenuAlert4();
-            }
-         
+            Inventario i = new Inventario(Integer.parseInt(labelCodProduto.getText()),
+                    labelNomeProduto.getText(),
+                    Double.parseDouble(labelStock.getText()),
+                    Double.parseDouble(labelquantidadecontada.getText()),
+                    Double.parseDouble(labelDiferenca.getText()));
+            inventarioModel.addInventario(i);
+
+            Stage stage = (Stage) buttonAdicionarProduto.getScene().getWindow();
+           // stage.close();
+
         } catch (Exception ex) {
 
             System.out.println("" + ex.toString());
         }
 
-      
     }
+
+
+@FXML
+    public void handleMenuItemAdicionarProdutoGeralNaTabela() throws IOException {
+          
+
+        inventarioModel.setTipoDeInventario("Geral");
+ 
+        try {
+
+            for (Produto produto : produtoObservableList) {
+                // Para cada produto na lista, crie uma instância de Inventario e adicione-a à sua model
+                Inventario inventario = new Inventario(produto.getCod_produto(), produto.getNome(), produto.getStock().getUnidades_stock(), produto.getStock().getUnidades_stock(), 0.0);
+                inventarioModel.addInventario(inventario);
+            }
+
+              
+            Stage stage = (Stage) buttonAdicionarProduto.getScene().getWindow();
+            stage.close();
+
+        } catch (Exception ex) {
+
+            System.out.println("" + ex.toString());
+        }
+
+    }    
+
+
               
     public void CancelButtonOnAction(ActionEvent event) {
         Stage stage = (Stage) buttonCancelar.getScene().getWindow();
@@ -378,3 +426,4 @@ public class BuscaProdutoVendaController implements Initializable {
         }
     }
 }
+

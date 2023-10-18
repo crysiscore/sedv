@@ -14,6 +14,7 @@ public class StockLevel {
 
     public Produto produto_Cod_Produto;
     public Double unidades_stock;
+    public Integer Cod_Produto;
 
     public Produto getProduto_Cod_Produto() {
         return produto_Cod_Produto;
@@ -21,6 +22,10 @@ public class StockLevel {
 
     public void setProduto_Cod_Produto(Produto produto_Cod_Produto) {
         this.produto_Cod_Produto = produto_Cod_Produto;
+    }
+
+    public Integer getCod_Produto() {
+        return Cod_Produto;
     }
     
     
@@ -33,4 +38,9 @@ public class StockLevel {
     public void setUnidades_stock(Double unidades_stock) {
         this.unidades_stock = unidades_stock;
     }
+    
+    
+    
+    
+    
 }

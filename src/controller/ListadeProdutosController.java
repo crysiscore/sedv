@@ -539,7 +539,8 @@ public class ListadeProdutosController implements Initializable {
   
         
         try{
-            JasperDesign jDesign = JRXmlLoader.load("C:\\Users\\Neusia Hilario\\Documents\\NetBeansProjects\\sedv\\src\\relatorios\\ListaProdutos_Blue.jrxml");
+             
+            JasperDesign jDesign = JRXmlLoader.load("src\\relatorios\\ListaProdutos_Blue.jrxml");
         
             JasperReport jReport = JasperCompileManager.compileReport(jDesign);
             

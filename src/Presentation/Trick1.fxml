@@ -149,6 +149,7 @@
                         <MenuItem fx:id="menuItemRelatoriosProdutosPoucoStock" mnemonicParsing="false" onAction="#handlePrintProdutosComPoucoStock" text="Produtos com pouco Stock" />
                         <MenuItem fx:id="menuItemProdutosExistentes" mnemonicParsing="false" onAction="#handleprintProdutosExistentes" text="Lista de Produtos Existentes" />
                         <MenuItem fx:id="menuItemVendasPorPeriodo" mnemonicParsing="false" onAction="#handlePrintVendaPorPeriodo" text="Lista de Vendas num Período" />
+                        <MenuItem fx:id="menumItemInventario" mnemonicParsing="false" onAction="#handleMenumItemInventario" text="Inventário" />
                      </items>
                   </Menu>
                </menus>

@@ -33,7 +33,7 @@ public class Stock {
     public void setStock(StockLevel stock) {
         this.stock = stock;
     }
- public Stock() {
+    public Stock() {
           }
 
     public Usuario getUser() {
@@ -53,17 +53,17 @@ public class Stock {
     }
 
 
-          public Stock(Integer produto_Cod_Produto, Integer quantidade_recebida, Date data_entrada,
+     public Stock(Integer produto_Cod_Produto, Integer quantidade_recebida, Date data_entrada,
             Integer usuario_Cod_Funcionario, String numero_lote, String fabricante ){
            
              //this.prod=prod;
-             this.produto_Cod_Produto= produto_Cod_Produto;
-           this.quantidade_recebida=quantidade_recebida;
-           this.data_entrada=data_entrada;
+          this.produto_Cod_Produto= produto_Cod_Produto;
+          this.quantidade_recebida=quantidade_recebida;
+          this.data_entrada=data_entrada;
           this.usuario_Cod_Funcionario=usuario_Cod_Funcionario;
           // this.prod = prod;
-           this.numero_lote=numero_lote;
-           this.fabricante=fabricante;
+          this.numero_lote=numero_lote;
+          this.fabricante=fabricante;
           }
       
   

@@ -5,8 +5,10 @@
  */
 package DataAcessLayer;
 
+import BussinessLogic.Inventario;
 import BussinessLogic.Produto;
 import BussinessLogic.Stock;
+import BussinessLogic.StockLevel;
 import static DataAcessLayer.conexao.getConnection;
 import Model.StockModel;
 import java.sql.CallableStatement;
@@ -148,6 +150,23 @@ public class StockDAO {
                      Logger.getLogger(StockDAO.class.getName()).log(Level.SEVERE, null, ex);
                     }
   }
+
+    public void ActualizarStock(ObservableList<Inventario> stock) throws SQLException {
+
+        this.cs = this.connect.prepareCall("{call ActualizarStock(?,?)}");
+        try {
+            for (int i = 0; i < stock.size(); i++) {
+                this.cs.setInt(1, stock.get(i).getCod_Produto());
+
+                this.cs.setDouble(2, stock.get(i).getQuantidade_Contada());
+
+                this.cs.executeQuery();
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StockDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
        
        
        public ResultSet getStockTotal(int codProd) throws SQLException {
