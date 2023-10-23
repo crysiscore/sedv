@@ -59,7 +59,7 @@ CREATE TABLE `detalhesvenda` (
   KEY `fk_Produto_has_Venda_Venda1_idx` (`Venda_Cod_venda`),
   KEY `fk_Produto_has_Venda_Produto1_idx` (`Produto_Cod_Produto`),
   CONSTRAINT `detalhesvenda_ibfk_3` FOREIGN KEY (`Produto_Cod_Produto`) REFERENCES `produto` (`Cod_Produto`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +68,7 @@ CREATE TABLE `detalhesvenda` (
 
 LOCK TABLES `detalhesvenda` WRITE;
 /*!40000 ALTER TABLE `detalhesvenda` DISABLE KEYS */;
-INSERT INTO `detalhesvenda` VALUES (10,11,40,180,1,180),(11,63,40,120,1,120),(12,11,41,180,6,1080),(13,12,41,235,3,705),(14,63,42,120,2,240),(15,63,43,120,1,120),(26,63,47,120,2,240),(27,63,48,120,1,120),(28,11,48,180,2,360),(29,12,49,235,2,470),(30,11,50,180,2,360),(31,12,50,235,2,470),(32,63,51,120,1,120),(33,63,52,120,1,120),(34,63,53,120,1,120),(35,63,54,120,1,120);
+INSERT INTO `detalhesvenda` VALUES (10,11,40,180,1,180),(11,63,40,120,1,120),(12,11,41,180,6,1080),(13,12,41,235,3,705),(14,63,42,120,2,240),(15,63,43,120,1,120),(26,63,47,120,2,240),(27,63,48,120,1,120),(28,11,48,180,2,360),(29,12,49,235,2,470),(30,11,50,180,2,360),(31,12,50,235,2,470),(32,63,51,120,1,120),(33,63,52,120,1,120),(34,63,53,120,1,120),(35,63,54,120,1,120),(36,63,55,120,1,120),(37,12,55,235,1,235),(38,11,56,180,1,180),(39,12,56,235,1,235);
 /*!40000 ALTER TABLE `detalhesvenda` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -90,6 +90,82 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `inventario`
+--
+
+DROP TABLE IF EXISTS `inventario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `inventario` (
+  `ID_inventario` int NOT NULL AUTO_INCREMENT,
+  `data` date DEFAULT NULL,
+  `usuario` int DEFAULT NULL,
+  `tipo_inventario` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ID_inventario`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `inventario`
+--
+
+LOCK TABLES `inventario` WRITE;
+/*!40000 ALTER TABLE `inventario` DISABLE KEYS */;
+INSERT INTO `inventario` VALUES (4,'2023-09-29',7,'Parcial'),(5,'2023-09-30',7,'Parcial'),(6,'2023-10-13',7,'Parcial'),(7,'2023-10-13',7,'Parcial'),(8,'2023-10-13',7,'Geral');
+/*!40000 ALTER TABLE `inventario` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `inventario_AFTER_INSERT` AFTER INSERT ON `inventario` FOR EACH ROW BEGIN
+UPDATE mydb.inventario_item as ii
+
+        SET ii.codigo_inventario = new.ID_inventario
+        WHERE ii.codigo_inventario  = 0;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `inventario_item`
+--
+
+DROP TABLE IF EXISTS `inventario_item`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `inventario_item` (
+  `ID_inventario_item` int NOT NULL AUTO_INCREMENT,
+  `codigo_produto` int DEFAULT NULL,
+  `codigo_inventario` int DEFAULT NULL,
+  `quantidade_existente` double DEFAULT NULL,
+  `quantidade_contada` double DEFAULT NULL,
+  `diferenca` double DEFAULT NULL,
+  PRIMARY KEY (`ID_inventario_item`),
+  KEY `codigo_produto` (`codigo_produto`),
+  CONSTRAINT `inventario_item_ibfk_1` FOREIGN KEY (`codigo_produto`) REFERENCES `produto` (`Cod_Produto`)
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `inventario_item`
+--
+
+LOCK TABLES `inventario_item` WRITE;
+/*!40000 ALTER TABLE `inventario_item` DISABLE KEYS */;
+INSERT INTO `inventario_item` VALUES (1,12,5,19,20,-1),(2,74,5,0,0,0),(3,21,5,0,10,-10),(4,11,5,39,40,-1),(5,11,6,0,20,-20),(6,42,7,0,0,0),(7,45,7,0,0,0),(8,47,7,0,0,0),(9,52,7,0,0,0),(10,53,7,0,0,0),(11,62,7,0,0,0),(12,63,7,0,0,0),(13,74,7,0,0,0),(14,11,7,20,21,-1),(15,12,7,0,32,-32),(16,21,7,0,0,0),(17,22,7,0,0,0),(18,25,7,0,0,0),(19,26,7,0,0,0),(20,27,7,0,0,0),(21,28,7,0,0,0),(22,29,7,0,0,0),(23,30,7,0,0,0),(24,31,7,0,0,0),(25,32,7,0,0,0),(26,33,7,0,0,0),(27,34,7,0,0,0),(28,35,7,0,0,0),(29,36,7,0,0,0),(30,37,7,0,0,0),(31,38,7,0,0,0),(32,39,7,0,0,0),(33,40,7,0,0,0),(34,41,7,0,0,0),(35,43,7,0,0,0),(36,48,7,0,0,0),(37,49,7,0,0,0),(38,50,7,0,0,0),(39,51,7,0,0,0),(40,61,7,0,0,0),(41,64,7,0,0,0),(42,65,7,0,0,0),(43,71,7,0,0,0),(44,73,7,0,0,0),(45,75,7,0,0,0),(46,76,7,0,0,0),(47,46,7,0,0,0),(48,42,8,0,0,0),(49,45,8,0,0,0),(50,47,8,0,0,0),(51,52,8,0,0,0),(52,53,8,0,0,0),(53,62,8,0,0,0),(54,63,8,0,0,0),(55,74,8,0,0,0),(56,11,8,22,23,-1),(57,12,8,32,0,0),(58,21,8,0,0,0),(59,22,8,0,0,0),(60,25,8,0,0,0),(61,26,8,0,0,0),(62,27,8,0,0,0),(63,28,8,0,0,0),(64,29,8,0,0,0),(65,30,8,0,0,0),(66,31,8,0,0,0),(67,32,8,0,0,0),(68,33,8,0,0,0),(69,34,8,0,0,0),(70,35,8,0,0,0),(71,36,8,0,0,0),(72,37,8,0,0,0),(73,38,8,0,0,0),(74,39,8,0,0,0),(75,40,8,0,0,0),(76,41,8,0,0,0),(77,43,8,0,0,0),(78,48,8,0,0,0),(79,49,8,0,0,0),(80,50,8,0,0,0),(81,51,8,0,0,0),(82,61,8,0,0,0),(83,64,8,0,0,0),(84,65,8,0,0,0),(85,71,8,0,0,0),(86,73,8,0,0,0),(87,75,8,0,0,0),(88,76,8,0,0,0),(89,46,8,0,0,0);
+/*!40000 ALTER TABLE `inventario_item` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `previlegio`
@@ -140,7 +216,7 @@ CREATE TABLE `produto` (
   KEY `fk_produto_catgoria1` (`categoria`),
   CONSTRAINT `produto_ibfk_1` FOREIGN KEY (`unidade`) REFERENCES `unidade` (`idUnidade`) ON DELETE SET NULL ON UPDATE SET NULL,
   CONSTRAINT `produto_ibfk_2` FOREIGN KEY (`categoria`) REFERENCES `categoria` (`idCategoria`) ON DELETE SET NULL ON UPDATE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149,7 +225,7 @@ CREATE TABLE `produto` (
 
 LOCK TABLES `produto` WRITE;
 /*!40000 ALTER TABLE `produto` DISABLE KEYS */;
-INSERT INTO `produto` VALUES (11,'Nivea For Man',180,11,14,'Loção corporal','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\nivea.jpg'),(12,'Sabao Maeva',235,11,15,'Sabão C','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\sabao.jpg'),(21,'Tubo PVC 50',850,11,16,'Tubo de canalizacao','C:\\sedv\\img\\tubo.jpg'),(22,'Alicate de Corte Universal',250,11,16,'Alicate de Corte Universal',NULL),(25,'Chapa de Zinco IBR',535,11,18,'Chapa de Zinco IBR',NULL),(26,'Regua Modular',495,11,19,'Regua Modular','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\depositphotos_25269157-stock-photo-white-plus-sign-isolated-on.jpg'),(27,'Ferro 8 SA',128,11,18,'Ferro 8 SA',NULL),(28,'Cimento Limak 42',380,11,18,'Cimento Limak 42',NULL),(29,'Cimento Limak 32',267,11,18,'Cimento Limak 32',NULL),(30,'Martelo',550,11,19,'Martelo',NULL),(31,'Chave de Fenda',250,11,19,'Chave de fenda',NULL),(32,'Chave de Fenda',300,11,19,'Chave de Fenda',NULL),(33,'Chave Estrela',350,11,19,'Chave Estrela',NULL),(34,'Chave Estrelao',330,11,19,'Chave Estrelao',NULL),(35,'Chavinha',200,11,19,'Chavinha',NULL),(36,'Chaves',100,11,16,'chaves',NULL),(37,'ddd',333,11,15,'cc',NULL),(38,'Tinta 5L',2000,11,18,'Tinta 5L','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\carrinho-de-compras-vermelho-do-mercado-conceito-d-do-disconto-30551366.jpg'),(39,'Tinta 1L',400,11,18,'Tinta 1L',NULL),(40,'PortaChaves',200,11,18,'PortaChaves',NULL),(41,'Sabao Universal',50,11,15,'sabao',NULL),(42,'OMO',450,10,15,'sabao em pó','C:\\\\sedv\\\\img\\\\omo.jpg'),(43,'ddd',33,11,15,'sss',NULL),(45,'uvinha',530,10,13,'fruta','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\Grapes-PNG-Transparent-Image.png'),(46,'orange',230,12,13,'fruta','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\Laranja.jpg.png'),(47,'uva',178,10,13,'fruta','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\Grapes-PNG-Transparent-Image.png.png'),(48,'chaveEstrelinha',470,11,19,'chaveEstrelinha','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\chave fenda.png'),(49,'chaveEstrelinha2',500,11,19,'chaveEstrelinha2','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\chave fenda.png.png'),(50,'bilha',44,11,18,'bilha',NULL),(51,'ameixa',20,11,13,'fruta','C:\\\\sedv\\\\Grapes-PNG-Transparent-Image.png'),(52,'Ameixas',33,10,13,'fruits','C:\\\\sedvGrapes-PNG-Transparent-Image.png'),(53,'orang',33,10,13,'frutas','C:\\\\sedv\\\\Laranja.jpg'),(61,'Chave de Fenda',444,11,19,'ferramenta','C:\\sedv\\img\\chave fenda.png'),(62,'dsdsd',33,10,14,'ddsds',NULL),(63,'Laranja',120,10,13,'fruta','C:\\sedv\\img\\Laranja.jpg'),(64,'chave estrela5',600,11,18,'ferrameta','C:\\sedv\\img\\chave estrela.jpg'),(65,'ass',333,11,15,'sss',NULL),(71,'Uva',200,11,14,'fruta','C:\\sedv\\img\\Grapes-PNG-Transparent-Image.png'),(73,'Uva',200,11,14,'fruta',NULL);
+INSERT INTO `produto` VALUES (11,'Nivea For Man',180,11,14,'Loção corporal','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\nivea.jpg'),(12,'Sabao Maeva',235,11,15,'Sabão C','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\sabao.jpg'),(21,'Tubo PVC 50',850,11,16,'Tubo de canalizacao','C:\\sedv\\img\\tubo.jpg'),(22,'Alicate de Corte Universal',250,11,16,'Alicate de Corte Universal',NULL),(25,'Chapa de Zinco IBR',535,11,18,'Chapa de Zinco IBR',NULL),(26,'Regua Modular',495,11,19,'Regua Modular','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\depositphotos_25269157-stock-photo-white-plus-sign-isolated-on.jpg'),(27,'Ferro 8 SA',128,11,18,'Ferro 8 SA',NULL),(28,'Cimento Limak 42',380,11,18,'Cimento Limak 42',NULL),(29,'Cimento Limak 32',267,11,18,'Cimento Limak 32',NULL),(30,'Martelo',550,11,19,'Martelo',NULL),(31,'Chave de Fenda',250,11,19,'Chave de fenda',NULL),(32,'Chave de Fenda',300,11,19,'Chave de Fenda',NULL),(33,'Chave Estrela',350,11,19,'Chave Estrela',NULL),(34,'Chave Estrelao',330,11,19,'Chave Estrelao',NULL),(35,'Chavinha',200,11,19,'Chavinha',NULL),(36,'Chaves',100,11,16,'chaves',NULL),(37,'ddd',333,11,15,'cc',NULL),(38,'Tinta 5L',2000,11,18,'Tinta 5L','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\carrinho-de-compras-vermelho-do-mercado-conceito-d-do-disconto-30551366.jpg'),(39,'Tinta 1L',400,11,18,'Tinta 1L',NULL),(40,'PortaChaves',200,11,18,'PortaChaves',NULL),(41,'Sabao Universal',50,11,15,'sabao',NULL),(42,'OMO',450,10,15,'sabao em pó','C:\\\\sedv\\\\img\\\\omo.jpg'),(43,'ddd',33,11,15,'sss',NULL),(45,'uvinha',530,10,13,'fruta','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\Grapes-PNG-Transparent-Image.png'),(46,'orange',230,12,13,'fruta','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\Laranja.jpg.png'),(47,'uva',178,10,13,'fruta','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\Grapes-PNG-Transparent-Image.png.png'),(48,'chaveEstrelinha',470,11,19,'chaveEstrelinha','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\chave fenda.png'),(49,'chaveEstrelinha2',500,11,19,'chaveEstrelinha2','C:\\Users\\Neusia\\Documents\\NetBeansProjects\\sedv\\src\\ImagensDeProdutos\\chave fenda.png.png'),(50,'bilha',44,11,18,'bilha',NULL),(51,'ameixa',20,11,13,'fruta','C:\\\\sedv\\\\Grapes-PNG-Transparent-Image.png'),(52,'Ameixas',33,10,13,'fruits','C:\\\\sedvGrapes-PNG-Transparent-Image.png'),(53,'orang',33,10,13,'frutas','C:\\\\sedv\\\\Laranja.jpg'),(61,'Chave de Fenda',444,11,19,'ferramenta','C:\\sedv\\img\\chave fenda.png'),(62,'dsdsd',33,10,14,'ddsds',NULL),(63,'Laranja',120,10,21,'fruta','C:\\sedv\\img\\Laranja.jpg'),(64,'chave estrela5',600,11,18,'ferrameta','C:\\sedv\\img\\chave estrela.jpg'),(65,'ass',333,11,15,'sss',NULL),(71,'Uva',200,11,14,'fruta','C:\\sedv\\img\\Grapes-PNG-Transparent-Image.png'),(73,'Uva',200,11,14,'fruta',NULL),(74,'sasa',11,10,14,'ssdsds',NULL),(75,'dsds',12,11,14,'dsds',NULL),(76,'chave',100,11,19,'ferramenta','C:\\sedv\\img\\chave estrela.jpg');
 /*!40000 ALTER TABLE `produto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -188,7 +264,7 @@ CREATE TABLE `produto_history` (
   KEY `cod_usuario` (`cod_usuario`),
   CONSTRAINT `produto_history_ibfk_1` FOREIGN KEY (`cod_Produto`) REFERENCES `produto` (`Cod_Produto`),
   CONSTRAINT `produto_history_ibfk_2` FOREIGN KEY (`cod_usuario`) REFERENCES `usuario` (`Cod_Funcionario`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -197,7 +273,7 @@ CREATE TABLE `produto_history` (
 
 LOCK TABLES `produto_history` WRITE;
 /*!40000 ALTER TABLE `produto_history` DISABLE KEYS */;
-INSERT INTO `produto_history` VALUES (1,'2023-07-20',11,39,12,7),(2,'2023-07-20',11,41,2,7);
+INSERT INTO `produto_history` VALUES (1,'2023-07-20',11,39,12,7),(2,'2023-07-20',11,41,2,7),(3,'2023-10-05',12,31,12,7),(4,'2023-10-13',11,22,1,7);
 /*!40000 ALTER TABLE `produto_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -221,7 +297,7 @@ CREATE TABLE `stock` (
   KEY `fk_stock_usuario1_idx` (`usuario_Cod_Funcionario`),
   CONSTRAINT `fk_stock_produto1` FOREIGN KEY (`produto_Cod_Produto`) REFERENCES `produto` (`Cod_Produto`),
   CONSTRAINT `fk_stock_usuario1` FOREIGN KEY (`usuario_Cod_Funcionario`) REFERENCES `usuario` (`Cod_Funcionario`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -230,7 +306,7 @@ CREATE TABLE `stock` (
 
 LOCK TABLES `stock` WRITE;
 /*!40000 ALTER TABLE `stock` DISABLE KEYS */;
-INSERT INTO `stock` VALUES (1,20,'2022-02-18',11,7,'zbsdhdfdd','zbsdhdfdd'),(2,10,'2022-02-21',12,8,'dfdf','cerlac'),(3,23,'2022-05-10',11,7,'ewew','Mylan'),(4,2,'2022-04-12',11,7,'ee','dd'),(5,2,'2022-04-12',11,7,'ee','dd'),(6,2,'2022-04-12',11,7,'ee','dd'),(7,3,'2022-04-12',11,7,'ff','ff'),(8,3,'2022-04-12',12,7,'ee','fffg'),(9,3,'2022-04-12',11,7,'ffff','xddd'),(10,2,'2022-04-12',12,7,'ee','dd'),(11,2,'2022-04-12',11,7,'ww','dd'),(12,2,'2022-04-05',12,7,'ww','ee'),(13,4,'2022-05-15',11,7,'mjjmjm','kkk'),(14,3,'2022-05-17',11,7,'fffddddddd','fffffvvvvvvvvvv'),(15,7,'2022-05-17',12,7,'kkkkkk','dsdd'),(16,3,'2022-05-19',12,7,'ee','dd'),(17,3,'2022-05-19',12,7,'eee','dd'),(18,3,'2022-05-19',12,7,'ww','ee'),(19,3,'2022-05-19',11,7,'jjjjjjjj','ww'),(20,6,'2022-06-30',11,7,'dfdf','rfrfrf'),(21,3,'2022-06-30',11,7,'kjk','hhghg'),(22,120,'2023-04-13',63,7,'21221','dssds'),(23,5,'2023-05-10',12,7,'333','fdd'),(24,3,'2023-05-12',12,7,'eee','vffv'),(25,20,'2023-06-13',63,7,'rgtgtgt','efrfrfr'),(26,12,'2023-07-20',11,7,'sdsd','dsds'),(27,2,'2023-07-20',11,7,'dssd','sdds');
+INSERT INTO `stock` VALUES (1,20,'2022-02-18',11,7,'zbsdhdfdd','zbsdhdfdd'),(2,10,'2022-02-21',12,8,'dfdf','cerlac'),(3,23,'2022-05-10',11,7,'ewew','Mylan'),(4,2,'2022-04-12',11,7,'ee','dd'),(5,2,'2022-04-12',11,7,'ee','dd'),(6,2,'2022-04-12',11,7,'ee','dd'),(7,3,'2022-04-12',11,7,'ff','ff'),(8,3,'2022-04-12',12,7,'ee','fffg'),(9,3,'2022-04-12',11,7,'ffff','xddd'),(10,2,'2022-04-12',12,7,'ee','dd'),(11,2,'2022-04-12',11,7,'ww','dd'),(12,2,'2022-04-05',12,7,'ww','ee'),(13,4,'2022-05-15',11,7,'mjjmjm','kkk'),(14,3,'2022-05-17',11,7,'fffddddddd','fffffvvvvvvvvvv'),(15,7,'2022-05-17',12,7,'kkkkkk','dsdd'),(16,3,'2022-05-19',12,7,'ee','dd'),(17,3,'2022-05-19',12,7,'eee','dd'),(18,3,'2022-05-19',12,7,'ww','ee'),(19,3,'2022-05-19',11,7,'jjjjjjjj','ww'),(20,6,'2022-06-30',11,7,'dfdf','rfrfrf'),(21,3,'2022-06-30',11,7,'kjk','hhghg'),(22,120,'2023-04-13',63,7,'21221','dssds'),(23,5,'2023-05-10',12,7,'333','fdd'),(24,3,'2023-05-12',12,7,'eee','vffv'),(25,20,'2023-06-13',63,7,'rgtgtgt','efrfrfr'),(26,12,'2023-07-20',11,7,'sdsd','dsds'),(27,2,'2023-07-20',11,7,'dssd','sdds'),(28,12,'2023-10-05',12,7,'sdde','dedede'),(29,1,'2023-10-13',11,7,'hdhdh','ddd');
 /*!40000 ALTER TABLE `stock` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -286,7 +362,7 @@ CREATE TABLE `stocklevel` (
   PRIMARY KEY (`idstocklevel`),
   KEY `fk_stocklevel_produto1_idx` (`produto_Cod_Produto`),
   CONSTRAINT `fk_stocklevel_produto1` FOREIGN KEY (`produto_Cod_Produto`) REFERENCES `produto` (`Cod_Produto`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -295,7 +371,7 @@ CREATE TABLE `stocklevel` (
 
 LOCK TABLES `stocklevel` WRITE;
 /*!40000 ALTER TABLE `stocklevel` DISABLE KEYS */;
-INSERT INTO `stocklevel` VALUES (1,41,11),(2,21,12),(3,0,21),(4,0,22),(7,0,25),(8,0,26),(9,0,27),(10,0,28),(11,0,29),(12,0,30),(13,0,31),(14,0,32),(15,0,33),(16,0,34),(17,0,35),(18,0,36),(19,0,37),(20,0,38),(21,0,39),(22,0,40),(23,0,41),(24,0,42),(25,0,43),(27,0,45),(28,0,46),(29,0,47),(30,0,48),(31,0,49),(32,0,50),(33,0,51),(34,0,52),(35,0,53),(43,0,61),(44,0,62),(45,109,63),(46,0,64),(47,0,65),(53,0,71),(55,0,73);
+INSERT INTO `stocklevel` VALUES (1,21,11),(2,19,12),(3,0,21),(4,0,22),(7,0,25),(8,0,26),(9,0,27),(10,0,28),(11,0,29),(12,0,30),(13,0,31),(14,0,32),(15,0,33),(16,0,34),(17,0,35),(18,0,36),(19,0,37),(20,0,38),(21,0,39),(22,0,40),(23,0,41),(24,0,42),(25,0,43),(27,0,45),(28,0,46),(29,0,47),(30,0,48),(31,0,49),(32,0,50),(33,0,51),(34,12,52),(35,0,53),(43,0,61),(44,0,62),(45,30,63),(46,0,64),(47,0,65),(53,0,71),(55,0,73),(56,0,74),(57,0,75),(58,0,76);
 /*!40000 ALTER TABLE `stocklevel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -368,7 +444,7 @@ CREATE TABLE `venda` (
   PRIMARY KEY (`Cod_venda`),
   KEY `fk_venda_usuario1` (`usuario_Cod_Funcionario`),
   CONSTRAINT `venda_ibfk_1` FOREIGN KEY (`usuario_Cod_Funcionario`) REFERENCES `usuario` (`Cod_Funcionario`) ON DELETE SET NULL ON UPDATE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -377,7 +453,7 @@ CREATE TABLE `venda` (
 
 LOCK TABLES `venda` WRITE;
 /*!40000 ALTER TABLE `venda` DISABLE KEYS */;
-INSERT INTO `venda` VALUES (40,'2023-06-13',300,'Neu',7,123,'MPESA'),(41,'2023-06-13',1785,'Nadia',7,1234,'CASH'),(42,'2023-06-14',240,'Neusia',7,12,'CARTÃO DE CRÉDITO'),(43,'2023-06-14',120,'neu',7,12,'CASH'),(47,'2023-06-19',240,NULL,7,NULL,'CARTÃO DE CRÉDITO'),(48,'2023-06-29',480,NULL,7,NULL,'MPESA'),(49,'2023-06-30',470,NULL,7,NULL,'CASH'),(50,'2023-07-06',830,NULL,7,NULL,'MPESA'),(51,'2023-07-06',120,NULL,7,NULL,'CASH'),(52,'2023-07-13',120,NULL,7,NULL,'MPESA'),(53,'2023-07-18',120,NULL,7,NULL,'CASH'),(54,'2023-07-20',120,NULL,7,NULL,'CARTÃO DE CRÉDITO');
+INSERT INTO `venda` VALUES (40,'2023-06-13',300,'Neu',7,123,'MPESA'),(41,'2023-06-13',1785,'Nadia',7,1234,'CASH'),(42,'2023-06-14',240,'Neusia',7,12,'CARTÃO DE CRÉDITO'),(43,'2023-06-14',120,'neu',7,12,'CASH'),(47,'2023-06-19',240,NULL,7,NULL,'CARTÃO DE CRÉDITO'),(48,'2023-06-29',480,NULL,7,NULL,'MPESA'),(49,'2023-06-30',470,NULL,7,NULL,'CASH'),(50,'2023-07-06',830,NULL,7,NULL,'MPESA'),(51,'2023-07-06',120,NULL,7,NULL,'CASH'),(52,'2023-07-13',120,NULL,7,NULL,'MPESA'),(53,'2023-07-18',120,NULL,7,NULL,'CASH'),(54,'2023-07-20',120,NULL,7,NULL,'CARTÃO DE CRÉDITO'),(55,'2023-10-05',355,NULL,7,NULL,'CARTÃO DE CRÉDITO'),(56,'2023-10-13',415,'neusiahilario',7,14256722,'MPESA');
 /*!40000 ALTER TABLE `venda` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -408,6 +484,29 @@ DELIMITER ;
 --
 -- Dumping routines for database 'mydb'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `ActualizarStock` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarStock`(IN Codigo int ,In Stock Double)
+BEGIN
+
+DECLARE exit handler for sqlexception
+SELECT 'Erro ao Actualizar Stock' AS status_execucao;
+UPDATE `stocklevel` SET  unidades_stock=Stock WHERE stocklevel.produto_Cod_Produto = Codigo;
+select 'Sucesso' as status_execucao;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `AdicionarStock` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -893,12 +992,12 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Listagemdeproduto`()
 BEGIN
 SELECT distinct `Cod_Produto` , P.`nome`,`preco_unitario`, C.nome as Categoria, U.descricao_unidade AS Unidade, P.descricao, foto, st.unidades_stock
- FROM produto P, categoria C, unidade U, stocklevel St
+ FROM produto P, categoria C, unidade U, stocklevel st
  WHERE P.`unidade`=U.idUnidade and P.`categoria`=C.idCategoria and st.produto_Cod_Produto= P.Cod_Produto;
 END ;;
 DELIMITER ;
@@ -1341,6 +1440,48 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Registar_Inventario` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Registar_Inventario`(IN Data date, IN User int , In Tipo_Inventario varchar(20))
+BEGIN
+INSERT INTO `mydb`.`inventario` (`ID_inventario`, `data`, `usuario`, `tipo_inventario`) VALUES (NULL, Data, User, Tipo_Inventario);
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Registar_Inventario_Item` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Registar_Inventario_Item`(IN Cod_Prod INT, In Quantidade_Existente Double, IN Quantidade_Contada double, IN Diferenca DOUBLE)
+BEGIN
+
+INSERT INTO `mydb`.`inventario_item` (`ID_inventario_item`, `codigo_produto`, `codigo_inventario`, `quantidade_existente`, `quantidade_contada`, diferenca ) VALUES (NULL, Cod_Prod, "0", Quantidade_Existente, Quantidade_Contada, Diferenca);
+
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `SearchProdutoVenda` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -1495,4 +1636,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-24 17:51:50
+-- Dump completed on 2023-10-18 11:10:13
