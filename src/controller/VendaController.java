@@ -24,7 +24,9 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -67,6 +69,14 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.converter.DoubleStringConverter;
 import javax.swing.JOptionPane;
+import jdbc.ConnectionFactory;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  * FXML Controller class
@@ -250,8 +260,7 @@ public class VendaController implements Initializable {
             labelTotal.setText(somaSubtotal.toString());
             textfieldPago.setText(labelTotal.getText());
  
-    
-            
+
             
         });
     
@@ -299,7 +308,7 @@ public class VendaController implements Initializable {
             // Verifica se o novo valor inserido no TextField é diferente de vazio
             if (!newValue.isEmpty()) {
                 scheduleButtonAction(); //quando quiser que o botao acione rapido, é so comentar essa parte e descomentar a parte a seguir
-               // btnCalcular.fire(); 
+              // btnCalcular.fire(); 
 
             }
         });
@@ -378,8 +387,8 @@ public class VendaController implements Initializable {
                 labelname.getText());
         detalhesVendaModel.addStock(DV);
             
-        
-                limparcampos();
+        textFieldPesquisaProdutos1.clear();
+               // limparcampos();
               
     }
         
@@ -488,6 +497,7 @@ public class VendaController implements Initializable {
                 JOptionPane.showMessageDialog(null, "A venda foi Cadastrada com Sucesso!");
                 tableViewListaProdutos.getItems().clear();
                 limparcampos();
+                 printRecibo();
                 
             } else if (response == JOptionPane.NO_OPTION) {
                 JOptionPane.showMessageDialog(null, "A venda não foi Cadastrada!");
@@ -536,6 +546,7 @@ public class VendaController implements Initializable {
                 dao.RegistarVenda(venda);
                 JOptionPane.showMessageDialog(null, "A venda foi Cadastrada com Sucesso!");
                 tableViewListaProdutos.getItems().clear();
+                 printRecibo();
                 limparcampos();
                 
             } else if (response == JOptionPane.NO_OPTION) {
@@ -548,6 +559,8 @@ public class VendaController implements Initializable {
   
         
     }
+        
+       
     }
     
     public void handleMenuAlert() {
@@ -786,4 +799,24 @@ public class VendaController implements Initializable {
       
 
      }
+    
+        
+       public void printRecibo(){
+  
+        
+        try{
+            
+             JasperDesign jDesign = JRXmlLoader.load("src\\relatorios\\Recibo2.jrxml");
+            JasperReport jReport = JasperCompileManager.compileReport(jDesign);
+            
+            JasperPrint jPrint = JasperFillManager.fillReport(jReport, null, ConnectionFactory.getSakilaConnection());
+            
+            JasperViewer viewer = new JasperViewer(jPrint, false);
+            
+            viewer.setTitle("Lista de Produtos");
+            viewer.show();
+            
+        }catch(Exception e){}
+    }
+        
 }

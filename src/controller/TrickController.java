@@ -129,6 +129,9 @@ public class TrickController implements Initializable {
     private MenuItem menuItemVendasNovaVenda;
     
     @FXML
+    private MenuItem menumItemInventario;
+    
+    @FXML
     private MenuBar menubarvendas;
     
     @FXML
@@ -429,6 +432,47 @@ public class TrickController implements Initializable {
             System.out.println("" + ex.toString());
         }
     }
+       
+       
+        public void handleMenumItemInventario(){
+          
+        try {
+          String codUsuario = this.labelUserCod.getText();
+      
+          
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(TrickController.class.getResource("/Presentation/InventarioComProdutos.fxml"));
+        
+        AnchorPane page = (AnchorPane) loader.load();
+        
+        InventarioComProdutosController inventarioComProdutosController= loader.<InventarioComProdutosController>getController();
+
+         
+       usuarioServicos = new UsuarioServicos();
+        Usuario selectedUsuario = new Usuario();
+      selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
+      inventarioComProdutosController.receberdadosUsuario(selectedUsuario);
+        // tabelaAdicaoProdutoController.desabilitabotoes();
+        //buscaProdutosController.receberdadosUsuario(selectedUsuario);
+        // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Vendas");
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+        dialogStage.setMaximized(false);
+        dialogStage.setResizable(false);
+        
+        // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
+        dialogStage.show();
+          }
+          catch (Exception ex) {
+           System.out.println("" + ex + ex.getLocalizedMessage());
+                System.out.println("" + ex.toString());
+            } 
+             }
+
+          
+   
      
        public void handleprintProdutosExistentes(){
   
