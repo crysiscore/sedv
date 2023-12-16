@@ -122,6 +122,21 @@ import java.sql.Blob;
 /*  77 */     return this.rs;
 /*     */   }
 /*     */  
+              public ResultSet ProdutoCompoucoStock() throws SQLException {
+/*  74 */     this.cs = this.connect.prepareCall("{call  produtos_com_pouco_stock()}");
+/*  75 */     this.rs = this.cs.executeQuery();
+/*     */     
+/*  77 */     return this.rs;
+/*     */   }
+             
+               public ResultSet ProdutosExistentes() throws SQLException {
+/*  74 */     this.cs = this.connect.prepareCall("{call  ProdutosExistentes()}");
+/*  75 */     this.rs = this.cs.executeQuery();
+/*     */     
+/*  77 */     return this.rs;
+/*     */   }
+             
+              
 /*     */   public ResultSet ListaStockLeveldoProduto() throws SQLException {
 /*  74 */     this.cs = this.connect.prepareCall("{call  ListaStockLeveldoProduto()()}");
 /*  75 */     this.rs = this.cs.executeQuery();

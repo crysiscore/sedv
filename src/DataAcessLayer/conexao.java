@@ -2,6 +2,7 @@
 /*    */ 
 /*    */ import java.sql.Connection;
 /*    */ import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 /*    */ import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -70,7 +71,12 @@ import javax.swing.JOptionPane;
 /*    */   }
 /*    */ 
 /*    */ 
-/*    */   ReadWriteTextFile rwTextFile = new ReadWriteTextFile();
+/*    */
+
+    public static PreparedStatement prepareStatement(String sql) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+ ReadWriteTextFile rwTextFile = new ReadWriteTextFile();
 
     final static String ficheiro_gravado = "C:\\sedv\\credenciaisConn.txt";
     

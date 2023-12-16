@@ -5,6 +5,7 @@ import BussinessLogic.Venda;
 import com.sun.javafx.collections.MappingChange.Map;
 /*    */ import java.sql.CallableStatement;
 /*    */ import java.sql.Connection;
+import java.sql.Date;
 /*    */ import java.sql.ResultSet;
 /*    */ import java.sql.SQLException;
 import java.util.ArrayList;
@@ -150,8 +151,15 @@ import java.util.HashMap;
 /*     */   }
               
 
+    public ResultSet VendaPorPeriodo(Date DataInicio, Date DataFim) throws SQLException {
+        this.cs = this.connect.prepareCall("{call Vendas_Num_Periodo(?,?)}");
+        this.cs.setDate(1, DataInicio);
+        this.cs.setDate(2, DataFim);
+        this.rs = this.cs.executeQuery();
 
-/*    */ }
+        return this.rs;
+    }
+}
 
 
 /* Location:              C:\Program Files (x86)\Sistema de vendas\SysVendas.jar!\DataAcessLayer\VendaDao.class

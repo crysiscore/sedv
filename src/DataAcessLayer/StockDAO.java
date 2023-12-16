@@ -157,7 +157,7 @@ public class StockDAO {
         try {
             for (int i = 0; i < stock.size(); i++) {
                 this.cs.setInt(1, stock.get(i).getCod_Produto());
-
+                 
                 this.cs.setDouble(2, stock.get(i).getQuantidade_Contada());
 
                 this.cs.executeQuery();

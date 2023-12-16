@@ -148,6 +148,22 @@ public class ListadeProdutosController implements Initializable {
     ObservableList <Produto> produtoObservableList =FXCollections.observableArrayList();
     ObservableList <Stock> stockObservableList = FXCollections.observableArrayList();
     private Image image;
+     Usuario usuario;
+     
+     
+     
+    
+        public Usuario receberdadosUsuario(Usuario usuario) {
+        this.usuario = usuario;
+
+        if (!usuario.getNome().equals("Admin")) {
+
+            buttonEditarProduto.setDisable(true);
+
+        }
+        return usuario;
+
+    }
     
     
     @Override
