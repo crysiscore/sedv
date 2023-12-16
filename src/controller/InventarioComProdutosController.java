@@ -15,19 +15,28 @@ import BussinessLogic.Venda;
 import DataAcessLayer.InventarioDAO;
 import DataAcessLayer.ProdutoDAO;
 import DataAcessLayer.StockDAO;
+import DataAcessLayer.conexao;
 import Model.DetalhesVendaModel;
 import Model.InventarioModel;
 import Service.ProdutosServicos;
 import Service.UsuarioServicos;
+import java.awt.Desktop;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -55,6 +64,21 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.converter.DoubleStringConverter;
 import javax.swing.JOptionPane;
+import jdbc.ConnectionFactory;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  * FXML Controller class
@@ -77,7 +101,7 @@ public class InventarioComProdutosController implements Initializable {
     private Button btnActualiar;
    
     @FXML
-    private Button btnGravar;
+    private Button Imprimir_folha_inventário;
 
     @FXML
     private Button btnRemover;
@@ -323,13 +347,24 @@ void removerProdutodaTabela() {
 
      } else {
 
-            int response = JOptionPane.showConfirmDialog(null, "Tem a certeza que deseja actuaizar o Stock introduzido na tabela???", "confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            int response = JOptionPane.showConfirmDialog(null, "Tem a certeza que deseja Actualizar e Gravar o Stock introduzido na tabela???", "confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
             if (response == JOptionPane.YES_OPTION) {
+                ObservableList <Inventario> stock = tableViewListaProdutos.getItems();
+                
+                // verificar se existe algum produto que cuja quantidade nao foi alterada
+//                for (Inventario inventario : stock) {
+//                    
+//                    if(inventario.getQuantidade_Contada()==0.0){
+//                          JOptionPane.showMessageDialog(null, "O produto: " + inventario.getNome() + " nao foi modificado! ") ;
+//                                  break;
+//                    }
+//                    
+//                }
 
                dao.ActualizarStock(tableViewListaProdutos.getItems());
           //  tableViewListaProdutos.getItems().clear();
-                JOptionPane.showMessageDialog(null, "O Stock foi actuaizado com Sucesso!");
+                //JOptionPane.showMessageDialog(null, "O Stock foi actuaizado com Sucesso!");
 
             } else if (response == JOptionPane.NO_OPTION) {
                 JOptionPane.showMessageDialog(null, "O Stock não foi actuaizado!");
@@ -337,6 +372,8 @@ void removerProdutodaTabela() {
             } else if (response == JOptionPane.CLOSED_OPTION) {
                 JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
             }
+            
+            handleMenuItemRegistarInventario();
         }
     }
     
@@ -423,8 +460,117 @@ void removerProdutodaTabela() {
       Stage stage =(Stage)buttonConcluir.getScene().getWindow();
      
         stage.close();
-    }
        
     }
+           
+    public void handlePrintPre_Inventario() {
+        try {
+            // Obtenha a lista de itens da TableView
+            ObservableList<Inventario> items = tableViewListaProdutos.getItems();
 
+            // Crie uma lista para armazenar os códigos dos produtos
+            List<Integer> codigosProdutos = new ArrayList<>();
+
+            for (Inventario product : items) {
+                int codigo = product.getCod_Produto();
+                codigosProdutos.add(codigo);
+            }
+
+            // Carregue o design do relatório
+            JasperDesign jDesign = JRXmlLoader.load("src\\relatorios\\Pre_Inventario_1.jrxml");
+
+            // Compile o relatório
+            JasperReport jReport = JasperCompileManager.compileReport(jDesign);
+
+            // Crie um mapa de parâmetros
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("Cod_Produto", codigosProdutos);  // Defina a lista de códigos dos produtos como parâmetro
+
+            // Preencha o relatório com os parâmetros
+            JasperPrint jPrint = JasperFillManager.fillReport(jReport, parametros, ConnectionFactory.getSakilaConnection());
+
+            // Crie uma visualização do relatório
+            JasperViewer viewer = new JasperViewer(jPrint, false);
+
+            viewer.setTitle("Iventario");
+            viewer.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    
+    @FXML
+public void handlePrintPre_InventarioExcel() {
+    try {
+        // Obtenha a lista de itens da TableView
+        ObservableList<Inventario> items = tableViewListaProdutos.getItems();
+
+        // Crie um novo workbook do Excel
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("Pre_Inventario");
+
+        // Crie um estilo de fonte com negrito
+        Font font = workbook.createFont();
+        font.setBold(true);
+
+        // Crie um estilo e atribua a fonte negrito a ele
+        CellStyle boldStyle = workbook.createCellStyle();
+        boldStyle.setFont(font);
+
+        // Crie o cabeçalho da tabela no Excel e aplique o estilo negrito
+        Row headerRow = sheet.createRow(0);
+        headerRow.createCell(0).setCellValue("CÓDIGO");
+        headerRow.createCell(1).setCellValue("DESCRIÇÃO");
+        headerRow.createCell(2).setCellValue("STOCK");
+        headerRow.createCell(3).setCellValue("STOCK FÍSICO");
+        headerRow.createCell(4).setCellValue("DIFERENÇA");
+
+        for (int i = 0; i < headerRow.getPhysicalNumberOfCells(); i++) {
+            headerRow.getCell(i).setCellStyle(boldStyle);
+        }
+
+        // Preencha os dados da TableView no Excel
+        int rowNum = 2;
+        for (Inventario product : items) {
+            Row row = sheet.createRow(rowNum++);
+            row.createCell(0).setCellValue(product.getCod_Produto());
+            row.createCell(1).setCellValue(product.getNome());
+            row.createCell(2).setCellValue(product.getStock());
+            // Adicione mais colunas conforme necessário
+        }
+
+        // Ajuste automático da largura das colunas com base no conteúdo
+        for (int i = 0; i < headerRow.getPhysicalNumberOfCells(); i++) {
+            sheet.autoSizeColumn(i);
+        }
+
+        // Salve o workbook como um arquivo Excel
+        String filePath = "C:\\sedv\\Relatorios\\Pre_Inventario.xlsx";
+        try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
+            workbook.write(fileOut);
+        }
+
+        // Abra o arquivo automaticamente usando a classe Desktop
+        try {
+            Desktop.getDesktop().open(new java.io.File(filePath));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Não foi possível abrir automaticamente o arquivo. Por favor, encontre o arquivo em: " + filePath);
+        }
+
+        // Feche o workbook para liberar recursos
+        workbook.close();
+
+        // Exiba um JOptionPane informando que o pré-inventário foi adicionado
+        JOptionPane.showMessageDialog(null, "O pré-inventário foi adicionado ao arquivo: " + filePath);
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+    
+}
 

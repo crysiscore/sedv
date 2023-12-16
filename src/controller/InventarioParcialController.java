@@ -24,6 +24,9 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -36,8 +39,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
@@ -50,8 +55,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.util.Duration;
 import javax.swing.JOptionPane;
 
 /**
@@ -260,7 +268,8 @@ public class InventarioParcialController implements Initializable {
                 labelNomeProduto.setText(pr.getNome());
                 labelPrecoProduto.setText(String.valueOf(pr.getPreco_unitario()));
                 labelStock.setText(String.valueOf(pr.stock.getUnidades_stock()));
-                labelquantidadecontada.setText(String.valueOf(pr.stock.getUnidades_stock()));
+                //labelquantidadecontada.setText(String.valueOf(pr.stock.getUnidades_stock()));
+                labelquantidadecontada.setText("0.0");
                 //produto.setCod_produto(Integer.parseInt(labelCodProduto.getText()));
                 labelCodProduto.setVisible(false);
                 labelPrecoProduto.setVisible(false);
@@ -292,7 +301,7 @@ public class InventarioParcialController implements Initializable {
   if (selectedIndex < 0) {
             handleMenuAlert1(); // Função que exibe um alerta informando que um produto deve ser selecionado
             return;
-    }
+    }else{
         try {
 
             Integer Produto_Cod_Produto = Integer.parseInt(labelCodProduto.getText());
@@ -309,6 +318,9 @@ public class InventarioParcialController implements Initializable {
                     Double.parseDouble(labelquantidadecontada.getText()),
                     Double.parseDouble(labelDiferenca.getText()));
             inventarioModel.addInventario(i);
+            
+             showNotification("Produto adicionado com sucesso!");
+        
 
             Stage stage = (Stage) buttonAdicionarProduto.getScene().getWindow();
            // stage.close();
@@ -319,6 +331,35 @@ public class InventarioParcialController implements Initializable {
         }
 
     }
+    }
+    
+  private void showNotification(String message) {
+    // Crie um Stage (janela) personalizado para a notificação
+    Stage notificationStage = new Stage();
+    Group root = new Group();
+    Scene scene = new Scene(root, 200, 70);
+    notificationStage.setScene(scene);
+
+    Text notificationText = new Text(message);
+    notificationText.setStyle("-fx-font-size: 12;");
+    root.getChildren().add(notificationText);
+
+    // Defina a posição da notificação
+    notificationText.setTranslateX(10);
+    notificationText.setTranslateY(30);
+
+    // Configure uma Timeline para fechar automaticamente a notificação após 3 segundos
+    Timeline timeline = new Timeline(
+        new KeyFrame(Duration.seconds(2), event -> {
+            notificationStage.close();
+        })
+    );
+    timeline.setCycleCount(1);
+    timeline.play();
+
+    // Exiba a notificação
+    notificationStage.show();
+}
 
 
 @FXML
@@ -331,7 +372,7 @@ public class InventarioParcialController implements Initializable {
 
             for (Produto produto : produtoObservableList) {
                 // Para cada produto na lista, crie uma instância de Inventario e adicione-a à sua model
-                Inventario inventario = new Inventario(produto.getCod_produto(), produto.getNome(), produto.getStock().getUnidades_stock(), produto.getStock().getUnidades_stock(), 0.0);
+                Inventario inventario = new Inventario(produto.getCod_produto(), produto.getNome(), produto.getStock().getUnidades_stock(), 0.0, 0.0);
                 inventarioModel.addInventario(inventario);
             }
 
