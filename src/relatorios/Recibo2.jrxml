@@ -31,8 +31,7 @@ WHERE dv.Venda_Cod_venda = (
     SELECT MAX(Cod_venda)
     FROM venda
 )
-ORDER BY v.data_venda DESC;
-]]>
+ORDER BY v.data_venda DESC;]]>
 	</queryString>
 	<field name="Codigo" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="Venda_Cod_venda"/>
@@ -110,7 +109,7 @@ ORDER BY v.data_venda DESC;
 						<textElement>
 							<font isBold="false"/>
 						</textElement>
-						<text><![CDATA[Fatura n*:]]></text>
+						<text><![CDATA[Recibo n*:]]></text>
 					</staticText>
 					<textField textAdjust="StretchHeight">
 						<reportElement style="Detail" positionType="Float" x="9" y="6" width="149" height="14" forecolor="#FFFFFF" uuid="950b99d8-55be-41b6-b399-b677aceba487">

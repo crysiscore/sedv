@@ -78,7 +78,7 @@ public class Relatorios_ExcelController implements Initializable {
             // Create a font style with bold
             Font font = workbook.createFont();
             
-          //  font.setBold(true);
+           font.setBold(true);
 
             // Create a style and assign the bold font to it
             CellStyle boldStyle = workbook.createCellStyle();
