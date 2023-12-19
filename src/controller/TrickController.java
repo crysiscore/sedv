@@ -18,6 +18,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
@@ -26,6 +27,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
@@ -41,6 +43,21 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
+
+
+// POI
+ import java.io.File;
+import java.io.FileOutputStream;
+import java.net.URL;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+ 
 /**
  * FXML Controller class
  *
@@ -49,9 +66,11 @@ import net.sf.jasperreports.view.JasperViewer;
 public class TrickController implements Initializable {
     ResultSet rs;
 
- 
-    @FXML
+  @FXML
     private AnchorPane AnchorPane;
+
+    @FXML
+    private DatePicker DatepickerData;
 
     @FXML
     private ImageView ImageViewAdicionarProduto;
@@ -60,10 +79,13 @@ public class TrickController implements Initializable {
     private Pane PnaePane;
 
     @FXML
+    private Button btnSair;
+
+    @FXML
     private Button buttnSair;
 
     @FXML
-    private MenuItem buttonSair;
+    private MenuItem buttonSair1;
 
     @FXML
     private ImageView imageViewAdicionarStock;
@@ -81,66 +103,52 @@ public class TrickController implements Initializable {
     private Label labelUsername;
 
     @FXML
-    private MenuItem menuItemAjudaSobre;
+    private MenuItem menuItemProdutosExistentes;
 
     @FXML
-    private MenuItem menuItemOutrosCategoriasProdutos;
-
-    @FXML
-    private MenuItem menuItemOutrosPrevilegios;
-
-    @FXML
-    private MenuItem menuItemOutrosUsuarios;
-
-    @FXML
-    private MenuItem menuItemOutrrosUnidadesProdutos;
-
-    @FXML
-    private MenuItem menuItemRelatoriosProdutosMaisVendidos;
+    private MenuItem menuItemRelatoriosProdutosPoucoStock;
 
     @FXML
     private MenuItem menuItemRelatoriosVendasPorData;
 
     @FXML
     private MenuItem menuItemRelatoriosVendasRecentes;
-    
-    @FXML
-    private MenuItem menuItemRelatoriosProdutosPoucoStock;
-    
-    @FXML
-    private MenuItem menuItemProdutosExistentes;
 
     @FXML
     private MenuItem menuItemStockAdicionarStock;
 
     @FXML
-    private MenuItem menuItemStockListaProdutos;
+    private MenuItem menuItemStockListaProdutos1;
 
     @FXML
-    private MenuItem menuItemStockNovoProduto;
-
-    @FXML
-    private MenuItem menuItemStockProcurarProduto;
+    private MenuItem menuItemStockNovoProduto1;
 
     @FXML
     private MenuItem menuItemVendasListaDeVendas;
 
     @FXML
     private MenuItem menuItemVendasNovaVenda;
-    
+
     @FXML
-    private MenuItem menumItemInventario;
-    
+    private MenuItem menuItemVendasPorPeriodo;
+
     @FXML
     private MenuBar menubarvendas;
-    
-    @FXML
-    private Button btnSair;
-    
-    @FXML
-    private DatePicker DatepickerData;
 
-   
+    @FXML
+    private Menu menumAdministracao;
+
+    @FXML
+    private MenuItem menumItemInventario;
+
+    @FXML
+    private MenuItem menumitemParametrizacao;
+
+    @FXML
+    private MenuItem menumitemgestaoUtilizadores;
+
+    @FXML
+    private Menu menumstock;
 
 
     UsuarioServicos usuarioServicos ;
@@ -157,20 +165,35 @@ public class TrickController implements Initializable {
         this.labelUserCod.setText(usuario.getCod_Funcionario().toString());
         this.labelUsername.setText(usuario.getNome());
         this.labelUserCod.setVisible(false);
+                if(!usuario.getNome().equals("Admin")){
+                      menuItemStockAdicionarStock.setDisable(true);
+    menuItemStockNovoProduto1.setDisable(true);
+    menumItemInventario.setDisable(true);
+    menumitemParametrizacao.setDisable(true);
+    menumitemgestaoUtilizadores.setDisable(true);
+    imageViewAdicionarStock.setDisable(true);
+            
+        }
         return usuario;
+
+        
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+  @Override
+public void initialize(URL url, ResourceBundle rb) {
+    // TODO
+//desabilitar_Botoes();
+
       DatepickerData.setVisible(false);
      
-    }    
+    }
+
      public void SairButtonOnAction(ActionEvent event){
       Stage stage =(Stage) btnSair.getScene().getWindow();
      
         stage.close();
     }
+
    
      
              
@@ -273,6 +296,7 @@ public class TrickController implements Initializable {
         usuarioServicos = new UsuarioServicos();
         Usuario selectedUsuario = new Usuario();
         selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
+         listadeProdutosController.receberdadosUsuario(selectedUsuario);
         //ListadeProdutosController.receberdadosUsuario(selectedUsuario);
         
         
@@ -456,7 +480,7 @@ public class TrickController implements Initializable {
         //buscaProdutosController.receberdadosUsuario(selectedUsuario);
         // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Vendas");
+        dialogStage.setTitle("Inventário");
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
         dialogStage.setMaximized(false);
@@ -516,9 +540,107 @@ public class TrickController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
     }
+    }
         
+          public void handleImprimirExcel() {
+     
+              
+  try {
+        XSSFWorkbook workbook = new XSSFWorkbook();
 
-       
+    //Create a blank sheet
+    XSSFSheet sheet = workbook.createSheet("Employee Data");
+
+    //This data needs to be written (Object[])
+    Map<String, Object[]> data = new TreeMap<String, Object[]>();
+    data.put("1", new Object[]{"ID", "NAME", "LASTNAME"});
+    data.put("2", new Object[]{1, "Amit", "Shukla"});
+    data.put("3", new Object[]{2, "Lokesh", "Gupta"});
+    data.put("4", new Object[]{3, "John", "Adwards"});
+    data.put("5", new Object[]{4, "Brian", "Schultz"});
+
+    //Iterate over data and write to sheet
+    Set<String> keyset = data.keySet();
+    int rownum = 0;
+    for (String key : keyset) {
+      Row row = sheet.createRow(rownum++);
+      Object[] objArr = data.get(key);
+      int cellnum = 0;
+      for (Object obj : objArr) {
+        Cell cell = row.createCell(cellnum++);
+        if (obj instanceof String)
+          cell.setCellValue((String) obj);
+        else if (obj instanceof Integer)
+          cell.setCellValue((Integer) obj);
+      }
+    }
+  
+      //Write the workbook in file system
+     // URL url = ReadExcelDemo.class.getClassLoader().getResource(
+        //  "howtodoinjava_demo.xlsx");
+        
+      File file= new File("C:\\sedv\\POI.xlsx");
+      FileOutputStream out = new FileOutputStream(file);
+      workbook.write(out);
+      out.close();
+
+      System.out.println("howtodoinjava_demo.xlsx written successfully on " +
+          "disk.");
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  
        
     }
+          
+          
+   public void desabilitar_Botoes() {
+    String username = usuario.getNome(); // Obtenha o nome de usuário da instância usuario
+    boolean isAdmin = username.equals("Admin");
+    
+    menuItemStockAdicionarStock.setDisable(!isAdmin);
+    menuItemStockNovoProduto1.setDisable(!isAdmin);
+    menumItemInventario.setDisable(!isAdmin);
+    menumitemParametrizacao.setDisable(!isAdmin);
+    menumitemgestaoUtilizadores.setDisable(!isAdmin);
+}
+   
+   
+    public void handleMenumRelatoriosExcel(){
+          
+        try {
+          String codUsuario = this.labelUserCod.getText();
+      
+          
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(TrickController.class.getResource("/Presentation/Relatorios_Excel.fxml"));
+        
+        AnchorPane page = (AnchorPane) loader.load();
+        
+        Relatorios_ExcelController relatorios_ExcelController= loader.<Relatorios_ExcelController>getController();
+
+         
+       usuarioServicos = new UsuarioServicos();
+        Usuario selectedUsuario = new Usuario();
+      selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
+   
+        // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Relatorios em Excel");
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+        dialogStage.setMaximized(false);
+        dialogStage.setResizable(false);
+        
+        // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
+        dialogStage.show();
+          }
+          catch (Exception ex) {
+           System.out.println("" + ex + ex.getLocalizedMessage());
+                System.out.println("" + ex.toString());
+            } 
+             }
+
+
 }

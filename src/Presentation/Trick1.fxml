@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1380.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TrickController">
+<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1380.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TrickController">
    <children>
       <BorderPane layoutX="572.0" layoutY="-223.0" prefHeight="1080.0" prefWidth="1049.0" style="-fx-background-color: #EC3A3A; -fx-background-radius: 700;">
          <effect>
@@ -63,10 +63,9 @@
             </ImageView>
             <MenuBar layoutX="88.0" layoutY="256.0" prefHeight="25.0" prefWidth="102.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
                <menus>
-                  <Menu mnemonicParsing="false" text="    Stock">
+                  <Menu fx:id="menumstock" mnemonicParsing="false" text="    Stock">
                      <items>
                         <MenuItem fx:id="menuItemStockAdicionarStock" mnemonicParsing="false" onAction="#handleMenuItemStockAdicionarStock" text="Entrada de Stock" />
-                        <MenuItem fx:id="buttonSair1" mnemonicParsing="false" text="Inventário de Stock" />
                      </items>
                   </Menu>
                </menus>
@@ -149,7 +148,7 @@
                         <MenuItem fx:id="menuItemRelatoriosProdutosPoucoStock" mnemonicParsing="false" onAction="#handlePrintProdutosComPoucoStock" text="Produtos com pouco Stock" />
                         <MenuItem fx:id="menuItemProdutosExistentes" mnemonicParsing="false" onAction="#handleprintProdutosExistentes" text="Lista de Produtos Existentes" />
                         <MenuItem fx:id="menuItemVendasPorPeriodo" mnemonicParsing="false" onAction="#handlePrintVendaPorPeriodo" text="Lista de Vendas num Período" />
-                        <MenuItem fx:id="menumItemInventario" mnemonicParsing="false" onAction="#handleMenumItemInventario" text="Inventário" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleMenumRelatoriosExcel" text="Relatórios em Excêl" />
                      </items>
                   </Menu>
                </menus>
@@ -171,12 +170,11 @@
             </ImageView>
             <MenuBar layoutX="88.0" layoutY="393.0" prefHeight="25.0" prefWidth="116.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
                <menus>
-                  <Menu mnemonicParsing="false" text="   Definições">
+                  <Menu fx:id="menumAdministracao" mnemonicParsing="false" text="Administração">
                      <items>
-                        <MenuItem fx:id="menuItemAjudaSobre" mnemonicParsing="false" text="Gerir Profiles     " />
-                        <MenuItem fx:id="menuItemAjudaSobre1" mnemonicParsing="false" text="Gerir Funcionalidades" />
-                        <MenuItem fx:id="menuItemAjudaSobre11" mnemonicParsing="false" text="Gerir Utilizadores" />
-                        <MenuItem fx:id="menuItemAjudaSobre111" mnemonicParsing="false" text="Backups e Sync" />
+                        <MenuItem fx:id="menumItemInventario" mnemonicParsing="false" onAction="#handleMenumItemInventario" text="Inventário" />
+                        <MenuItem fx:id="menumitemgestaoUtilizadores" mnemonicParsing="false" text="Gestão de Utilizadores" />
+                        <MenuItem fx:id="menumitemParametrizacao" mnemonicParsing="false" onAction="#handleImprimirExcel" text="Parametrização" />
                      </items>
                   </Menu>
                </menus>

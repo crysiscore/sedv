@@ -813,7 +813,7 @@ public class VendaController implements Initializable {
             
             JasperViewer viewer = new JasperViewer(jPrint, false);
             
-            viewer.setTitle("Lista de Produtos");
+            viewer.setTitle("Recibo");
             viewer.show();
             
         }catch(Exception e){}
