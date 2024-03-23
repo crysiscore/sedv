@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1360.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListadeProdutosController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1360.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListadeProdutosController">
    <children>
       <BorderPane layoutX="632.0" layoutY="-218.0" prefHeight="1080.0" prefWidth="1049.0" style="-fx-background-color: #EC3A3A; -fx-background-radius: 700;">
          <top>
@@ -32,7 +32,7 @@
       </BorderPane>
       <Pane layoutX="173.0" layoutY="75.0" prefHeight="586.0" prefWidth="1027.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
          <children>
-            <TableView fx:id="tableViewListaProdutos" layoutX="132.0" layoutY="157.0" prefHeight="306.0" prefWidth="782.0" style="-fx-background-radius: 10;">
+            <TableView fx:id="tableViewListaProdutos" layoutX="68.0" layoutY="158.0" prefHeight="306.0" prefWidth="894.0" style="-fx-background-radius: 10;">
               <columns>
                 <TableColumn fx:id="tableColumnCodigo" prefWidth="83.0" text="Código" />
                 <TableColumn fx:id="tableColumnNome" prefWidth="165.0" text="Nome" />
@@ -41,6 +41,7 @@
                   <TableColumn fx:id="tableColumnCategoria" prefWidth="116.0" text="Categoria" />
                   <TableColumn fx:id="tableColumnDescricao" prefWidth="138.0" text="Descrição" />
                   <TableColumn fx:id="tablecolumnStock" prefWidth="75.0" text="stock" />
+                  <TableColumn fx:id="tableColumnPrecoDeCompra" prefWidth="115.333251953125" text="Preço de Compra" />
               </columns>
                <effect>
                   <DropShadow />
@@ -55,23 +56,23 @@
                   </InnerShadow>
                </effect>
             </Button>
-            <TextField fx:id="textFieldPesquisaProdutos" layoutX="132.0" layoutY="63.0" prefHeight="25.0" prefWidth="327.0" promptText="Introduza o nome ou código do produto para procurar" />
+            <TextField fx:id="textFieldPesquisaProdutos" layoutX="68.0" layoutY="64.0" prefHeight="25.0" prefWidth="327.0" promptText="Introduza o nome ou código do produto para procurar" />
             <ImageView fitHeight="84.0" fitWidth="92.0" layoutX="929.0" layoutY="10.0">
                <image>
                   <Image url="@../icons/Free3dLogo.png" />
                </image>
             </ImageView>
-            <ImageView layoutX="434.0" layoutY="64.0">
+            <ImageView layoutX="370.0" layoutY="65.0">
                <image>
                   <Image url="@../icons/icon-action-search_24px.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="imageViewAdicionarProduto" fitHeight="57.0" fitWidth="57.0" layoutX="787.0" layoutY="48.0" onMouseClicked="#handleMenuItemProdutoRegistrarProduto">
+            <ImageView fx:id="imageViewAdicionarProduto" fitHeight="57.0" fitWidth="57.0" layoutX="862.0" layoutY="52.0" onMouseClicked="#handleMenuItemProdutoRegistrarProduto">
                <image>
                   <Image url="@../icons/botao-adicionar%20(1).png" />
                </image>
             </ImageView>
-            <Text fill="#544d4d" layoutX="796.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Novo" wrappingWidth="39.787109375">
+            <Text fill="#544d4d" layoutX="871.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Novo" wrappingWidth="39.787109375">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Text>
@@ -94,7 +95,7 @@
                </effect>
             </Button>
             <Label fx:id="labelCodProduto" layoutX="939.0" layoutY="96.0" prefHeight="17.0" prefWidth="50.0" />
-            <ImageView fx:id="imagevie1" fitHeight="115.0" fitWidth="124.0" layoutX="867.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imagevie1" fitHeight="115.0" fitWidth="124.0" layoutX="697.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" />
             <Button fx:id="buttonImprimir" layoutX="808.0" layoutY="493.0" mnemonicParsing="false" onMouseClicked="#print" onMouseEntered="#mudacorImprimirEntered" onMouseExited="#mouseexitImprimir" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Imprimir">
                <effect>
                   <InnerShadow>

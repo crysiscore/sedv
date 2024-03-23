@@ -177,6 +177,7 @@ public class Relatorios_ExcelController implements Initializable {
             headerRow.createCell(3).setCellValue("UNIDADE");
             headerRow.createCell(4).setCellValue("DESCRIÇÃO");
             headerRow.createCell(5).setCellValue("STOCK");
+            headerRow.createCell(6).setCellValue("PREÇO DE AQUISIÇAÕ");
 
             // Defina a largura da coluna antes de aplicar o estilo negrito
             for (int i = 0; i < headerRow.getPhysicalNumberOfCells(); i++) {
@@ -199,7 +200,7 @@ public class Relatorios_ExcelController implements Initializable {
 
             // This data needs to be written (Object[])
             Map<String, Object[]> data = new TreeMap<>();
-            data.put("1", new Object[]{"PRODUTO", "PREÇO", "CATEGORIA", "UNIDADE", "DESCRIÇÃO", "STOCK"});
+            data.put("1", new Object[]{"PRODUTO", "PREÇO", "CATEGORIA", "UNIDADE", "DESCRIÇÃO", "STOCK", "PREÇO DE AQUISIÇAÕ"});
 
             int numeroLinha = 2; // Começar da segunda linha
 
@@ -211,6 +212,7 @@ public class Relatorios_ExcelController implements Initializable {
                         rs.getString("Unidade"),
                         rs.getString("Descricao"),
                         rs.getDouble("unidades_stock"),
+                        rs.getDouble("Preco_De_Compra"),
                 };
 
                 data.put(String.valueOf(numeroLinha++), linha);

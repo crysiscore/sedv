@@ -165,24 +165,26 @@ import java.sql.Blob;
 /*     */ 
 /*     */   
 /*     */   public ResultSet RegistarProduto(Produto prod) throws SQLException {
-/* 103 */      cs = this.connect.prepareCall("{call CadProduto(null,?,?,?,?,?,?)}");
+/* 103 */      cs = this.connect.prepareCall("{call CadProduto(null,?,?,?,?,?,?,?)}");
 /* 104 */     cs.setString(1, prod.getNome());
 /* 105 */     cs.setDouble(2, prod.getPreco_unitario());
-/* 107 */     cs.setInt(3,  Integer.parseInt(prod.getUnidade()));
-/* 108 */     cs.setInt(4, Integer.parseInt(prod.getCategoria()));
-/* 109 */     cs.setString(5, prod.getDescricao());
-              cs.setString(6, prod.getFoto());         
+              cs.setDouble(3, prod.getPreco_De_Compra());
+/* 107 */     cs.setInt(4,  Integer.parseInt(prod.getUnidade()));
+/* 108 */     cs.setInt(5, Integer.parseInt(prod.getCategoria()));
+/* 109 */     cs.setString(6, prod.getDescricao());
+              cs.setString(7, prod.getFoto());         
 /* 110 */     this.rs = cs.executeQuery();         
               return this.rs;
 /*     */   }
 /*     */   
              public ResultSet RegistarProdutoSemFoto(Produto prod) throws SQLException {
-/* 103 */      cs = this.connect.prepareCall("{call CadProduto(null,?,?,?,?,?,?)}");
+/* 103 */      cs = this.connect.prepareCall("{call CadProduto(null,?,?,?,?,?,?,?)}");
 /* 104 */     cs.setString(1, prod.getNome());
 /* 105 */     cs.setDouble(2, prod.getPreco_unitario());
-/* 107 */     cs.setInt(3,  Integer.parseInt(prod.getUnidade()));
-/* 108 */     cs.setInt(4, Integer.parseInt(prod.getCategoria()));
-/* 109 */     cs.setString(5, prod.getDescricao());
+              cs.setDouble(3, prod.getPreco_De_Compra());
+/* 107 */     cs.setInt(4,  Integer.parseInt(prod.getUnidade()));
+/* 108 */     cs.setInt(5, Integer.parseInt(prod.getCategoria()));
+/* 109 */     cs.setString(6, prod.getDescricao());
              // cs.setBlob(6, prod.getFoto());         
 /* 110 */     this.rs = cs.executeQuery();         
               return this.rs;
@@ -230,26 +232,28 @@ import java.sql.Blob;
 /*     */   }
 /*     */ 
 /*     */   public ResultSet EditarprodutoComFoto(Produto prod) throws SQLException {
-/* 159 */     cs = this.connect.prepareCall("{call EditarProduto(?,?,?,?,?,?,?)}");
+/* 159 */     cs = this.connect.prepareCall("{call EditarProduto(?,?,?,?,?,?,?,?)}");
 /* 160 */     cs.setInt(1, prod.getCod_produto());
 /* 161 */     cs.setString(2, prod.getNome());
 /* 162 */     cs.setDouble(3, prod.getPreco_unitario());
-/* 164 */     cs.setInt(4, Integer.parseInt(prod.getUnidade()));
-/* 165 */     cs.setInt(5, Integer.parseInt(prod.getCategoria()));
-/* 166 */     cs.setString(6, prod.getDescricao());
-              cs.setString(7, prod.getFoto());
+              cs.setDouble(4, prod.getPreco_De_Compra());
+/* 164 */     cs.setInt(5, Integer.parseInt(prod.getUnidade()));
+/* 165 */     cs.setInt(6, Integer.parseInt(prod.getCategoria()));
+/* 166 */     cs.setString(7, prod.getDescricao());
+              cs.setString(8, prod.getFoto());
 /* 167 */     cs.executeQuery();
               return this.rs;
 /*     */   }
   /*     */  
              public ResultSet EditarprodutoSemFoto(Produto prod) throws SQLException {
-/* 159 */     cs = this.connect.prepareCall("{call EditarProduto(?,?,?,?,?,?,null)}");
+/* 159 */     cs = this.connect.prepareCall("{call EditarProduto(?,?,?,?,?,?,?,null)}");
 /* 160 */     cs.setInt(1, prod.getCod_produto());
 /* 161 */     cs.setString(2, prod.getNome());
 /* 162 */     cs.setDouble(3, prod.getPreco_unitario());
-/* 164 */     cs.setInt(4, Integer.parseInt(prod.getUnidade()));
-/* 165 */     cs.setInt(5, Integer.parseInt(prod.getCategoria()));
-/* 166 */     cs.setString(6, prod.getDescricao());
+              cs.setDouble(4, prod.getPreco_De_Compra());
+/* 164 */     cs.setInt(5, Integer.parseInt(prod.getUnidade()));
+/* 165 */     cs.setInt(6, Integer.parseInt(prod.getCategoria()));
+/* 166 */     cs.setString(7, prod.getDescricao());
 /* 167 */     cs.executeQuery();
               return this.rs;
 /*     */   }

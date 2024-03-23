@@ -116,6 +116,7 @@ import javax.swing.JOptionPane;
          this.produto.setCod_produto(Integer.valueOf(this.rs.getInt("Codigo")));
          this.produto.setNome(this.rs.getString("nome"));
          this.produto.setPreco_unitario(Double.valueOf(this.rs.getDouble("Preco")));
+         this.produto.setPreco_De_Compra(Double.valueOf(this.rs.getDouble("Preco_De_Compra")));
          this.produto.setUnidade(this.rs.getString("Unidade"));
          this.produto.setCategoria(this.rs.getString("Categoria"));
          this.produto.setDescricao(this.rs.getString("Descricao"));
