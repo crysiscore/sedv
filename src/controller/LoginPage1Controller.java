@@ -10,6 +10,8 @@ import BussinessLogic.Usuario;
 import DataAcessLayer.UsuarioDAO;
 import Service.UsuarioServicos;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -17,6 +19,8 @@ import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -29,6 +33,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+
 /**
  * FXML Controller class
  *
@@ -39,9 +44,9 @@ public class LoginPage1Controller implements Initializable {
     /**
      * Initializes the controller class.
      */
-     ResultSet rs;
-     Usuario usuario;
-   
+    ResultSet rs;
+    Usuario usuario;
+
     @FXML
     private Pane PanePane;
 
@@ -65,432 +70,401 @@ public class LoginPage1Controller implements Initializable {
 
     @FXML
     private TextField tfUsuario;
-     UsuarioServicos usuarioServicos ;
+    UsuarioServicos usuarioServicos;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
-            passwordFieldSenha.setOnKeyPressed(event ->{
-                  if(event.getCode() == KeyCode.ENTER){
-                      loginComEnter();
-                  }
-                        
-              });
-            
-               tfUsuario.setOnKeyPressed(event ->{
-                  if(event.getCode() == KeyCode.ENTER){
-                      loginComEnterUser();
-                  }
-                        
-              });
-    }    
-    
-    
-    
-    public void cancelButtonOnAction(ActionEvent event){
-        Stage stage =(Stage) btnCancel.getScene().getWindow();
+
+        passwordFieldSenha.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                loginComEnter();
+            }
+
+        });
+
+        tfUsuario.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                loginComEnterUser();
+            }
+
+        });
+    }
+
+    public void cancelButtonOnAction(ActionEvent event) {
+        Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
-    
-    
- public void mudacorloginEntered(){
-         btnLogin.setStyle("-fx-background-color: #FFF");
-         btnLogin.setStyle("-fx-background-radius: 13");
+
+    public void mudacorloginEntered() {
+        btnLogin.setStyle("-fx-background-color: #FFF");
+        btnLogin.setStyle("-fx-background-radius: 13");
+    }
+
+    public void mouseexitbuttonlogin() {
+        btnLogin.setStyle("-fx-background-color: #FFF");
+        btnLogin.setStyle("-fx-background-radius: 13");
+    }
+
+    public void mudacorcancel() {
+        btnCancel.setStyle("-fx-background-color: #FFF");
+        btnCancel.setStyle("-fx-background-radius: 13");
     }
     
-    public void mouseexitbuttonlogin(){
-       btnLogin.setStyle("-fx-background-color: #FFF");
-       btnLogin.setStyle("-fx-background-radius: 13");
-   }
-    
-     public void mudacorcancel(){
-          btnCancel.setStyle("-fx-background-color: #FFF");
-       btnCancel.setStyle("-fx-background-radius: 13");
+     public static String hashPassword(String password) {
+        try {
+            // Obter uma instância do algoritmo de hash SHA-256
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            // Aplicar o hash à senha
+            byte[] hash = digest.digest(password.getBytes());
+            // Converter o hash em uma representação hexadecimal
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hash) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            // Tratar erro de algoritmo de hash não encontrado
+            e.printStackTrace();
+            return null;
+        }
     }
-   
-     
+
+
+    public void loginButtonOnAction(ActionEvent event) {
+        // Usuario user = new Usuario();
+
+        String username = this.tfUsuario.getText();
+        TrickController Trick = new TrickController();
   
-      
-    
-     
-    public void loginButtonOnAction (ActionEvent event){
-         // Usuario user = new Usuario();
-         
-       
-
-          
-           String username = this.tfUsuario.getText();
-/*     */     TrickController Trick = new TrickController();
-               
-/* 153 */     String password = this.passwordFieldSenha.getText();
-/* 154 */     UsuarioServicos us = new UsuarioServicos();
-/* 155 */     this.labelLoginPageErro.setText("");
-/* 156 */     //this.imageViewLock.setIcon(new ImageIcon(getClass().getResource("/images/lock_off.png")));
-/*     */     /*     */     
-          
-/*     */     try {
-/* 159 */       if (us.AutenticarUsuario(username, password) == true)
-/*     */       {
-/*     */         
- 
-/* 162 */         UsuarioDAO userDao = new UsuarioDAO();
-/* 163 */         this.rs = userDao.getCategoriaUsuario(username, password);
-/* 164 */         this.rs.next();
-/* 165 */         String categoriaUsuario = this.rs.getString("Categoria");
-/* 166 */         String codUsuario = this.rs.getString("Cod_Funcionario");
-                  //user.setCod_Funcionario(Integer.parseInt(codUsuario));
-                 // user.setCod_Funcionario(Integer.valueOf(codUsuario));
-/*     */         //user.setCod_Funcionario(Integer.parseInt(this.rs.getString("Cod_Funcionario")));
-/* 168 */         if (categoriaUsuario.contentEquals("Funcionario"))
-/*     */         {
-/* 170 */           Previlegio prev = us.VerificarPrevilegios();
-/* 171 */           us.Login(username, password);
-                    
-                    //Trick.UserInfo(username, codUsuario);
-/* 172 */           FXMLLoader loader = new FXMLLoader();
-                    
-         //Parent root = (Parent) loader.load();           
-         //CadStockController cadStockController= loader.<CadStockController> getController();
-        // servicoProdutos = new ProdutosServicos();
-        // Produto selectedProduto = new Produto();
-         //selectedProduto= servicoProdutos.getDetalhesProduto(Integer.parseInt(codProduto));
-       // cadStockController.ReceberDadosProduto(selectedProduto);
-
-        loader.setLocation(TrickController.class.getResource("/Presentation/Trick1.fxml"));
+        String password1 = this.passwordFieldSenha.getText();
+        String password = LoginPage1Controller.hashPassword(password1);
         
-        AnchorPane page = (AnchorPane) loader.load();
-        TrickController trickController =loader.<TrickController>getController();
-        
-        usuarioServicos = new UsuarioServicos();
-        Usuario selectedUsuario = new Usuario();
-        selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
-        trickController.receberdadosUsuario(selectedUsuario);
-       // cadStockController.setUsuario(selectedUsuario);
-        //trickController.UserInfo(username,codUsuario);
-       
-         Stage stage =(Stage) btnLogin.getScene().getWindow();
-        stage.close();
-       
-        // Criando um Estágio de Diálogo (Stage Dialog)
-        Stage dialogStage = new Stage();
-        dialogStage.setTitle("Registro de Vendas");
-        dialogStage.setAlwaysOnTop(false);
-        Scene scene = new Scene(page);
-        dialogStage.setScene(scene);
-        dialogStage.setResizable(false);
-        
-        //dialogStage.setFullScreen(true);
-        dialogStage.setMaximized(true);
-        // Mostra o Dialog e espera até que o usuário o feche
-        dialogStage.showAndWait();
-          
-/*     */         }
-/* 178 */         else if (categoriaUsuario.contentEquals("Gerente"))
-/*     */         {
-/* 180 */           
+        UsuarioServicos us = new UsuarioServicos();
+        this.labelLoginPageErro.setText("");
 
-                         
-/* 181 */            Previlegio prev = us.VerificarPrevilegios();
+        try {
+            if (us.AutenticarUsuario(username, password) == true) {
+
+                UsuarioDAO userDao = new UsuarioDAO();
+                this.rs = userDao.getCategoriaUsuario(username, password);
+                this.rs.next();
+                String categoriaUsuario = this.rs.getString("Categoria");
+                String codUsuario = this.rs.getString("Cod_Funcionario");
+                String status = this.rs.getString("Status");
+
+                if (categoriaUsuario.contentEquals("Funcionario")) /*     */ {
+                    Previlegio prev = us.VerificarPrevilegios();
                     us.Login(username, password);
-                    
-                   // Trick.UserInfo(username, codUsuario);
-/* 172 */           FXMLLoader loader = new FXMLLoader();
-                  
-         loader.setLocation(TrickController.class.getResource("/Presentation/Trick1.fxml"));
-        AnchorPane page = (AnchorPane) loader.load();
-        TrickController trickController =loader.<TrickController>getController();
-       // CadStockController cadStockController = loader.<CadStockController>getController();
-        
-        usuarioServicos = new UsuarioServicos();
-        Usuario selectedUsuario = new Usuario();
-        selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
-        
-        trickController.receberdadosUsuario(selectedUsuario);
-       // cadStockController.setUsuario(selectedUsuario);
-        Stage stage =(Stage) btnLogin.getScene().getWindow();
-        stage.close();
-        
-        // Criando um Estágio de Diálogo (Stage Dialog)
-        Stage dialogStage = new Stage();
-        dialogStage.setTitle("Registro de Vendas");
-        dialogStage.setAlwaysOnTop(false);
-        Scene scene = new Scene(page);
-        dialogStage.setScene(scene);
-        dialogStage.setResizable(false);
-        //dialogStage.setFullScreen(true);
-           dialogStage.setMaximized(true);
-/*     */         // Mostra o Dialog e espera até que o usuário o feche
-        dialogStage.showAndWait();
-        
-/*     */         }
-/*     */ 
-/*     */ 
-/*     */       
-/*     */       }
-/*     */       else
-/*     */       {
-/*     */ 
-/*     */         
-/* 196 */         this.labelLoginPageErro.setText("Nome e senha do usuário não correspondem!");
-/* 197 */        // this.jLabel2.setIcon(new ImageIcon(getClass().getResource("/images/lock.png")));
-/*     */       }
-/*     */     
-/*     */     }
-/* 201 */     catch (Exception ex) {
-/* 202 */       System.out.println("" + ex + ex.getLocalizedMessage());
-                System.out.println("" + ex.toString());
-/*     */     } 
-/*     */   }
-    
-    
-       public void loginComEnter(){
-         
-         
-            
-           String username = this.tfUsuario.getText();
-/*     */     TrickController Trick = new TrickController();
-               
-/* 153 */     String password = this.passwordFieldSenha.getText();
-/* 154 */     UsuarioServicos us = new UsuarioServicos();
-/* 155 */     this.labelLoginPageErro.setText("");
-/* 156 */     //this.imageViewLock.setIcon(new ImageIcon(getClass().getResource("/images/lock_off.png")));
-/*     */     /*     */     
-          
-/*     */     try {
-/* 159 */       if (us.AutenticarUsuario(username, password) == true)
-/*     */       {
-/*     */         
- 
-/* 162 */         UsuarioDAO userDao = new UsuarioDAO();
-/* 163 */         this.rs = userDao.getCategoriaUsuario(username, password);
-/* 164 */         this.rs.next();
-/* 165 */         String categoriaUsuario = this.rs.getString("Categoria");
-/* 166 */         String codUsuario = this.rs.getString("Cod_Funcionario");
-                  //user.setCod_Funcionario(Integer.parseInt(codUsuario));
-                 // user.setCod_Funcionario(Integer.valueOf(codUsuario));
-/*     */         //user.setCod_Funcionario(Integer.parseInt(this.rs.getString("Cod_Funcionario")));
-/* 168 */         if (categoriaUsuario.contentEquals("Funcionario"))
-/*     */         {
-/* 170 */           Previlegio prev = us.VerificarPrevilegios();
-/* 171 */           us.Login(username, password);
-                    
-                    //Trick.UserInfo(username, codUsuario);
-/* 172 */           FXMLLoader loader = new FXMLLoader();
-                    
-         //Parent root = (Parent) loader.load();           
-         //CadStockController cadStockController= loader.<CadStockController> getController();
-        // servicoProdutos = new ProdutosServicos();
-        // Produto selectedProduto = new Produto();
-         //selectedProduto= servicoProdutos.getDetalhesProduto(Integer.parseInt(codProduto));
-       // cadStockController.ReceberDadosProduto(selectedProduto);
+                    if (status.equals("Inativo")) {
+                        Alert alerta = new Alert(AlertType.INFORMATION);
+                        alerta.setTitle("Informação");
+                        alerta.setHeaderText(null);
+                        alerta.setContentText("Não é possível acesar pois o Utilizador encontra-se Inativo!");
+                        alerta.showAndWait();
+                    } else {
+                        //Trick.UserInfo(username, codUsuario);
+/* 172 */ FXMLLoader loader = new FXMLLoader();
 
-        loader.setLocation(TrickController.class.getResource("/Presentation/Trick1.fxml"));
-        
-        AnchorPane page = (AnchorPane) loader.load();
-        TrickController trickController =loader.<TrickController>getController();
-        
-        usuarioServicos = new UsuarioServicos();
-        Usuario selectedUsuario = new Usuario();
-        selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
-        trickController.receberdadosUsuario(selectedUsuario);
-       // cadStockController.setUsuario(selectedUsuario);
-        //trickController.UserInfo(username,codUsuario);
-       
-         Stage stage =(Stage) btnLogin.getScene().getWindow();
-        stage.close();
-       
-        // Criando um Estágio de Diálogo (Stage Dialog)
-        Stage dialogStage = new Stage();
-        dialogStage.setTitle("Registro de Vendas");
-        Scene scene = new Scene(page);
-        dialogStage.setScene(scene);
-        dialogStage.setResizable(false);
-        
-        //dialogStage.setFullScreen(true);
-        dialogStage.setMaximized(true);
-        // Mostra o Dialog e espera até que o usuário o feche
-        dialogStage.showAndWait();
-          
-/*     */         }
-/* 178 */         else if (categoriaUsuario.contentEquals("Gerente"))
-/*     */         {
-/* 180 */           
+                        loader.setLocation(TrickController.class.getResource("/Presentation/Trick1.fxml"));
 
-                         
-/* 181 */            Previlegio prev = us.VerificarPrevilegios();
+                        AnchorPane page = (AnchorPane) loader.load();
+                        TrickController trickController = loader.<TrickController>getController();
+
+                        usuarioServicos = new UsuarioServicos();
+                        Usuario selectedUsuario = new Usuario();
+                        selectedUsuario = usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
+                        trickController.receberdadosUsuario(selectedUsuario);
+
+                        Stage stage = (Stage) btnLogin.getScene().getWindow();
+                        stage.close();
+
+                        // Criando um Estágio de Diálogo (Stage Dialog)
+                        Stage dialogStage = new Stage();
+                        dialogStage.setTitle("Registro de Vendas");
+                        dialogStage.setAlwaysOnTop(false);
+                        Scene scene = new Scene(page);
+                        dialogStage.setScene(scene);
+                        dialogStage.setResizable(false);
+
+                        //dialogStage.setFullScreen(true);
+                        dialogStage.setMaximized(true);
+                        // Mostra o Dialog e espera até que o usuário o feche
+                        dialogStage.showAndWait();
+                    }
+                } else if (categoriaUsuario.contentEquals("Gerente")) {
+
+                    Previlegio prev = us.VerificarPrevilegios();
                     us.Login(username, password);
-                    
-                   // Trick.UserInfo(username, codUsuario);
-/* 172 */           FXMLLoader loader = new FXMLLoader();
-                  
-         loader.setLocation(TrickController.class.getResource("/Presentation/Trick1.fxml"));
-        AnchorPane page = (AnchorPane) loader.load();
-        TrickController trickController =loader.<TrickController>getController();
-       // CadStockController cadStockController = loader.<CadStockController>getController();
-        
-        usuarioServicos = new UsuarioServicos();
-        Usuario selectedUsuario = new Usuario();
-        selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
-        
-        trickController.receberdadosUsuario(selectedUsuario);
-       // cadStockController.setUsuario(selectedUsuario);
-        Stage stage =(Stage) btnLogin.getScene().getWindow();
-        stage.close();
-        
-        // Criando um Estágio de Diálogo (Stage Dialog)
-        Stage dialogStage = new Stage();
-        dialogStage.setTitle("Registro de Vendas");
-        Scene scene = new Scene(page);
-        dialogStage.setScene(scene);
-        dialogStage.setResizable(false);
-        //dialogStage.setFullScreen(true);
-           dialogStage.setMaximized(true);
-/*     */         // Mostra o Dialog e espera até que o usuário o feche
-        dialogStage.showAndWait();
-        
-/*     */         }
-/*     */ 
-/*     */ 
-/*     */       
-/*     */       }
-/*     */       else
-/*     */       {
-/*     */ 
-/*     */         
-/* 196 */         this.labelLoginPageErro.setText("Nome e senha do usuário não correspondem!");
-/* 197 */        // this.jLabel2.setIcon(new ImageIcon(getClass().getResource("/images/lock.png")));
-/*     */       }
-/*     */     
-/*     */     }
-/* 201 */     catch (Exception ex) {
-/* 202 */       System.out.println("" + ex + ex.getLocalizedMessage());
-                System.out.println("" + ex.toString());
-/*     */     }
-     }
-    
-       
-       public void loginComEnterUser(){
-           String username = this.tfUsuario.getText();
-/*     */     TrickController Trick = new TrickController();
-               
-/* 153 */     String password = this.passwordFieldSenha.getText();
-/* 154 */     UsuarioServicos us = new UsuarioServicos();
-/* 155 */     this.labelLoginPageErro.setText("");
-/* 156 */     //this.imageViewLock.setIcon(new ImageIcon(getClass().getResource("/images/lock_off.png")));
-/*     */     /*     */     
-          
-/*     */     try {
-/* 159 */       if (us.AutenticarUsuario(username, password) == true)
-/*     */       {
-/*     */         
- 
-/* 162 */         UsuarioDAO userDao = new UsuarioDAO();
-/* 163 */         this.rs = userDao.getCategoriaUsuario(username, password);
-/* 164 */         this.rs.next();
-/* 165 */         String categoriaUsuario = this.rs.getString("Categoria");
-/* 166 */         String codUsuario = this.rs.getString("Cod_Funcionario");
-                  //user.setCod_Funcionario(Integer.parseInt(codUsuario));
-                 // user.setCod_Funcionario(Integer.valueOf(codUsuario));
-/*     */         //user.setCod_Funcionario(Integer.parseInt(this.rs.getString("Cod_Funcionario")));
-/* 168 */         if (categoriaUsuario.contentEquals("Funcionario"))
-/*     */         {
-/* 170 */           Previlegio prev = us.VerificarPrevilegios();
-/* 171 */           us.Login(username, password);
-                    
-                    //Trick.UserInfo(username, codUsuario);
-/* 172 */           FXMLLoader loader = new FXMLLoader();
-                    
-         //Parent root = (Parent) loader.load();           
-         //CadStockController cadStockController= loader.<CadStockController> getController();
-        // servicoProdutos = new ProdutosServicos();
-        // Produto selectedProduto = new Produto();
-         //selectedProduto= servicoProdutos.getDetalhesProduto(Integer.parseInt(codProduto));
-       // cadStockController.ReceberDadosProduto(selectedProduto);
 
-        loader.setLocation(TrickController.class.getResource("/Presentation/Trick1.fxml"));
-        
-        AnchorPane page = (AnchorPane) loader.load();
-        TrickController trickController =loader.<TrickController>getController();
-        
-        usuarioServicos = new UsuarioServicos();
-        Usuario selectedUsuario = new Usuario();
-        selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
-        trickController.receberdadosUsuario(selectedUsuario);
-       // cadStockController.setUsuario(selectedUsuario);
-        //trickController.UserInfo(username,codUsuario);
-       
-         Stage stage =(Stage) btnLogin.getScene().getWindow();
-        stage.close();
-       
-        // Criando um Estágio de Diálogo (Stage Dialog)
-        Stage dialogStage = new Stage();
-        dialogStage.setTitle("Registro de Vendas");
-        Scene scene = new Scene(page);
-        dialogStage.setScene(scene);
-        dialogStage.setResizable(false);
-        
-        //dialogStage.setFullScreen(true);
-        dialogStage.setMaximized(true);
-        // Mostra o Dialog e espera até que o usuário o feche
-        dialogStage.showAndWait();
-          
-/*     */         }
-/* 178 */         else if (categoriaUsuario.contentEquals("Gerente"))
-/*     */         {
-/* 180 */           
+                    // Trick.UserInfo(username, codUsuario);
+                    FXMLLoader loader = new FXMLLoader();
 
-                         
-/* 181 */            Previlegio prev = us.VerificarPrevilegios();
+                    loader.setLocation(TrickController.class.getResource("/Presentation/Trick1.fxml"));
+                    AnchorPane page = (AnchorPane) loader.load();
+                    TrickController trickController = loader.<TrickController>getController();
+                    // CadStockController cadStockController = loader.<CadStockController>getController();
+
+                    usuarioServicos = new UsuarioServicos();
+                    Usuario selectedUsuario = new Usuario();
+                    selectedUsuario = usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
+
+                    trickController.receberdadosUsuario(selectedUsuario);
+
+                    Stage stage = (Stage) btnLogin.getScene().getWindow();
+                    stage.close();
+
+                    // Criando um Estágio de Diálogo (Stage Dialog)
+                    Stage dialogStage = new Stage();
+                    dialogStage.setTitle("Registro de Vendas");
+                    dialogStage.setAlwaysOnTop(false);
+                    Scene scene = new Scene(page);
+                    dialogStage.setScene(scene);
+                    dialogStage.setResizable(false);
+                    //dialogStage.setFullScreen(true);
+                    dialogStage.setMaximized(true);
+                    // Mostra o Dialog e espera até que o usuário o feche
+                    dialogStage.showAndWait();
+
+                }
+
+            } else {
+                this.labelLoginPageErro.setText("Nome e senha do usuário não correspondem!");
+                // this.jLabel2.setIcon(new ImageIcon(getClass().getResource("/images/lock.png")));
+            }
+
+        } catch (Exception ex) {
+            System.out.println("" + ex + ex.getLocalizedMessage());
+            System.out.println("" + ex.toString());
+        }
+    }
+
+    public void loginComEnter() {
+
+        String username = this.tfUsuario.getText();
+        TrickController Trick = new TrickController();
+
+        String password1 = this.passwordFieldSenha.getText();
+        String password = LoginPage1Controller.hashPassword(password1);
+        UsuarioServicos us = new UsuarioServicos();
+        this.labelLoginPageErro.setText("");
+        //this.imageViewLock.setIcon(new ImageIcon(getClass().getResource("/images/lock_off.png")));
+
+        try {
+            if (us.AutenticarUsuario(username, password) == true) {
+
+                UsuarioDAO userDao = new UsuarioDAO();
+                this.rs = userDao.getCategoriaUsuario(username, password);
+                this.rs.next();
+                String categoriaUsuario = this.rs.getString("Categoria");
+                String codUsuario = this.rs.getString("Cod_Funcionario");
+                String status = this.rs.getString("Status");
+                if (status.equals("Inativo")) {
+                    Alert alerta = new Alert(AlertType.INFORMATION);
+                    alerta.setTitle("Informação");
+                    alerta.setHeaderText(null);
+                    alerta.setContentText("Não é possível acesar pois o Utilizador encontra-se Inativo!");
+                    alerta.showAndWait();
+
+                } else {
+
+                    if (categoriaUsuario.contentEquals("Funcionario")) {
+                        Previlegio prev = us.VerificarPrevilegios();
+                        us.Login(username, password);
+
+                        if (status.equals("Inativo")) {
+                            Alert alerta = new Alert(AlertType.INFORMATION);
+                            alerta.setTitle("Informação");
+                            alerta.setHeaderText(null);
+                            alerta.setContentText("Não é possível acesar pois o Utilizador encontra-se Inativo!");
+                            alerta.showAndWait();
+                        } else {
+
+                            //Trick.UserInfo(username, codUsuario);
+                            FXMLLoader loader = new FXMLLoader();
+
+                            loader.setLocation(TrickController.class.getResource("/Presentation/Trick1.fxml"));
+
+                            AnchorPane page = (AnchorPane) loader.load();
+                            TrickController trickController = loader.<TrickController>getController();
+
+                            usuarioServicos = new UsuarioServicos();
+                            Usuario selectedUsuario = new Usuario();
+                            selectedUsuario = usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
+                            trickController.receberdadosUsuario(selectedUsuario);
+                            // cadStockController.setUsuario(selectedUsuario);
+                            //trickController.UserInfo(username,codUsuario);
+
+                            Stage stage = (Stage) btnLogin.getScene().getWindow();
+                            stage.close();
+
+                            // Criando um Estágio de Diálogo (Stage Dialog)
+                            Stage dialogStage = new Stage();
+                            dialogStage.setTitle("Registro de Vendas");
+                            Scene scene = new Scene(page);
+                            dialogStage.setScene(scene);
+                            dialogStage.setResizable(false);
+
+                            //dialogStage.setFullScreen(true);
+                            dialogStage.setMaximized(true);
+                            // Mostra o Dialog e espera até que o usuário o feche
+                            dialogStage.showAndWait();
+                        }
+                    } else if (categoriaUsuario.contentEquals("Gerente")) {
+
+                        Previlegio prev = us.VerificarPrevilegios();
+                        us.Login(username, password);
+
+                        // Trick.UserInfo(username, codUsuario);
+                        FXMLLoader loader = new FXMLLoader();
+
+                        loader.setLocation(TrickController.class.getResource("/Presentation/Trick1.fxml"));
+                        AnchorPane page = (AnchorPane) loader.load();
+                        TrickController trickController = loader.<TrickController>getController();
+                        // CadStockController cadStockController = loader.<CadStockController>getController();
+
+                        usuarioServicos = new UsuarioServicos();
+                        Usuario selectedUsuario = new Usuario();
+                        selectedUsuario = usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
+
+                        trickController.receberdadosUsuario(selectedUsuario);
+                        // cadStockController.setUsuario(selectedUsuario);
+                        Stage stage = (Stage) btnLogin.getScene().getWindow();
+                        stage.close();
+
+                        // Criando um Estágio de Diálogo (Stage Dialog)
+                        Stage dialogStage = new Stage();
+                        dialogStage.setTitle("Registro de Vendas");
+                        Scene scene = new Scene(page);
+                        dialogStage.setScene(scene);
+                        dialogStage.setResizable(false);
+                        //dialogStage.setFullScreen(true);
+                        dialogStage.setMaximized(true);
+                        // Mostra o Dialog e espera até que o usuário o feche
+                        dialogStage.showAndWait();
+                    }
+                }
+
+            } else {
+
+                this.labelLoginPageErro.setText("Nome e senha do usuário não correspondem!");
+                // this.jLabel2.setIcon(new ImageIcon(getClass().getResource("/images/lock.png")));
+            }
+
+        } catch (Exception ex) {
+            System.out.println("" + ex + ex.getLocalizedMessage());
+            System.out.println("" + ex.toString());
+        }
+    }
+
+    public void loginComEnterUser() {
+        String username = this.tfUsuario.getText();
+        TrickController Trick = new TrickController();
+
+        String password1 = this.passwordFieldSenha.getText();
+        String password = LoginPage1Controller.hashPassword(password1);
+        UsuarioServicos us = new UsuarioServicos();
+        this.labelLoginPageErro.setText("");
+
+        try {
+            if (us.AutenticarUsuario(username, password) == true) {
+
+                UsuarioDAO userDao = new UsuarioDAO();
+                this.rs = userDao.getCategoriaUsuario(username, password);
+                this.rs.next();
+                String categoriaUsuario = this.rs.getString("Categoria");
+                String codUsuario = this.rs.getString("Cod_Funcionario");
+                String status = this.rs.getString("Status");
+
+                if (categoriaUsuario.contentEquals("Funcionario")) {
+                    Previlegio prev = us.VerificarPrevilegios();
                     us.Login(username, password);
-                    
-                   // Trick.UserInfo(username, codUsuario);
-/* 172 */           FXMLLoader loader = new FXMLLoader();
-                  
-         loader.setLocation(TrickController.class.getResource("/Presentation/Trick1.fxml"));
-        AnchorPane page = (AnchorPane) loader.load();
-        TrickController trickController =loader.<TrickController>getController();
-       // CadStockController cadStockController = loader.<CadStockController>getController();
-        
-        usuarioServicos = new UsuarioServicos();
-        Usuario selectedUsuario = new Usuario();
-        selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
-        
-        trickController.receberdadosUsuario(selectedUsuario);
-       // cadStockController.setUsuario(selectedUsuario);
-        Stage stage =(Stage) btnLogin.getScene().getWindow();
-        stage.close();
-        
-        // Criando um Estágio de Diálogo (Stage Dialog)
-        Stage dialogStage = new Stage();
-        dialogStage.setTitle("Registro de Vendas");
-        Scene scene = new Scene(page);
-        dialogStage.setScene(scene);
-        dialogStage.setResizable(false);
-        //dialogStage.setFullScreen(true);
-           dialogStage.setMaximized(true);
-/*     */         // Mostra o Dialog e espera até que o usuário o feche
-        dialogStage.showAndWait();
-        
-/*     */         }
-/*     */ 
-/*     */ 
-/*     */       
-/*     */       }
-/*     */       else
-/*     */       {
-/*     */ 
-/*     */         
-/* 196 */         this.labelLoginPageErro.setText("Nome e senha do usuário não correspondem!");
-/* 197 */        // this.jLabel2.setIcon(new ImageIcon(getClass().getResource("/images/lock.png")));
-/*     */       }
-/*     */     
-/*     */     }
-/* 201 */     catch (Exception ex) {
-/* 202 */       System.out.println("" + ex + ex.getLocalizedMessage());
-                System.out.println("" + ex.toString());
-/*     */     }
-           
-       }
-  
-/*     */ }
+
+                    if (status.equals("Inativo")) {
+                        Alert alerta = new Alert(AlertType.INFORMATION);
+                        alerta.setTitle("Informação");
+                        alerta.setHeaderText(null);
+                        alerta.setContentText("Não é possível acesar pois o Utilizador encontra-se Inativo!");
+                        alerta.showAndWait();
+                    } else {
+                        //Trick.UserInfo(username, codUsuario);
+                        FXMLLoader loader = new FXMLLoader();
+
+                        loader.setLocation(TrickController.class.getResource("/Presentation/Trick1.fxml"));
+
+                        AnchorPane page = (AnchorPane) loader.load();
+                        TrickController trickController = loader.<TrickController>getController();
+
+                        usuarioServicos = new UsuarioServicos();
+                        Usuario selectedUsuario = new Usuario();
+                        selectedUsuario = usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
+                        trickController.receberdadosUsuario(selectedUsuario);
+
+                        Stage stage = (Stage) btnLogin.getScene().getWindow();
+                        stage.close();
+
+                        // Criando um Estágio de Diálogo (Stage Dialog)
+                        Stage dialogStage = new Stage();
+                        dialogStage.setTitle("Registro de Vendas");
+                        Scene scene = new Scene(page);
+                        dialogStage.setScene(scene);
+                        dialogStage.setResizable(false);
+
+                        //dialogStage.setFullScreen(true);
+                        dialogStage.setMaximized(true);
+                        // Mostra o Dialog e espera até que o usuário o feche
+                        dialogStage.showAndWait();
+                    }
+                } else if (categoriaUsuario.contentEquals("Gerente")) {
+
+                    Previlegio prev = us.VerificarPrevilegios();
+                    us.Login(username, password);
+
+                    // Trick.UserInfo(username, codUsuario);
+                    FXMLLoader loader = new FXMLLoader();
+
+                    loader.setLocation(TrickController.class.getResource("/Presentation/Trick1.fxml"));
+                    AnchorPane page = (AnchorPane) loader.load();
+                    TrickController trickController = loader.<TrickController>getController();
+                    // CadStockController cadStockController = loader.<CadStockController>getController();
+
+                    usuarioServicos = new UsuarioServicos();
+                    Usuario selectedUsuario = new Usuario();
+                    selectedUsuario = usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
+
+                    trickController.receberdadosUsuario(selectedUsuario);
+                    // cadStockController.setUsuario(selectedUsuario);
+                    Stage stage = (Stage) btnLogin.getScene().getWindow();
+                    stage.close();
+
+                    // Criando um Estágio de Diálogo (Stage Dialog)
+                    Stage dialogStage = new Stage();
+                    dialogStage.setTitle("Registro de Vendas");
+                    Scene scene = new Scene(page);
+                    dialogStage.setScene(scene);
+                    dialogStage.setResizable(false);
+                    //dialogStage.setFullScreen(true);
+                    dialogStage.setMaximized(true);
+                    // Mostra o Dialog e espera até que o usuário o feche
+                    dialogStage.showAndWait();
+
+                }
+
+            } else {
+
+                this.labelLoginPageErro.setText("Nome e senha do usuário não correspondem!");
+                // this.jLabel2.setIcon(new ImageIcon(getClass().getResource("/images/lock.png")));
+            }
+
+        } catch (Exception ex) {
+            System.out.println("" + ex + ex.getLocalizedMessage());
+            System.out.println("" + ex.toString());
+        }
+
+    }
+
+}

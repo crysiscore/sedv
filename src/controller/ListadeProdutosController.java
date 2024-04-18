@@ -109,7 +109,7 @@ public class ListadeProdutosController implements Initializable {
     private TableColumn<Produto, String> tableColumnCategoria;
 
     @FXML
-    private TableColumn<Produto, Integer> tableColumnCodigo;
+    private TableColumn<Produto, String> tableColumnCodigo;
 
     @FXML
     private TableColumn<Produto, String> tableColumnDescricao;
@@ -182,6 +182,7 @@ public class ListadeProdutosController implements Initializable {
                  
                  while(rs.next()){
                  Integer QueryProductId= rs.getInt("Cod_produto");
+                 String QueryCodigoManual=rs.getString("codigo_manual");
                  String QueryNome = rs.getString("Nome");
                  String QueryCategoria = rs.getString("Categoria");
                  String QueryUnidade = rs.getString("Unidade");
@@ -195,17 +196,17 @@ public class ListadeProdutosController implements Initializable {
                  StockLevel stock = new StockLevel();
                  stock.setUnidades_stock(rs.getDouble("unidades_stock"));
                  
-                 produtoObservableList.add(new Produto(QueryProductId,QueryNome,QueryCategoria,QueryUnidade,QueryDescricao,QueryPreco,QueryPrecoCompra,foto,stock));
+                 produtoObservableList.add(new Produto(QueryProductId,QueryCodigoManual,QueryNome,QueryCategoria,QueryUnidade,QueryDescricao,QueryPreco,QueryPrecoCompra,foto,stock));
                  }
                  
                  
-                 tableColumnCodigo.setCellValueFactory(new PropertyValueFactory<>("Cod_produto"));
+                 tableColumnCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo_manual"));
                  tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("Nome"));
                  tableColumnCategoria.setCellValueFactory(new PropertyValueFactory<>("Categoria"));
                  tableColumnDescricao.setCellValueFactory(new PropertyValueFactory<>("Descricao"));
                  tableColumnUnidade.setCellValueFactory(new PropertyValueFactory<>("Unidade"));
                  tableColumnPreco.setCellValueFactory(new PropertyValueFactory<>("Preco_unitario"));
-                 tableColumnPrecoDeCompra.setCellValueFactory(new PropertyValueFactory<>("Preco_De_Compra"));
+                // tableColumnPrecoDeCompra.setCellValueFactory(new PropertyValueFactory<>("Cod_produto"));
                  //    tablecolumnStock.setCellValueFactory(new PropertyValueFactory<>("stock"));
 
                  tablecolumnStock.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Produto, Double>, ObservableValue<Double>>() {
@@ -242,7 +243,7 @@ public class ListadeProdutosController implements Initializable {
                      
                      String searchKeyword=newValue.toLowerCase();
                      
-                     if(produto.getCod_produto().toString().indexOf(searchKeyword)>-1){
+                     if(produto.getCodigo_manual().toLowerCase().indexOf(searchKeyword)>-1){
                          return true;
                      }else if(produto.getNome().toLowerCase().indexOf(searchKeyword)>-1){
                          return true;
@@ -369,10 +370,11 @@ public class ListadeProdutosController implements Initializable {
          //selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
         cadastroProdutoController.ReceberDadosProduto(selectedProduto);
         cadastroProdutoController.OcultarBotaoSalvar();
+        cadastroProdutoController.trocartextoeditarproduto();
 
         // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Registo de Produtos");
+        dialogStage.setTitle("EDIÇÃO DE PRODUTO");
         Scene scene = new Scene(root);
         dialogStage.setScene(scene);
         dialogStage.setMaximized(false);
@@ -397,7 +399,7 @@ public class ListadeProdutosController implements Initializable {
        
         @FXML
        public void handleDetalhesProduto() throws IOException {
-    
+       
         try {
         String codProduto = this.labelCodProduto.getText();
             if (labelCodProduto.getText().isEmpty()){
@@ -425,10 +427,11 @@ public class ListadeProdutosController implements Initializable {
        // cadastroProdutoController.detalhesStockProdutos(selectedProduto1);
         
         cadastroProdutoController.camposBloqueiados();
+        cadastroProdutoController.trocartextoregistrarprodutos();
 
         // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Registo de Prdoutos");
+        dialogStage.setTitle("Detalhes do Produto");
         Scene scene = new Scene(root);
         dialogStage.setScene(scene);
         dialogStage.setMaximized(false);

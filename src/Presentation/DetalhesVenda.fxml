@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1324.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DetalhesVendaController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1324.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DetalhesVendaController">
    <children>
       <BorderPane layoutX="632.0" layoutY="-218.0" prefHeight="1080.0" prefWidth="1049.0" style="-fx-background-color: #EC3A3A; -fx-background-radius: 700;">
          <top>
@@ -29,7 +29,7 @@
             </DropShadow>
          </effect>
       </BorderPane>
-      <Pane layoutX="167.0" layoutY="54.0" prefHeight="581.0" prefWidth="1026.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
+      <Pane layoutX="167.0" layoutY="54.0" prefHeight="581.0" prefWidth="901.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
          <children>
             <TableView fx:id="tableViewListaProdutos" layoutX="94.0" layoutY="240.0" prefHeight="227.0" prefWidth="562.0" style="-fx-background-radius: 10;">
                <columns>
@@ -43,13 +43,13 @@
                   <DropShadow />
                </effect>
             </TableView>
-            <ImageView fitHeight="82.0" fitWidth="92.0" layoutX="928.0" layoutY="9.0">
+            <ImageView fitHeight="98.0" fitWidth="111.0" layoutX="781.0" layoutY="8.0">
                <image>
                   <Image url="@../icons/Free3dLogo.png" />
                </image>
             </ImageView>
             <Label fx:id="labelCodProduto" layoutX="939.0" layoutY="96.0" prefHeight="17.0" prefWidth="50.0" />
-            <Pane layoutX="94.0" layoutY="51.0" prefHeight="126.0" prefWidth="361.0" style="-fx-background-color: fff; -fx-background-radius: 14;">
+            <Pane layoutX="94.0" layoutY="51.0" prefHeight="126.0" prefWidth="294.0" style="-fx-background-color: fff; -fx-background-radius: 14;">
                <effect>
                   <DropShadow>
                      <color>
@@ -79,7 +79,7 @@
                   <Label layoutX="116.0" layoutY="88.0" text="MT" />
                </children>
             </Pane>
-            <Button layoutX="725.0" layoutY="522.0" mnemonicParsing="false" onMouseClicked="#print" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: fff;" text="Imprimir Extrato">
+            <Button layoutX="595.0" layoutY="518.0" mnemonicParsing="false" onMouseClicked="#print" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: fff;" text="Imprimir Extrato">
                <font>
                   <Font name="Times New Roman" size="12.0" />
                </font>
@@ -91,7 +91,7 @@
                   </InnerShadow>
                </effect>
             </Button>
-            <Button fx:id="btnCancel" layoutX="844.0" layoutY="522.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: fff;" text="Cancelar">
+            <Button fx:id="btnCancel" layoutX="714.0" layoutY="518.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: fff;" text="Cancelar">
                <font>
                   <Font name="Times New Roman" size="12.0" />
                </font>
@@ -131,5 +131,7 @@
             </DropShadow>
          </effect>
       </Text>
+      <BorderPane layoutX="-104.0" layoutY="-79.0" prefHeight="158.0" prefWidth="164.0" style="-fx-background-radius: 700; -fx-background-color: #DE3030;" />
+      <BorderPane layoutX="-92.0" layoutY="591.0" prefHeight="158.0" prefWidth="164.0" style="-fx-background-radius: 700; -fx-background-color: #DE3030;" />
    </children>
 </AnchorPane>

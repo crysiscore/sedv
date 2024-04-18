@@ -63,6 +63,10 @@ public class BuscaProdutosController implements Initializable {
 
     @FXML
     private TableColumn<Produto, Integer> columnCodigoProduto;
+    
+    
+    @FXML
+    private TableColumn<Produto, String> columnCodigoProdutoManual;
 
     @FXML
     private TableColumn<Produto, String> columnNomeProduto;
@@ -132,10 +136,14 @@ public class BuscaProdutosController implements Initializable {
                  while(rs.next()){
                  Integer QueryProductId= rs.getInt("Cod_produto");
                  String QueryNome = rs.getString("Nome");
+                 String QuernyProdutoManual=rs.getString("codigo_manual");
                  
-                 produtoObservableList.add(new Produto(QueryProductId,QueryNome));
+                 produtoObservableList.add(new Produto(QueryProductId,QueryNome,QuernyProdutoManual));
                  }
-                 columnCodigoProduto.setCellValueFactory(new PropertyValueFactory<>("Cod_produto"));
+                 
+                 
+               //  columnCodigoProduto.setCellValueFactory(new PropertyValueFactory<>("Cod_produto"));
+                  columnCodigoProdutoManual.setCellValueFactory(new PropertyValueFactory<>("codigo_manual"));
                  columnNomeProduto.setCellValueFactory(new PropertyValueFactory<>("Nome"));
                  tableviewProdutos.setItems(produtoObservableList);
                  

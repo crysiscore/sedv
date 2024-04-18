@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InventarioParcialController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InventarioParcialController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="1297.0" style="-fx-background-color: #E9EEEE;">
          <children>
@@ -126,6 +126,7 @@
                      </font>
                   </Button>
                   <Label fx:id="labelGeral" layoutX="183.0" layoutY="473.0" text="Label" />
+                  <Label fx:id="labelCodigoManual" layoutX="211.0" layoutY="71.0" text="Label" />
                </children>
                <effect>
                   <DropShadow>

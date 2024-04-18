@@ -114,6 +114,33 @@ import javax.swing.JOptionPane;
          StockLevel sl = new StockLevel();
 
          this.produto.setCod_produto(Integer.valueOf(this.rs.getInt("Codigo")));
+         this.produto.setCodigo_manual(this.rs.getString("codigo_manual"));
+         this.produto.setNome(this.rs.getString("nome"));
+         this.produto.setPreco_unitario(Double.valueOf(this.rs.getDouble("Preco")));
+         this.produto.setPreco_De_Compra(Double.valueOf(this.rs.getDouble("Preco_De_Compra")));
+         this.produto.setUnidade(this.rs.getString("Unidade"));
+         this.produto.setCategoria(this.rs.getString("Categoria"));
+         this.produto.setDescricao(this.rs.getString("Descricao"));
+         this.produto.setFoto(this.rs.getString("foto"));
+         sl.setUnidades_stock(Double.valueOf(this.rs.getDouble("unidades_stock")));
+         this.produto.setStock(sl);
+
+         return this.produto;
+     } 
+     
+        public Produto getDetalhesProdutoComCodigoManual(String codProduto) throws SQLException {
+         this.rs = this.prodDAO.getDetalhesProduto1(codProduto);
+
+         if (!this.rs.next()) {
+             // Produto não encontrado, retornar null
+             return null;
+         }
+
+         this.produto = new Produto();
+         StockLevel sl = new StockLevel();
+
+         this.produto.setCod_produto(Integer.valueOf(this.rs.getInt("Codigo")));
+         this.produto.setCodigo_manual(this.rs.getString("codigo_manual"));
          this.produto.setNome(this.rs.getString("nome"));
          this.produto.setPreco_unitario(Double.valueOf(this.rs.getDouble("Preco")));
          this.produto.setPreco_De_Compra(Double.valueOf(this.rs.getDouble("Preco_De_Compra")));
@@ -126,7 +153,6 @@ import javax.swing.JOptionPane;
 
          return this.produto;
      }
-
  
  
  

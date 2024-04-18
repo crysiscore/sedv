@@ -116,12 +116,11 @@ public class Lista_De_Venda_Por_PeriodoController implements Initializable {
 
                     // Ajuste do formato da data
                     
-                 // Substitua este trecho no seu código onde a conversão da data é feita
-SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy", Locale.getDefault());
-java.util.Date utilDate = dateFormat.parse(rs.getString("data_venda"));
-java.sql.Date dataVenda = new java.sql.Date(utilDate.getTime());
-row.createCell(1).setCellValue(dataVenda != null ? dataVenda.toLocalDate().toString() : "");
-
+                    // Substitua este trecho no seu código onde a conversão da data é feita
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy", Locale.getDefault());
+                    java.util.Date utilDate = dateFormat.parse(rs.getString("data_venda"));
+                    java.sql.Date dataVenda = new java.sql.Date(utilDate.getTime());
+                    row.createCell(1).setCellValue(dataVenda != null ? dataVenda.toLocalDate().toString() : "");
 
                     row.createCell(2).setCellValue(rs.getDouble("total_venda"));
                     row.createCell(3).setCellValue(rs.getString("nome_cliente"));

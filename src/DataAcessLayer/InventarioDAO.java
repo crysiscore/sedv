@@ -38,7 +38,7 @@ public class InventarioDAO {
 /* 31 */     } catch (ClassNotFoundException e) {}
 /*    */   }
 /*    */    
-              public void RegistarInventarioItem( ObservableList <Inventario> inventario ) throws SQLException {
+ public void RegistarInventarioItem( ObservableList <Inventario> inventario ) throws SQLException {
 /* 103 */    
               this.cs = this.connect.prepareCall("{call Registar_Inventario_Item(?,?,?,?)}");
               try{
@@ -64,5 +64,21 @@ public class InventarioDAO {
               
 /* 110 */     this.rs = cs.executeQuery();         
               return this.rs;
+/*     */   }
+
+
+    public ResultSet Lista_Inventario() throws SQLException {
+        /*  74 */ this.cs = this.connect.prepareCall("{call  Lista_Inventario()}");
+        /*  75 */ this.rs = this.cs.executeQuery();
+        /*     */
+ /*  77 */ return this.rs;
+        /*     */    }
+    
+       public ResultSet getDetalhesInventario(int Cod_Inventario) throws SQLException {
+/*  82 */     this.cs = this.connect.prepareCall("{call  Detalhes_Inventario(?)}");
+/*  83 */     this.cs.setInt(1, Cod_Inventario);
+/*  84 */     this.rs = this.cs.executeQuery();
+/*     */     
+/*  86 */     return this.rs;
 /*     */   }
 }

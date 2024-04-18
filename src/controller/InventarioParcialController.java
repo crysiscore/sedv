@@ -83,7 +83,7 @@ public class InventarioParcialController implements Initializable {
     private TableView<Produto> tableviewProdutos;
 
     @FXML
-    private TableColumn<Produto, Integer> columnCodigoProduto;
+    private TableColumn<Produto, String> columnCodigoProduto;
 
     @FXML
     private TableColumn<Produto, String> columnNomeProduto;
@@ -128,6 +128,11 @@ public class InventarioParcialController implements Initializable {
     
     @FXML
     private Label labelquantidadecontada;
+    
+    
+    @FXML
+    private Label labelCodigoManual;
+
 
     @FXML
     private TextField textfieldProcurarProduto;
@@ -162,6 +167,7 @@ public class InventarioParcialController implements Initializable {
          labelDiferenca.setText("0.0");
          labelDiferenca.setVisible(false);
          this.labelGeral.setVisible(false);
+         labelCodigoManual.setVisible(false);
        
        
        labelquantidadecontada.setVisible(false);
@@ -177,6 +183,8 @@ public class InventarioParcialController implements Initializable {
                  
                 while(rs.next()){
                  Integer QueryProductId= rs.getInt("Cod_produto");
+                 String QueryCodigoManual= rs.getString("codigo_manual");
+             
                  String QueryNome = rs.getString("Nome");
                  String QueryCategoria = rs.getString("Categoria");
                  String QueryUnidade = rs.getString("Unidade");
@@ -190,9 +198,9 @@ public class InventarioParcialController implements Initializable {
                  StockLevel stock = new StockLevel();
                  stock.unidades_stock =rs.getDouble("unidades_stock");
                 
-                 produtoObservableList.add(new Produto(QueryProductId,QueryNome,QueryCategoria,QueryUnidade,QueryDescricao,QueryPreco,QueryPrecoCompra,foto,stock));
+                 produtoObservableList.add(new Produto(QueryProductId,QueryCodigoManual,QueryNome,QueryCategoria,QueryUnidade,QueryDescricao,QueryPreco,QueryPrecoCompra,foto,stock));
                  }
-                 columnCodigoProduto.setCellValueFactory(new PropertyValueFactory<>("Cod_produto"));
+                 columnCodigoProduto.setCellValueFactory(new PropertyValueFactory<>("codigo_manual"));
                  columnNomeProduto.setCellValueFactory(new PropertyValueFactory<>("Nome"));
                  columnPreco.setCellValueFactory(new PropertyValueFactory<>("Preco_unitario"));
                 // columnStock.setCellValueFactory(new PropertyValueFactory<>("unidades_stock"));
@@ -229,7 +237,7 @@ public class InventarioParcialController implements Initializable {
                      
                      String searchKeyword=newValue.toLowerCase();
                      
-                     if(produto.getCod_produto().toString().indexOf(searchKeyword)>-1){
+                     if(produto.getCodigo_manual().toLowerCase().indexOf(searchKeyword)>-1){
                          return true;
                      }else if(produto.getNome().toLowerCase().indexOf(searchKeyword)>-1){
                          return true;
@@ -267,6 +275,7 @@ public class InventarioParcialController implements Initializable {
                 //prod.setCod_produto(pr.getCod_produto());
                 //prod.Cod_produto= pr.getCod_produto();
                 labelCodProduto.setText(String.valueOf(pr.getCod_produto()));
+                labelCodigoManual.setText(pr.getCodigo_manual());
                 labelNomeProduto.setText(pr.getNome());
                 labelPrecoProduto.setText(String.valueOf(pr.getPreco_unitario()));
                 labelStock.setText(String.valueOf(pr.stock.getUnidades_stock()));
@@ -276,6 +285,7 @@ public class InventarioParcialController implements Initializable {
                 labelCodProduto.setVisible(false);
                 labelPrecoProduto.setVisible(false);
                 labelNomeProduto.setVisible(false);
+                labelCodigoManual.setVisible(false);
                  Image image= new Image("file:"+pr.getFoto());
                  imageviewFotoProduto.setImage(image);
                 
@@ -295,18 +305,18 @@ public class InventarioParcialController implements Initializable {
     public void handleMenuItemAdicionarProdutoNaTabela() throws IOException {
         
         
- 
-          inventarioModel.setTipoDeInventario("Parcial");
-        
+         inventarioModel.setTipoDeInventario("Parcial");
+
         int selectedIndex = tableviewProdutos.getSelectionModel().getSelectedIndex();
 
-  if (selectedIndex < 0) {
+        if (selectedIndex < 0) {
             handleMenuAlert1(); // Função que exibe um alerta informando que um produto deve ser selecionado
             return;
-    }else{
-        try {
+        } else {
+            try {
 
             Integer Produto_Cod_Produto = Integer.parseInt(labelCodProduto.getText());
+            String Produto_Cod_Manual= labelCodigoManual.getText();
             Double stock = Double.parseDouble(labelStock.getText());
             String Nome_Produto = labelNomeProduto.getText();
             Double Quantidade_Contada = Double.parseDouble(labelquantidadecontada.getText());
@@ -314,7 +324,7 @@ public class InventarioParcialController implements Initializable {
 
             Produto pro = new Produto();
 
-            Inventario i = new Inventario(Integer.parseInt(labelCodProduto.getText()),
+            Inventario i = new Inventario(Integer.parseInt(labelCodProduto.getText()),labelCodigoManual.getText(),
                     labelNomeProduto.getText(),
                     Double.parseDouble(labelStock.getText()),
                     Double.parseDouble(labelquantidadecontada.getText()),
@@ -374,7 +384,7 @@ public class InventarioParcialController implements Initializable {
 
             for (Produto produto : produtoObservableList) {
                 // Para cada produto na lista, crie uma instância de Inventario e adicione-a à sua model
-                Inventario inventario = new Inventario(produto.getCod_produto(), produto.getNome(), produto.getStock().getUnidades_stock(), 0.0, 0.0);
+                Inventario inventario = new Inventario(produto.getCod_produto(),produto.getCodigo_manual(), produto.getNome(), produto.getStock().getUnidades_stock(), 0.0, 0.0);
                 inventarioModel.addInventario(inventario);
             }
 

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="667.0" prefWidth="1334.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Detalhes_InventarioController">
+   <children>
+      <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1334.0" style="-fx-background-color: #E9EEEE;">
+         <children>
+            <BorderPane layoutX="632.0" layoutY="-218.0" prefHeight="1080.0" prefWidth="1049.0" style="-fx-background-color: #EC3A3A; -fx-background-radius: 700;">
+               <top>
+                  <Pane prefHeight="200.0" prefWidth="1049.0" BorderPane.alignment="CENTER" />
+               </top>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.35877862572669983" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </BorderPane>
+            <Pane layoutX="211.0" layoutY="75.0" prefHeight="560.0" prefWidth="841.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
+               <children>
+                  <TableView fx:id="tableViewListaProdutosInventario" layoutX="94.0" layoutY="206.0" prefHeight="227.0" prefWidth="562.0" style="-fx-background-radius: 10;">
+                     <columns>
+                        <TableColumn fx:id="columnCodProduto" prefWidth="60.6666259765625" text="Código" />
+                        <TableColumn fx:id="tableColumnNome" prefWidth="164.66668701171875" text="Nome do produto" />
+                        <TableColumn fx:id="tableColumnQuantidadeQueExistia" prefWidth="121.3333740234375" text="Quantidade Antiga" />
+                        <TableColumn fx:id="tableColumnQuantidadeContada" prefWidth="122.0" text="Quantidade contada" />
+                        <TableColumn fx:id="tableColumnDiferenca" prefWidth="94.0" text="Diferença" />
+                     </columns>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </TableView>
+                  <ImageView fitHeight="103.0" fitWidth="113.0" layoutX="728.0" layoutY="6.0">
+                     <image>
+                        <Image url="@../icons/Free3dLogo.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="labelCodProduto" layoutX="939.0" layoutY="96.0" prefHeight="17.0" prefWidth="50.0" />
+                  <Pane layoutX="94.0" layoutY="82.0" prefHeight="63.0" prefWidth="361.0" style="-fx-background-color: fff; -fx-background-radius: 14;">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.5600000023841858" green="0.5375999808311462" blue="0.5375999808311462" opacity="0.4083206057548523" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <children>
+                        <Label fx:id="labelCliente" layoutX="78.0" layoutY="51.0" prefHeight="17.0" prefWidth="111.0" />
+                        <Label layoutX="33.0" layoutY="14.0" text="Tipo de Inventário:">
+                           <font>
+                              <Font name="Times New Roman Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelTipodeinventario" layoutX="139.0" layoutY="12.0" prefHeight="17.0" prefWidth="100.0" text="Label">
+                           <font>
+                              <Font name="Times New Roman" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelTotal" layoutX="68.0" layoutY="88.0" prefHeight="17.0" prefWidth="47.0" />
+                        <Label layoutX="33.0" layoutY="32.0" text="Código do Inventário:">
+                           <font>
+                              <Font name="Times New Roman Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelCodigoInventario" layoutX="146.0" layoutY="30.0" prefHeight="17.0" prefWidth="100.0" text="Label">
+                           <font>
+                              <Font name="Times New Roman" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Button fx:id="ButtonVisualizarProdutosNoExcel" layoutX="426.0" layoutY="453.0" mnemonicParsing="false" onAction="#imprimirExcel" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: fff;" text="Visualizar Produtos">
+                     <font>
+                        <Font name="Times New Roman" size="12.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="0.6392157077789307" green="0.615686297416687" blue="0.615686297416687" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Button>
+                  <Button fx:id="ButtonCancelar" layoutX="545.0" layoutY="453.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: fff;" text="Cancelar">
+                     <font>
+                        <Font name="Times New Roman" size="12.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="0.6392157077789307" green="0.615686297416687" blue="0.615686297416687" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Button>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="545.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="labelFuncionario" layoutX="892.0" layoutY="49.0" prefHeight="17.0" prefWidth="47.0">
+                     <font>
+                        <Font name="Times New Roman" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelIDFuncionario" layoutX="892.0" layoutY="83.0" prefHeight="17.0" prefWidth="50.0" />
+               </children>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.07000000029802322" green="0.06859999895095825" blue="0.06859999895095825" opacity="0.9312977194786072" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Pane>
+            <Text layoutX="383.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Detalhes do Inventário">
+               <font>
+                  <Font name="Times New Roman" size="24.0" />
+               </font>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.614503800868988" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Text>
+            <BorderPane layoutX="-144.0" layoutY="546.0" prefHeight="251.0" prefWidth="243.0" style="-fx-background-radius: 700; -fx-background-color: #DE3030;" />
+            <BorderPane layoutX="-144.0" layoutY="-134.0" prefHeight="251.0" prefWidth="243.0" style="-fx-background-radius: 700; -fx-background-color: #DE3030;" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

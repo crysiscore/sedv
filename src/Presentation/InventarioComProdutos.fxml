@@ -41,6 +41,7 @@
                         <TableColumn fx:id="tableColumnStcokExistente" prefWidth="138.00006103515625" text="Quantidade Existente" />
                         <TableColumn fx:id="tableColumnStcokExistenteContada" prefWidth="133.99996948242188" text="Quantidade Contada" />
                         <TableColumn fx:id="tableColumnDiferença" prefWidth="83.0" text="Diferença" />
+                        <TableColumn fx:id="tableColumnCodigoBD" prefWidth="57.33331298828125" text="Código" visible="false" />
                      </columns>
                      <effect>
                         <DropShadow />
@@ -91,7 +92,7 @@
                   </Label>
                   <DatePicker fx:id="DatePickerDATA" layoutX="488.0" layoutY="522.0" promptText="Insira a Data" />
                   <Label fx:id="labelNomeUsuario" layoutX="699.0" layoutY="57.0" prefHeight="17.0" prefWidth="113.0" />
-                  <Button fx:id="btnRemover" layoutX="426.0" layoutY="487.0" mnemonicParsing="false" onAction="#removerProdutodaTabela" prefHeight="27.0" prefWidth="125.0" style="-fx-background-color: E86E58;" text="Remover">
+                  <Button fx:id="btnRemover" layoutX="367.0" layoutY="487.0" mnemonicParsing="false" onAction="#removerProdutodaTabela" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: E86E58;" text="Remover">
                      <effect>
                         <DropShadow>
                            <color>
@@ -103,7 +104,7 @@
                         <Font name="Times New Roman" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="Imprimir_folha_inventário" layoutX="255.0" layoutY="487.0" mnemonicParsing="false" onAction="#handlePrintPre_InventarioExcel" prefHeight="27.0" prefWidth="158.0" style="-fx-background-color: E86E58;" text="Imprimir folha de Inventário">
+                  <Button fx:id="Imprimir_folha_inventário" layoutX="204.0" layoutY="487.0" mnemonicParsing="false" onAction="#handlePrintPre_InventarioExcel" prefHeight="27.0" prefWidth="158.0" style="-fx-background-color: E86E58;" text="Imprimir folha de Inventário">
                      <effect>
                         <DropShadow>
                            <color>
@@ -115,7 +116,7 @@
                         <Font name="Times New Roman" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnActualiar" layoutX="112.0" layoutY="487.0" mnemonicParsing="false" onAction="#ActualizarStock" prefHeight="27.0" prefWidth="125.0" style="-fx-background-color: E86E58;" text="Atualizar">
+                  <Button fx:id="btnActualiar" layoutX="112.0" layoutY="487.0" mnemonicParsing="false" onAction="#ActualizarStock" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: E86E58;" text="Atualizar">
                      <effect>
                         <DropShadow>
                            <color>
@@ -130,7 +131,19 @@
                   <Label fx:id="labelCodigoUser" layoutX="94.0" layoutY="25.0" text="Label" />
                   <Label fx:id="labelNomeUser" layoutX="772.0" layoutY="48.0" text="Label" />
                   <Label fx:id="labelParcial" layoutX="500.0" layoutY="48.0" text="Label" />
-                  <Button fx:id="buttonConcluir" layoutX="564.0" layoutY="487.0" mnemonicParsing="false" onAction="#SairButtonOnAction" prefHeight="27.0" prefWidth="99.0" style="-fx-background-color: E86E58;" text="Concluir">
+                  <Button fx:id="buttonConcluir" layoutX="457.0" layoutY="487.0" mnemonicParsing="false" onAction="#SairButtonOnAction" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: E86E58;" text="Concluir">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color opacity="0.4365482032299042" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <font>
+                        <Font name="Times New Roman" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="ButtonLista_Inventario" layoutX="550.0" layoutY="487.0" mnemonicParsing="false" onAction="#handleMenuItemListaInventario" prefHeight="27.0" prefWidth="113.0" style="-fx-background-color: E86E58;" text="Lista de Inventário">
                      <effect>
                         <DropShadow>
                            <color>
@@ -167,6 +180,8 @@
             <Label fx:id="labelprice" layoutX="170.0" layoutY="620.0" />
             <Label fx:id="labelSub" layoutX="281.0" layoutY="620.0" />
             <Label fx:id="labelname" layoutX="329.0" layoutY="619.0" />
+            <BorderPane layoutX="-86.0" layoutY="564.0" prefHeight="130.0" prefWidth="127.0" style="-fx-background-radius: 700; -fx-background-color: #DE3030;" />
+            <BorderPane layoutX="-86.0" layoutY="-74.0" prefHeight="148.0" prefWidth="145.0" style="-fx-background-radius: 700; -fx-background-color: #DE3030;" />
          </children>
       </AnchorPane>
    </children>

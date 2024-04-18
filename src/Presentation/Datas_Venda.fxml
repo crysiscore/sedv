@@ -104,5 +104,7 @@
             </Pane>
          </children>
       </AnchorPane>
+      <BorderPane layoutX="-70.0" layoutY="325.0" prefHeight="101.0" prefWidth="102.0" style="-fx-background-radius: 700; -fx-background-color: #DE3030;" />
+      <BorderPane layoutX="-79.0" layoutY="-8.0" prefHeight="101.0" prefWidth="102.0" style="-fx-background-radius: 700; -fx-background-color: #DE3030;" />
    </children>
 </AnchorPane>

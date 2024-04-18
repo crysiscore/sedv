@@ -71,7 +71,7 @@ public class BuscaProdutoVendaController implements Initializable {
     private TableView<Produto> tableviewProdutos;
 
     @FXML
-    private TableColumn<Produto, Integer> columnCodigoProduto;
+    private TableColumn<Produto, String> columnCodigoProduto;
 
     @FXML
     private TableColumn<Produto, String> columnNomeProduto;
@@ -100,7 +100,10 @@ public class BuscaProdutoVendaController implements Initializable {
     @FXML
     private Label labelsubtotal;
     @FXML
-    private Label labelsubtotal2;
+    private Label stock1;
+    
+    @FXML
+    private Label labelStock;
 
     @FXML
     private TextField textfieldProcurarProduto;
@@ -133,7 +136,8 @@ public class BuscaProdutoVendaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
-
+        labelPrecoProduto.setVisible(false);
+        labelStock.setVisible(false);
         textfieldQuantidadeProduto.setVisible(false);
         setCellValueFromTableToTextField();
         
@@ -144,6 +148,7 @@ public class BuscaProdutoVendaController implements Initializable {
                  
                 while(rs.next()){
                  Integer QueryProductId= rs.getInt("Cod_produto");
+                 String QueryCodigoManual= rs.getString("codigo_manual");
                  String QueryNome = rs.getString("Nome");
                  String QueryCategoria = rs.getString("Categoria");
                  String QueryUnidade = rs.getString("Unidade");
@@ -156,9 +161,9 @@ public class BuscaProdutoVendaController implements Initializable {
                  StockLevel stock = new StockLevel();
                  stock.unidades_stock =rs.getDouble("unidades_stock");
                 
-                 produtoObservableList.add(new Produto(QueryProductId,QueryNome,QueryCategoria,QueryUnidade,QueryDescricao,QueryPreco,QueryPrecoCompra,foto,stock));
+                 produtoObservableList.add(new Produto(QueryProductId,QueryCodigoManual,QueryNome,QueryCategoria,QueryUnidade,QueryDescricao,QueryPreco,QueryPrecoCompra,foto,stock));
                  }
-                 columnCodigoProduto.setCellValueFactory(new PropertyValueFactory<>("Cod_produto"));
+                 columnCodigoProduto.setCellValueFactory(new PropertyValueFactory<>("codigo_manual"));
                  columnNomeProduto.setCellValueFactory(new PropertyValueFactory<>("Nome"));
                  columnPreco.setCellValueFactory(new PropertyValueFactory<>("Preco_unitario"));
                 // columnStock.setCellValueFactory(new PropertyValueFactory<>("unidades_stock"));
@@ -199,6 +204,8 @@ public class BuscaProdutoVendaController implements Initializable {
                          return true;
                      }else if(produto.getNome().toLowerCase().indexOf(searchKeyword)>-1){
                          return true;
+                          }else if(produto.getCodigo_manual().toLowerCase().indexOf(searchKeyword)>-1){
+                         return true;
                                 
                      }else
                          
@@ -235,10 +242,11 @@ public class BuscaProdutoVendaController implements Initializable {
                 labelCodProduto.setText(String.valueOf(pr.getCod_produto()));
                 labelNomeProduto.setText(pr.getNome());
                 labelPrecoProduto.setText(String.valueOf(pr.getPreco_unitario()));
-                //produto.setCod_produto(Integer.parseInt(labelCodProduto.getText()));
+                 labelStock.setText(pr.stock.getUnidades_stock().toString());
                 labelCodProduto.setVisible(false);
                 labelPrecoProduto.setVisible(false);
                 labelNomeProduto.setVisible(false);
+                labelStock.setVisible(false);
                  Image image= new Image("file:"+pr.getFoto());
                  imageviewFotoProduto.setImage(image);
                 
@@ -254,52 +262,51 @@ public class BuscaProdutoVendaController implements Initializable {
         this.usuario = usuario;
     }
 
-    @FXML
-    public void handleMenuItemAdicionarProdutoNaTabela() throws IOException {
-        
-        int selectedIndex = tableviewProdutos.getSelectionModel().getSelectedIndex();
+   @FXML
+public void handleMenuItemAdicionarProdutoNaTabela() throws IOException {
+    int selectedIndex = tableviewProdutos.getSelectionModel().getSelectedIndex();
 
-        // Verifica se um produto foi selecionado na tabela
-        if (selectedIndex < 0) {
-            handleMenuAlert1(); // Função que exibe um alerta informando que um produto deve ser selecionado
-            return;
+    // Verifica se um produto foi selecionado na tabela
+    if (selectedIndex < 0) {
+        handleMenuAlert1(); // Função que exibe um alerta informando que um produto deve ser selecionado
+        return;
     }
-        Produto pr = tableviewProdutos.getItems().get(tableviewProdutos.getSelectionModel().getSelectedIndex());
-       textfieldQuantidadeProduto.setText("1");
-        try {
-            if (textfieldQuantidadeProduto.getText().isEmpty()) {
-                handleMenuAlert3();
 
-            } else if(pr.stock.getUnidades_stock()>=Double.parseDouble(textfieldQuantidadeProduto.getText())) {
+    Produto pr = tableviewProdutos.getItems().get(selectedIndex);
 
-                Integer Produto_Cod_Produto = Integer.parseInt(labelCodProduto.getText());
-                Double Quantidade = Double.parseDouble(textfieldQuantidadeProduto.getText());
-                Double Preco = Double.parseDouble(labelPrecoProduto.getText());
-                String Nome_Produto = labelNomeProduto.getText();
-                Double Subtotal = Preco * Quantidade;
-                labelsubtotal.setText(Subtotal.toString());
-                Produto pro= new Produto();
-                
-                DetalhesVenda DV = new DetalhesVenda(Integer.parseInt(labelCodProduto.getText()),
-                        Double.parseDouble(labelPrecoProduto.getText()),
-                        Double.parseDouble(textfieldQuantidadeProduto.getText()), Double.parseDouble(labelsubtotal.getText()),
-                        labelNomeProduto.getText());
-                detalhesVendaModel.addStock(DV);
-              
-                Stage stage = (Stage) buttonAdicionarProduto.getScene().getWindow();
-                stage.close();
+    textfieldQuantidadeProduto.setText("1");
 
-            }else{
-                handleMenuAlert4();
-            }
-         
-        } catch (Exception ex) {
+    try {
+        if (textfieldQuantidadeProduto.getText().isEmpty()) {
+            handleMenuAlert3();
+        } else if (pr.getStock().getUnidades_stock() >= Double.parseDouble(textfieldQuantidadeProduto.getText())) {
 
-            System.out.println("" + ex.toString());
+            // Obtém os detalhes do produto selecionado
+            int produtoCodigo = pr.getCod_produto();
+            double produtoPreco = Double.parseDouble(labelPrecoProduto.getText());
+            double produtoQuantidade = Double.parseDouble(textfieldQuantidadeProduto.getText());
+            String produtoNome = labelNomeProduto.getText();
+            double produtoSubtotal = produtoPreco * produtoQuantidade;
+            double produtoStock = pr.stock.getUnidades_stock(); // Estoque do produto
+
+            // Cria um novo detalhe de venda com os detalhes do produto selecionado
+            DetalhesVenda detalhesVenda = new DetalhesVenda(produtoCodigo, produtoPreco, produtoStock, produtoQuantidade, produtoSubtotal, produtoNome);
+
+            // Adiciona o detalhe de venda ao modelo de detalhes de venda
+            detalhesVendaModel.addStock(detalhesVenda);
+  
+            
+            // Feche a janela
+            Stage stage = (Stage) buttonAdicionarProduto.getScene().getWindow();
+            stage.close();
+        } else {
+            handleMenuAlert4();
         }
-
-      
+    } catch (Exception ex) {
+        System.out.println("" + ex.toString());
     }
+}
+
               
     public void CancelButtonOnAction(ActionEvent event) {
         Stage stage = (Stage) buttonCancelar.getScene().getWindow();

@@ -32,16 +32,16 @@
       </BorderPane>
       <Pane layoutX="173.0" layoutY="75.0" prefHeight="586.0" prefWidth="1027.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
          <children>
-            <TableView fx:id="tableViewListaProdutos" layoutX="68.0" layoutY="158.0" prefHeight="306.0" prefWidth="894.0" style="-fx-background-radius: 10;">
+            <TableView fx:id="tableViewListaProdutos" layoutX="68.0" layoutY="158.0" prefHeight="306.0" prefWidth="784.0" style="-fx-background-radius: 10;">
               <columns>
-                <TableColumn fx:id="tableColumnCodigo" prefWidth="83.0" text="Código" />
-                <TableColumn fx:id="tableColumnNome" prefWidth="165.0" text="Nome" />
-                  <TableColumn fx:id="tableColumnPreco" prefWidth="97.0" text="Preço" />
-                  <TableColumn fx:id="tableColumnUnidade" prefWidth="101.0" text="Unidade" />
-                  <TableColumn fx:id="tableColumnCategoria" prefWidth="116.0" text="Categoria" />
-                  <TableColumn fx:id="tableColumnDescricao" prefWidth="138.0" text="Descrição" />
-                  <TableColumn fx:id="tablecolumnStock" prefWidth="75.0" text="stock" />
-                  <TableColumn fx:id="tableColumnPrecoDeCompra" prefWidth="115.333251953125" text="Preço de Compra" />
+                <TableColumn fx:id="tableColumnCodigo" prefWidth="103.33332824707031" text="Código" />
+                <TableColumn fx:id="tableColumnNome" prefWidth="179.33334350585938" text="Nome" />
+                  <TableColumn fx:id="tableColumnPreco" prefWidth="98.6666259765625" text="Preço" />
+                  <TableColumn fx:id="tableColumnUnidade" prefWidth="98.6666259765625" text="Unidade" />
+                  <TableColumn fx:id="tableColumnCategoria" prefWidth="122.0" text="Categoria" />
+                  <TableColumn fx:id="tableColumnDescricao" prefWidth="90.66668701171875" text="Descrição" />
+                  <TableColumn fx:id="tablecolumnStock" prefWidth="86.66668701171875" text="stock" />
+                  <TableColumn fx:id="tableColumnPrecoDeCompra" prefWidth="115.333251953125" text="Preço de Compra" visible="false" />
               </columns>
                <effect>
                   <DropShadow />

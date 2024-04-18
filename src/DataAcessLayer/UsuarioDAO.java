@@ -1,5 +1,6 @@
 /*     */ package DataAcessLayer;
 /*     */ 
+import BussinessLogic.Usuario;
 /*     */ import java.sql.CallableStatement;
 /*     */ import java.sql.Connection;
 /*     */ import java.sql.PreparedStatement;
@@ -16,6 +17,7 @@
 /*     */   CallableStatement cs;
 /*     */   PreparedStatement ps;
 /*     */   Connection connect;
+            private Usuario usuario;
 /*     */   
 /*     */   public UsuarioDAO() {
 /*     */     try {
@@ -44,7 +46,15 @@
 /*  43 */     this.cs.executeQuery();
 /*     */   }
 /*     */ 
-/*     */ 
+/*     */    public ResultSet RegistarUsuario(Usuario usuario) throws SQLException {
+/* 103 */     cs = this.connect.prepareCall("{call Cadastro_Usuario(?,?,?,?)}");
+              cs.setString(1,usuario.getNome());
+/* 104 */     cs.setString(2, usuario.getSenha());
+              cs.setString(3, usuario.getCategoria());   
+              cs.setString(4, usuario.getStatus());
+/* 110 */     this.rs = cs.executeQuery();         
+              return this.rs;
+/*     */   }
 /*     */ 
 /*     */ 
 /*     */ 
@@ -126,19 +136,21 @@
 /*     */ 
 /*     */ 
 /*     */   
-/*     */   public void editarusuario(int Codigo, String nome, String senha, String categoria) throws SQLException {
-/* 129 */     this.cs = this.connect.prepareCall("{call Editarusuario(?,?,?,?)}");
+/*     */   public ResultSet editarusuario(Usuario usuario) throws SQLException {
+/* 129 */     this.cs = this.connect.prepareCall("{call Editarusuario(?,?,?,?,?)}");
 /*     */     
-/* 131 */     this.cs.setInt(1, Codigo);
-/* 132 */     this.cs.setString(2, nome);
-/* 133 */     this.cs.setString(3, senha);
-/* 134 */     this.cs.setString(4, categoria);
+/* 131 */     this.cs.setInt(1, usuario.getCod_Funcionario());
+/* 132 */     this.cs.setString(2, usuario.getNome());
+/* 133 */     this.cs.setString(3, usuario.getSenha());
+/* 134 */     this.cs.setString(4, usuario.getCategoria());
+/* 134 */     this.cs.setString(5, usuario.getStatus());
+
 /* 135 */     this.cs.executeQuery();
+
+              return this.rs;
 /*     */   }
 /*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
+
 /*     */   
 /*     */   public void PrevilegiosUsuario(String a, String b, String c, String d, String e, String f, String g, String h) throws SQLException {
 /* 143 */     this.cs = this.connect.prepareCall("{call PrevilegiosFuncionario(?,?,?,?,?,?,?,?)}");
@@ -167,6 +179,7 @@
 /* 166 */     this.cs = this.connect.prepareCall("{call GetCategoriaUsuario(?,?)}");
 /* 167 */     this.cs.setString(1, user);
 /* 168 */     this.cs.setString(2, pass);
+            
 /* 169 */     this.rs = this.cs.executeQuery();
 /* 170 */     return this.rs;
 /*     */   }

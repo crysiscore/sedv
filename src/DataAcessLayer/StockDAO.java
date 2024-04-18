@@ -156,7 +156,7 @@ public class StockDAO {
         this.cs = this.connect.prepareCall("{call ActualizarStock(?,?)}");
         try {
             for (int i = 0; i < stock.size(); i++) {
-                this.cs.setInt(1, stock.get(i).getCod_Produto());
+                this.cs.setString(1, stock.get(i).getCod_ProdutoManual());
                  
                 this.cs.setDouble(2, stock.get(i).getQuantidade_Contada());
 

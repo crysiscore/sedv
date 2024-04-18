@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1360.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BuscaProdutosController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1306.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BuscaProdutosController">
    <children>
       <BorderPane layoutX="632.0" layoutY="-218.0" prefHeight="1080.0" prefWidth="1049.0" style="-fx-background-color: #EC3A3A; -fx-background-radius: 700;">
          <effect>
@@ -30,9 +30,9 @@
             <Pane prefHeight="200.0" prefWidth="1049.0" BorderPane.alignment="CENTER" />
          </top>
       </BorderPane>
-      <Pane fx:id="PanePane" layoutX="237.0" layoutY="75.0" prefHeight="586.0" prefWidth="859.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
+      <Pane fx:id="PanePane" layoutX="237.0" layoutY="75.0" prefHeight="561.0" prefWidth="831.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
          <children>
-            <ImageView fitHeight="92.0" fitWidth="103.0" layoutX="755.0" layoutY="14.0">
+            <ImageView fitHeight="92.0" fitWidth="103.0" layoutX="695.0" layoutY="14.0">
                <image>
                   <Image url="@../icons/Free3dLogo.png" />
                </image>
@@ -47,8 +47,8 @@
             </TextField>
             <TableView fx:id="tableviewProdutos" layoutX="183.0" layoutY="158.0" prefHeight="286.0" prefWidth="382.0" style="-fx-background-radius: 10;">
               <columns>
-                <TableColumn fx:id="columnCodigoProduto" prefWidth="185.0" text="Código" />
-                <TableColumn fx:id="columnNomeProduto" prefWidth="196.0" text="Nome" />
+                  <TableColumn fx:id="columnCodigoProdutoManual" prefWidth="93.33328247070312" text="Código" />
+                <TableColumn fx:id="columnNomeProduto" prefWidth="287.33331298828125" text="Nome" />
               </columns>
                <effect>
                   <DropShadow>
@@ -104,5 +104,7 @@
             </DropShadow>
          </effect>
       </Text>
+      <BorderPane layoutX="-186.0" layoutY="553.0" prefHeight="307.0" prefWidth="289.0" style="-fx-background-radius: 700; -fx-background-color: #DE3030;" />
+      <BorderPane layoutX="-172.0" layoutY="-184.0" prefHeight="323.0" prefWidth="289.0" style="-fx-background-radius: 700; -fx-background-color: #DE3030;" />
    </children>
 </AnchorPane>

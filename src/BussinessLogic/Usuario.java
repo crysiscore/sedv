@@ -14,13 +14,23 @@
 /*    */   public String Nome;
 /*    */   public String Senha;
 /*    */   public String Categoria;
+           public String Status;
 
-/*    */   
-/*    */   public String getCategoria() {
-/* 19 */     return this.Categoria;
-/*    */   }
-/*    */   
-/*    */   public void setCategoria(String Categoria) {
+/*    */ public String getStatus() {
+        return Status;
+    }
+
+
+    public void setStatus(String Status) {
+        this.Status = Status;
+    }
+
+/*    */
+    public String getCategoria() {
+        /* 19 */     return this.Categoria;
+        /*    */
+    }
+ public void setCategoria(String Categoria) {
 /* 23 */     this.Categoria = Categoria;
 /*    */   }
 /*    */   
@@ -49,7 +59,28 @@
 /*    */   }
 
 
-/*    */ }
+/*    */
+
+    public Usuario() {
+    }
+
+    public Usuario(String Nome, String Senha, String Categoria, String Status) {
+        this.Nome = Nome;
+        this.Senha = Senha;
+        this.Categoria = Categoria;
+        this.Status = Status;
+    }
+    
+    
+        public Usuario(Integer Cod_Funcionario,String Nome, String Senha, String Categoria, String Status) {
+        this.Cod_Funcionario = Cod_Funcionario;
+        this.Nome = Nome;
+        this.Senha = Senha;
+        this.Categoria = Categoria;
+        this.Status = Status;
+    }
+
+ }
 
 
 /* Location:              C:\Program Files (x86)\Sistema de vendas\SysVendas.jar!\BussinessLogic\Usuario.class
