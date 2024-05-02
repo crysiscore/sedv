@@ -92,7 +92,7 @@ public class Relatorios_ExcelController implements Initializable {
 
             while (rs.next()) {
                 Object[] linha = new Object[]{
-                        rs.getInt("Cod_Produto"),
+                        rs.getString("codigo_manual"),
                         rs.getString("Nome"),
                         rs.getDouble("Preco_unitario"),
                         rs.getDouble("unidades_stock"),
@@ -171,12 +171,14 @@ public class Relatorios_ExcelController implements Initializable {
 
             // Crie o cabeçalho da tabela no Excel
             Row headerRow = sheet.createRow(0);
-            headerRow.createCell(0).setCellValue("PRODUTO");
-            headerRow.createCell(1).setCellValue("PREÇO");
-            headerRow.createCell(2).setCellValue("CATEGORIA");
-            headerRow.createCell(3).setCellValue("UNIDADE");
-            headerRow.createCell(4).setCellValue("DESCRIÇÃO");
-            headerRow.createCell(5).setCellValue("STOCK");
+            headerRow.createCell(0).setCellValue("CODIGO");
+            headerRow.createCell(1).setCellValue("PRODUTO");
+            headerRow.createCell(2).setCellValue("PREÇO");
+            headerRow.createCell(3).setCellValue("CATEGORIA");
+            headerRow.createCell(4).setCellValue("UNIDADE");
+            headerRow.createCell(5).setCellValue("DESCRIÇÃO");
+            headerRow.createCell(6).setCellValue("STOCK");
+            headerRow.createCell(7).setCellValue("PREÇO DE AQUISIÇAÕ");
 
             // Defina a largura da coluna antes de aplicar o estilo negrito
             for (int i = 0; i < headerRow.getPhysicalNumberOfCells(); i++) {
@@ -199,18 +201,20 @@ public class Relatorios_ExcelController implements Initializable {
 
             // This data needs to be written (Object[])
             Map<String, Object[]> data = new TreeMap<>();
-            data.put("1", new Object[]{"PRODUTO", "PREÇO", "CATEGORIA", "UNIDADE", "DESCRIÇÃO", "STOCK"});
+            data.put("1", new Object[]{"CODIGO","PRODUTO", "PREÇO", "CATEGORIA", "UNIDADE", "DESCRIÇÃO", "STOCK", "PREÇO DE AQUISIÇAÕ"});
 
             int numeroLinha = 2; // Começar da segunda linha
 
             while (rs.next()) {
                 Object[] linha = new Object[]{
+                        rs.getString("codigo_manual"),
                         rs.getString("Nome"),
                         rs.getDouble("Preco_unitario" ),
                         rs.getString("Categoria"),
                         rs.getString("Unidade"),
                         rs.getString("Descricao"),
                         rs.getDouble("unidades_stock"),
+                        rs.getDouble("Preco_De_Compra"),
                 };
 
                 data.put(String.valueOf(numeroLinha++), linha);

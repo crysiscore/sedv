@@ -20,6 +20,8 @@
     public String Nome_Produto;
     public Venda venda;
     public Produto produto;
+    public Double Stock;
+    
 
     public Produto getProduto() {
         return produto;
@@ -35,10 +37,26 @@
     public void setVenda(Venda venda) {
         this.venda = venda;
     }
+
+    public Double getStock() {
+        return Stock;
+    }
+
+    public void setStock(Double Stock) {
+        this.Stock = Stock;
+    }
     
         public DetalhesVenda(Integer Produto_Cod_produto, Double Preco, Double Quantidade, Double Subtotal, String Nome_Produto) {
         this.Produto_Cod_produto = Produto_Cod_produto;
         this.Preco = Preco;
+        this.Quantidade = Quantidade;
+        this.Subtotal = Subtotal;
+        this.Nome_Produto = Nome_Produto;
+    }
+              public DetalhesVenda(Integer Produto_Cod_produto, Double Preco,Double Stock, Double Quantidade, Double Subtotal, String Nome_Produto) {
+        this.Produto_Cod_produto = Produto_Cod_produto;
+        this.Preco = Preco;
+          this.Stock = Stock;
         this.Quantidade = Quantidade;
         this.Subtotal = Subtotal;
         this.Nome_Produto = Nome_Produto;

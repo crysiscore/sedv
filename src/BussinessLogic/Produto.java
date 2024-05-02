@@ -19,8 +19,10 @@ import javafx.scene.image.Image;
 
 
 /*    */   private Integer Cod_produto;
+           private String codigo_manual;
 /*    */   private String Nome;
 /*    */   private Double Preco_unitario;
+           private Double Preco_De_Compra;
 /*    */   private String Unidade;
 /*    */   private String Categoria;
 /*    */   private String Descricao;
@@ -32,6 +34,7 @@ import javafx.scene.image.Image;
 
            public DetalhesVenda detalhesVenda;
 
+ 
 
             //this.stock=new StockLevel();
           
@@ -66,7 +69,7 @@ import javafx.scene.image.Image;
         
                    }
             
-           public Produto(Integer Cod_produto,String Nome, Double Preco_unitario,StockLevel stock) {
+           public Produto(Integer Cod_produto,String Nome, Double Preco_unitario, StockLevel stock) {
            this.Cod_produto = Cod_produto;
            this.Nome= Nome;
            this.Preco_unitario = Preco_unitario;
@@ -78,12 +81,41 @@ import javafx.scene.image.Image;
             this.Nome= Nome;
        
             }
+              public Produto(Integer Cod_produto, String Nome, String codigo_manual) {
+            this.Cod_produto=Cod_produto;
+            this.codigo_manual=codigo_manual;
+            this.Nome= Nome;
+       
+            }
+                public Produto(String codigo_manual, String Nome) {
+            this.codigo_manual=codigo_manual;
+            this.Nome= Nome;
+       
+            }
             
             public Produto(Integer Cod_produto, String Nome,String Categoria,String Unidade,
-            String Descricao,Double Preco_unitario,String foto, StockLevel stock) {
+            String Descricao,Double Preco_unitario,Double Preco_De_Compra,String foto, StockLevel stock) {
             this.Cod_produto=Cod_produto;
             this.Nome= Nome;
             this.Preco_unitario=Preco_unitario;
+            this.Preco_De_Compra=Preco_De_Compra;
+            this.Unidade= Unidade;
+            this.Categoria= Categoria;
+            this.Descricao= Descricao;
+            this.foto= foto;
+            //this.stock=new StockLevel();
+            this.stock=stock;
+            
+            
+            }
+            
+            public Produto(Integer Cod_produto,String codigo_manual, String Nome,String Categoria,String Unidade,
+            String Descricao,Double Preco_unitario,Double Preco_De_Compra,String foto, StockLevel stock) {
+            this.Cod_produto=Cod_produto;
+            this.codigo_manual=codigo_manual;
+            this.Nome= Nome;
+            this.Preco_unitario=Preco_unitario;
+            this.Preco_De_Compra=Preco_De_Compra;
             this.Unidade= Unidade;
             this.Categoria= Categoria;
             this.Descricao= Descricao;
@@ -108,6 +140,18 @@ import javafx.scene.image.Image;
 /* 27 */     this.Cod_produto = Cod_produto;
 /*    */   }
 /*    */   
+
+    public String getCodigo_manual() {
+        return codigo_manual;
+    }
+
+    public void setCodigo_manual(String codigo_manual) {
+        this.codigo_manual = codigo_manual;
+    }
+
+   
+    
+
 /*    */   public String getDescricao() {
 /* 31 */     return this.Descricao;
 /*    */   }
@@ -132,6 +176,14 @@ import javafx.scene.image.Image;
 /* 51 */     this.Preco_unitario = Preco_unitario;
 /*    */   }
 /*    */   
+
+    public Double getPreco_De_Compra() {
+        return Preco_De_Compra;
+    }
+
+    public void setPreco_De_Compra(Double Preco_De_Compra) {
+        this.Preco_De_Compra = Preco_De_Compra;
+    }
 
 /*    */   
 /*    */   public Produto(Integer Cod_produto) {

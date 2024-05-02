@@ -34,6 +34,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -158,6 +161,9 @@ public class VendaController implements Initializable {
     private TableColumn<DetalhesVenda, Double> tableColumnPreco;
     
     @FXML
+    private TableColumn<DetalhesVenda, Double> tableColumnStock;
+    
+    @FXML
     private TableColumn<DetalhesVenda, Double> tableColumnQuantidade;
     
     @FXML
@@ -223,6 +229,11 @@ public class VendaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // Vincula a propriedade empty da tabela às propriedades disable dos botões
+
+
+
+      
         textFieldQuantty.setVisible(false);
         labelprice.setVisible(false);
         labelCod.setVisible(false);
@@ -238,13 +249,31 @@ public class VendaController implements Initializable {
         // TODO
         this.tableColumnNome.setCellValueFactory(new PropertyValueFactory<DetalhesVenda, String>("Nome_Produto"));
         this.tableColumnPreco.setCellValueFactory(new PropertyValueFactory<DetalhesVenda, Double>("Preco"));
+        this.tableColumnStock.setCellValueFactory(new PropertyValueFactory<DetalhesVenda, Double>("Stock"));
 
         tableColumnQuantidade.getTableView().setEditable(true);
         tableColumnQuantidade.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
         tableColumnQuantidade.setOnEditCommit(event -> {
-            
-            DetalhesVenda dv = event.getRowValue();
-            dv.setQuantidade(event.getNewValue()); // Update the model directly
+             DetalhesVenda dv = event.getRowValue();
+            double novoValor = event.getNewValue();
+
+            // Verifica se o novo valor é menor ou igual ao estoque existente
+            if (novoValor <= dv.getStock()) {
+                dv.setQuantidade(novoValor);
+            } else {
+                // Exibe uma mensagem de erro caso o novo valor seja maior que o estoque
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erro");
+                alert.setHeaderText(null);
+                alert.setContentText("A quantidade introduzida é maior do que o estoque disponível!");
+                alert.showAndWait();
+                // Rejeita a edição
+                dv.setQuantidade(event.getOldValue());
+            }
+      
+    
+           
+          //  dv.setQuantidade(event.getNewValue()); // Update the model directly
             Double subtotal1 = dv.getPreco() * dv.getQuantidade();
             dv.setSubtotal(subtotal1);
             
@@ -267,19 +296,30 @@ public class VendaController implements Initializable {
             
              
 
-         this.tableColumnQuantidade.setCellValueFactory(new PropertyValueFactory<DetalhesVenda, Double>("Quantidade"));
+        this.tableColumnQuantidade.setCellValueFactory(new PropertyValueFactory<DetalhesVenda, Double>("Quantidade"));
 
-        
         this.tableColumnSubtotal.setCellValueFactory(new PropertyValueFactory<DetalhesVenda, Double>("Subtotal"));
         detalhesVenda = detalhesVendaModel.getDetalhesVendaList();
-        
-        tableViewListaProdutos.setItems(detalhesVenda);
+       
+        BooleanProperty tabelaVazia = new SimpleBooleanProperty(true);
 
-        
+       // Vincula a propriedade empty da tabela às propriedades disable dos botões
+        btnRemoverProduto.disableProperty().bind(tabelaVazia);
+        btnFinalizarVenda.disableProperty().bind(tabelaVazia);
+
+       // Adicione um listener à lista detalhesVenda para atualizar a propriedade tabelaVazia
+        detalhesVenda.addListener((ListChangeListener<DetalhesVenda>) change -> {
+            tabelaVazia.set(detalhesVenda.isEmpty());
+        });
+      tableViewListaProdutos.setItems(detalhesVenda);
+
+      
+  
         
         // Add a change listener to the data list
         detalhesVenda.addListener((ListChangeListener<DetalhesVenda>) change -> {
             while (change.next()) {
+                
                 if (change.wasAdded()) {
                     Double somaSubtotal = 0.0;
                     ObservableList<DetalhesVenda> dt = tableViewListaProdutos.getItems();
@@ -336,7 +376,7 @@ public class VendaController implements Initializable {
 
             } else {
                 servicoProdutos = new ProdutosServicos();
-                Produto selectedProduto = servicoProdutos.getDetalhesProduto(Integer.parseInt(codProduto));
+                Produto selectedProduto = servicoProdutos.getDetalhesProdutoComCodigoManual(codProduto);
 
                 if (selectedProduto == null) {
                     // O produto não foi encontrado no banco de dados
@@ -412,20 +452,20 @@ public class VendaController implements Initializable {
         this.labelNomeUsuario.setText(usuario.getCod_Funcionario().toString());
         this.labelNomeUsuario.setVisible(false);
     }
-    
+
     @FXML
     public void handleMenuItemAdicionarProduto() throws IOException {
-        
+
         try {
-            
+
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(TrickController.class.getResource("/Presentation/BuscaProdutoVenda.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
-            
+
             BuscaProdutoVendaController buscaProdutoVendaController = loader.<BuscaProdutoVendaController>getController();
-            
+
             usuarioServicos = new UsuarioServicos();
-            
+
             buscaProdutoVendaController.receberdadosUsuario(usuario);
             buscaProdutoVendaController.initModel(detalhesVendaModel);
 
@@ -439,16 +479,16 @@ public class VendaController implements Initializable {
 
             // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
             dialogStage.show();
-            
+
         } catch (Exception ex) {
             System.out.println("" + ex + ex.getLocalizedMessage());
             System.out.println("" + ex.toString());
         }
     }
-    
+
     @FXML
     public void ButtonCalcular() {
-        
+
         Double somaSubtotal = 0.0;
         ObservableList<DetalhesVenda> dt = tableViewListaProdutos.getItems();
         tableColumnSubtotal = (TableColumn<DetalhesVenda, Double>) tableViewListaProdutos.getColumns().get(3);
@@ -458,110 +498,103 @@ public class VendaController implements Initializable {
         labelSubtotal.setText(somaSubtotal.toString());
         labelTotal.setText(somaSubtotal.toString());
         textfieldPago.setText(labelTotal.getText());
-        
+
     }
-    
+
     @FXML
     public void handleMenuItemRegistarVenda() throws IOException, SQLException {
-        VendaDao dao = new VendaDao();
-        
+
         verificadados();
+
+        VendaDao dao = new VendaDao();
+
         DatePickerDATA.setValue(LocalDate.now());
-        
-        if(textfieldNomeCliente.getText().isEmpty() && textfieldNuitCliente.getText().isEmpty()){
-        Date Data_Venda = java.sql.Date.valueOf(DatePickerDATA.getValue());
-        Double Total = Double.parseDouble(labelTotal.getText());
-        Integer Cod_Usuario = Integer.parseInt(labelNomeUsuario.getText());
-        String Forma_Pagamento = comboBoxFormaPagamento.getSelectionModel().getSelectedItem();
-        
-        if (tableViewListaProdutos.getItems().isEmpty()) {
-            handleMenuAlert();
-            
-        } else {
-            
-            int response = JOptionPane.showConfirmDialog(null, "Tem a certeza que deseja registrar A venda sem nome e sem nuit do cliente???", "confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            
-            if (response == JOptionPane.YES_OPTION) {
-                
-                
-                dao.RegistarDetalhesVenda(tableViewListaProdutos.getItems());
-                //tableViewListaProdutos.getItems().clear();
-                Venda venda = new Venda();
-                venda.setData_Venda(Data_Venda);
-                venda.setTotal_Venda(Total); 
-                venda.setUsuario_Cod_Funcionario(Cod_Usuario);
-                venda.setForma_Pagamento(Forma_Pagamento);
-              
-                
-                dao.RegistarVendasemnuitesemnome(venda);
-                JOptionPane.showMessageDialog(null, "A venda foi Cadastrada com Sucesso!");
-                tableViewListaProdutos.getItems().clear();
-                limparcampos();
-                 printRecibo();
-                
-            } else if (response == JOptionPane.NO_OPTION) {
-                JOptionPane.showMessageDialog(null, "A venda não foi Cadastrada!");
-                
-            } else if (response == JOptionPane.CLOSED_OPTION) {
-                JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
+
+        if (textfieldNomeCliente.getText().isEmpty() && textfieldNuitCliente.getText().isEmpty()) {
+            Date Data_Venda = java.sql.Date.valueOf(DatePickerDATA.getValue());
+            Double Total = Double.parseDouble(labelTotal.getText());
+            Integer Cod_Usuario = Integer.parseInt(labelNomeUsuario.getText());
+            String Forma_Pagamento = comboBoxFormaPagamento.getSelectionModel().getSelectedItem();
+
+            if (tableViewListaProdutos.getItems().isEmpty()) {
+                handleMenuAlert();
+
+            } else {
+
+                int response = JOptionPane.showConfirmDialog(null, "Tem a certeza que deseja registrar A venda sem nome e sem nuit do cliente???", "confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+                if (response == JOptionPane.YES_OPTION) {
+
+                    verificadados();
+                    dao.RegistarDetalhesVenda(tableViewListaProdutos.getItems());
+                    //tableViewListaProdutos.getItems().clear();
+                    Venda venda = new Venda();
+                    venda.setData_Venda(Data_Venda);
+                    venda.setTotal_Venda(Total);
+                    venda.setUsuario_Cod_Funcionario(Cod_Usuario);
+                    venda.setForma_Pagamento(Forma_Pagamento);
+
+                    dao.RegistarVendasemnuitesemnome(venda);
+                    JOptionPane.showMessageDialog(null, "A venda foi Cadastrada com Sucesso!");
+                    tableViewListaProdutos.getItems().clear();
+                    limparcampos();
+                    printRecibo();
+
+                } else if (response == JOptionPane.NO_OPTION) {
+                    JOptionPane.showMessageDialog(null, "A venda não foi Cadastrada!");
+
+                } else if (response == JOptionPane.CLOSED_OPTION) {
+                    JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
+                }
             }
-        }
-        
-        }else if(!textfieldNomeCliente.getText().isEmpty() && textfieldNuitCliente.getText().isEmpty()) {
-         JOptionPane.showMessageDialog(null, "Introduza o Nuit também ou deixe os dois campos vazios!");
-         
-        }else if (textfieldNomeCliente.getText().isEmpty() && !textfieldNuitCliente.getText().isEmpty()){
-             JOptionPane.showMessageDialog(null, "Introduza o Nome do Cliente também ou deixe os dois campos vazios!");
-        }else if(!textfieldNomeCliente.getText().isEmpty() && !textfieldNuitCliente.getText().isEmpty()){
-                    
-                        
-        
-        Date Data_Venda = java.sql.Date.valueOf(DatePickerDATA.getValue());
-        Double Total = Double.parseDouble(labelTotal.getText());
-        String Cliente = textfieldNomeCliente.getText();
-        Integer Cod_Usuario = Integer.parseInt(labelNomeUsuario.getText());
-        Integer Nuit = Integer.parseInt(textfieldNuitCliente.getText());
-        String Forma_Pagamento = comboBoxFormaPagamento.getSelectionModel().getSelectedItem();
-        
-        if (tableViewListaProdutos.getItems().isEmpty()) {
-            handleMenuAlert();
-            
+
         } else {
-            
-            int response = JOptionPane.showConfirmDialog(null, "Tem a certeza que deseja registrar A venda???", "confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            
-            if (response == JOptionPane.YES_OPTION) {
-                
-                
-                dao.RegistarDetalhesVenda(tableViewListaProdutos.getItems());
-                //tableViewListaProdutos.getItems().clear();
-                Venda venda = new Venda();
-                venda.setData_Venda(Data_Venda);
-                venda.setTotal_Venda(Total);
-                venda.setNome_cliente(Cliente);
-                venda.setUsuario_Cod_Funcionario(Cod_Usuario);
-                venda.setNuit_cliente(Nuit);
-                venda.setForma_Pagamento(Forma_Pagamento);
-                
-                dao.RegistarVenda(venda);
-                JOptionPane.showMessageDialog(null, "A venda foi Cadastrada com Sucesso!");
-                tableViewListaProdutos.getItems().clear();
-                 printRecibo();
-                limparcampos();
-                
-            } else if (response == JOptionPane.NO_OPTION) {
-                JOptionPane.showMessageDialog(null, "A venda não foi Cadastrada!");
-                
-            } else if (response == JOptionPane.CLOSED_OPTION) {
-                JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
+
+            Date Data_Venda = java.sql.Date.valueOf(DatePickerDATA.getValue());
+            Double Total = Double.parseDouble(labelTotal.getText());
+            String Cliente = textfieldNomeCliente.getText();
+            Integer Cod_Usuario = Integer.parseInt(labelNomeUsuario.getText());
+            Integer Nuit = Integer.parseInt(textfieldNuitCliente.getText());
+            String Forma_Pagamento = comboBoxFormaPagamento.getSelectionModel().getSelectedItem();
+
+            if (tableViewListaProdutos.getItems().isEmpty()) {
+                handleMenuAlert();
+
+            } else {
+
+                int response = JOptionPane.showConfirmDialog(null, "Tem a certeza que deseja registrar A venda???", "confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+                if (response == JOptionPane.YES_OPTION) {
+
+                    dao.RegistarDetalhesVenda(tableViewListaProdutos.getItems());
+                    //tableViewListaProdutos.getItems().clear();
+                    Venda venda = new Venda();
+                    venda.setData_Venda(Data_Venda);
+                    venda.setTotal_Venda(Total);
+                    venda.setNome_cliente(Cliente);
+                    venda.setUsuario_Cod_Funcionario(Cod_Usuario);
+                    venda.setNuit_cliente(Nuit);
+                    venda.setForma_Pagamento(Forma_Pagamento);
+
+                    dao.RegistarVenda(venda);
+                    JOptionPane.showMessageDialog(null, "A venda foi Cadastrada com Sucesso!");
+                    tableViewListaProdutos.getItems().clear();
+                    printRecibo();
+                    limparcampos();
+
+                } else if (response == JOptionPane.NO_OPTION) {
+                    JOptionPane.showMessageDialog(null, "A venda não foi Cadastrada!");
+
+                } else if (response == JOptionPane.CLOSED_OPTION) {
+                    JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
+                }
             }
+
         }
-  
-        
-    }
         
        
     }
+ 
     
     public void handleMenuAlert() {
         
@@ -818,5 +851,6 @@ public class VendaController implements Initializable {
             
         }catch(Exception e){}
     }
-        
+
+
 }

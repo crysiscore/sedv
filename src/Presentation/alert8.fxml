@@ -4,9 +4,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.paint.Color?>
 
-<AnchorPane id="AnchorPane" prefHeight="143.0" prefWidth="406.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Alert8Controller">
+<AnchorPane id="AnchorPane" prefHeight="143.0" prefWidth="406.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Alert8Controller">
    <children>
       <AnchorPane id="AnchorPane" layoutY="6.0" prefHeight="135.0" prefWidth="406.0">
          <children>
@@ -22,5 +23,7 @@
             </Button>
          </children>
       </AnchorPane>
+      <BorderPane layoutX="-94.0" layoutY="21.0" prefHeight="105.0" prefWidth="107.0" style="-fx-background-radius: 700; -fx-background-color: #DE3030;" />
+      <BorderPane layoutX="133.0" layoutY="-85.0" prefHeight="105.0" prefWidth="107.0" style="-fx-background-radius: 700; -fx-background-color: #DE3030;" />
    </children>
 </AnchorPane>

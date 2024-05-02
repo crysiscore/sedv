@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="1218.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Lista_De_UtilizadoresController">
+   <children>
+      <BorderPane layoutX="656.0" layoutY="-226.0" prefHeight="1080.0" prefWidth="1049.0" style="-fx-background-color: #DE3030; -fx-background-radius: 700;">
+         <top>
+            <Pane prefHeight="200.0" prefWidth="1049.0" BorderPane.alignment="CENTER" />
+         </top>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.35877862572669983" />
+               </color>
+            </DropShadow>
+         </effect>
+         <center>
+            <BorderPane prefHeight="75.0" prefWidth="1269.0" style="-fx-background-radius: 700; -fx-background-color: #DE3030;" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+      <Pane layoutX="188.0" layoutY="75.0" prefHeight="455.0" prefWidth="889.0" style="-fx-background-color: fff;">
+         <children>
+            <Button fx:id="buttonEditarUtilizador" cancelButton="true" layoutX="519.0" layoutY="348.0" mnemonicParsing="false" onAction="#handleMenuItemEdicaoUtilizadores" prefHeight="28.0" prefWidth="150.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Editar Utilizador">
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.6392157077789307" green="0.615686297416687" blue="0.615686297416687" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </Button>
+            <BorderPane layoutY="-1.0" prefHeight="456.0" prefWidth="390.0" style="-fx-background-color: #DE3030;">
+               <center>
+                  <ImageView fx:id="imagemCarrinhoProduto" fitHeight="426.0" fitWidth="384.0" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@../icons/Utilizador.png" />
+                     </image>
+                  </ImageView>
+               </center>
+            </BorderPane>
+            <BorderPane layoutX="851.0" layoutY="405.0" prefHeight="75.0" prefWidth="77.0" style="-fx-background-radius: 700; -fx-background-color: #DE3030;" />
+            <BorderPane layoutX="851.0" layoutY="-24.0" prefHeight="75.0" prefWidth="77.0" style="-fx-background-radius: 700; -fx-background-color: #DE3030;" />
+            <TableView fx:id="tableviewListaUtilizadores" layoutX="409.0" layoutY="90.0" prefHeight="233.0" prefWidth="452.0">
+              <columns>
+                <TableColumn fx:id="TableColumnNomeUtilizador" prefWidth="140.00006103515625" text="Nome" />
+                <TableColumn fx:id="TableColumnCategoriaUtilizador" prefWidth="90.00006103515625" text="Categoria" />
+                  <TableColumn fx:id="TableColumnSenhaUtilizador" prefWidth="96.66668701171875" text="Senha" />
+                  <TableColumn fx:id="TableColumnStatus" prefWidth="121.3333740234375" text="Status" />
+              </columns>
+            </TableView>
+            <Button fx:id="buttonCancelar" cancelButton="true" layoutX="678.0" layoutY="348.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="28.0" prefWidth="101.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Cancelar">
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.6392157077789307" green="0.615686297416687" blue="0.615686297416687" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </Button>
+            <Label fx:id="labelCodUsuario" layoutX="450.0" layoutY="397.0" text="Label" />
+            <Label fx:id="labelNomeUsuario" layoutX="460.0" layoutY="407.0" text="Label" />
+            <TextField fx:id="textFieldPesquisaUtilizador" layoutX="409.0" layoutY="55.0" prefHeight="25.0" prefWidth="281.0" promptText="Procure pelo nome ou categoria do utilizador" />
+            <ImageView layoutX="666.0" layoutY="56.0">
+               <image>
+                  <Image url="@../icons/icon-action-search_24px.png" />
+               </image>
+            </ImageView>
+         </children>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.07000000029802322" green="0.06859999895095825" blue="0.06859999895095825" opacity="0.8206107020378113" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Pane>
+      <Text fx:id="labelRegistoProdutos" layoutX="384.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Utilizadores">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Text>
+      <BorderPane layoutX="149.0" layoutY="503.0" prefHeight="75.0" prefWidth="77.0" style="-fx-background-radius: 700; -fx-background-color: #ffff;" />
+      <BorderPane layoutX="141.0" layoutY="41.0" prefHeight="75.0" prefWidth="77.0" style="-fx-background-radius: 700; -fx-background-color: #ffff;" />
+   </children>
+</AnchorPane>

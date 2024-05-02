@@ -114,13 +114,14 @@ public class IniciarInventaarioController implements Initializable {
                  String QueryUnidade = rs.getString("Unidade");
                  String QueryDescricao = rs.getString("Descricao");
                  Double QueryPreco = rs.getDouble("Preco_unitario");
+                 Double QueryPrecoCompra = rs.getDouble("Preco_De_Compra");
                  String  foto= rs.getString("foto"); 
                  //Double Queryunidade_stock=rs.getDouble("unidades_stock");
                  
                  StockLevel stock = new StockLevel();
                  stock.unidades_stock =rs.getDouble("unidades_stock");
                 
-                 produtoObservableList.add(new Produto(QueryProductId,QueryNome,QueryCategoria,QueryUnidade,QueryDescricao,QueryPreco,foto,stock));
+                 produtoObservableList.add(new Produto(QueryProductId,QueryNome,QueryCategoria,QueryUnidade,QueryDescricao,QueryPreco,QueryPrecoCompra,foto,stock));
                  }
  
     }   catch (SQLException ex) {

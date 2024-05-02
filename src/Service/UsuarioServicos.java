@@ -28,10 +28,29 @@
 /*     */ 
 /*     */
 /*     */   
+            public boolean RegistarUsuario(Usuario usuario) throws SQLException{
+            boolean status = false;
+            rs = UsuarioDAO.RegistarUsuario(usuario);
+                      rs.next();
+                          if( rs.getString(1).contentEquals("Sucesso")){
+                                    status = true;
+                          }                  
+        /*     */
+        return status;
+        }
 /*     */   public void cadastrarUsuario(Usuario u) throws SQLException {
 /*  32 */     UsuarioDAO us = new UsuarioDAO();
 /*  33 */     us.cadastrarusuario(u.getNome(), u.getSenha(), u.getCategoria());
 /*     */   }
+
+
+
+                  public void EditarUtilizador(Usuario u) throws SQLException{
+          
+            UsuarioDAO usuarioDAO= new UsuarioDAO();
+                      usuarioDAO.editarusuario(u);
+               
+               }
 /*     */ 
 /*     */ 
 /*     */   
@@ -186,8 +205,9 @@
 /*  98 */     this.rs.next();
 /*  99 */     this.usuario = new Usuario();
 /* 100 */     this.usuario.setCod_Funcionario(Integer.valueOf(this.rs.getInt("Cod_Funcionario")));
-/* 101 */     this.usuario.setNome(this.rs.getString("nome"));
-/* 102 */     this.usuario.setCategoria(this.rs.getString("categoria"));
+/* 101 */     this.usuario.setNome(this.rs.getString("Nome"));
+/* 102 */     this.usuario.setCategoria(this.rs.getString("Categoria"));
+              this.usuario.setStatus(this.rs.getString("Status"));
 /* 104 */   
 /* 106 */     return this.usuario;
 /*     */   }

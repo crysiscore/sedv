@@ -31,7 +31,7 @@
             <Pane prefHeight="200.0" prefWidth="1049.0" BorderPane.alignment="CENTER" />
          </top>
       </BorderPane>
-      <Pane fx:id="PnaePane" layoutX="138.0" layoutY="62.0" prefHeight="600.0" prefWidth="1096.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
+      <Pane fx:id="PnaePane" layoutX="128.0" layoutY="60.0" prefHeight="600.0" prefWidth="1096.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
          <children>
             <ImageView fx:id="imageViewVenda" fitHeight="157.0" fitWidth="165.0" layoutX="723.0" layoutY="111.0" onMouseClicked="#handleMenuItemVendaAdicionarVenda">
                <image>
@@ -173,7 +173,7 @@
                   <Menu fx:id="menumAdministracao" mnemonicParsing="false" text="Administração">
                      <items>
                         <MenuItem fx:id="menumItemInventario" mnemonicParsing="false" onAction="#handleMenumItemInventario" text="Inventário" />
-                        <MenuItem fx:id="menumitemgestaoUtilizadores" mnemonicParsing="false" text="Gestão de Utilizadores" />
+                        <MenuItem fx:id="menumitemgestaoUtilizadores" mnemonicParsing="false" onAction="#handleMenuItemGestaoUtilizadores" text="Gestão de Utilizadores" />
                         <MenuItem fx:id="menumitemParametrizacao" mnemonicParsing="false" onAction="#handleImprimirExcel" text="Parametrização" />
                      </items>
                   </Menu>
@@ -270,6 +270,8 @@
          </effect>
       </Pane>
       <DatePicker fx:id="DatepickerData" layoutX="14.0" layoutY="25.0" />
+      <BorderPane layoutX="-110.0" layoutY="657.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #EC3A3A; -fx-background-radius: 700;" />
+      <BorderPane layoutX="-130.0" layoutY="-110.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #EC3A3A; -fx-background-radius: 700;" />
    </children>
    <effect>
       <DropShadow />

@@ -45,6 +45,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -114,12 +115,27 @@ public class CadastroProdutoController implements Initializable {
     private TextField textfieldQuantidadeDeStock;
     
     @FXML
+    private TextField textfieldPrecoDeCompra;
+    
+    @FXML
+    private TextField textfieldCodigoProdutoManual;
+    
+    @FXML
     private Label labelCodigoProduto;
 
     @FXML
     private Label labelQuantidadeStock;
+    @FXML
+    private Text labelRegistoProdutos;
+    
+      public void trocartextoregistrarprodutos(){
+      labelRegistoProdutos.setText("DETALHES DO PRODUTO");
+    }
+     
 
-
+     public void trocartextoeditarproduto(){
+      labelRegistoProdutos.setText("EDITAR PRODUTO");
+    }
     
     private String caminhoFoto;
     private Produto produto;
@@ -130,6 +146,7 @@ public class CadastroProdutoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        this.textfieldPrecoDeCompra.setText("0.0");
         textfieldImageNome.setVisible(false);
        
          populacomboUnidade();
@@ -163,6 +180,7 @@ public class CadastroProdutoController implements Initializable {
                 textFieldPreco.setText(oldValue.toString()); // Restaura o valor anterior
             }
         });
+        
          
     }    
 
@@ -177,7 +195,7 @@ public class CadastroProdutoController implements Initializable {
          buttonEditar.setVisible(false);
           textfieldCodigoProduto.setVisible(false);
           textfieldQuantidadeDeStock.setVisible(false);
-          labelCodigoProduto.setVisible(false);
+          labelCodigoProduto.setVisible(true);
           labelQuantidadeStock.setVisible(false);
     }
     
@@ -185,7 +203,7 @@ public class CadastroProdutoController implements Initializable {
          buttonSalvar.setVisible(false);
         textfieldCodigoProduto.setVisible(false);
         textfieldQuantidadeDeStock.setVisible(false);
-         labelCodigoProduto.setVisible(false);
+         labelCodigoProduto.setVisible(true);
           labelQuantidadeStock.setVisible(false);
          
     }   
@@ -200,6 +218,7 @@ public class CadastroProdutoController implements Initializable {
          textfieldNomeProduto.setEditable(false);
          textfieldNomeProduto.setEditable(false);
          textfieldCodigoProduto.setEditable(false);
+         textfieldCodigoProduto.setVisible(false);
          textfieldQuantidadeDeStock.setEditable(false);
          comboBoxCategoria.setEditable(false);
          comboBoxUnidade.setEditable(false);
@@ -328,6 +347,13 @@ public class CadastroProdutoController implements Initializable {
                fds = true;
      
               }
+                 else if (this.textfieldPrecoDeCompra.getText().equals("")) {
+       
+               JOptionPane.showMessageDialog(null, "INTRODUZA O PRECO UNITARIO ");
+             
+               fds = true;
+     
+              }
                 
                else if (this.textFieldDescricao.getText().equals("")) {
        
@@ -364,6 +390,8 @@ public class CadastroProdutoController implements Initializable {
                 textfieldNomeProduto.setText("");
                 textFieldPreco.setText("");
                 textFieldDescricao.setText("");
+                textfieldCodigoProdutoManual.setText("");
+                textfieldPrecoDeCompra.setText("0.0");
                 comboBoxCategoria.setValue(null);
                 comboBoxUnidade.setValue(null);
                 imageViewFoto.setImage(image1);
@@ -378,8 +406,11 @@ public class CadastroProdutoController implements Initializable {
                       try {  
                  
               Double preco_unitario = Double.valueOf(0.0D);
+              Double Preco_De_Compra = Double.valueOf(0.0D);
+              String CodigoManual=textfieldCodigoProdutoManual.getText();
               String nome = this.textfieldNomeProduto.getText();
               preco_unitario = Double.valueOf(Double.parseDouble(this.textFieldPreco.getText()));
+              Preco_De_Compra= Double.valueOf(Double.parseDouble(this.textfieldPrecoDeCompra.getText()));
               ProdutosServicos ps = new ProdutosServicos();
               Integer unidade = Integer.valueOf(ps.CapturaIdUnidade(this.comboBoxUnidade.getSelectionModel().getSelectedItem().toString()));
               Integer categoria = Integer.valueOf(ps.CapturaIdCategoria(this.comboBoxCategoria.getSelectionModel().getSelectedItem().toString()));
@@ -389,8 +420,10 @@ public class CadastroProdutoController implements Initializable {
               
               
               Produto product = new Produto();
+              product.setCodigo_manual(CodigoManual);
               product.setNome(nome);
               product.setPreco_unitario(preco_unitario);
+              product.setPreco_De_Compra(Preco_De_Compra);
               product.setUnidade(unidade.toString());
               product.setCategoria(categoria.toString());
               product.setDescricao(descricao);
@@ -423,8 +456,12 @@ public class CadastroProdutoController implements Initializable {
                   try {  
                  
               Double preco_unitario = Double.valueOf(0.0D);
+              Double Preco_De_Compra = Double.valueOf(0.0D);
+              String CodigoManual=textfieldCodigoProdutoManual.getText();
               String nome = this.textfieldNomeProduto.getText();
               preco_unitario = Double.valueOf(Double.parseDouble(this.textFieldPreco.getText()));
+              Preco_De_Compra= Double.valueOf(Double.parseDouble(this.textfieldPrecoDeCompra.getText()));
+
               ProdutosServicos ps = new ProdutosServicos();
               Integer unidade = Integer.valueOf(ps.CapturaIdUnidade(this.comboBoxUnidade.getSelectionModel().getSelectedItem().toString()));
               Integer categoria = Integer.valueOf(ps.CapturaIdCategoria(this.comboBoxCategoria.getSelectionModel().getSelectedItem().toString()));
@@ -440,8 +477,10 @@ public class CadastroProdutoController implements Initializable {
               ImageIO.write(imagem, format, new File(Location));
               
               Produto product = new Produto();
+              product.setCodigo_manual(CodigoManual);
               product.setNome(nome);
               product.setPreco_unitario(preco_unitario);
+              product.setPreco_De_Compra(Preco_De_Compra);
               product.setUnidade(unidade.toString());
               product.setCategoria(categoria.toString());
               product.setDescricao(descricao);
@@ -514,7 +553,9 @@ public class CadastroProdutoController implements Initializable {
             
         this.textFieldDescricao.setText(produto.getDescricao());
         this.textFieldPreco.setText(produto.getPreco_unitario().toString());
+         this.textfieldPrecoDeCompra.setText(produto.getPreco_De_Compra().toString());
         this.textfieldNomeProduto.setText(produto.getNome());
+        this.textfieldCodigoProdutoManual.setText(produto.getCodigo_manual());
         this.comboBoxCategoria.setValue(produto.getCategoria());
         this.comboBoxUnidade.setValue(produto.getUnidade());
         
@@ -522,6 +563,8 @@ public class CadastroProdutoController implements Initializable {
             
         this.textFieldDescricao.setText(produto.getDescricao());
         this.textFieldPreco.setText(produto.getPreco_unitario().toString());
+        this.textfieldPrecoDeCompra.setText(produto.getPreco_De_Compra().toString());
+        this.textfieldCodigoProdutoManual.setText(produto.getCodigo_manual());
         this.textfieldNomeProduto.setText(produto.getNome());
         this.comboBoxCategoria.setValue(produto.getCategoria());
         this.comboBoxUnidade.setValue(produto.getUnidade());
@@ -537,7 +580,9 @@ public class CadastroProdutoController implements Initializable {
         this.produto = produto;
         this.textFieldDescricao.setText(produto.getDescricao());
         this.textFieldPreco.setText(produto.getPreco_unitario().toString());
+        this.textfieldPrecoDeCompra.setText(produto.getPreco_De_Compra().toString());
         this.textfieldNomeProduto.setText(produto.getNome());
+        this.textfieldCodigoProdutoManual.setText(produto.getCodigo_manual());
         this.comboBoxCategoria.setValue(produto.getCategoria());
         this.comboBoxUnidade.setValue(produto.getUnidade());
         this.textfieldImageNome.setText(produto.getFoto());
@@ -558,16 +603,20 @@ public class CadastroProdutoController implements Initializable {
                       try {  
               
               Double preco_unitario = Double.valueOf(0.0D);
+              Double Preco_De_Compra = Double.valueOf(0.0D);
+              String CodigoManual=textfieldCodigoProdutoManual.getText();
               String nome = this.textfieldNomeProduto.getText();
               preco_unitario = Double.valueOf(Double.parseDouble(this.textFieldPreco.getText()));
+              Preco_De_Compra= Double.valueOf(Double.parseDouble(this.textfieldPrecoDeCompra.getText()));
               ProdutosServicos ps = new ProdutosServicos();
               Integer unidade = Integer.valueOf(ps.CapturaIdUnidade(this.comboBoxUnidade.getSelectionModel().getSelectedItem().toString()));
               Integer categoria = Integer.valueOf(ps.CapturaIdCategoria(this.comboBoxCategoria.getSelectionModel().getSelectedItem().toString()));
               String descricao = this.textFieldDescricao.getText();
    
-              
+              produto.setCodigo_manual(CodigoManual);
               produto.setNome(nome);
               produto.setPreco_unitario(preco_unitario);
+              produto.setPreco_De_Compra(Preco_De_Compra);
               produto.setUnidade(unidade.toString());
               produto.setCategoria(categoria.toString());
               produto.setDescricao(descricao);
@@ -603,8 +652,10 @@ public class CadastroProdutoController implements Initializable {
                       
               
               Double preco_unitario = Double.valueOf(0.0D);
+              Double Preco_De_Compra = Double.valueOf(0.0D);
               String nome = this.textfieldNomeProduto.getText();
               preco_unitario = Double.valueOf(Double.parseDouble(this.textFieldPreco.getText()));
+              Preco_De_Compra= Double.valueOf(Double.parseDouble(this.textfieldPrecoDeCompra.getText()));
               ProdutosServicos ps = new ProdutosServicos();
               Integer unidade = Integer.valueOf(ps.CapturaIdUnidade(this.comboBoxUnidade.getSelectionModel().getSelectedItem().toString()));
               Integer categoria = Integer.valueOf(ps.CapturaIdCategoria(this.comboBoxCategoria.getSelectionModel().getSelectedItem().toString()));
@@ -613,6 +664,7 @@ public class CadastroProdutoController implements Initializable {
             
               produto.setNome(nome);
               produto.setPreco_unitario(preco_unitario);
+              produto.setPreco_De_Compra(Preco_De_Compra);
               produto.setUnidade(unidade.toString());
               produto.setCategoria(categoria.toString());
               produto.setDescricao(descricao);

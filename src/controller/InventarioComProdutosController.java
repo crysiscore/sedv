@@ -37,6 +37,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -111,6 +113,9 @@ public class InventarioComProdutosController implements Initializable {
     
     @FXML
     private Button buttonConcluir;
+    
+    @FXML
+    private Button ButtonLista_Inventario;
 
     @FXML
     private Label labelCod;
@@ -138,9 +143,13 @@ public class InventarioComProdutosController implements Initializable {
 
       @FXML
     private Label labelNomeUser;
+      
+      @FXML
+    private TableColumn<Inventario, Integer> tableColumnCodigoBD;
+
 
     @FXML
-    private TableColumn<Inventario, Integer> tableColumnCodigo;
+    private TableColumn<Inventario, String> tableColumnCodigo;
 
     @FXML
     private TableColumn<Inventario, Double> tableColumnDiferença;
@@ -207,8 +216,8 @@ public class InventarioComProdutosController implements Initializable {
         // TODO
          DatePickerDATA.setVisible(false);
          labelParcial.setVisible(false);
-        
-        this.tableColumnCodigo.setCellValueFactory(new PropertyValueFactory<Inventario, Integer>("Cod_Produto"));
+        this.tableColumnCodigoBD.setCellValueFactory(new PropertyValueFactory<Inventario, Integer>("Cod_Produto"));
+        this.tableColumnCodigo.setCellValueFactory(new PropertyValueFactory<Inventario, String>("Cod_ProdutoManual"));
         this.tableColumnNome.setCellValueFactory(new PropertyValueFactory<Inventario, String>("Nome"));
         this.tableColumnStcokExistente.setCellValueFactory(new PropertyValueFactory<Inventario, Double>("Stock"));
      
@@ -233,6 +242,20 @@ public class InventarioComProdutosController implements Initializable {
             this.tableColumnDiferença.setCellValueFactory(new PropertyValueFactory<Inventario, Double>("Diferenca_Existente_Contada"));
           
             iventario = inventarioModel.getInventarioList();
+            
+                 
+        BooleanProperty tabelaVazia = new SimpleBooleanProperty(true);
+
+       // Vincula a propriedade empty da tabela às propriedades disable dos botões
+        btnActualiar.disableProperty().bind(tabelaVazia);
+        Imprimir_folha_inventário.disableProperty().bind(tabelaVazia);
+        btnRemover.disableProperty().bind(tabelaVazia);
+     
+
+       // Adicione um listener à lista detalhesVenda para atualizar a propriedade tabelaVazia
+        iventario.addListener((ListChangeListener<Inventario>) change -> {
+            tabelaVazia.set(iventario.isEmpty());
+        });
 
             tableViewListaProdutos.setItems(iventario);
 
@@ -251,9 +274,9 @@ public class InventarioComProdutosController implements Initializable {
                      
                      String searchKeyword=newValue.toLowerCase();
                      
-                     if(inv.getCod_Produto().toString().indexOf(searchKeyword)>-1){
+                    if(inv.getNome().toLowerCase().indexOf(searchKeyword)>-1){
                          return true;
-                     }else if(inv.getNome().toLowerCase().indexOf(searchKeyword)>-1){
+                          }else if(inv.getCod_ProdutoManual().toLowerCase().indexOf(searchKeyword)>-1){
                          return true;
                                 
                      }else
@@ -424,6 +447,8 @@ void removerProdutodaTabela() {
                 JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
             }
         }
+    tableViewListaProdutos.setItems(FXCollections.observableArrayList());
+
   
         
     }
@@ -571,6 +596,36 @@ public void handlePrintPre_InventarioExcel() {
     }
 }
 
+
+ public void handleMenuItemListaInventario() {
+
+        try {
+            String codUsuario = this.labelNomeUsuario.getText();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(TrickController.class.getResource("/Presentation/Lista_De_Inventario.fxml"));
+
+            AnchorPane page = (AnchorPane) loader.load();
+
+            Lista_De_InventarioController lista_De_InventarioController = loader.<Lista_De_InventarioController>getController();
+            
+            usuarioServicos = new UsuarioServicos();
+            Usuario selectedUsuario = new Usuario();
+           // selectedUsuario = usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
+           // lista_De_InventarioController.receberdadosUsuario(selectedUsuario);
+            
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Lista de Inventários");
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            dialogStage.setMaximized(false);
+            dialogStage.setResizable(false);
+            // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
+            dialogStage.show();
+        } catch (Exception ex) {
+            System.out.println("" + ex + ex.getLocalizedMessage());
+            System.out.println("" + ex.toString());
+        }
+    }
     
 }
 

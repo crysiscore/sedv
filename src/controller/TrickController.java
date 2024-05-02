@@ -165,18 +165,18 @@ public class TrickController implements Initializable {
         this.labelUserCod.setText(usuario.getCod_Funcionario().toString());
         this.labelUsername.setText(usuario.getNome());
         this.labelUserCod.setVisible(false);
-                if(!usuario.getNome().equals("Admin")){
-                      menuItemStockAdicionarStock.setDisable(true);
-    menuItemStockNovoProduto1.setDisable(true);
-    menumItemInventario.setDisable(true);
-    menumitemParametrizacao.setDisable(true);
-    menumitemgestaoUtilizadores.setDisable(true);
-    imageViewAdicionarStock.setDisable(true);
-            
+        
+        if (!usuario.getCategoria().equals("Gerente")) {
+            menuItemStockAdicionarStock.setDisable(true);
+            menuItemStockNovoProduto1.setDisable(true);
+            menumItemInventario.setDisable(true);
+            menumitemParametrizacao.setDisable(true);
+            menumitemgestaoUtilizadores.setDisable(true);
+            imageViewAdicionarStock.setDisable(true);
+
         }
         return usuario;
 
-        
     }
 
   @Override
@@ -641,6 +641,45 @@ public void initialize(URL url, ResourceBundle rb) {
                 System.out.println("" + ex.toString());
             } 
              }
+    
+    
+    
+        
+    public void handleMenuItemGestaoUtilizadores (){
+         
+          
+        try {
+       
+        String codUsuario = this.labelUserCod.getText();
+          
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(TrickController.class.getResource("/Presentation/Gestao_De_Utilizadores.fxml"));
+        
+        AnchorPane page = (AnchorPane) loader.load();
+        
+         Gestao_De_UtilizadoresController gestao_De_UtilizadoresController= loader.<Gestao_De_UtilizadoresController>getController();
+       
+        usuarioServicos = new UsuarioServicos();
+        Usuario selectedUsuario = new Usuario();
+        selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
+        gestao_De_UtilizadoresController.receberdadosUsuario(selectedUsuario);
+        
+        // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("GESTÃO DE UTILIZADORES");
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+        dialogStage.setMaximized(false);
+        dialogStage.setResizable(false);
+        
+            // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
+            dialogStage.show();
+        } catch (Exception ex) {
+            System.out.println("" + ex + ex.getLocalizedMessage());
+            System.out.println("" + ex.toString());
+        }
+    }
+
 
 
 }
