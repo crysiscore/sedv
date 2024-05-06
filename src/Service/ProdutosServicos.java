@@ -12,20 +12,7 @@ import java.io.FileInputStream;
 /*     */ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-/*     */
- /*     */
- /*     */
- /*     */
- /*     */
- /*     */
- /*     */
- /*     */
- /*     */
- /*     */
- /*     */
- /*     */
- /*     */
- /*     */
+
  /*     */
  /*     */
  /*     */ public class ProdutosServicos /*     */ {
@@ -36,15 +23,7 @@ import javax.swing.JOptionPane;
     /*  30 */    private ProdutoDAO prodDAO = new ProdutoDAO();
     /*  31 */    private VendaDao vendaDao = new VendaDao();
 
-    /*     */
- /*     */
- /*     */
- /*     */
- /*     */
- /*     */
- /*     */
- /*     */
- /*     */
+
  /*     */
  /*     */ public String[] GetUnidades() throws SQLException {
         /*  43 */ String[] unidades = new String[0];
@@ -60,10 +39,7 @@ import javax.swing.JOptionPane;
         /*  53 */ return unidades;
         /*     */    }
 
-    /*     */
- /*     */
- /*     */
- /*     */
+
  /*     */ public String[] GetCategorias() throws SQLException {
         /*  60 */ String[] categorias = new String[0];
         /*  61 */ ProdutoDAO cpd = new ProdutoDAO();
@@ -78,8 +54,7 @@ import javax.swing.JOptionPane;
         /*  70 */ return categorias;
         /*     */    }
 
-    /*     */
- /*     */
+
  /*     */ public int CapturaIdUnidade(String Nom) throws SQLException {
         /*  75 */ ProdutoDAO ps = new ProdutoDAO();
         /*  76 */ ResultSet rs = ps.capturaId(Nom);
@@ -162,19 +137,12 @@ import javax.swing.JOptionPane;
         /* 112 */ this.vendaDao.VenderProduto(v.getTotal_Venda().doubleValue(), v.getNome_cliente(), v.User.getCod_Funcionario().intValue());
         /*     */    }
 
-    /*     */
- /*     */
- /*     */
+
  /*     */
  /*     */ public void DetalhesVenda(DetalhesVenda dv) throws SQLException {
         /* 119 */ this.vendaDao.DetalhesVenda(dv.getProduto_Cod_produto().intValue(), dv.getVenda_Cod_venda().intValue(), dv.getPreco().doubleValue(), dv.getQuantidade().intValue());
         /*     */    }
 
-    /*     */
- /*     */
- /*     *//*     */
- /*     */
- /*     */
  /*     */ public boolean RegistarProduto(Produto prod) throws SQLException{
             boolean status = false;
             rs = prodDAO.RegistarProduto(prod);

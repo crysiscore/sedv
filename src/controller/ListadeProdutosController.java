@@ -272,11 +272,7 @@ public class ListadeProdutosController implements Initializable {
        
               } 
     }
-    
-    
-   
-    
-    
+
       private void setCellValueFromTableToTextField(){
           
          
@@ -299,9 +295,7 @@ public class ListadeProdutosController implements Initializable {
         stage.close();
     }
         
-        
-         
-             
+      
     public void handleMenuItemProdutoRegistrarProduto (){
          
           
@@ -326,7 +320,7 @@ public class ListadeProdutosController implements Initializable {
         cadastroProdutoProdutoController.OcultarBotaoEditar();
         // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Registo de Produtos");
+        dialogStage.setTitle("REGISTO DE PRODUTO");
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
         dialogStage.setMaximized(false);
@@ -431,7 +425,7 @@ public class ListadeProdutosController implements Initializable {
 
         // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Detalhes do Produto");
+        dialogStage.setTitle("DETALHES DO PRODUTO");
         Scene scene = new Scene(root);
         dialogStage.setScene(scene);
         dialogStage.setMaximized(false);

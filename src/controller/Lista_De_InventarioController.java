@@ -252,7 +252,7 @@ public class Lista_De_InventarioController implements Initializable {
 
                 // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
                 Stage dialogStage = new Stage();
-                dialogStage.setTitle("Detalhes do Inventário");
+                dialogStage.setTitle("DETALHES DO INVENTÁRIO");
                 Scene scene = new Scene(root);
                 dialogStage.setScene(scene);
                 dialogStage.setMaximized(false);

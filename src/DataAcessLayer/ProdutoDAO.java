@@ -281,6 +281,37 @@ import java.sql.Blob;
               //this.cs.setBlob(7,  foto);
 /* 167 */     this.cs.executeQuery();
 /*     */   }
+
+public boolean produtoJaCadastrado(String codigoManual, String nome) throws SQLException {
+        Connection conn = null;
+        CallableStatement stmt = null;
+        ResultSet rs = null;
+        boolean cadastrado = false;
+
+        try {
+
+            // Chamar o procedimento armazenado VerificarProdutoCadastrado
+            String sql = "{CALL VerificarProdutoCadastrado(?, ?, ?)}";
+            stmt = conn.prepareCall(sql);
+            stmt.setString(1, codigoManual);
+            stmt.setString(2, nome);
+            stmt.registerOutParameter(3, java.sql.Types.BOOLEAN);
+            stmt.execute();
+
+            // Obter o valor de retorno do procedimento
+            cadastrado = stmt.getBoolean(3);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Fechar conexões e recursos
+            if (rs != null) rs.close();
+            if (stmt != null) stmt.close();
+            if (conn != null) conn.close();
+        }
+
+        return cadastrado;
+    }
+
 /*     */ }
 
 

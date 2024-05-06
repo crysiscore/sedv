@@ -122,7 +122,7 @@ public class Cadastro_UtilizadorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+        labelcodigoUsuario.setVisible(false);
          ObservableList<String> Status = FXCollections.observableArrayList(
             "Ativo", 
             "Inativo"

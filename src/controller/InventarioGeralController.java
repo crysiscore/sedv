@@ -255,7 +255,7 @@ public class InventarioGeralController implements Initializable {
 
             // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Adicionar Produto");
+            dialogStage.setTitle("ADIÇÃO DE PRODUTO");
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
             dialogStage.setMaximized(false);
