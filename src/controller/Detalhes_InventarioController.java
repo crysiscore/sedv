@@ -66,6 +66,9 @@ public class Detalhes_InventarioController implements Initializable {
 
     @FXML
     private Label labelTipodeinventario;
+    
+    @FXML
+    private Label labelNomeUtilizador;
 
     @FXML
     private Label labelTotal;
@@ -149,6 +152,7 @@ public class Detalhes_InventarioController implements Initializable {
 
         for (Inventario inventario : inventarios) {
             labelCodigoInventario.setText(inventario.getCod_Inventario().toString());
+            //labelNomeUtilizador.setText(inventario.getDetalhesInventario().getUser().getNome());
               
              
 
@@ -167,6 +171,8 @@ public class Detalhes_InventarioController implements Initializable {
     public void ReceberDadoInventario(Inventario inventario) {
         this.labelCodigoInventario.setText(inventario.getCod_Inventario().toString());
       labelTipodeinventario.setText(inventario.getTipo_inventario());
+      labelNomeUtilizador.setText(inventario.getUser().getNome());
+
 
     }
 

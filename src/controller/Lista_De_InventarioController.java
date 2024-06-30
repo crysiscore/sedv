@@ -75,6 +75,10 @@ public class Lista_De_InventarioController implements Initializable {
 
     @FXML
     private Label labelcliente;
+    
+    @FXML
+    private Label labelNomeUtilizador;
+    
     @FXML
    private Label labelTipodeInventario;
 
@@ -112,6 +116,7 @@ public class Lista_De_InventarioController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         labelTipodeInventario.setVisible(false);
+        labelNomeUtilizador.setVisible(false);
         
          InventarioDAO inventarioDao = new InventarioDAO();
         try {
@@ -222,6 +227,8 @@ public class Lista_De_InventarioController implements Initializable {
 
             Inventario inventario =tableViewListaInventario.getItems().get(tableViewListaInventario.getSelectionModel().getSelectedIndex());
             labelCodInventario.setText(String.valueOf(inventario.getCod_Inventario()));
+            //labelNomeUtilizador.setText(inventario.getUser().getNome());
+            
             //produto.setCod_produto(Integer.parseInt(labelCodProduto.getText()));
             labelCodInventario.setVisible(false);
 
@@ -252,7 +259,7 @@ public class Lista_De_InventarioController implements Initializable {
 
                 // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
                 Stage dialogStage = new Stage();
-                dialogStage.setTitle("Detalhes do Inventário");
+                dialogStage.setTitle("DETALHES DO INVENTÁRIO");
                 Scene scene = new Scene(root);
                 dialogStage.setScene(scene);
                 dialogStage.setMaximized(false);

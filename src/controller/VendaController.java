@@ -231,8 +231,6 @@ public class VendaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // Vincula a propriedade empty da tabela às propriedades disable dos botões
 
-
-
       
         textFieldQuantty.setVisible(false);
         labelprice.setVisible(false);
@@ -279,7 +277,7 @@ public class VendaController implements Initializable {
             
             Double somaSubtotal = 0.0;
             ObservableList<DetalhesVenda> dt = tableViewListaProdutos.getItems();
-            tableColumnSubtotal = (TableColumn<DetalhesVenda, Double>) tableViewListaProdutos.getColumns().get(3);
+            tableColumnSubtotal = (TableColumn<DetalhesVenda, Double>) tableViewListaProdutos.getColumns().get(4);
             for (int i = 0; i < dt.size(); i++) {
                 somaSubtotal += tableColumnSubtotal.getCellData(dt.get(i));
                 tableViewListaProdutos.refresh();
@@ -288,13 +286,10 @@ public class VendaController implements Initializable {
             labelSubtotal.setText(somaSubtotal.toString());
             labelTotal.setText(somaSubtotal.toString());
             textfieldPago.setText(labelTotal.getText());
- 
 
             
         });
     
-            
-             
 
         this.tableColumnQuantidade.setCellValueFactory(new PropertyValueFactory<DetalhesVenda, Double>("Quantidade"));
 
@@ -313,9 +308,7 @@ public class VendaController implements Initializable {
         });
       tableViewListaProdutos.setItems(detalhesVenda);
 
-      
-  
-        
+
         // Add a change listener to the data list
         detalhesVenda.addListener((ListChangeListener<DetalhesVenda>) change -> {
             while (change.next()) {
@@ -323,7 +316,7 @@ public class VendaController implements Initializable {
                 if (change.wasAdded()) {
                     Double somaSubtotal = 0.0;
                     ObservableList<DetalhesVenda> dt = tableViewListaProdutos.getItems();
-                    tableColumnSubtotal = (TableColumn<DetalhesVenda, Double>) tableViewListaProdutos.getColumns().get(3);
+                    tableColumnSubtotal = (TableColumn<DetalhesVenda, Double>) tableViewListaProdutos.getColumns().get(4);
                     for (int i = 0; i < dt.size(); i++) {
                         somaSubtotal += tableColumnSubtotal.getCellData(dt.get(i));
                     }
@@ -372,22 +365,17 @@ public class VendaController implements Initializable {
             String codProduto = this.textFieldPesquisaProdutos1.getText();
             if (textFieldPesquisaProdutos1.getText().isEmpty()) {
 
-               // JOptionPane.showMessageDialog(null, "Introduza o codigo do produto!");
-
             } else {
                 servicoProdutos = new ProdutosServicos();
                 Produto selectedProduto = servicoProdutos.getDetalhesProdutoComCodigoManual(codProduto);
 
                 if (selectedProduto == null) {
-                    // O produto não foi encontrado no banco de dados
-                    //JOptionPane.showMessageDialog(null, "O produto não foi encontrado!");
+                
                     handleMenuAlert8();
                     limparcampos();
 
                     usuarioServicos = new UsuarioServicos();
-                    // Produto selectedProduto = new Produto();
-                    // Stock selectedProduto1  = new Stock();    
-
+                  
                 } else if (selectedProduto.getStock().unidades_stock < Double.parseDouble(textFieldQuantty.getText())) {
                     handleMenuAlert4();
 
@@ -406,7 +394,6 @@ public class VendaController implements Initializable {
     }
 
 
-
     public void detalhesProdutos(Produto produto) throws SQLException {
 
         this.produto = produto;
@@ -422,7 +409,7 @@ public class VendaController implements Initializable {
         labelname.setText(nome);
         
         DetalhesVenda DV = new DetalhesVenda(Integer.parseInt(labelCod.getText()),
-                Double.parseDouble(labelprice.getText()),
+                Double.parseDouble(labelprice.getText()),Double.parseDouble(produto.stock.getUnidades_stock().toString()),
                 Double.parseDouble(textFieldQuantty.getText()), Double.parseDouble(labelSub.getText()),
                 labelname.getText());
         detalhesVendaModel.addStock(DV);
@@ -471,7 +458,7 @@ public class VendaController implements Initializable {
 
             // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Adicionar Produto");
+            dialogStage.setTitle("ADICÃO DE PRODUTO");
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
             dialogStage.setMaximized(false);
@@ -504,7 +491,10 @@ public class VendaController implements Initializable {
     @FXML
     public void handleMenuItemRegistarVenda() throws IOException, SQLException {
 
-        verificadados();
+      if(  verificadados()){
+    
+        
+    } else {
 
         VendaDao dao = new VendaDao();
 
@@ -592,8 +582,7 @@ public class VendaController implements Initializable {
 
         }
         
-       
-    }
+    } }
  
     
     public void handleMenuAlert() {
@@ -744,13 +733,13 @@ public class VendaController implements Initializable {
             
             fds = true;
             
-        } else if (this.labelNomeUsuario.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "NOME DO USUARIO EM FALTA! ");
-            fds = true;
+       // } else if (this.labelNomeUsuario.getText().equals("")) {
+         //   JOptionPane.showMessageDialog(null, "NOME DO USUÁRIO EM FALTA! ");
+           // fds = true;
             
-        } else if (this.labelTotal.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "TOTAL DA VENDA EM FALTA! ");
-            fds = true;
+       // } else if (this.labelTotal.getText().equals("")) {
+         //   JOptionPane.showMessageDialog(null, "TOTAL DA VENDA EM FALTA! ");
+           // fds = true;
             
         }
         
@@ -780,7 +769,7 @@ public class VendaController implements Initializable {
             listaVendaController.receberdadosUsuario(selectedUsuario);
             
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Lista de Vendas");
+            dialogStage.setTitle("LISTA DE VENDAS");
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
             dialogStage.setMaximized(false);
@@ -828,8 +817,6 @@ public class VendaController implements Initializable {
         } else if (response == JOptionPane.CLOSED_OPTION) {
             JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
         }
-
-      
 
      }
     

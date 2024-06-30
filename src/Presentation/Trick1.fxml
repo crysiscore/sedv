@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1380.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TrickController">
+<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1380.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TrickController">
    <children>
       <BorderPane layoutX="572.0" layoutY="-223.0" prefHeight="1080.0" prefWidth="1049.0" style="-fx-background-color: #EC3A3A; -fx-background-radius: 700;">
          <effect>
@@ -31,7 +31,7 @@
             <Pane prefHeight="200.0" prefWidth="1049.0" BorderPane.alignment="CENTER" />
          </top>
       </BorderPane>
-      <Pane fx:id="PnaePane" layoutX="128.0" layoutY="60.0" prefHeight="600.0" prefWidth="1096.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
+      <Pane fx:id="PnaePane" layoutX="128.0" layoutY="60.0" prefHeight="592.0" prefWidth="1096.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
          <children>
             <ImageView fx:id="imageViewVenda" fitHeight="157.0" fitWidth="165.0" layoutX="723.0" layoutY="111.0" onMouseClicked="#handleMenuItemVendaAdicionarVenda">
                <image>
@@ -174,7 +174,7 @@
                      <items>
                         <MenuItem fx:id="menumItemInventario" mnemonicParsing="false" onAction="#handleMenumItemInventario" text="Inventário" />
                         <MenuItem fx:id="menumitemgestaoUtilizadores" mnemonicParsing="false" onAction="#handleMenuItemGestaoUtilizadores" text="Gestão de Utilizadores" />
-                        <MenuItem fx:id="menumitemParametrizacao" mnemonicParsing="false" onAction="#handleImprimirExcel" text="Parametrização" />
+                        <MenuItem fx:id="menumitemgestaoUnidadesEcategorias" mnemonicParsing="false" onAction="#handleMenuItemGestaoUnidadeseCategorias" text="Gestão de Unidades e Categorias" />
                      </items>
                   </Menu>
                </menus>
@@ -192,18 +192,6 @@
                   <Image url="@../icons/Free3dLogo.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="36.0" layoutY="506.0">
-               <image>
-                  <Image url="@../icons/icom-png-4.png" />
-               </image>
-               <effect>
-                  <DropShadow>
-                     <color>
-                        <Color opacity="0.3320610523223877" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </ImageView>
             <ImageView fx:id="imageViewListaProdutos" fitHeight="157.0" fitWidth="165.0" layoutX="473.0" layoutY="334.0" onMouseClicked="#handleMenuItemProdutoListaProduto">
                <image>
                   <Image url="@../icons/3d-illustration-of-notepad-check-list-with-pencil-over-white-background-MAMJTX.png" />
@@ -216,7 +204,7 @@
                <font>
                   <Font name="Times New Roman" size="12.0" />
                </font></Label>
-            <Label fx:id="labelUserCod" layoutX="871.0" layoutY="68.0" prefHeight="17.0" prefWidth="92.0" />
+            <Label fx:id="labelUserCod" layoutX="896.0" layoutY="55.0" prefHeight="17.0" prefWidth="92.0" />
             <Text layoutX="511.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Novo Produto" />
             <Text layoutX="773.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nova Venda" />
             <Text layoutX="510.0" layoutY="508.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lista de Produtos" />
@@ -239,7 +227,7 @@
                   <Image url="@../icons/prod.png" />
                </image>
             </ImageView>
-            <Button fx:id="buttnSair" layoutX="82.0" layoutY="514.0" mnemonicParsing="false" onAction="#SairButtonOnAction" prefHeight="25.0" prefWidth="131.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Sair">
+            <Button fx:id="buttnSair" layoutX="81.0" layoutY="514.0" mnemonicParsing="false" onAction="#SairButtonOnAction" prefHeight="25.0" prefWidth="116.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Sair">
                <font>
                   <Font name="Times New Roman" size="12.0" />
                </font>
@@ -251,7 +239,7 @@
                   </InnerShadow>
                </effect>
             </Button>
-            <Button fx:id="btnSair" cancelButton="true" layoutX="81.0" layoutY="514.0" mnemonicParsing="false" onAction="#SairButtonOnAction" prefHeight="25.0" prefWidth="140.0" style="-fx-background-radius: 13;" text="Sair">
+            <Button fx:id="btnSair" cancelButton="true" layoutX="55.0" layoutY="514.0" mnemonicParsing="false" onAction="#start" prefHeight="32.0" prefWidth="165.0" style="-fx-background-radius: 13; -fx-background-color: #EC3A3A;" text="SAIR">
                <effect>
                   <InnerShadow>
                      <color>
@@ -259,6 +247,9 @@
                      </color>
                   </InnerShadow>
                </effect>
+               <font>
+                  <Font name="Times New Roman" size="13.0" />
+               </font>
             </Button>
          </children>
          <effect>

@@ -252,7 +252,7 @@ public class Lista_VendaController implements Initializable {
 
                 // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
                 Stage dialogStage = new Stage();
-                dialogStage.setTitle("Detalhes de Venda");
+                dialogStage.setTitle("DETALHES DE VENDA");
                 Scene scene = new Scene(root);
                 dialogStage.setScene(scene);
                 dialogStage.setMaximized(false);
@@ -280,7 +280,6 @@ public class Lista_VendaController implements Initializable {
     }
 
     
-    
     public Usuario getUsuario() {
         return usuario;
     }
@@ -292,6 +291,7 @@ public class Lista_VendaController implements Initializable {
         this.labelCodFuncionario.setText(usuario.getCod_Funcionario().toString());
         this.labelCodFuncionario.setVisible(false);
     }
+     
      public void handleMenuItemVendaAdicionarVenda() {
 
         try {
@@ -309,7 +309,7 @@ public class Lista_VendaController implements Initializable {
             vendaController.receberdadosUsuario(selectedUsuario);
             
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Vendas");
+            dialogStage.setTitle("VENDAS");
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
             dialogStage.setMaximized(false);
@@ -320,6 +320,7 @@ public class Lista_VendaController implements Initializable {
         } catch (Exception ex) {
             System.out.println("" + ex + ex.getLocalizedMessage());
             System.out.println("" + ex.toString());
+            ex.printStackTrace();
         }
     }
 
@@ -342,7 +343,7 @@ public class Lista_VendaController implements Initializable {
             detalhesvendaController.receberdadosUsuario(selectedUsuario);
             
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Vendas");
+            dialogStage.setTitle("VENDAS");
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
             dialogStage.setMaximized(false);

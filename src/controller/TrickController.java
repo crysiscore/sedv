@@ -52,6 +52,7 @@ import java.net.URL;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import javafx.scene.Parent;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -141,8 +142,8 @@ public class TrickController implements Initializable {
     @FXML
     private MenuItem menumItemInventario;
 
-    @FXML
-    private MenuItem menumitemParametrizacao;
+    //@FXML
+   // private MenuItem menumitemParametrizacao;
 
     @FXML
     private MenuItem menumitemgestaoUtilizadores;
@@ -165,19 +166,30 @@ public class TrickController implements Initializable {
         this.labelUserCod.setText(usuario.getCod_Funcionario().toString());
         this.labelUsername.setText(usuario.getNome());
         this.labelUserCod.setVisible(false);
-        
-        if (!usuario.getCategoria().equals("Gerente")) {
+
+        if (usuario.getCategoria().equals("Gerente")) {
+            // Habilitar todos os itens de menu e funcionalidades para gerentes
+            menuItemStockAdicionarStock.setDisable(false);
+            menuItemStockNovoProduto1.setDisable(false);
+            menumItemInventario.setDisable(false);
+            //  menumitemParametrizacao.setDisable(false);
+            menumitemgestaoUtilizadores.setDisable(false);
+            imageViewAdicionarStock.setDisable(false);
+            ImageViewAdicionarProduto.setDisable(false);
+        } else {
+            // Desativar itens de menu e funcionalidades para usuários que não são gerentes
             menuItemStockAdicionarStock.setDisable(true);
             menuItemStockNovoProduto1.setDisable(true);
             menumItemInventario.setDisable(true);
-            menumitemParametrizacao.setDisable(true);
+            //  menumitemParametrizacao.setDisable(true);
             menumitemgestaoUtilizadores.setDisable(true);
             imageViewAdicionarStock.setDisable(true);
-
+            ImageViewAdicionarProduto.setDisable(true);
         }
-        return usuario;
 
+        return usuario;
     }
+
 
   @Override
 public void initialize(URL url, ResourceBundle rb) {
@@ -195,11 +207,6 @@ public void initialize(URL url, ResourceBundle rb) {
     }
 
    
-     
-             
- 
-    
-        
     
     public void handleMenuItemStockAdicionarStock (){
          
@@ -222,7 +229,7 @@ public void initialize(URL url, ResourceBundle rb) {
         
         // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Registo de Stock");
+        dialogStage.setTitle("REGISTO DE STOCK");
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
         dialogStage.setMaximized(false);
@@ -261,7 +268,7 @@ public void initialize(URL url, ResourceBundle rb) {
         //buscaProdutosController.receberdadosUsuario(selectedUsuario);
         // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Vendas");
+        dialogStage.setTitle("VENDAS");
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
         dialogStage.setMaximized(false);
@@ -302,7 +309,7 @@ public void initialize(URL url, ResourceBundle rb) {
         
         // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Registo de Produtos");
+        dialogStage.setTitle("LISTA DE PRODUTOS");
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
         dialogStage.setMaximized(false);
@@ -328,19 +335,17 @@ public void initialize(URL url, ResourceBundle rb) {
         AnchorPane page = (AnchorPane) loader.load();
         
          CadastroProdutoController cadastroProdutoProdutoController= loader.<CadastroProdutoController>getController();
-        
-         
+
         //usuarioServicos = new UsuarioServicos();
         Usuario selectedUsuario = new Usuario();
-       // selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
+        // selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
         //CadastroProdutoController.receberdadosUsuario(selectedUsuario);
         
-       
-        
+
         cadastroProdutoProdutoController.OcultarBotaoEditar();
         // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Registo de Produtos");
+        dialogStage.setTitle("REGISTO DE PRODUTOS");
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
         dialogStage.setMaximized(false);
@@ -359,16 +364,21 @@ public void initialize(URL url, ResourceBundle rb) {
      public void handleMenuItemListaVendas() {
 
         try {
-           
+             String codUsuario = this.labelUserCod.getText();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(TrickController.class.getResource("/Presentation/Lista_Venda.fxml"));
 
             AnchorPane page = (AnchorPane) loader.load();
 
             Lista_VendaController listaVendaController = loader.<Lista_VendaController>getController();
+          
+            usuarioServicos = new UsuarioServicos();
+            Usuario selectedUsuario = new Usuario();
+            selectedUsuario = usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
+            listaVendaController.receberdadosUsuario(selectedUsuario);
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Registo de Produtos");
+            dialogStage.setTitle("LISTA DE VENDAS");
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
             dialogStage.setMaximized(false);
@@ -382,8 +392,7 @@ public void initialize(URL url, ResourceBundle rb) {
     }
 
     
- 
-     
+
     public void mouseexitbuttonCancel(){
        buttnSair.setStyle("-fx-background-color: #FFF");
        buttnSair.setStyle("-fx-background-radius: 13");
@@ -420,7 +429,7 @@ public void initialize(URL url, ResourceBundle rb) {
             DataVendaController dataVendaController = loader.<DataVendaController>getController();
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Data de Venda");
+            dialogStage.setTitle("DATA DE VENDA");
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
             dialogStage.setMaximized(false);
@@ -444,7 +453,7 @@ public void initialize(URL url, ResourceBundle rb) {
             Datas_VendaController datas_VendaController = loader.<Datas_VendaController>getController();
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Data de Venda");
+            dialogStage.setTitle("DATA DE VENDA");
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
             dialogStage.setMaximized(false);
@@ -480,7 +489,7 @@ public void initialize(URL url, ResourceBundle rb) {
         //buscaProdutosController.receberdadosUsuario(selectedUsuario);
         // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Inventário");
+        dialogStage.setTitle("INVENTÁRIO");
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
         dialogStage.setMaximized(false);
@@ -596,13 +605,13 @@ public void initialize(URL url, ResourceBundle rb) {
           
           
    public void desabilitar_Botoes() {
-    String username = usuario.getNome(); // Obtenha o nome de usuário da instância usuario
-    boolean isAdmin = username.equals("Admin");
+    String username = usuario.getCategoria(); // Obtenha o nome de usuário da instância usuario
+    boolean isAdmin = username.equals("Gerente");
     
     menuItemStockAdicionarStock.setDisable(!isAdmin);
     menuItemStockNovoProduto1.setDisable(!isAdmin);
     menumItemInventario.setDisable(!isAdmin);
-    menumitemParametrizacao.setDisable(!isAdmin);
+//    menumitemParametrizacao.setDisable(!isAdmin);
     menumitemgestaoUtilizadores.setDisable(!isAdmin);
 }
    
@@ -627,7 +636,7 @@ public void initialize(URL url, ResourceBundle rb) {
    
         // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Relatorios em Excel");
+        dialogStage.setTitle("RELATÓRIOS EM EXCÊL");
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
         dialogStage.setMaximized(false);
@@ -642,8 +651,7 @@ public void initialize(URL url, ResourceBundle rb) {
             } 
              }
     
-    
-    
+ 
         
     public void handleMenuItemGestaoUtilizadores (){
          
@@ -679,7 +687,57 @@ public void initialize(URL url, ResourceBundle rb) {
             System.out.println("" + ex.toString());
         }
     }
+    
+        
+    public void handleMenuItemGestaoUnidadeseCategorias (){
+         
+          
+        try {
+       
+        String codUsuario = this.labelUserCod.getText();
+          
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(TrickController.class.getResource("/Presentation/Gestao_Categoria_Unidade.fxml"));
+        
+        AnchorPane page = (AnchorPane) loader.load();
+        
+         Gestao_Categoria_UnidadeController gestao_Categoria_UnidadeController= loader.<Gestao_Categoria_UnidadeController>getController();
+       
+        usuarioServicos = new UsuarioServicos();
+        Usuario selectedUsuario = new Usuario();
+        selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
+        gestao_Categoria_UnidadeController.receberdadosUsuario(selectedUsuario);
+        
+        // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("GESTÃO DE UNIDADES E CATEGORIAS");
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+        dialogStage.setMaximized(false);
+        dialogStage.setResizable(false);
+        
+         // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
+           dialogStage.show();
+        } catch (Exception ex) {
+           System.out.println("" + ex + ex.getLocalizedMessage());
+           System.out.println("" + ex.toString());
+        }
+    }
 
+     public void start() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/Presentation/LoginPage1.fxml"));
+        
+        Scene scene = new Scene(root);
+        Stage dialogStage = new Stage();
+        dialogStage.setScene(scene);
+        dialogStage.setTitle("SISTEMA DE VENDAS");
+        dialogStage.setResizable(false);
+        dialogStage.show();
+        
+        Stage stage =(Stage) btnSair.getScene().getWindow();
+        stage.close();
+        
+    }
 
 
 }

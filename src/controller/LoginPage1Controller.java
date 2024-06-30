@@ -146,6 +146,14 @@ public class LoginPage1Controller implements Initializable {
         
         UsuarioServicos us = new UsuarioServicos();
         this.labelLoginPageErro.setText("");
+        
+        if(passwordFieldSenha.getText().isEmpty() &&tfUsuario.getText().isEmpty()){
+                 Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erro");
+        alert.setHeaderText(null);
+        alert.setContentText("PREENCHA OS CAMPOS");
+        alert.showAndWait();
+        }else{
 
         try {
             if (us.AutenticarUsuario(username, password) == true) {
@@ -157,7 +165,7 @@ public class LoginPage1Controller implements Initializable {
                 String codUsuario = this.rs.getString("Cod_Funcionario");
                 String status = this.rs.getString("Status");
 
-                if (categoriaUsuario.contentEquals("Funcionario")) /*     */ {
+                if (categoriaUsuario.contentEquals("Funcionario"))  {
                     Previlegio prev = us.VerificarPrevilegios();
                     us.Login(username, password);
                     if (status.equals("Inativo")) {
@@ -168,7 +176,7 @@ public class LoginPage1Controller implements Initializable {
                         alerta.showAndWait();
                     } else {
                         //Trick.UserInfo(username, codUsuario);
-/* 172 */ FXMLLoader loader = new FXMLLoader();
+                          FXMLLoader loader = new FXMLLoader();
 
                         loader.setLocation(TrickController.class.getResource("/Presentation/Trick1.fxml"));
 
@@ -185,7 +193,7 @@ public class LoginPage1Controller implements Initializable {
 
                         // Criando um Estágio de Diálogo (Stage Dialog)
                         Stage dialogStage = new Stage();
-                        dialogStage.setTitle("Registro de Vendas");
+                        dialogStage.setTitle("REGISTO DE VENDAS");
                         dialogStage.setAlwaysOnTop(false);
                         Scene scene = new Scene(page);
                         dialogStage.setScene(scene);
@@ -220,7 +228,7 @@ public class LoginPage1Controller implements Initializable {
 
                     // Criando um Estágio de Diálogo (Stage Dialog)
                     Stage dialogStage = new Stage();
-                    dialogStage.setTitle("Registro de Vendas");
+                    dialogStage.setTitle("REGISTO DE VENDAS");
                     dialogStage.setAlwaysOnTop(false);
                     Scene scene = new Scene(page);
                     dialogStage.setScene(scene);
@@ -241,6 +249,7 @@ public class LoginPage1Controller implements Initializable {
             System.out.println("" + ex + ex.getLocalizedMessage());
             System.out.println("" + ex.toString());
         }
+        }
     }
 
     public void loginComEnter() {
@@ -253,6 +262,14 @@ public class LoginPage1Controller implements Initializable {
         UsuarioServicos us = new UsuarioServicos();
         this.labelLoginPageErro.setText("");
         //this.imageViewLock.setIcon(new ImageIcon(getClass().getResource("/images/lock_off.png")));
+        
+         if(passwordFieldSenha.getText().isEmpty() &&tfUsuario.getText().isEmpty()){
+                 Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erro");
+        alert.setHeaderText(null);
+        alert.setContentText("PREENCHA OS CAMPOS");
+        alert.showAndWait();
+        }else{
 
         try {
             if (us.AutenticarUsuario(username, password) == true) {
@@ -304,7 +321,7 @@ public class LoginPage1Controller implements Initializable {
 
                             // Criando um Estágio de Diálogo (Stage Dialog)
                             Stage dialogStage = new Stage();
-                            dialogStage.setTitle("Registro de Vendas");
+                            dialogStage.setTitle("REGISTO DE VENDAS");
                             Scene scene = new Scene(page);
                             dialogStage.setScene(scene);
                             dialogStage.setResizable(false);
@@ -338,7 +355,7 @@ public class LoginPage1Controller implements Initializable {
 
                         // Criando um Estágio de Diálogo (Stage Dialog)
                         Stage dialogStage = new Stage();
-                        dialogStage.setTitle("Registro de Vendas");
+                        dialogStage.setTitle("REGISTO DE VENDAS");
                         Scene scene = new Scene(page);
                         dialogStage.setScene(scene);
                         dialogStage.setResizable(false);
@@ -359,6 +376,7 @@ public class LoginPage1Controller implements Initializable {
             System.out.println("" + ex + ex.getLocalizedMessage());
             System.out.println("" + ex.toString());
         }
+         }
     }
 
     public void loginComEnterUser() {
@@ -369,6 +387,15 @@ public class LoginPage1Controller implements Initializable {
         String password = LoginPage1Controller.hashPassword(password1);
         UsuarioServicos us = new UsuarioServicos();
         this.labelLoginPageErro.setText("");
+        
+         if(passwordFieldSenha.getText().isEmpty() &&tfUsuario.getText().isEmpty()){
+                 Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erro");
+        alert.setHeaderText(null);
+        alert.setContentText("PREENCHA OS CAMPOS");
+        alert.showAndWait();
+        }else{
+
 
         try {
             if (us.AutenticarUsuario(username, password) == true) {
@@ -409,7 +436,7 @@ public class LoginPage1Controller implements Initializable {
 
                         // Criando um Estágio de Diálogo (Stage Dialog)
                         Stage dialogStage = new Stage();
-                        dialogStage.setTitle("Registro de Vendas");
+                        dialogStage.setTitle("REGISTO DE VENDAS");
                         Scene scene = new Scene(page);
                         dialogStage.setScene(scene);
                         dialogStage.setResizable(false);
@@ -443,7 +470,7 @@ public class LoginPage1Controller implements Initializable {
 
                     // Criando um Estágio de Diálogo (Stage Dialog)
                     Stage dialogStage = new Stage();
-                    dialogStage.setTitle("Registro de Vendas");
+                    dialogStage.setTitle("REGISTO DE VENDAS");
                     Scene scene = new Scene(page);
                     dialogStage.setScene(scene);
                     dialogStage.setResizable(false);
@@ -465,6 +492,7 @@ public class LoginPage1Controller implements Initializable {
             System.out.println("" + ex.toString());
         }
 
+    }
     }
 
 }

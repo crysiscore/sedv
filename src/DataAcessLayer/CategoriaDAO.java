@@ -1,5 +1,6 @@
 /*    */ package DataAcessLayer;
 /*    */ 
+import BussinessLogic.Categoria;
 /*    */ import java.sql.CallableStatement;
 /*    */ import java.sql.Connection;
 /*    */ import java.sql.ResultSet;
@@ -39,6 +40,19 @@
 /* 39 */     this.cs.setString(1, nome);
 /* 40 */     this.cs.executeQuery();
 /*    */   }
+
+    public ResultSet registrarCategoria(Categoria categoria) throws SQLException {
+        CallableStatement cs = null;
+        try {
+            cs = this.connect.prepareCall("{call CadastroCategoria(?)}");
+            cs.setString(1, categoria.getNome());
+            this.rs = cs.executeQuery();
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao executar a stored procedure: " + e.getMessage(), e);
+        }
+        return this.rs;
+    }
+
 /*    */ 
 /*    */ 
 /*    */   

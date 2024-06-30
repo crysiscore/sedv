@@ -54,7 +54,7 @@
                   <Image url="@../icons/icon-action-search_24px.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnDetalhesInventario" layoutX="439.0" layoutY="479.0" mnemonicParsing="false" onAction="#handleDetalhesInventario" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Visualizar Produtos" textFill="#141414">
+            <Button fx:id="btnDetalhesInventario" layoutX="439.0" layoutY="479.0" mnemonicParsing="false" onAction="#handleDetalhesInventario" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Visualizar Inventário" textFill="#141414">
                <effect>
                   <InnerShadow>
                      <color>
@@ -88,6 +88,7 @@
                </font>
             </Button>
             <Label fx:id="labelTipodeInventario" layoutX="121.0" layoutY="277.0" text="Label" />
+            <Label fx:id="labelNomeUtilizador" layoutX="149.0" layoutY="314.0" text="Label" />
          </children>
          <effect>
             <DropShadow>

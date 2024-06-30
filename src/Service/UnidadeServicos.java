@@ -2,6 +2,7 @@
 /*    */ 
 /*    */ import BussinessLogic.Unidade;
 /*    */ import DataAcessLayer.UnidadeDao;
+import java.sql.ResultSet;
 /*    */ import java.sql.SQLException;
 /*    */ 
 /*    */ 
@@ -34,6 +35,32 @@
 /*    */   public void atualizaUnidade(Unidade u) throws SQLException {
 /* 35 */     this.unidadeDao.atualizaunidade(u.getCod_unidade(), u.getDescricao_Unidade());
 /*    */   }
+
+
+    public boolean registrarUnidade(Unidade unidade) throws SQLException {
+        boolean status = false;
+        ResultSet rs = null;
+
+        try {
+            rs = unidadeDao.registrarUnidade(unidade);
+            if (rs.next() && "Sucesso".equals(rs.getString(1))) {
+                status = true;
+            }
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao registrar a unidade: " + e.getMessage(), e);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return status;
+    }
+
 /*    */ }
 
 

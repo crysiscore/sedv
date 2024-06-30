@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="573.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroCategoriaController">
+   <children>
+      <Pane layoutX="71.0" layoutY="76.0" prefHeight="262.0" prefWidth="429.0" style="-fx-background-color: fff;">
+         <children>
+            <Text layoutX="92.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome da Categoria" />
+            <TextField fx:id="textfieldNomeCategoria" layoutX="92.0" layoutY="106.0" prefHeight="30.0" prefWidth="179.0" promptText="Introduza o nome da Categoria">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.6259542107582092" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </TextField>
+            <Label fx:id="labelCodUsuario" layoutX="293.0" layoutY="70.0" text="Label" />
+            <Label fx:id="labelNomeUsuario" layoutX="293.0" layoutY="87.0" text="Label" />
+            <Button fx:id="buttonRegistarUnidade" cancelButton="true" layoutX="92.0" layoutY="168.0" mnemonicParsing="false" onAction="#handleMenuCadastrarCategoria" prefHeight="28.0" prefWidth="97.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Cadastrar">
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.6392157077789307" green="0.615686297416687" blue="0.615686297416687" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </Button>
+         </children>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.07000000029802322" green="0.06859999895095825" blue="0.06859999895095825" opacity="0.8206107020378113" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Pane>
+      <Text fx:id="labelRegistoProdutos" layoutX="261.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registro de Categoria">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Text>
+      <BorderPane fx:id="PANESAIR" layoutX="458.0" layoutY="303.0" onMouseClicked="#SairButtonOnAction" prefHeight="65.0" prefWidth="64.0" style="-fx-background-radius: 700; -fx-background-color: #DE3030;">
+         <center>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SAIR" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+      <BorderPane layoutX="-151.0" layoutY="344.0" prefHeight="220.0" prefWidth="235.0" style="-fx-background-radius: 700; -fx-background-color: #DE3030;" />
+      <BorderPane layoutX="-130.0" layoutY="-102.0" prefHeight="204.0" prefWidth="215.0" style="-fx-background-radius: 700; -fx-background-color: #DE3030;" />
+      <BorderPane layoutX="495.0" layoutY="355.0" prefHeight="179.0" prefWidth="179.0" style="-fx-background-radius: 700; -fx-background-color: #DE3030;" />
+   </children>
+</AnchorPane>
