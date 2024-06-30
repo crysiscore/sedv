@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="513.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Gestao_Categoria_UnidadeController">
+   <children>
+      <BorderPane layoutX="337.0" layoutY="-120.0" prefHeight="557.0" prefWidth="566.0" style="-fx-background-color: #EC3A3A; -fx-background-radius: 700;">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.35877862572669983" />
+               </color>
+            </DropShadow>
+         </effect>
+         <top>
+            <Pane prefHeight="200.0" prefWidth="1049.0" BorderPane.alignment="CENTER" />
+         </top>
+      </BorderPane>
+      <Text layoutX="34.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestão de Unidades e Categorias">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.614503800868988" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Text>
+      <Pane layoutX="61.0" layoutY="86.0" prefHeight="195.0" prefWidth="395.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="57.0" layoutX="328.0" layoutY="8.0">
+               <image>
+                  <Image url="@../icons/Free3dLogo.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="ButtonListarUtilizador" layoutX="23.0" layoutY="105.0" mnemonicParsing="false" onAction="#handleMenuItemCadastroCategoria" prefHeight="25.0" prefWidth="168.0" style="-fx-background-radius: 10; -fx-background-color: #E9EEEE;" text="Cadastrar Categoria">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.8244274854660034" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <font>
+                  <Font name="Times New Roman" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="buttonCadastrarUtilizador" layoutX="23.0" layoutY="60.0" mnemonicParsing="false" onAction="#handleMenuItemCadastroUnidade" prefHeight="25.0" prefWidth="168.0" style="-fx-background-radius: 10; -fx-background-color: #E9EEEE;" text="Cadastrar Unidade">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.7824427485466003" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <font>
+                  <Font name="Times New Roman" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="buttonCancelar11" layoutX="246.0" layoutY="143.0" mnemonicParsing="false" onAction="#SairButtonOnAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 10; -fx-background-color: #E9EEEE;" text="Cancelar">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.7824427485466003" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <font>
+                  <Font name="Times New Roman" size="12.0" />
+               </font>
+            </Button>
+            <Label fx:id="labelCodUsuario" layoutX="46.0" layoutY="175.0" text="Label" />
+            <Label fx:id="labelNomeUsuario" layoutX="120.0" layoutY="175.0" text="Label" />
+         </children>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.07000000029802322" green="0.06859999895095825" blue="0.06859999895095825" opacity="0.9312977194786072" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Pane>
+      <BorderPane layoutX="-41.0" layoutY="309.0" prefHeight="52.0" prefWidth="68.0" style="-fx-background-radius: 700; -fx-background-color: #EC3A3A;" />
+      <BorderPane layoutX="-34.0" layoutY="-32.0" prefHeight="71.0" prefWidth="68.0" style="-fx-background-radius: 700; -fx-background-color: #EC3A3A;" />
+   </children>
+</AnchorPane>

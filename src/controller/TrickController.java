@@ -687,7 +687,42 @@ public void initialize(URL url, ResourceBundle rb) {
             System.out.println("" + ex.toString());
         }
     }
-
+    
+        
+    public void handleMenuItemGestaoUnidadeseCategorias (){
+         
+          
+        try {
+       
+        String codUsuario = this.labelUserCod.getText();
+          
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(TrickController.class.getResource("/Presentation/Gestao_Categoria_Unidade.fxml"));
+        
+        AnchorPane page = (AnchorPane) loader.load();
+        
+         Gestao_Categoria_UnidadeController gestao_Categoria_UnidadeController= loader.<Gestao_Categoria_UnidadeController>getController();
+       
+        usuarioServicos = new UsuarioServicos();
+        Usuario selectedUsuario = new Usuario();
+        selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
+        gestao_Categoria_UnidadeController.receberdadosUsuario(selectedUsuario);
+        
+        // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("GESTÃO DE UNIDADES E CATEGORIAS");
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+        dialogStage.setMaximized(false);
+        dialogStage.setResizable(false);
+        
+         // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
+           dialogStage.show();
+        } catch (Exception ex) {
+           System.out.println("" + ex + ex.getLocalizedMessage());
+           System.out.println("" + ex.toString());
+        }
+    }
 
      public void start() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/Presentation/LoginPage1.fxml"));

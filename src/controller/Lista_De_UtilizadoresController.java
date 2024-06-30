@@ -183,6 +183,10 @@ public class Lista_De_UtilizadoresController implements Initializable {
     
 }
     
+      public void actualizarTabela() {
+      tableviewListaUtilizadores.refresh();
+    }
+    
     
         private void setCellValueFromTableToTextField() {
         tableviewListaUtilizadores.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -193,6 +197,7 @@ public class Lista_De_UtilizadoresController implements Initializable {
             }
         });
     }
+        
     
 public void handleMenuItemEdicaoUtilizadores() throws SQLException, IOException {
     try {
@@ -230,8 +235,8 @@ public void handleMenuItemEdicaoUtilizadores() throws SQLException, IOException 
         // Mostra o Dialog e espera até que o usuário o feche
         dialogStage.show();
 
-       // Stage stage = (Stage) buttonEditarUtilizador.getScene().getWindow();
-      //  stage.close();
+        Stage stage = (Stage) buttonEditarUtilizador.getScene().getWindow();
+        stage.close();
     } catch (Exception ex) {
         System.out.println("" + ex + ex.getLocalizedMessage());
         System.out.println("" + ex.toString());

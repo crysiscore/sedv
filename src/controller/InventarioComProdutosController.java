@@ -391,7 +391,7 @@ void removerProdutodaTabela() {
 
             } else if (response == JOptionPane.NO_OPTION) {
                 JOptionPane.showMessageDialog(null, "O Stock não foi actuaizado!");
-
+                  return;
             } else if (response == JOptionPane.CLOSED_OPTION) {
                 JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
             }
@@ -422,9 +422,9 @@ void removerProdutodaTabela() {
             
         } else {
             
-            int response = JOptionPane.showConfirmDialog(null, "Tem a certeza que deseja registrar o Inventário???", "confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+           // int response = JOptionPane.showConfirmDialog(null, "Tem a certeza que deseja registrar o Inventário???", "confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             
-            if (response == JOptionPane.YES_OPTION) {
+            //if (response == JOptionPane.YES_OPTION) {
                 
                 
                 dao.RegistarInventarioItem(tableViewListaProdutos.getItems());
@@ -440,12 +440,12 @@ void removerProdutodaTabela() {
                 
          
                 
-            } else if (response == JOptionPane.NO_OPTION) {
-                JOptionPane.showMessageDialog(null, "O Inventário não foi Cadastrado!");
+           // } else if (response == JOptionPane.NO_OPTION) {
+               // JOptionPane.showMessageDialog(null, "O Inventário não foi Cadastrado!");
                 
-            } else if (response == JOptionPane.CLOSED_OPTION) {
-                JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
-            }
+           // } else if (response == JOptionPane.CLOSED_OPTION) {
+           //     JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
+           // }
         }
     tableViewListaProdutos.setItems(FXCollections.observableArrayList());
 

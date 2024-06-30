@@ -246,21 +246,25 @@ public void handleMenuEditartroUtilizador() {
 
         UsuarioServicos usuariosServicos = new UsuarioServicos();
         usuariosServicos.EditarUtilizador(usuario);
+        
+       
 
         limparcampos();
 
         JOptionPane.showMessageDialog(null, "Usuário '" + usuario.getNome() + "' editado com sucesso.");
-      
+      handleMenuItemListaUtilizadores ();
     } catch (Exception e) {
         JOptionPane.showMessageDialog(null, "Erro ao editar o usuário: " + e.getMessage());
     }
+    
+      
 }
    public void handleMenuItemListaUtilizadores (){
          
           
         try {
        
-        String codUsuario = this.labelCodUsuario.getText();
+        String codUsuario = this.labelcodigoUsuario.getText();
           
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(TrickController.class.getResource("/Presentation/Lista_De_Utilizadores.fxml"));
@@ -271,7 +275,7 @@ public void handleMenuEditartroUtilizador() {
        
         usuarioServicos = new UsuarioServicos();
         Usuario selectedUsuario = new Usuario();
-        selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
+       selectedUsuario =usuarioServicos.getDetalhesUsuario(Integer.parseInt(codUsuario));
         lista_De_UtilizadoresController.receberdadosUsuario(selectedUsuario);
         
         // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
@@ -282,7 +286,7 @@ public void handleMenuEditartroUtilizador() {
         dialogStage.setMaximized(false);
         dialogStage.setResizable(false);
         
-            // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
+        // Mostra o Dialog e espera atÃ© que o usuÃ¡rio o feche
             dialogStage.show();
         } catch (Exception ex) {
             System.out.println("" + ex + ex.getLocalizedMessage());

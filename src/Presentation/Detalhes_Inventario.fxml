@@ -51,7 +51,7 @@
                      </image>
                   </ImageView>
                   <Label fx:id="labelCodProduto" layoutX="939.0" layoutY="96.0" prefHeight="17.0" prefWidth="50.0" />
-                  <Pane layoutX="94.0" layoutY="82.0" prefHeight="63.0" prefWidth="361.0" style="-fx-background-color: fff; -fx-background-radius: 14;">
+                  <Pane layoutX="94.0" layoutY="82.0" prefHeight="74.0" prefWidth="361.0" style="-fx-background-color: fff; -fx-background-radius: 14;">
                      <effect>
                         <DropShadow>
                            <color>
@@ -72,19 +72,29 @@
                            </font>
                         </Label>
                         <Label fx:id="labelTotal" layoutX="68.0" layoutY="88.0" prefHeight="17.0" prefWidth="47.0" />
-                        <Label layoutX="33.0" layoutY="32.0" text="Código do Inventário:">
+                        <Label layoutX="34.0" layoutY="30.0" text="Código do Inventário:">
                            <font>
                               <Font name="Times New Roman Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labelCodigoInventario" layoutX="146.0" layoutY="30.0" prefHeight="17.0" prefWidth="100.0" text="Label">
+                        <Label fx:id="labelCodigoInventario" layoutX="152.0" layoutY="29.0" prefHeight="17.0" prefWidth="94.0" text="Label">
+                           <font>
+                              <Font name="Times New Roman" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="34.0" layoutY="44.0" text="Nome do Utilizador: ">
+                           <font>
+                              <Font name="Times New Roman Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelNomeUtilizador" layoutX="145.0" layoutY="43.0" prefHeight="17.0" prefWidth="94.0" text="Label">
                            <font>
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
-                  <Button fx:id="ButtonVisualizarProdutosNoExcel" layoutX="426.0" layoutY="453.0" mnemonicParsing="false" onAction="#imprimirExcel" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: fff;" text="Visualizar Produtos">
+                  <Button fx:id="ButtonVisualizarProdutosNoExcel" layoutX="353.0" layoutY="453.0" mnemonicParsing="false" onAction="#imprimirExcel" prefHeight="25.0" prefWidth="184.0" style="-fx-background-color: fff;" text="Download Detalhes do Inventário">
                      <font>
                         <Font name="Times New Roman" size="12.0" />
                      </font>

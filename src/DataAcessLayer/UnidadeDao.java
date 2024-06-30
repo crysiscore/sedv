@@ -1,5 +1,6 @@
 /*    */ package DataAcessLayer;
 /*    */ 
+import BussinessLogic.Unidade;
 /*    */ import java.sql.CallableStatement;
 /*    */ import java.sql.Connection;
 /*    */ import java.sql.PreparedStatement;
@@ -83,6 +84,19 @@
 /*    */     
 /* 84 */     return this.rs;
 /*    */   }
+
+    public ResultSet registrarUnidade(Unidade unidade) throws SQLException {
+        CallableStatement cs = null;
+        try {
+            cs = this.connect.prepareCall("{call CadastroUnidade(?)}"); // Supondo que exista uma stored procedure CadastroUnidade
+            cs.setString(1, unidade.getDescricao_Unidade());
+            this.rs = cs.executeQuery();
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao executar a stored procedure: " + e.getMessage(), e);
+        }
+        return this.rs;
+    }
+
 /*    */ }
 
 
