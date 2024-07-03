@@ -4,8 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Neusia%20Hilario/Documents/NetBeansProjects/sedv/src/DataAcessLayer/conexao.java</file>
+            <file>file:/C:/Users/Neusia%20Hilario/Documents/NetBeansProjects/sedv/src/controller/CadStockController.java</file>
             <file>file:/C:/Users/Neusia%20Hilario/Documents/NetBeansProjects/sedv/src/DataAcessLayer/DiretorioDAO.java</file>
             <file>file:/C:/Users/Neusia%20Hilario/Documents/NetBeansProjects/sedv/src/DataAcessLayer/UsuarioDAO.java</file>
+            <file>file:/C:/Users/Neusia%20Hilario/Documents/NetBeansProjects/sedv/src/controller/VendaController.java</file>
+            <file>file:/C:/Users/Neusia%20Hilario/Documents/NetBeansProjects/sedv/nbproject/build-impl.xml</file>
             <file>file:/C:/Users/Neusia%20Hilario/Documents/NetBeansProjects/sedv/src/controller/LoginPage1Controller.java</file>
             <file>file:/C:/Users/Neusia%20Hilario/Documents/NetBeansProjects/sedv/src/controller/TrickController.java</file>
             <file>file:/C:/Users/Neusia%20Hilario/Documents/NetBeansProjects/sedv/src/DataAcessLayer/ProdutoDAO.java</file>
