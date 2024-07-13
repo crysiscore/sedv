@@ -61,7 +61,7 @@
                   <DropShadow />
                </effect>
             </ImageView>
-            <MenuBar layoutX="88.0" layoutY="256.0" prefHeight="25.0" prefWidth="102.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
+            <MenuBar layoutX="88.0" layoutY="256.0" prefHeight="25.0" prefWidth="116.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
                <menus>
                   <Menu fx:id="menumstock" mnemonicParsing="false" text="    Stock">
                      <items>
@@ -114,7 +114,7 @@
                   </DropShadow>
                </effect>
             </ImageView>
-            <MenuBar fx:id="menubarvendas" layoutX="88.0" layoutY="119.0" prefHeight="25.0" prefWidth="75.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
+            <MenuBar fx:id="menubarvendas" layoutX="88.0" layoutY="119.0" prefHeight="25.0" prefWidth="92.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
                <menus>
                   <Menu mnemonicParsing="false" text="Vendas">
                      <items>
@@ -139,7 +139,7 @@
                   </DropShadow>
                </effect>
             </ImageView>
-            <MenuBar layoutX="88.0" layoutY="322.0" prefHeight="25.0" prefWidth="110.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
+            <MenuBar layoutX="88.0" layoutY="322.0" prefHeight="25.0" prefWidth="124.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
                <menus>
                   <Menu mnemonicParsing="false" text="  Relatórios">
                      <items>
@@ -168,7 +168,7 @@
                   </DropShadow>
                </effect>
             </ImageView>
-            <MenuBar layoutX="88.0" layoutY="393.0" prefHeight="25.0" prefWidth="116.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
+            <MenuBar layoutX="88.0" layoutY="393.0" prefHeight="25.0" prefWidth="152.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
                <menus>
                   <Menu fx:id="menumAdministracao" mnemonicParsing="false" text="Administração">
                      <items>
@@ -209,7 +209,7 @@
             <Text layoutX="773.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nova Venda" />
             <Text layoutX="510.0" layoutY="508.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lista de Produtos" />
             <Text layoutX="759.0" layoutY="507.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Entrada de Stock" />
-            <MenuBar layoutX="88.0" layoutY="187.0" prefHeight="25.0" prefWidth="83.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
+            <MenuBar layoutX="88.0" layoutY="187.0" prefHeight="25.0" prefWidth="102.0" style="-fx-background-radius: 18; -fx-background-color: fff;">
                <menus>
                   <Menu mnemonicParsing="false" text="Produtos">
                      <items>

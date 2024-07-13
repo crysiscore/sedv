@@ -7,8 +7,11 @@ package controller;
 
 import DataAcessLayer.VendaDao;
 import java.awt.Desktop;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -31,6 +34,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+import org.apache.poi.ss.usermodel.Cell;
+import org.omg.CORBA.portable.InputStream;
 
 /**
  * FXML Controller class
@@ -66,8 +71,7 @@ public class Lista_De_Venda_Por_PeriodoController implements Initializable {
         stage.close();
     }
 
-
-    public void handlePrintVendaPorData() {
+  public void handlePrintVendaPorData() {
         LocalDate dataVendaInicialValue = DatePickerDataInicial.getValue();
         LocalDate dataVendaFinalValue = DatePickerDataFinal.getValue();
 
@@ -87,36 +91,26 @@ public class Lista_De_Venda_Por_PeriodoController implements Initializable {
                 // Crie um estilo de fonte com negrito
                 XSSFFont font = workbook.createFont();
                 font.setBold(true);
-
-                // Crie um estilo e atribua a fonte negrito a ele
                 CellStyle boldStyle = workbook.createCellStyle();
                 boldStyle.setFont(font);
 
                 // Crie o cabeçalho da tabela no Excel
                 Row headerRow = sheet.createRow(0);
-                headerRow.createCell(0).setCellValue("REFERÊNCIA");
-                headerRow.createCell(1).setCellValue("DATA");
-                headerRow.createCell(2).setCellValue("TOTAL DA VENDA");
-                headerRow.createCell(3).setCellValue("NOME DO CLIENTE");
-                headerRow.createCell(4).setCellValue("FUNCIONÁRIO");
-                headerRow.createCell(5).setCellValue("PAGAMENTO");
-
-                // Aplique o estilo negrito às células do cabeçalho
-                for (int i = 0; i < headerRow.getPhysicalNumberOfCells(); i++) {
-                    headerRow.getCell(i).setCellStyle(boldStyle);
-                    // Defina a largura da coluna
+                String[] headerTitles = {"REFERÊNCIA", "DATA", "TOTAL DA VENDA", "NOME DO CLIENTE", "FUNCIONÁRIO", "PAGAMENTO"};
+                for (int i = 0; i < headerTitles.length; i++) {
+                    Cell cell = headerRow.createCell(i);
+                    cell.setCellValue(headerTitles[i]);
+                    cell.setCellStyle(boldStyle);
                     sheet.setColumnWidth(i, 21 * 256);
                 }
 
-                int numeroLinha = 2; // Começar da segunda linha
+                int rowIndex = 1; // Começar da segunda linha
 
                 while (rs.next()) {
-                    Row row = sheet.createRow(numeroLinha++);
+                    Row row = sheet.createRow(rowIndex++);
                     row.createCell(0).setCellValue(rs.getInt("Codigo"));
 
                     // Ajuste do formato da data
-                    
-                    // Substitua este trecho no seu código onde a conversão da data é feita
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy", Locale.getDefault());
                     java.util.Date utilDate = dateFormat.parse(rs.getString("data_venda"));
                     java.sql.Date dataVenda = new java.sql.Date(utilDate.getTime());
@@ -129,16 +123,43 @@ public class Lista_De_Venda_Por_PeriodoController implements Initializable {
                     // Adicione mais colunas conforme necessário
                 }
 
-                // Write the workbook to the file system
-                File file = new File("C:\\sedv\\Relatorios\\Lista_De_Vendas_Num_Periodo.xlsx");
-                try (FileOutputStream out = new FileOutputStream(file)) {
-                    workbook.write(out);
+                // Write the workbook to a byte array output stream
+                ByteArrayOutputStream out = new ByteArrayOutputStream();
+                workbook.write(out);
+                workbook.close();
+
+                // Convert byte array output stream to input stream
+                ByteArrayInputStream inputStream = new ByteArrayInputStream(out.toByteArray());
+
+                // Save the file to a temporary location
+                File tempFile = File.createTempFile("Lista_De_Vendas_Num_Periodo", ".xlsx");
+                tempFile.deleteOnExit();
+                try (FileOutputStream fos = new FileOutputStream(tempFile)) {
+                    byte[] buffer = new byte[1024];
+                    int bytesRead;
+                    while ((bytesRead = inputStream.read(buffer)) != -1) {
+                        fos.write(buffer, 0, bytesRead);
+                    }
                 }
 
                 JOptionPane.showMessageDialog(null, "Relatório de Vendas em um Período criado com sucesso.");
 
-                // Abrir o arquivo Excel automaticamente
-                Desktop.getDesktop().open(file);
+                // Tentar abrir o arquivo Excel automaticamente
+                try {
+                    if (Desktop.isDesktopSupported()) {
+                        Desktop desktop = Desktop.getDesktop();
+                        if (desktop.isSupported(Desktop.Action.OPEN)) {
+                            desktop.open(tempFile);
+                        } else {
+                            showManualOpenMessage(tempFile);
+                        }
+                    } else {
+                        openFileMacLinux(tempFile);
+                    }
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    showManualOpenMessage(tempFile);
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -146,11 +167,28 @@ public class Lista_De_Venda_Por_PeriodoController implements Initializable {
         }
     }
 
+    private void openFileMacLinux(File file) throws IOException {
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("mac")) {
+            Runtime.getRuntime().exec("open " + file.getAbsolutePath());
+        } else if (os.contains("nix") || os.contains("nux")) {
+            Runtime.getRuntime().exec("xdg-open " + file.getAbsolutePath());
+        } else {
+            showManualOpenMessage(file);
+        }
+    }
+
+    private void showManualOpenMessage(File file) {
+        JOptionPane.showMessageDialog(null, "Não foi possível abrir o arquivo automaticamente. Por favor, encontre o arquivo em: " + file.getAbsolutePath());
+    }
+
     private java.sql.Date convertToDateSql(LocalDate localDate) {
         return java.sql.Date.valueOf(localDate);
     }
 
 
+        
+       
         
         
     public void handleMenuAlert7() {

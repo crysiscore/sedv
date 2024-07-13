@@ -180,7 +180,7 @@
                   <Font name="Times New Roman" size="12.0" />
                </font></Label>
             <TextField fx:id="TextFieldCodigoFuncionario" layoutX="77.0" layoutY="54.0" prefHeight="28.0" prefWidth="155.0" style="-fx-background-radius: 6;" />
-            <ImageView fx:id="imageViewFotoProduto" fitHeight="146.0" fitWidth="175.0" layoutX="57.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageViewFotoProduto" fitHeight="146.0" fitWidth="175.0" layoutX="50.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true" />
          </children>
          <effect>
             <DropShadow>
