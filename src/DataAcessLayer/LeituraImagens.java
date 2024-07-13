@@ -26,63 +26,75 @@ public class LeituraImagens {
     }
     
     
-    
   
-    
+     public static String getDiretorioFicheiro() {
+        String osName = System.getProperty("os.name").toLowerCase();
+        String ficheiroGravado;
+
+        if (osName.contains("win")) {
+            ficheiroGravado = "C:\\sedv\\config\\config.txt";
+        } else if (osName.contains("mac")) {
+            ficheiroGravado = "/opt/sedv/config/configmac.txt";
+        } else if (osName.contains("nix") || osName.contains("nux") || osName.contains("aix")) {
+            ficheiroGravado = "/home/sedv/config/configmac.txt";
+        } else {
+            ficheiroGravado = "Diretório não suportado para este sistema operativo.";
+        }
+
+        return ficheiroGravado;
+    }
+     final static String ficheiro_gravado = getDiretorioFicheiro();
     
     ReadWriteTextFile rwTextFile = new ReadWriteTextFile();
 
    
-    final static String ficheiro_Imagens = "C:\\sedv\\config\\config.txt";
+    final static String ficheiro_Imagens =ficheiro_gravado;
   
     List <String> sedv_Imagens;
     
     
-     private List<String> LerDadosDeImagens(final String location) {
+    private List<String> LerDadosDeImagens(final String location) {
 
-         try{
+        try {
             sedv_Imagens = rwTextFile.readSmallTextFile(ficheiro_Imagens);
-            
-            
-         } catch (Exception e) {
-            System.out.println("Ficheiro de Imagens nao encontrado");
-         }
-          return sedv_Imagens;
-     }
-     
-     
-                public LeituraImagens (String directorio_Imagens) {
-/* 69 */   
-                this.directorio_Imagens = directorio_Imagens;
-/*    */   }
-                
-                
-                 public LeituraImagens() {
-     // ler o ficheiro
-     // extrair os valore lidos
-             
-/* 69 */          sedv_Imagens = LerDadosDeImagens(ficheiro_Imagens);
-           // Lipara a textarea
 
-               directorio_Imagens = sedv_Imagens.get(0).substring(10);
-          
-               
-                if (directorio_Imagens.isEmpty()) {
-/*     */       
-/*  89 */       JOptionPane.showMessageDialog(null, "Localização do ficheiro_Imagens em falta!");
-/*     */     }
-/*  92 */     
-/*    */   }
-                 
-public static void main(String[] args){
-    try{
-        FileReader fr;
-        fr =new FileReader("C:\\config.txt");
-        BufferedReader bf = new BufferedReader(fr);
-        String linha = bf.readLine().substring(10);
-        System.out.println(linha);
-    }catch(Exception e){
-        System.out.println("erro"+ e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Ficheiro de Imagens nao encontrado");
+        }
+        return sedv_Imagens;
     }
-}
+
+    public LeituraImagens(String directorio_Imagens) {
+
+        this.directorio_Imagens = directorio_Imagens;
+              }
+     
+    
+    public LeituraImagens() {
+        // ler o ficheiro
+        // extrair os valore lidos
+
+        sedv_Imagens = LerDadosDeImagens(ficheiro_Imagens);
+        // Lipara a textarea
+
+        directorio_Imagens = sedv_Imagens.get(0).substring(10);
+
+        if (directorio_Imagens.isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "Localização do ficheiro_Imagens em falta!");
+        }
+
+               }
+
+//    public static void main(String[] args) {
+//        try {
+//            FileReader fr;
+//            fr = new FileReader(ficheiro_gravado);
+//            BufferedReader bf = new BufferedReader(fr);
+//            String linha = bf.readLine().substring(10);
+//            System.out.println(linha);
+//        } catch (Exception e) {
+//            System.out.println("erro" + e.getMessage());
+//        }
+//    }
 }

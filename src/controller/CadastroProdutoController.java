@@ -399,10 +399,29 @@ public class CadastroProdutoController implements Initializable {
               
             private void limparcampos(){
                 
-                File arquivo1 = new File("src\\icons\\produtoSemIm.png");
-                File arquivo2 = new File("src\\icons\\produts.jpg");
+                 File arquivo1 = null;
+                  File arquivo2=null;
+                  
+              String osName = System.getProperty("os.name").toLowerCase();
+              String ficheiroGravado;
+              LeituraImagens location = new LeituraImagens();
+              String loc=location.getDirectorio_Imagens();
+              
+          if (osName.contains("win")) {
+             arquivo1 = new File(loc +  "icons\\produtoSemIm.png");
+             arquivo2 = new File(loc + "icons\\produts.jpg");
+        } else if (osName.contains("mac")) {
+            arquivo1 = new File(loc +  "icons/produtoSemIm.png");
+             arquivo2 = new File(loc + "icons/produts.jpg");
+         } else if (osName.contains("nix") || osName.contains("nux") || osName.contains("aix")) {
+             arquivo1 = new File(loc +  "icons/produtoSemIm.png");
+             arquivo2 = new File(loc + "icons/produts.jpg");  
+        }
+                                 
+               
                 Image image1= new Image("file:"+arquivo1.getAbsolutePath());
                 Image image2= new Image("file:"+arquivo2.getAbsolutePath());
+     
                 textfieldNomeProduto.setText("");
                 textFieldPreco.setText("");
                 textFieldDescricao.setText("");
@@ -456,18 +475,16 @@ public class CadastroProdutoController implements Initializable {
               } else {
               JOptionPane.showMessageDialog(null, " Erro ao registar o Produto. Tente novamente");
               }
-              } catch (NumberFormatException e) {
-              //TODO  Tratar erro de introducao de preco 
-
-              } catch (Exception e) {
-
-              JOptionPane.showMessageDialog(null, " Erro ao gravar o produto: " + e.getCause().toString());
-              JOptionPane.showMessageDialog(null, " Erro ao gravar o produto: " + e.getMessage().toString());
-              }
-
-              } else {
-              try {
-
+                      } catch (Exception ex) {
+                               ex.printStackTrace();
+                                     JOptionPane.showMessageDialog(null, " Erro ao registar o Produto. Tente novamente");
+                                     
+                           
+                       }
+  
+                      } else {
+         
+              try{
               Double preco_unitario = Double.valueOf(0.0D);
               Double Preco_De_Compra = Double.valueOf(0.0D);
               String CodigoManual=textfieldCodigoProdutoManual.getText();
@@ -483,6 +500,7 @@ public class CadastroProdutoController implements Initializable {
               // Read the file    
               
               LeituraImagens location = new LeituraImagens();
+              
               String loc=location.getDirectorio_Imagens();
               
               String Location =loc+textfieldImageNome.getText();
@@ -515,18 +533,17 @@ public class CadastroProdutoController implements Initializable {
                     mostrarMensagem("Erro ao registrar o produto. Tente novamente.");
 
                 }
-            } catch (NumberFormatException e) {
-                //TODO  Tratar erro de introducao de preco 
+                              
 
             } catch (Exception e) {
 
-                JOptionPane.showMessageDialog(null, " Erro ao gravar o produto: " + e.getCause().toString());
+               e.printStackTrace();
                 JOptionPane.showMessageDialog(null, " Erro ao gravar o produto: " + e.getMessage().toString());
-            }
+            } } 
 
-        }
-    }
-
+           
+    
+              } 
     public void handleButtonCadastrarProdutos(ActionEvent E) {
         if (!verificadados()) {
             cadastroProduto();
@@ -648,7 +665,7 @@ public class CadastroProdutoController implements Initializable {
                       //TODO  Tratar erro de introducao de preco 
                        
                   } catch (Exception e) {
-                      
+                      e.printStackTrace();
                      JOptionPane.showMessageDialog(null, " Erro ao gravar o produto: " +  e.getCause().toString());
                       JOptionPane.showMessageDialog(null, " Erro ao gravar o produto: " +  e.getMessage().toString());
                   }  

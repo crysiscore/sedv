@@ -7,8 +7,12 @@ package controller;
 
 import DataAcessLayer.ProdutoDAO;
 import java.awt.Desktop;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.util.Map;
@@ -61,9 +65,7 @@ public class Relatorios_ExcelController implements Initializable {
         stage.close();
     }
 
-    
-    
-     public void handleImprimirProdutosComPoucoStockExcel() {
+    public void handleImprimirProdutosComPoucoStockExcel() {
         ProdutoDAO produtodao = new ProdutoDAO();
 
         try {
@@ -72,13 +74,12 @@ public class Relatorios_ExcelController implements Initializable {
             // Create a new workbook
             Workbook workbook = new XSSFWorkbook();
 
-            // Create a sheet named "Employee Data"
+            // Create a sheet named "Produtos com pouco stock"
             Sheet sheet = workbook.createSheet("Produtos com pouco stock");
 
             // Create a font style with bold
             Font font = workbook.createFont();
-            
-           font.setBold(true);
+            font.setBold(true);
 
             // Create a style and assign the bold font to it
             CellStyle boldStyle = workbook.createCellStyle();
@@ -88,7 +89,7 @@ public class Relatorios_ExcelController implements Initializable {
             Map<String, Object[]> data = new TreeMap<>();
             data.put("1", new Object[]{"CÓDIGO", "NOME DO PRODUTO", "PREÇO", "UNIDADES NO STOCK"});
 
-            int numeroLinha = 3; // Start from the second row
+            int numeroLinha = 2; // Start from the second row
 
             while (rs.next()) {
                 Object[] linha = new Object[]{
@@ -135,31 +136,55 @@ public class Relatorios_ExcelController implements Initializable {
                 sheet.autoSizeColumn(i);
             }
 
+            // Usando um caminho relativo
+            String relativePath = "Produtos_Com_Pouco_Stock.xlsx";
+            File file = new File(relativePath);
+
+            // Cria diretório caso não exista
+            File parentDir = file.getParentFile();
+            if (parentDir != null && !parentDir.exists()) {
+                parentDir.mkdirs();
+            }
+
             // Write the workbook to the file system
-            File file = new File("C:\\sedv\\Relatorios\\Produtos_Com_Pouco_Stock.xlsx");
             try (FileOutputStream out = new FileOutputStream(file)) {
                 workbook.write(out);
             }
 
-            JOptionPane.showMessageDialog(null, "Produtos_Com_Pouco_Stock.xlsx written successfully on disk.");
+          
 
-            // Try to open the Excel file automatically
-            try {
-                Desktop.getDesktop().open(file);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Unable to open the file automatically. Please find the file at: " + file.getAbsolutePath());
-            }
-
+                    String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("mac")) {
+               String [] cmd = {"/usr/bin/open" , "-a", "/Applications/Microsoft Excel.app", file.getAbsolutePath()};
+             ProcessBuilder pb = new ProcessBuilder(cmd);
+             Process p = pb.start();
+              
+             
+            // Runtime.getRuntime().exec(cmd );  
+        } else {    // Windows or Unix    
+         
+                if (Desktop.isDesktopSupported()) {
+                    Desktop desktop = Desktop.getDesktop();
+                    if (desktop.isSupported(Desktop.Action.OPEN)) {
+                        desktop.open(file);
+                    } else {
+                        showManualOpenMessage(file);
+                    }
+                } else {
+                    
+                    
+                }}     
         } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
+               JOptionPane.showMessageDialog(null,e.getMessage());
 
+            
+        }  
+    }
     // Other methods and class members can be placed here
 
 
-  public void handleImprimirListaDeProdutos() {
+ public void handleImprimirListaDeProdutos() {
         ProdutoDAO produtodao = new ProdutoDAO();
 
         try {
@@ -171,58 +196,45 @@ public class Relatorios_ExcelController implements Initializable {
 
             // Crie o cabeçalho da tabela no Excel
             Row headerRow = sheet.createRow(0);
-            headerRow.createCell(0).setCellValue("CODIGO");
-            headerRow.createCell(1).setCellValue("PRODUTO");
-            headerRow.createCell(2).setCellValue("PREÇO");
-            headerRow.createCell(3).setCellValue("CATEGORIA");
-            headerRow.createCell(4).setCellValue("UNIDADE");
-            headerRow.createCell(5).setCellValue("DESCRIÇÃO");
-            headerRow.createCell(6).setCellValue("STOCK");
-            headerRow.createCell(7).setCellValue("PREÇO DE AQUISIÇAÕ");
-
-            // Defina a largura da coluna antes de aplicar o estilo negrito
-            for (int i = 0; i < headerRow.getPhysicalNumberOfCells(); i++) {
+            String[] headerTitles = {"CODIGO", "PRODUTO", "PREÇO", "CATEGORIA", "UNIDADE", "DESCRIÇÃO", "STOCK", "PREÇO DE AQUISIÇÃO"};
+            for (int i = 0; i < headerTitles.length; i++) {
+                Cell cell = headerRow.createCell(i);
+                cell.setCellValue(headerTitles[i]);
                 sheet.setColumnWidth(i, 21 * 256);
             }
 
             // Crie um estilo de fonte com negrito
             XSSFFont font = workbook.createFont();
             font.setBold(true);
-
-            // Crie um estilo e atribua a fonte negrito a ele
             CellStyle boldStyle = workbook.createCellStyle();
             boldStyle.setFont(font);
 
-            // Aplique o estilo negrito apenas às células do cabeçalho
-            for (int i = 0; i < headerRow.getPhysicalNumberOfCells(); i++) {
-                Cell cell = headerRow.getCell(i);
+            // Aplique o estilo negrito às células do cabeçalho
+            for (Cell cell : headerRow) {
                 cell.setCellStyle(boldStyle);
             }
 
-            // This data needs to be written (Object[])
+            // Este mapa armazenará os dados
             Map<String, Object[]> data = new TreeMap<>();
-            data.put("1", new Object[]{"CODIGO","PRODUTO", "PREÇO", "CATEGORIA", "UNIDADE", "DESCRIÇÃO", "STOCK", "PREÇO DE AQUISIÇAÕ"});
-
-            int numeroLinha = 2; // Começar da segunda linha
+            int rowIndex = 1;
 
             while (rs.next()) {
-                Object[] linha = new Object[]{
+                Object[] linha = {
                         rs.getString("codigo_manual"),
                         rs.getString("Nome"),
-                        rs.getDouble("Preco_unitario" ),
+                        rs.getDouble("Preco_unitario"),
                         rs.getString("Categoria"),
                         rs.getString("Unidade"),
                         rs.getString("Descricao"),
                         rs.getDouble("unidades_stock"),
                         rs.getDouble("Preco_De_Compra"),
                 };
-
-                data.put(String.valueOf(numeroLinha++), linha);
+                data.put(String.valueOf(rowIndex++), linha);
             }
 
-            // Iterate over data and write to sheet
+            // Iterar sobre os dados e escrevê-los na planilha
             Set<String> keyset = data.keySet();
-            int rownum = 0;
+            int rownum = 1;
             for (String key : keyset) {
                 Row row = sheet.createRow(rownum++);
                 Object[] objArr = data.get(key);
@@ -232,38 +244,83 @@ public class Relatorios_ExcelController implements Initializable {
                     if (obj != null) {
                         if (obj instanceof String) {
                             cell.setCellValue((String) obj);
-                        } else if (obj instanceof Integer) {
-                            cell.setCellValue((Integer) obj);
                         } else if (obj instanceof Double) {
                             cell.setCellValue((Double) obj);
                         }
                     } else {
-                        // Se o valor for nulo, você pode lidar com isso de acordo com sua lógica
-                        cell.setCellValue(""); // Ou use cell.setBlank() dependendo da versão do Apache POI
+                        cell.setCellValue("");
                     }
                 }
             }
 
-            // Write the workbook to the file system
-            File file = new File("C:\\sedv\\Relatorios\\Lista_De_Produtos_Existentes.xlsx");
-            try (FileOutputStream out = new FileOutputStream(file)) {
-                workbook.write(out);
-            } finally {
-                workbook.close(); // Certifique-se de fechar o workbook
+            // Write the workbook to a byte array output stream
+            //ByteArrayOutputStream out = new ByteArrayOutputStream();
+            //workbook.write(out);
+            //workbook.close();
+
+            // Convert byte array output stream to input stream
+            //InputStream inputStream = new ByteArrayInputStream(out.toByteArray());
+   String relativePath = "Lista_De_Produtos_Existentes.xlsx";
+            File file = new File(relativePath);
+
+            // Cria diretório caso não exista
+            File parentDir = file.getParentFile();
+            if (parentDir != null && !parentDir.exists()) {
+                parentDir.mkdirs();
             }
 
-            JOptionPane.showMessageDialog(null, "Lista_De_Produtos_Existentes.xlsx written successfully on disk.");
+            // Write the workbook to the file system
+            try (FileOutputStream out = new FileOutputStream(file)) {
+                workbook.write(out);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                // showManualOpenMessage(tempFile);
+            }            
+ 
 
-            // Abrir o arquivo Excel automaticamente
-            Desktop.getDesktop().open(file);
-
+            
+         String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("mac")) {    
+            
+            //  String [] cmd = {"open" , "-a", "/Applications/Microsoft Excel.app", file.getAbsolutePath()};
+             String [] cmd = {"/usr/bin/open" , "-a", "/Applications/Microsoft Excel.app", file.getAbsolutePath()};
+             ProcessBuilder pb = new ProcessBuilder(cmd);
+             Process p = pb.start();
+        } else {    // Windows or Unix    
+         
+                if (Desktop.isDesktopSupported()) {
+                    Desktop desktop = Desktop.getDesktop();
+                    if (desktop.isSupported(Desktop.Action.OPEN)) {
+                        desktop.open(file);
+                    } else {
+                        showManualOpenMessage(file);
+                    }
+                } else {
+                    
+                    
+                }}     
         } catch (Exception e) {
             e.printStackTrace();
+               JOptionPane.showMessageDialog(null,e.getMessage());
+
+            
+        }     
+    }
+
+    private void openFileMacLinux(File file) throws IOException {
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("mac")) {
+            Runtime.getRuntime().exec("open " + file.getAbsolutePath());
+        } else if (os.contains("nix") || os.contains("nux")) {
+            Runtime.getRuntime().exec("xdg-open " + file.getAbsolutePath());
+        } else {
+            showManualOpenMessage(file);
         }
     }
 
-    // Outros métodos e membros da classe podem ser colocados aqui
-
+    private void showManualOpenMessage(File file) {
+        JOptionPane.showMessageDialog(null, "Não foi possível abrir o arquivo automaticamente. Por favor, encontre o arquivo em: " + file.getAbsolutePath());
+    }
 
 
 
