@@ -179,10 +179,9 @@ public void handleMenuItemcadastroUtilizador() {
             textFieldSenha.getText().isEmpty() || 
             comboBoxCategoria.getSelectionModel().isEmpty()|| 
             comboBoxStatus.getSelectionModel().isEmpty() ) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Alerta ");
-                alert.setContentText("Por favor, preencha todos os campos antes de cadastrar o usuário.");
-                alert.showAndWait();
+            
+                DialogUtil.showErrorMessage("Por favor, preencha todos os campos antes de cadastrar o usuário.", "INFO");
+              
                 return; // Retorna aqui para evitar continuar o processamento se os campos não estiverem preenchidos
         }
 
@@ -204,12 +203,16 @@ public void handleMenuItemcadastroUtilizador() {
         limparcampos();
 
         if (status) {
-            JOptionPane.showMessageDialog(null, "Usuário '" + usuario.getNome() + "' cadastrado com sucesso.");
+            
+            
+             DialogUtil.showInfoMessage("Usuário '" + usuario.getNome() + "' cadastrado com sucesso.", "INFO");
+            
         } else {
-            JOptionPane.showMessageDialog(null, "Erro ao registrar o usuário. Tente novamente.");
+             DialogUtil.showInfoMessage("Erro ao registrar o usuário. Tente novamente.", "INFO");
+     
         }
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Erro ao gravar o usuário: " + e.getMessage());
+            DialogUtil.showErrorMessage( "Erro ao gravar o usuário: " + e.getMessage(), "ERRO");
     }
 }
 
@@ -250,11 +253,12 @@ public void handleMenuEditartroUtilizador() {
        
 
         limparcampos();
+   DialogUtil.showInfoMessage("Usuário '" + usuario.getNome() + "' editado com sucesso.", "INFO");
+            
 
-        JOptionPane.showMessageDialog(null, "Usuário '" + usuario.getNome() + "' editado com sucesso.");
       handleMenuItemListaUtilizadores ();
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Erro ao editar o usuário: " + e.getMessage());
+        DialogUtil.showErrorMessage(" Erro  : "+ e.getMessage(), "ERRO");
     }
     
       

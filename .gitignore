@@ -10,9 +10,14 @@ nbproject/private/private.properties
 nbproject/private/private.xml
 nbproject/project.properties
 
+nbproject/build-impl.xml
+nbproject/genfiles.properties
+
+nbproject/project.xml
 project.properties
 config.properties
 private.xml
+
 # BlueJ files
 *.ctxt
 
@@ -32,3 +37,11 @@ private.xml
 hs_err_pid*
 /build/
 /dist/
+
+#xls files
+Produtos_Com_Pouco_Stock.xlsx
+C:\\sedv\\Relatorios\\Pre_Inventario.xlsx
+.DS_Store
+Detalhes_do_inventario.xlsx
+~$Detalhes_do_inventario.xlsx
+Produtos_Com_Pouco_Stock.xlsx

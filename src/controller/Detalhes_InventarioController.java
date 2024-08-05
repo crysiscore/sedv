@@ -7,13 +7,19 @@ package controller;
 
 import BussinessLogic.Inventario;
 import BussinessLogic.Usuario;
+import DataAcessLayer.ProdutoDAO;
 import Model.InventarioModel;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
+import java.util.TreeMap;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -29,8 +35,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
@@ -181,54 +190,153 @@ public class Detalhes_InventarioController implements Initializable {
      @FXML
     private void imprimirExcel(ActionEvent event) {
         try {
-            File tempFile = File.createTempFile("detalhes_inventario", ".xlsx");
-            exportToExcel(tableViewListaProdutosInventario, tempFile);
-            openExcelFile(tempFile);
-        } catch (IOException e) {
+       
+            exportToExcel(tableViewListaProdutosInventario);
+
+        } catch (Exception e) {
             e.printStackTrace();
+            DialogUtil.showErrorMessage(" Erro  : "+ e.getMessage(), "ERRO");
+
         }
     }
 
-    private void exportToExcel(TableView<Inventario> tableView, File file) {
-        try (XSSFWorkbook workbook = new XSSFWorkbook(); 
-             FileOutputStream fos = new FileOutputStream(file)) {
-            Sheet sheet = workbook.createSheet("Detalhes_Inventario");
 
-            // Cabeçalho
-            Row headerRow = sheet.createRow(0);
-            for (int i = 0; i < tableView.getColumns().size(); i++) {
-                Cell cell = headerRow.createCell(i);
-                cell.setCellValue(tableView.getColumns().get(i).getText());
+    private void exportToExcel(TableView<Inventario> tableView) {
+
+
+        try {
+      
+            // Create a new workbook
+            Workbook workbook = new XSSFWorkbook();
+
+            // Create a sheet named "Produtos com pouco stock"
+            Sheet sheet = workbook.createSheet("DETALHES DO INVENTARIO");
+
+            // Create a font style with bold
+            Font font = workbook.createFont();
+            font.setBold(true);
+
+            // Create a style and assign the bold font to it
+            CellStyle boldStyle = workbook.createCellStyle();
+            boldStyle.setFont(font);
+
+            // This data needs to be written (Object[])
+            Map<String, Object[]> data = new TreeMap<>();
+            data.put("1", new Object[]{"CÓDIGO", "NOME DO PRODUTO", "QTD. ANTERIOR", "QTD. CONTADA", "DIFERENCA"});
+
+            int numeroLinha = 2; // Start from the second row
+
+            
+                    // Dados
+            for (int rowIndex = 0; rowIndex < tableView.getItems().size(); rowIndex++) {
+
+                    TableColumn<Inventario, ?> columnCod = tableView.getColumns().get(0);
+                    TableColumn<Inventario, ?> columnNomeProd = tableView.getColumns().get(1);
+                    TableColumn<Inventario, ?> columnQtdAnt = tableView.getColumns().get(2);
+                    TableColumn<Inventario, ?> columnQtdCont = tableView.getColumns().get(3);
+                    TableColumn<Inventario, ?> columnDiff = tableView.getColumns().get(4);
+
+                    // Aqui verificamos se o valor da célula é nulo para evitar NullPointerException
+                    Object valueCod = columnCod.getCellData(rowIndex);
+                    Object valueNomeProd = columnNomeProd.getCellData(rowIndex);
+                    Object valueQtdAnt = columnQtdAnt.getCellData(rowIndex);
+                    Object valueQtdCont = columnQtdCont.getCellData(rowIndex);
+                    Object valueDiff = columnDiff.getCellData(rowIndex);
+                    Object[] linha = new Object[]{
+                        valueCod,
+                        valueNomeProd,
+                        valueQtdAnt,
+                        valueQtdCont,
+                        valueDiff,
+                };
+               
+                
+                data.put(String.valueOf(numeroLinha++), linha);
             }
 
-            // Dados
-            for (int rowIndex = 0; rowIndex < tableView.getItems().size(); rowIndex++) {
-                Row row = sheet.createRow(rowIndex + 1);
-                for (int colIndex = 0; colIndex < tableView.getColumns().size(); colIndex++) {
-                    TableColumn<Inventario, ?> column = tableView.getColumns().get(colIndex);
-                    Cell cell = row.createCell(colIndex);
-                    // Aqui verificamos se o valor da célula é nulo para evitar NullPointerException
-                    Object value = column.getCellData(rowIndex);
-                    if (value != null) {
-                        cell.setCellValue(value.toString());
+            
+           
+            // Iterate over data and write to sheet
+            Set<String> keyset = data.keySet();
+            int rownum = 0;
+            for (String key : keyset) {
+                Row row = sheet.createRow(rownum++);
+                Object[] objArr = data.get(key);
+                int cellnum = 0;
+                for (Object obj : objArr) {
+                    Cell cell = row.createCell(cellnum++);
+                    if (obj != null) {
+                        if (obj instanceof String) {
+                            cell.setCellValue((String) obj);
+                        } else if (obj instanceof Integer) {
+                            cell.setCellValue((Integer) obj);
+                        } else if (obj instanceof Double) {
+                            cell.setCellValue((Double) obj);
+                        }
+                    } else {
+                        // If the value is null, handle it according to your logic
+                        cell.setCellValue(""); // Or use cell.setBlank() depending on the Apache POI version
+                    }
+
+                    // Apply bold style to header cells
+                    if (rownum == 1) {
+                        cell.setCellStyle(boldStyle);
                     }
                 }
             }
 
-            workbook.write(fos);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+            // Auto-size columns after adding data
+            for (int i = 0; i < data.get("1").length; i++) {
+                sheet.autoSizeColumn(i);
+            }
 
-    private void openExcelFile(File file) {
-        try {
-            ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/c", file.getAbsolutePath());
-            pb.start();
-        } catch (IOException e) {
+            // Usando um caminho relativo
+            String relativePath = "Detalhes_do_inventario.xlsx";
+            File file = new File(relativePath);
+
+            // Cria diretório caso não exista
+            File parentDir = file.getParentFile();
+            if (parentDir != null && !parentDir.exists()) {
+                parentDir.mkdirs();
+            }
+
+            // Write the workbook to the file system
+            try (FileOutputStream out = new FileOutputStream(file)) {
+                workbook.write(out);
+            }
+
+          
+
+                    String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("mac")) {
+               String [] cmd = {"/usr/bin/open" , "-a", "/Applications/Microsoft Excel.app", file.getAbsolutePath()};
+             ProcessBuilder pb = new ProcessBuilder(cmd);
+             Process p = pb.start();
+              
+             
+            // Runtime.getRuntime().exec(cmd );  
+        } else {    // Windows or Unix    
+         
+                if (Desktop.isDesktopSupported()) {
+                    Desktop desktop = Desktop.getDesktop();
+                    if (desktop.isSupported(Desktop.Action.OPEN)) {
+                        desktop.open(file);
+                    } else {
+                      //  showManualOpenMessage(file);
+                    }
+                } else {
+                    
+                    
+                }}     
+        } catch (Exception e) {
             e.printStackTrace();
-        }
+            DialogUtil.showErrorMessage(" Erro  : "+ e.getMessage(), "ERRO");
+
+            
+        }  
     }
+    
+
 }
         
       

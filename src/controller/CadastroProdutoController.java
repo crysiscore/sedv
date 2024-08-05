@@ -177,7 +177,7 @@ public class CadastroProdutoController implements Initializable {
         textFormatter.valueProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue == null && !textFieldPreco.getText().isEmpty()) {
                 // Exibe uma mensagem de erro caso letras sejam inseridas
-                JOptionPane.showMessageDialog(null,"Digite apenas números inteiros ou decimais válidos!");
+                 DialogUtil.showWarningMessage("Digite apenas números inteiros ou decimais válidos!", "Erro");
                 textFieldPreco.setText(oldValue.toString()); // Restaura o valor anterior
             }
         });
@@ -199,7 +199,7 @@ public class CadastroProdutoController implements Initializable {
         textFormatter1.valueProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue == null && !textfieldPrecoDeCompra.getText().isEmpty()) {
                 // Exibe uma mensagem de erro caso letras sejam inseridas
-                JOptionPane.showMessageDialog(null,"Digite apenas números inteiros ou decimais válidos!");
+               DialogUtil.showWarningMessage("Digite apenas números inteiros ou decimais válidos!", "Erro");
                 textfieldPrecoDeCompra.setText(oldValue.toString()); // Restaura o valor anterior
             }
         });
@@ -340,7 +340,7 @@ public class CadastroProdutoController implements Initializable {
                 textfieldImageNome.setVisible(false);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+             DialogUtil.showErrorMessage("Erro: " +e.getMessage(), "Erro");
         }
 
     }
@@ -352,42 +352,42 @@ public class CadastroProdutoController implements Initializable {
                 
               if (this.textfieldNomeProduto.getText().equals("")) {
         
-               //JOptionPane.showMessageDialog(null, "INTRODUZA O NOME DO PRODUTO ");
-               handleMenuAlert2();
+                DialogUtil.showWarningMessage("INTRODUZA O NOME DO PRODUTO", "INFO");
                fds = true;
                  }
                 else if (this.textFieldPreco.getText().equals("")) {
-       
-               JOptionPane.showMessageDialog(null, "INTRODUZA O PREÇO UNITÁRIO ");
+      
+               DialogUtil.showWarningMessage("INTRODUZA O PREÇO UNITÁRIO", "INFO");
              
                fds = true;
      
               }
                  else if (this.textfieldPrecoDeCompra.getText().equals("")) {
        
-               JOptionPane.showMessageDialog(null, "INTRODUZA O PREÇO UNITÁRIO ");
+                  DialogUtil.showWarningMessage("INTRODUZA O PREÇO UNITÁRIO", "INFO");
              
                fds = true;
      
               }
                 
                else if (this.textFieldDescricao.getText().equals("")) {
-       
-               JOptionPane.showMessageDialog(null, "DESCREVA O PRODUTO ");
+        
+                DialogUtil.showWarningMessage("INTRODUZA A DESCRICAO", "INFO");
               
                fds = true;
      
               }
                else if (this.comboBoxCategoria.getSelectionModel().isEmpty()) {
        
-             JOptionPane.showMessageDialog(null, "SELECIONE A CATEGORIA DO PRODUTO");
+             
+              DialogUtil.showWarningMessage("SELECIONE A CATEGORIA DO PRODUTO", "INFO");
           
                fds = true;
       
              }
             else if (this.comboBoxUnidade.getSelectionModel().isEmpty()) {
-        
-            JOptionPane.showMessageDialog(null, "SELECIONE A UNIDADE DO PRODUTO");
+
+               DialogUtil.showWarningMessage("SELECIONE A UNIDADE DO PRODUTO", "INFO");
             
             fds = true;
             } 
@@ -470,15 +470,17 @@ public class CadastroProdutoController implements Initializable {
               limparcampos();
     
               if (status) {
-              JOptionPane.showMessageDialog(null, " Produto : " + product.getNome() + " Registado com sucesso");
+        
+               DialogUtil.showInfoMessage( " Produto : " + product.getNome() + " Registado com sucesso", "INFO");
 
               } else {
-              JOptionPane.showMessageDialog(null, " Erro ao registar o Produto. Tente novamente");
+                  DialogUtil.showInfoMessage(" Erro ao registar o Produto. Tente novamente", "INFO");
+
               }
                       } catch (Exception ex) {
                                ex.printStackTrace();
-                                     JOptionPane.showMessageDialog(null, " Erro ao registar o Produto. Tente novamente");
-                                     
+                               DialogUtil.showErrorMessage(" Erro  : "+ ex.getMessage(), "ERRO");
+                              
                            
                        }
   
@@ -523,14 +525,12 @@ public class CadastroProdutoController implements Initializable {
               limparcampos();
 
               if (status) {
+                   DialogUtil.showInfoMessage(" Produto : " + product.getNome() + " Registado com sucesso", "INFO");
 
-              mostrarMensagem(" Produto : " + product.getNome() + " Registado com sucesso");
-
-                    // JOptionPane.showMessageDialog(null, " Produto : " + product.getNome() + " Registado com sucesso");
+                    
                 } else {
 
-                    //JOptionPane.showMessageDialog(null, " Erro ao registar o Produto. Tente novamente");
-                    mostrarMensagem("Erro ao registrar o produto. Tente novamente.");
+                         DialogUtil.showInfoMessage(" Erro ao registar o Produto. Tente novamente", "INFO");
 
                 }
                               
@@ -538,7 +538,7 @@ public class CadastroProdutoController implements Initializable {
             } catch (Exception e) {
 
                e.printStackTrace();
-                JOptionPane.showMessageDialog(null, " Erro ao gravar o produto: " + e.getMessage().toString());
+                 DialogUtil.showErrorMessage(" Erro  : "+ e.getMessage(), "ERRO");
             } } 
 
            
@@ -648,13 +648,8 @@ public class CadastroProdutoController implements Initializable {
               ProdutosServicos  produtoServico= new ProdutosServicos();
               produtoServico.EditarProdutoComFoto(produto);
                 limparcampos();
-                 
-                          Alert alert = new Alert(Alert.AlertType.ERROR);
-                          alert.setTitle("Erro");
-                          alert.setHeaderText(null);
-                          alert.setContentText("Produto Editado com sucesso!");
-                          alert.showAndWait();
-                   //JOptionPane.showMessageDialog(null, " Produto Editado com sucesso");
+                     DialogUtil.showInfoMessage("Produto editado.", "INFO");
+                        
                   
                   
                    //TODO FECHAR A TELA 
@@ -666,8 +661,7 @@ public class CadastroProdutoController implements Initializable {
                        
                   } catch (Exception e) {
                       e.printStackTrace();
-                     JOptionPane.showMessageDialog(null, " Erro ao gravar o produto: " +  e.getCause().toString());
-                      JOptionPane.showMessageDialog(null, " Erro ao gravar o produto: " +  e.getMessage().toString());
+                   DialogUtil.showErrorMessage(" Erro  : "+ e.getMessage(), "ERRO");
                   }  
                       
                       
@@ -700,7 +694,8 @@ public class CadastroProdutoController implements Initializable {
                   
               ProdutosServicos  produtoServico= new ProdutosServicos();
               produtoServico.EditarProdutoComFoto(produto);
-              JOptionPane.showMessageDialog(null, " Produto : " + produto.getNome() + " Editado com sucesso");
+                  DialogUtil.showInfoMessage(" Produto : " + produto.getNome() + " Editado com sucesso", "INFO");
+
               Stage stage =(Stage) buttonEditar.getScene().getWindow();
               stage.close();
               
@@ -709,8 +704,7 @@ public class CadastroProdutoController implements Initializable {
                        
                   } catch (Exception e) {
                       
-                     JOptionPane.showMessageDialog(null, " Erro ao gravar o produto: " +  e.getCause().toString());
-                      JOptionPane.showMessageDialog(null, " Erro ao gravar o produto: " +  e.getMessage().toString());
+                         DialogUtil.showErrorMessage(" Erro  : "+ e.getMessage(), "ERRO");
                   }  
               }else if (caminhoFoto!=null){
                   try {  
@@ -749,7 +743,7 @@ public class CadastroProdutoController implements Initializable {
               limparcampos();
               
                 
-                   JOptionPane.showMessageDialog(null, " Produto : " + produto.getNome() + " Editado com sucesso");
+             DialogUtil.showInfoMessage(" Produto : " + produto.getNome() + " Editado com sucesso", "INFO");
                    Stage stage =(Stage) buttonEditar.getScene().getWindow();
                    stage.close();
                       
@@ -758,8 +752,7 @@ public class CadastroProdutoController implements Initializable {
                        
                   } catch (Exception e) {
                       
-             JOptionPane.showMessageDialog(null, " Erro ao gravar o produto: " +  e.getCause().toString());
-             JOptionPane.showMessageDialog(null, " Erro ao gravar o produto: " +  e.getMessage().toString());
+                            DialogUtil.showErrorMessage(" Erro  : "+ e.getMessage(), "ERRO");
                   } 
                  
                    }
