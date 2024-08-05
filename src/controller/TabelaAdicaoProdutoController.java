@@ -160,37 +160,29 @@ public class TabelaAdicaoProdutoController implements Initializable {
      
        }
     
-
-    
-    @FXML
+   @FXML
     void removerStockdaTabela() {
 
-        int response = JOptionPane.showConfirmDialog(null, "O Produto foi selecionado???", "confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+         boolean response = ConfirmDialog.show("Confirmacao", "", " Deseja Remover o  Produto?");
 
-        if (response == JOptionPane.YES_OPTION) {
+        if (response) {
+
 
             Stock selecionada = tableviewAdicionarStock.getSelectionModel().getSelectedItem();
             if (selecionada != null) {
                 int selectedID = tableviewAdicionarStock.getSelectionModel().getSelectedIndex();
                 tableviewAdicionarStock.getItems().remove(selectedID);
 
-                JOptionPane.showMessageDialog(null, "O Produto foi removido!");
-            } else {
-                JOptionPane.showMessageDialog(null, "O Item não foi selecionado!");
-            }
 
-        } else if (response == JOptionPane.NO_OPTION) {
-            JOptionPane.showMessageDialog(null, "Selecione o Produto se desejar removê-lo!");
-
-        } else if (response == JOptionPane.CLOSED_OPTION) {
-            JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
-        }
+            } 
 
       
 
      }
+    }
          
 
+   
          @FXML
     public void handleMenuItemStockAdicionar() throws IOException {
              
@@ -245,22 +237,20 @@ public class TabelaAdicaoProdutoController implements Initializable {
          
         
           } else {
-          
-           int response =JOptionPane.showConfirmDialog(null,"Tem a certeza que deseja registrar o Stock introduzido na tabela???", "confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-          
-           if(response==JOptionPane.YES_OPTION){
+               
+            boolean response = ConfirmDialog.show("Info", "Confirmacao", "Tem a certeza que deseja registrar o Stock introduzido na tabela???");
+
+            if (response) {
+               
                
                 dao.RegistarStock(tableviewAdicionarStock.getItems());
             tableviewAdicionarStock.getItems().clear();
-           JOptionPane.showMessageDialog(null, "O Stock foi Cadastrado com Sucesso!");
+           DialogUtil.showInfoMessage( "O Stock foi Cadastrado com Sucesso!", "INFO");
            
            
-           }else if(response==JOptionPane.NO_OPTION){
-               JOptionPane.showMessageDialog(null, "O Stock não foi Cadastrado!");
+           } else {
+                DialogUtil.showInfoMessage( "O Stock  nao foi Cadastrado!", "INFO");
            
-           
-           }else if(response==JOptionPane.CLOSED_OPTION){
-               JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
            }
        }
          }

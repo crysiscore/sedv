@@ -142,8 +142,7 @@ public class Lista_De_Venda_Por_PeriodoController implements Initializable {
                     }
                 }
 
-                JOptionPane.showMessageDialog(null, "Relatório de Vendas em um Período criado com sucesso.");
-
+         
                 // Tentar abrir o arquivo Excel automaticamente
                 try {
                     if (Desktop.isDesktopSupported()) {
@@ -179,7 +178,9 @@ public class Lista_De_Venda_Por_PeriodoController implements Initializable {
     }
 
     private void showManualOpenMessage(File file) {
-        JOptionPane.showMessageDialog(null, "Não foi possível abrir o arquivo automaticamente. Por favor, encontre o arquivo em: " + file.getAbsolutePath());
+      
+        DialogUtil.showInfoMessage("Não foi possível abrir o arquivo automaticamente. Por favor, encontre o arquivo em: " + file.getAbsolutePath(), "Info");
+          
     }
 
     private java.sql.Date convertToDateSql(LocalDate localDate) {

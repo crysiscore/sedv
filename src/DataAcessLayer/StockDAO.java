@@ -135,7 +135,7 @@ public class StockDAO {
        public void RegistarStock( ObservableList <Stock> stock ) throws SQLException {
 /* 103 */    
               this.cs = this.connect.prepareCall("{call RegistarStock(?,?,?,?,?,?)}");
-              try{
+              
 /* 104 */     for(int i = 0; i < stock.size(); i++) {
               this.cs.setInt(1, stock.get(i).getQuantidade_recebida());
 /* 105 */     this.cs.setDate(2, stock.get(i).getData_entrada());
@@ -146,9 +146,7 @@ public class StockDAO {
 /* 110 */     this.cs.executeQuery();
 /* 111 */     
 /*     */   }
-                  } catch(SQLException ex){ 
-                     Logger.getLogger(StockDAO.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                 
   }
 
     public void ActualizarStock(ObservableList<Inventario> stock) throws SQLException {

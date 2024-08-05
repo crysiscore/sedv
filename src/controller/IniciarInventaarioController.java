@@ -208,8 +208,6 @@ public void handleInventarioGeral() throws IOException, SQLException {
             
             usuarioServicos = new UsuarioServicos();
             
-            //inventarioGeralController.receberdadosUsuario(usuario);
-           // inventarioGeralController.initModel(inventarioModel);
 
             // Criando um EstÃ¡gio de DiÃ¡logo (Stage Dialog)
             Stage dialogStage = new Stage();

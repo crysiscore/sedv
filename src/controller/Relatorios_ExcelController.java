@@ -176,7 +176,7 @@ public class Relatorios_ExcelController implements Initializable {
                 }}     
         } catch (Exception e) {
             e.printStackTrace();
-               JOptionPane.showMessageDialog(null,e.getMessage());
+            DialogUtil.showErrorMessage(" Erro  : "+ e.getMessage(), "ERRO");
 
             
         }  
@@ -301,8 +301,7 @@ public class Relatorios_ExcelController implements Initializable {
                 }}     
         } catch (Exception e) {
             e.printStackTrace();
-               JOptionPane.showMessageDialog(null,e.getMessage());
-
+               DialogUtil.showErrorMessage(" Erro  : "+ e.getMessage(), "ERRO");
             
         }     
     }
@@ -319,7 +318,8 @@ public class Relatorios_ExcelController implements Initializable {
     }
 
     private void showManualOpenMessage(File file) {
-        JOptionPane.showMessageDialog(null, "Não foi possível abrir o arquivo automaticamente. Por favor, encontre o arquivo em: " + file.getAbsolutePath());
+              DialogUtil.showInfoMessage("Não foi possível abrir o arquivo automaticamente. Por favor, encontre o arquivo em: " + file.getAbsolutePath(), "Info");
+          
     }
 
 

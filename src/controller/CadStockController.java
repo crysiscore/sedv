@@ -193,7 +193,7 @@ public class CadStockController implements Initializable {
         textFormatter.valueProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue == null && !TextFieldlQuantidadeRecebida.getText().isEmpty()) {
                 // Exibe uma mensagem de erro caso letras sejam inseridas
-                JOptionPane.showMessageDialog(null,"Digite apenas números inteiros ou decimais válidos!");
+                DialogUtil.showWarningMessage("Digite apenas números inteiros ou decimais válidos!", "Erro");
                 TextFieldlQuantidadeRecebida.setText(oldValue.toString()); // Restaura o valor anterior
             }
         });
@@ -211,30 +211,22 @@ public class CadStockController implements Initializable {
         public boolean verificadados() {
         boolean fds = false;
 
-        if (this.TextFieldlQuantidadeRecebida.getText().equals("")) {
+        if (this.TextFieldlQuantidadeRecebida.getText().equals("") || Integer.parseInt(this.TextFieldlQuantidadeRecebida.getText()) < 1 ) {
+           
 
-            JOptionPane.showMessageDialog(null, "INTRODUZA A QUANTIDADE RECEBIDA ");
+            DialogUtil.showWarningMessage("VERIFIQUE A QUANTIDADE ", "Info");
             fds = true;
 
         } else if (DatePickerDataEntrada.getValue() == null) {
-            JOptionPane.showMessageDialog(null, "INTRODUZA  A DATA DE REGISTO");
+                 DialogUtil.showWarningMessage("VERIFIQUE  A DATA DE REGISTO", "Info");
+
             fds = true;
         } else if (this.TextFieldCodigoProduto.getText().equals("")) {
 
-            JOptionPane.showMessageDialog(null, "INTRODUZA O CODIGO DO PRODUTO ");
+            DialogUtil.showWarningMessage("VERIFIQUE O CODIGO DO PRODUTO ", "Info");
             fds = true;
 
-        } else if (this.TextFieldNumeroLote.getText().equals("")) {
-
-            JOptionPane.showMessageDialog(null, "INTRODUZA O NUMERO DO LOTE ");
-            fds = true;
-
-        } else if (this.TextFieldFabricante.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "INTRODUZA O NOME DO FABRICANTE ");
-            fds = true;
-
-        }
-
+        } 
         return fds;
     }
 

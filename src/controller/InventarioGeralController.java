@@ -276,22 +276,16 @@ public class InventarioGeralController implements Initializable {
     
    @FXML
 void removerProdutodaTabela() {
-    int response = JOptionPane.showConfirmDialog(null, "O Produto foi selecionado???", "confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+    boolean response = ConfirmDialog.show("Info", "Confirmacao", "O Produto foi selecionado???");
 
-    if (response == JOptionPane.YES_OPTION) {
+    if (response) {
         Inventario selecionada = tableViewListaProdutos.getSelectionModel().getSelectedItem();
         if (selecionada != null) {
             // Remove o item selecionado da lista iventario
             iventario.remove(selecionada);
-            JOptionPane.showMessageDialog(null, "O Produto foi removido!");
-        } else {
-            JOptionPane.showMessageDialog(null, "O Item não foi selecionado!");
-        }
-    } else if (response == JOptionPane.NO_OPTION) {
-        JOptionPane.showMessageDialog(null, "Selecione o Produto se desejar removê-lo!");
-    } else if (response == JOptionPane.CLOSED_OPTION) {
-        JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
-    }
+         
+        } 
+}
 }
 
 
@@ -302,24 +296,24 @@ void removerProdutodaTabela() {
        StockDAO dao = new StockDAO();
 
         if (tableViewListaProdutos.getItems().isEmpty()) {
-         //  handleMenuAlert();
+          DialogUtil.showInfoMessage("Sem dados para actualizar!", "Info");
+         
 
      } else {
+            boolean response = ConfirmDialog.show("Info", "Confirmacao", "Tem a certeza que deseja actuaizar o Stock introduzido na tabela???");
 
-            int response = JOptionPane.showConfirmDialog(null, "Tem a certeza que deseja actuaizar o Stock introduzido na tabela???", "confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-            if (response == JOptionPane.YES_OPTION) {
+            if (response ) {
 
                dao.ActualizarStock(tableViewListaProdutos.getItems());
-          //  tableViewListaProdutos.getItems().clear();
-                JOptionPane.showMessageDialog(null, "O Stock foi actuaizado com Sucesso!");
+               //  tableViewListaProdutos.getItems().clear();
+              DialogUtil.showInfoMessage("O Stock foi actuaizado com Sucesso!", "Info");
+                
 
-            } else if (response == JOptionPane.NO_OPTION) {
-                JOptionPane.showMessageDialog(null, "O Stock não foi actuaizado!");
+            } else {
+                DialogUtil.showInfoMessage( "O Stock não foi actuaizado!", "Info");
+               
 
-            } else if (response == JOptionPane.CLOSED_OPTION) {
-                JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
-            }
+            } 
         }
     }
     
@@ -341,13 +335,15 @@ void removerProdutodaTabela() {
        // String tipo_de_inventario = labelParcial.getText();
         
         if (tableViewListaProdutos.getItems().isEmpty()) {
-            handleMenuAlert();
+              DialogUtil.showInfoMessage("Sem dados para actualizar!", "Info");
+         
             
         } else {
             
-            int response = JOptionPane.showConfirmDialog(null, "Tem a certeza que deseja registrar o Inventário???", "confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            
-            if (response == JOptionPane.YES_OPTION) {
+           
+            boolean response = ConfirmDialog.show("Info", "Confirmacao", "Tem a certeza que deseja registrar o Inventário???");
+
+            if (response) {
                 
                 
                 dao.RegistarInventarioItem(tableViewListaProdutos.getItems());
@@ -359,16 +355,14 @@ void removerProdutodaTabela() {
                 
                 
                 dao.RegistarInventario(inventarioPrincipal);
-                JOptionPane.showMessageDialog(null, "O Inventário foi Cadastrado com Sucesso!");
+   
                 tableViewListaProdutos.getItems().clear();
-         
+                DialogUtil.showInfoMessage( "O Inventário foi Cadastrado com Sucesso!", "Info");
                 
-            } else if (response == JOptionPane.NO_OPTION) {
-                JOptionPane.showMessageDialog(null, "O Inventário não foi Cadastrado!");
+            } else {
+                DialogUtil.showInfoMessage("O Inventario nao registado!", "Info");
                 
-            } else if (response == JOptionPane.CLOSED_OPTION) {
-                JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
-            }
+            } 
         }
   
         

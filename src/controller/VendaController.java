@@ -17,6 +17,8 @@ import Model.VendaModel;
 import Service.ProdutosServicos;
 import Service.UsuarioServicos;
 import Service.VendaServicos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 //import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import java.io.IOException;
 import java.net.URL;
@@ -488,6 +490,16 @@ public class VendaController implements Initializable {
 
     }
 
+    
+    public void showMessageDialog(String message, String title) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null); // No header text
+        alert.setContentText(message);
+        
+        alert.showAndWait(); // Show the dialog and wait for the user to close it
+    }
+
     @FXML
     public void handleMenuItemRegistarVenda() throws IOException, SQLException {
 
@@ -506,16 +518,21 @@ public class VendaController implements Initializable {
             Integer Cod_Usuario = Integer.parseInt(labelNomeUsuario.getText());
             String Forma_Pagamento = comboBoxFormaPagamento.getSelectionModel().getSelectedItem();
 
+           
             if (tableViewListaProdutos.getItems().isEmpty()) {
-                handleMenuAlert();
+                DialogUtil.showErrorMessage("SELECIONE UM PRODUTO!", "AVISO");
+                
+
+            } else  if (this.comboBoxFormaPagamento.getSelectionModel().isEmpty()) {
+            
+   
+            DialogUtil.showInfoMessage("SELECIONE A FORMA DE PAGAMENTO!", "Info");
 
             } else {
 
-                int response = JOptionPane.showConfirmDialog(null, "Tem a certeza que deseja registrar A venda sem nome e sem nuit do cliente???", "confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-                if (response == JOptionPane.YES_OPTION) {
-
-                    verificadados();
+                    try {
+                        
                     dao.RegistarDetalhesVenda(tableViewListaProdutos.getItems());
                     //tableViewListaProdutos.getItems().clear();
                     Venda venda = new Venda();
@@ -524,18 +541,21 @@ public class VendaController implements Initializable {
                     venda.setUsuario_Cod_Funcionario(Cod_Usuario);
                     venda.setForma_Pagamento(Forma_Pagamento);
 
-                    dao.RegistarVendasemnuitesemnome(venda);
-                    JOptionPane.showMessageDialog(null, "A venda foi Cadastrada com Sucesso!");
+                    ResultSet rs = dao.RegistarVendasemnuitesemnome(venda);
+                    
                     tableViewListaProdutos.getItems().clear();
                     limparcampos();
-                    printRecibo();
-
-                } else if (response == JOptionPane.NO_OPTION) {
-                    JOptionPane.showMessageDialog(null, "A venda não foi Cadastrada!");
-
-                } else if (response == JOptionPane.CLOSED_OPTION) {
-                    JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
+                    DialogUtil.showInfoMessage("A venda foi Cadastrada com Sucesso!", "Info");
+                    
+                } catch (Exception e) {
+                    
+                    DialogUtil.showErrorMessage(" Erro ao registar venda: " + e.getMessage(), "ERRO");
                 }
+                    
+                   //TODO 
+                    //printRecibo();
+
+   
             }
 
         } else {
@@ -548,13 +568,17 @@ public class VendaController implements Initializable {
             String Forma_Pagamento = comboBoxFormaPagamento.getSelectionModel().getSelectedItem();
 
             if (tableViewListaProdutos.getItems().isEmpty()) {
-                handleMenuAlert();
+                DialogUtil.showErrorMessage("SELECIONE UM PRODUTO!", "AVISO");
+                
 
-            } else {
+            } else  if (this.comboBoxFormaPagamento.getSelectionModel().isEmpty()) {
+            
+            DialogUtil.showInfoMessage("SELECIONE A FORMA DE PAGAMENTO!", "Info");
 
-                int response = JOptionPane.showConfirmDialog(null, "Tem a certeza que deseja registrar A venda???", "confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-                if (response == JOptionPane.YES_OPTION) {
+            
+        } else {
+
 
                     dao.RegistarDetalhesVenda(tableViewListaProdutos.getItems());
                     //tableViewListaProdutos.getItems().clear();
@@ -567,17 +591,15 @@ public class VendaController implements Initializable {
                     venda.setForma_Pagamento(Forma_Pagamento);
 
                     dao.RegistarVenda(venda);
-                    JOptionPane.showMessageDialog(null, "A venda foi Cadastrada com Sucesso!");
+                    
                     tableViewListaProdutos.getItems().clear();
-                    printRecibo();
-                    limparcampos();
+                     DialogUtil.showInfoMessage("A venda foi Cadastrada com Sucesso!", "Info");
+                    
+                    //TODO
+                    //printRecibo();
+                     limparcampos();
 
-                } else if (response == JOptionPane.NO_OPTION) {
-                    JOptionPane.showMessageDialog(null, "A venda não foi Cadastrada!");
-
-                } else if (response == JOptionPane.CLOSED_OPTION) {
-                    JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
-                }
+              
             }
 
         }
@@ -696,7 +718,7 @@ public class VendaController implements Initializable {
         }
     }
     
-        public void handleMenuAlert8() {
+    public void handleMenuAlert8() {
         
         try {
             
@@ -729,17 +751,11 @@ public class VendaController implements Initializable {
         
         if (this.comboBoxFormaPagamento.getSelectionModel().isEmpty()) {
             
-            JOptionPane.showMessageDialog(null, "SELECIONE A FORMA DE PAGAMENTO!");
-            
+          
+            DialogUtil.showInfoMessage("SELECIONE A FORMA DE PAGAMENTO!", "Info");
+
             fds = true;
-            
-       // } else if (this.labelNomeUsuario.getText().equals("")) {
-         //   JOptionPane.showMessageDialog(null, "NOME DO USUÁRIO EM FALTA! ");
-           // fds = true;
-            
-       // } else if (this.labelTotal.getText().equals("")) {
-         //   JOptionPane.showMessageDialog(null, "TOTAL DA VENDA EM FALTA! ");
-           // fds = true;
+
             
         }
         
@@ -782,13 +798,12 @@ public class VendaController implements Initializable {
         }
     }
     
-    
-     @FXML
+    @FXML
     void removerProdutodaTabela() {
 
-        int response = JOptionPane.showConfirmDialog(null, "O Produto foi selecionado???", "confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        boolean response = ConfirmDialog.show("Confirmacao", "", " Deseja Remover o  Produto?");
 
-        if (response == JOptionPane.YES_OPTION) {
+        if (response) {
 
             DetalhesVenda selecionada = tableViewListaProdutos.getSelectionModel().getSelectedItem();
             if (selecionada != null) {
@@ -806,27 +821,19 @@ public class VendaController implements Initializable {
             labelTotal.setText(somaSubtotal.toString());
             textfieldPago.setText(labelTotal.getText());
 
-                JOptionPane.showMessageDialog(null, "O Produto foi removido!");
-            } else {
-                JOptionPane.showMessageDialog(null, "O Item não foi selecionado!");
             }
-
-        } else if (response == JOptionPane.NO_OPTION) {
-            JOptionPane.showMessageDialog(null, "Selecione o Produto se desejar removê-lo!");
-
-        } else if (response == JOptionPane.CLOSED_OPTION) {
-            JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
         }
+
 
      }
     
-        
+
        public void printRecibo(){
   
         
         try{
             
-             JasperDesign jDesign = JRXmlLoader.load("src\\relatorios\\Recibo2.jrxml");
+            JasperDesign jDesign = JRXmlLoader.load("src\\relatorios\\Recibo2.jrxml");
             JasperReport jReport = JasperCompileManager.compileReport(jDesign);
             
             JasperPrint jPrint = JasperFillManager.fillReport(jReport, null, ConnectionFactory.getSakilaConnection());
@@ -836,7 +843,7 @@ public class VendaController implements Initializable {
             viewer.setTitle("Recibo");
             viewer.show();
             
-        }catch(Exception e){}
+        }catch(Exception e){DialogUtil.showErrorMessage(" Erro  : "+ e.getMessage(), "ERRO");}
     }
 
 

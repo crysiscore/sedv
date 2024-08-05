@@ -342,8 +342,8 @@ public class ListadeProdutosController implements Initializable {
         try {
         String codProduto = this.labelCodProduto.getText();
             if (labelCodProduto.getText().isEmpty()){
-                
-                JOptionPane.showMessageDialog(null, " Produto Não Selecionado!");
+   
+                 DialogUtil.showInfoMessage("O  Produto Não foi Selecionado!!", "Info");
                  Stage stage =(Stage)buttonEditarProduto.getScene().getWindow();
                  stage.setAlwaysOnTop(true);
                

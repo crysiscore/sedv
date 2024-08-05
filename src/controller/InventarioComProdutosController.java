@@ -337,28 +337,19 @@ public class InventarioComProdutosController implements Initializable {
 }
     
     
-    
    @FXML
 void removerProdutodaTabela() {
-    int response = JOptionPane.showConfirmDialog(null, "O Produto foi selecionado???", "confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-    if (response == JOptionPane.YES_OPTION) {
+     boolean response = ConfirmDialog.show("Confirmacao", "", "O Produto foi selecionado ?");
+    if (response ) {
         Inventario selecionada = tableViewListaProdutos.getSelectionModel().getSelectedItem();
         if (selecionada != null) {
             // Remove o item selecionado da lista iventario
             iventario.remove(selecionada);
-            JOptionPane.showMessageDialog(null, "O Produto foi removido!");
-        } else {
-            JOptionPane.showMessageDialog(null, "O Item não foi selecionado!");
-        }
-    } else if (response == JOptionPane.NO_OPTION) {
-        JOptionPane.showMessageDialog(null, "Selecione o Produto se desejar removê-lo!");
-    } else if (response == JOptionPane.CLOSED_OPTION) {
-        JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
-    }
+    
+        } 
+    } 
 }
-
-
     
     @FXML
     public void ActualizarStock() throws IOException, SQLException {
@@ -370,34 +361,20 @@ void removerProdutodaTabela() {
 
      } else {
 
-            int response = JOptionPane.showConfirmDialog(null, "Tem a certeza que deseja Actualizar e Gravar o Stock introduzido na tabela???", "confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                ObservableList <Inventario> stock = tableViewListaProdutos.getItems();     
+              try {
+                           dao.ActualizarStock(tableViewListaProdutos.getItems());
 
-            if (response == JOptionPane.YES_OPTION) {
-                ObservableList <Inventario> stock = tableViewListaProdutos.getItems();
-                
-                // verificar se existe algum produto que cuja quantidade nao foi alterada
-//                for (Inventario inventario : stock) {
-//                    
-//                    if(inventario.getQuantidade_Contada()==0.0){
-//                          JOptionPane.showMessageDialog(null, "O produto: " + inventario.getNome() + " nao foi modificado! ") ;
-//                                  break;
-//                    }
-//                    
-//                }
-
-               dao.ActualizarStock(tableViewListaProdutos.getItems());
-          //  tableViewListaProdutos.getItems().clear();
-                //JOptionPane.showMessageDialog(null, "O Stock foi actuaizado com Sucesso!");
-
-            } else if (response == JOptionPane.NO_OPTION) {
-                JOptionPane.showMessageDialog(null, "O Stock não foi actuaizado!");
-                  return;
-            } else if (response == JOptionPane.CLOSED_OPTION) {
-                JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
+               handleMenuItemRegistarInventario();
+            } catch (Exception e) {
+                DialogUtil.showErrorMessage("Erro : " + e.getMessage(), "ERRO");
             }
+    
+                
             
-            handleMenuItemRegistarInventario();
-        }
+      
+        }    
+  
     }
     
     
@@ -418,13 +395,13 @@ void removerProdutodaTabela() {
         //String tipo_de_inventario = labelParcial.getText();
         
         if (tableViewListaProdutos.getItems().isEmpty()) {
-            handleMenuAlert();
+            DialogUtil.showErrorMessage("Nao ha dados para gravar", "Erro");
             
         } else {
             
-           // int response = JOptionPane.showConfirmDialog(null, "Tem a certeza que deseja registrar o Inventário???", "confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            
-            //if (response == JOptionPane.YES_OPTION) {
+            boolean response = ConfirmDialog.show("Salvar Inventario", "", "Tem a certeza que deseja registrar o Inventário?");
+       
+            if (response ) {
                 
                 
                 dao.RegistarInventarioItem(tableViewListaProdutos.getItems());
@@ -436,18 +413,18 @@ void removerProdutodaTabela() {
                 
                 
                 dao.RegistarInventario(inventarioPrincipal);
-                JOptionPane.showMessageDialog(null, "O Inventário foi Cadastrado com Sucesso!");
+                DialogUtil.showInfoMessage( "O Inventário foi registado com Sucesso!","Informacao");
+                tableViewListaProdutos.setItems(FXCollections.observableArrayList());
                 
-         
+  
                 
-           // } else if (response == JOptionPane.NO_OPTION) {
-               // JOptionPane.showMessageDialog(null, "O Inventário não foi Cadastrado!");
-                
-           // } else if (response == JOptionPane.CLOSED_OPTION) {
-           //     JOptionPane.showMessageDialog(null, "Escolha uma das opções!");
-           // }
+            } else   {
+            
+                    DialogUtil.showInfoMessage( "O Inventário nao  registado!","Informacao");
+          
+              }
         }
-    tableViewListaProdutos.setItems(FXCollections.observableArrayList());
+    // tableViewListaProdutos.setItems(FXCollections.observableArrayList());
 
   
         
@@ -571,7 +548,7 @@ public void handlePrintPre_InventarioExcel() {
             sheet.autoSizeColumn(i);
         }
 
-        // Salve o workbook como um arquivo Excel
+        // Salve o workbook como um arquivo Excel //TODO
         String filePath = "C:\\sedv\\Relatorios\\Pre_Inventario.xlsx";
         try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
             workbook.write(fileOut);
@@ -582,17 +559,17 @@ public void handlePrintPre_InventarioExcel() {
             Desktop.getDesktop().open(new java.io.File(filePath));
         } catch (Exception ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Não foi possível abrir automaticamente o arquivo. Por favor, encontre o arquivo em: " + filePath);
+             DialogUtil.showErrorMessage("Não foi possível abrir automaticamente o arquivo. Por favor, encontre o arquivo em: " + filePath+ " "+ ex.getMessage(), "ERRO");
+          
         }
 
         // Feche o workbook para liberar recursos
        // workbook.close();
 
-        // Exiba um JOptionPane informando que o pré-inventário foi adicionado
-        JOptionPane.showMessageDialog(null, "O pré-inventário foi adicionado ao arquivo: " + filePath);
 
     } catch (IOException e) {
-        e.printStackTrace();
+         DialogUtil.showErrorMessage("Erro em: " + e.getMessage(), "ERRO");
+          
     }
 }
 
