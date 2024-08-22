@@ -32,14 +32,14 @@
                   <Pane prefHeight="200.0" prefWidth="1049.0" BorderPane.alignment="CENTER" />
                </top>
             </BorderPane>
-            <Pane fx:id="PanePane" layoutX="237.0" layoutY="65.0" prefHeight="543.0" prefWidth="840.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
+            <Pane fx:id="PanePane" layoutX="123.0" layoutY="66.0" prefHeight="543.0" prefWidth="1017.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
                <children>
-                  <ImageView fitHeight="92.0" fitWidth="103.0" layoutX="723.0" layoutY="14.0">
+                  <ImageView fitHeight="92.0" fitWidth="103.0" layoutX="900.0" layoutY="14.0">
                      <image>
                         <Image url="@../icons/Free3dLogo.png" />
                      </image>
                   </ImageView>
-                  <TextField fx:id="textfieldProcurarProduto" layoutX="183.0" layoutY="110.0" prefHeight="25.0" prefWidth="317.0" promptText="Introduza o Nome ou o Código para procurar o produto">
+                  <TextField fx:id="textfieldProcurarProduto" layoutX="98.0" layoutY="96.0" prefHeight="25.0" prefWidth="317.0" promptText="Introduza o Nome ou o Código para procurar o produto">
                      <font>
                         <Font name="Times New Roman" size="12.0" />
                      </font>
@@ -47,12 +47,12 @@
                         <DropShadow />
                      </effect>
                   </TextField>
-                  <TableView fx:id="tableviewProdutos" layoutX="183.0" layoutY="158.0" prefHeight="286.0" prefWidth="538.0" style="-fx-background-radius: 10;">
+                  <TableView fx:id="tableviewProdutos" layoutX="97.0" layoutY="131.0" prefHeight="313.0" prefWidth="798.0" style="-fx-background-radius: 10;">
                      <columns>
                         <TableColumn fx:id="columnCodigoProduto" prefWidth="76.0" text="Código" />
-                        <TableColumn fx:id="columnNomeProduto" minWidth="0.0" prefWidth="261.3332824707031" text="Nome" />
-                        <TableColumn fx:id="columnPreco" prefWidth="103.33331298828125" text="Preço" />
-                        <TableColumn fx:id="columnStock" prefWidth="94.6666259765625" text="Stock" />
+                        <TableColumn fx:id="columnNomeProduto" minWidth="0.0" prefWidth="524.6666564941406" text="Nome" />
+                        <TableColumn fx:id="columnPreco" prefWidth="100.66668701171875" text="Preço" />
+                        <TableColumn fx:id="columnStock" prefWidth="96.0" text="Stock" />
                      </columns>
                      <effect>
                         <DropShadow>
@@ -62,14 +62,14 @@
                         </DropShadow>
                      </effect>
                   </TableView>
-                  <ImageView layoutX="475.0" layoutY="112.0">
+                  <ImageView layoutX="391.0" layoutY="97.0">
                      <image>
                         <Image url="@../icons/icon-action-search_24px.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="labelUsuario" layoutX="614.0" layoutY="30.0" prefHeight="17.0" prefWidth="119.0" />
                   <Label fx:id="labelCodProduto" layoutX="614.0" layoutY="60.0" prefHeight="17.0" prefWidth="132.0" />
-                  <Button fx:id="buttonAdicionarProduto" cancelButton="true" layoutX="211.0" layoutY="468.0" mnemonicParsing="false" onAction="#handleMenuItemAdicionarProdutoNaTabela" prefHeight="28.0" prefWidth="230.0" style="-fx-background-color: E86E58;" text="Adicionar Produto ao Inventário Parcial">
+                  <Button fx:id="buttonAdicionarProduto" cancelButton="true" layoutX="383.0" layoutY="454.0" mnemonicParsing="false" onAction="#handleMenuItemAdicionarProdutoNaTabela" prefHeight="28.0" prefWidth="230.0" style="-fx-background-color: E86E58;" text="Adicionar Produto ao Inventário Parcial">
                      <effect>
                         <InnerShadow>
                            <color>
@@ -81,7 +81,7 @@
                         <Font name="Times New Roman" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonCancelar" cancelButton="true" layoutX="602.0" layoutY="468.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="28.0" prefWidth="119.0" style="-fx-background-color: E86E58;" text="Concluir">
+                  <Button fx:id="buttonCancelar" cancelButton="true" layoutX="774.0" layoutY="454.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="28.0" prefWidth="119.0" style="-fx-background-color: E86E58;" text="Concluir">
                      <effect>
                         <InnerShadow>
                            <color>
@@ -96,7 +96,7 @@
                   <ImageView fx:id="imageviewFotoProduto" fitHeight="142.0" fitWidth="161.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="labelNomeProduto" layoutX="62.0" layoutY="114.0" />
                   <Label fx:id="labelPrecoProduto" layoutX="61.0" layoutY="128.0" />
-                  <TextField fx:id="textfieldQuantidadeProduto" layoutX="506.0" layoutY="110.0" prefHeight="25.0" prefWidth="165.0" promptText="Quantidade do Produto" style="-fx-background-color: fff;">
+                  <TextField fx:id="textfieldQuantidadeProduto" layoutX="421.0" layoutY="96.0" prefHeight="25.0" prefWidth="165.0" promptText="Quantidade do Produto" style="-fx-background-color: fff;">
                      <font>
                         <Font name="Times New Roman" size="12.0" />
                      </font>
@@ -113,7 +113,7 @@
                   <Label fx:id="labelStock" layoutX="281.0" layoutY="51.0" text="Label" />
                   <Label fx:id="labelDiferenca" layoutX="342.0" layoutY="69.0" text="Label" />
                   <Label fx:id="labelquantidadecontada" layoutX="352.0" layoutY="79.0" text="Label" />
-                  <Button fx:id="buttonAdicionarProduto1" cancelButton="true" layoutX="452.0" layoutY="468.0" mnemonicParsing="false" onAction="#handleMenuItemAdicionarProdutoGeralNaTabela" prefHeight="28.0" prefWidth="142.0" style="-fx-background-color: E86E58;" text="Inventário Geral">
+                  <Button fx:id="buttonAdicionarProduto1" cancelButton="true" layoutX="624.0" layoutY="454.0" mnemonicParsing="false" onAction="#handleMenuItemAdicionarProdutoGeralNaTabela" prefHeight="28.0" prefWidth="142.0" style="-fx-background-color: E86E58;" text="Inventário Geral">
                      <effect>
                         <InnerShadow>
                            <color>
@@ -136,7 +136,7 @@
                   </DropShadow>
                </effect>
             </Pane>
-            <Text layoutX="323.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Procurar Produtos">
+            <Text layoutX="343.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Procurar Produtos">
                <font>
                   <Font name="Times New Roman" size="24.0" />
                </font>

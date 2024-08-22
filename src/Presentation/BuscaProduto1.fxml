@@ -30,14 +30,14 @@
             <Pane prefHeight="200.0" prefWidth="1049.0" BorderPane.alignment="CENTER" />
          </top>
       </BorderPane>
-      <Pane fx:id="PanePane" layoutX="237.0" layoutY="75.0" prefHeight="561.0" prefWidth="831.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
+      <Pane fx:id="PanePane" layoutX="209.0" layoutY="75.0" prefHeight="561.0" prefWidth="859.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
          <children>
             <ImageView fitHeight="92.0" fitWidth="103.0" layoutX="695.0" layoutY="14.0">
                <image>
                   <Image url="@../icons/Free3dLogo.png" />
                </image>
             </ImageView>
-            <TextField fx:id="textfieldProcurar" layoutX="183.0" layoutY="110.0" prefHeight="25.0" prefWidth="382.0" promptText="Introduza o Nome ou o Código para procurar o produto">
+            <TextField fx:id="textfieldProcurar" layoutX="108.0" layoutY="110.0" prefHeight="25.0" prefWidth="457.0" promptText="Introduza o Nome ou o Código para procurar o produto">
                <font>
                   <Font name="Times New Roman" size="12.0" />
                </font>
@@ -45,10 +45,10 @@
                   <DropShadow />
                </effect>
             </TextField>
-            <TableView fx:id="tableviewProdutos" layoutX="183.0" layoutY="158.0" prefHeight="286.0" prefWidth="382.0" style="-fx-background-radius: 10;">
+            <TableView fx:id="tableviewProdutos" layoutX="107.0" layoutY="159.0" prefHeight="307.0" prefWidth="615.0" style="-fx-background-radius: 10;">
               <columns>
-                  <TableColumn fx:id="columnCodigoProdutoManual" prefWidth="93.33328247070312" text="Código" />
-                <TableColumn fx:id="columnNomeProduto" prefWidth="287.33331298828125" text="Nome" />
+                  <TableColumn fx:id="columnCodigoProdutoManual" prefWidth="100.66665649414062" text="Código" />
+                <TableColumn fx:id="columnNomeProduto" prefWidth="513.0" text="Nome" />
               </columns>
                <effect>
                   <DropShadow>
@@ -65,7 +65,7 @@
             </ImageView>
             <Label fx:id="labelUsuario" layoutX="614.0" layoutY="30.0" prefHeight="17.0" prefWidth="119.0" />
             <Label fx:id="labelCodProduto" layoutX="614.0" layoutY="60.0" prefHeight="17.0" prefWidth="132.0" />
-            <Button fx:id="buttonAdicionarProduto" cancelButton="true" layoutX="315.0" layoutY="494.0" mnemonicParsing="false" onAction="#handleMenuItemStockAdicionarProduto" onMouseEntered="#mudacorAdicionarProduto" onMouseExited="#exitAdicionar" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Adicionar Stock">
+            <Button fx:id="buttonAdicionarProduto" cancelButton="true" layoutX="447.0" layoutY="478.0" mnemonicParsing="false" onAction="#handleMenuItemStockAdicionarProduto" onMouseEntered="#mudacorAdicionarProduto" onMouseExited="#exitAdicionar" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Adicionar Stock">
                <effect>
                   <InnerShadow>
                      <color>
@@ -74,7 +74,7 @@
                   </InnerShadow>
                </effect>
             </Button>
-            <Button fx:id="buttonCancelar" cancelButton="true" layoutX="444.0" layoutY="494.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" onMouseEntered="#mudacorcancel" onMouseExited="#mouseexitbuttonCancel" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Cancelar">
+            <Button fx:id="buttonCancelar" cancelButton="true" layoutX="576.0" layoutY="478.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" onMouseEntered="#mudacorcancel" onMouseExited="#mouseexitbuttonCancel" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Cancelar">
                <effect>
                   <InnerShadow>
                      <color>

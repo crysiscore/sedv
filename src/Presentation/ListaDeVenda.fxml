@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="694.0" prefWidth="1339.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListaDeVendaController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="694.0" prefWidth="1339.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListaDeVendaController">
    <children>
       <BorderPane layoutX="632.0" layoutY="-218.0" prefHeight="1080.0" prefWidth="1049.0" style="-fx-background-color: #EC3A3A; -fx-background-radius: 700;">
          <top>
@@ -30,7 +30,7 @@
       </BorderPane>
       <Pane layoutX="129.0" layoutY="72.0" prefHeight="571.0" prefWidth="1088.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
          <children>
-            <TableView fx:id="tableViewListaProdutos" layoutX="111.0" layoutY="173.0" prefHeight="299.0" prefWidth="834.0" style="-fx-background-radius: 10;">
+            <TableView fx:id="tableViewListaProdutos" layoutX="111.0" layoutY="134.0" prefHeight="383.0" prefWidth="834.0" style="-fx-background-radius: 10;">
                <columns>
                   <TableColumn fx:id="tableColumnCodigo" prefWidth="85.0" text="Referência" />
                   <TableColumn fx:id="tableColumnNome" prefWidth="98.0" text="Data" />
@@ -45,8 +45,8 @@
                   <DropShadow />
                </effect>
             </TableView>
-            <TextField fx:id="textFieldPesquisaProdutos" layoutX="111.0" layoutY="101.0" prefHeight="25.0" prefWidth="366.0" promptText="Introduza a referência ou o  nome do cliente para procurar" style="-fx-background-radius: 12;" />
-            <ImageView layoutX="446.0" layoutY="101.0">
+            <TextField fx:id="textFieldPesquisaProdutos" layoutX="111.0" layoutY="84.0" prefHeight="25.0" prefWidth="366.0" promptText="Introduza a referência ou o  nome do cliente para procurar" style="-fx-background-radius: 12;" />
+            <ImageView layoutX="446.0" layoutY="84.0">
                <image>
                   <Image url="@../icons/icon-action-search_24px.png" />
                </image>
