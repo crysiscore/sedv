@@ -30,31 +30,31 @@
             </DropShadow>
          </effect>
       </BorderPane>
-      <Pane layoutX="173.0" layoutY="75.0" prefHeight="571.0" prefWidth="894.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
+      <Pane layoutX="173.0" layoutY="75.0" prefHeight="549.0" prefWidth="894.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
          <children>
-            <TableView fx:id="tableViewListaInventario" layoutX="224.0" layoutY="154.0" prefHeight="306.0" prefWidth="449.0" style="-fx-background-radius: 10;">
+            <TableView fx:id="tableViewListaInventario" layoutX="128.0" layoutY="137.0" prefHeight="329.0" prefWidth="646.0" style="-fx-background-radius: 10;">
                <columns>
-                  <TableColumn fx:id="tableColumnCodigoInventario" prefWidth="64.0" text="Codigo" />
-                  <TableColumn fx:id="tableColumnData" prefWidth="144.00006103515625" text="Data" />
-                  <TableColumn fx:id="tableColumnTIpoInventario" prefWidth="119.33331298828125" text="Tipo" />
-                  <TableColumn fx:id="tableColumnUsuario" prefWidth="119.6666259765625" text="Usuário" />
+                  <TableColumn fx:id="tableColumnCodigoInventario" prefWidth="126.66665649414062" text="Codigo" />
+                  <TableColumn fx:id="tableColumnData" prefWidth="162.66668701171875" text="Data" />
+                  <TableColumn fx:id="tableColumnTIpoInventario" prefWidth="187.3333740234375" text="Tipo" />
+                  <TableColumn fx:id="tableColumnUsuario" prefWidth="169.33331298828125" text="Usuário" />
                </columns>
                <effect>
                   <DropShadow />
                </effect>
             </TableView>
-            <TextField fx:id="textFieldPesquisaProdutos" layoutX="224.0" layoutY="67.0" prefHeight="25.0" prefWidth="230.0" promptText="Pesquise pelo Usuário ou Data" />
+            <TextField fx:id="textFieldPesquisaProdutos" layoutX="128.0" layoutY="92.0" prefHeight="25.0" prefWidth="230.0" promptText="Pesquise pelo Usuário ou Data" />
             <ImageView fitHeight="84.0" fitWidth="92.0" layoutX="788.0" layoutY="11.0">
                <image>
                   <Image url="@../icons/Free3dLogo.png" />
                </image>
             </ImageView>
-            <ImageView layoutX="427.0" layoutY="68.0">
+            <ImageView layoutX="331.0" layoutY="93.0">
                <image>
                   <Image url="@../icons/icon-action-search_24px.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnDetalhesInventario" layoutX="439.0" layoutY="479.0" mnemonicParsing="false" onAction="#handleDetalhesInventario" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Visualizar Inventário" textFill="#141414">
+            <Button fx:id="btnDetalhesInventario" layoutX="541.0" layoutY="487.0" mnemonicParsing="false" onAction="#handleDetalhesInventario" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Visualizar Inventário" textFill="#141414">
                <effect>
                   <InnerShadow>
                      <color>
@@ -75,7 +75,7 @@
             <Label fx:id="labelCodFuncionario" layoutX="763.0" layoutY="53.0" />
             <Label fx:id="labelCodInventario" layoutX="356.0" layoutY="493.0" />
             <Label fx:id="labelcliente" layoutX="392.0" layoutY="501.0" prefHeight="17.0" prefWidth="107.0" />
-            <Button fx:id="BtnSair" layoutX="565.0" layoutY="479.0" mnemonicParsing="false" onAction="#SairButtonOnAction" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Sair">
+            <Button fx:id="BtnSair" layoutX="667.0" layoutY="487.0" mnemonicParsing="false" onAction="#SairButtonOnAction" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Sair">
                <effect>
                   <InnerShadow>
                      <color>

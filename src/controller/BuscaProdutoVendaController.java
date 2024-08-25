@@ -222,7 +222,7 @@ public class BuscaProdutoVendaController implements Initializable {
                  tableviewProdutos.setItems(sortdData);
              } catch (SQLException ex) {
                  Logger.getLogger(BuscaProdutosController.class.getName()).log(Level.SEVERE, null, ex);
-             }
+             } 
 
       
 

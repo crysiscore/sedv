@@ -18,9 +18,9 @@
 
 <AnchorPane id="AnchorPane" prefHeight="652.0" prefWidth="990.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InventarioComProdutosController">
    <children>
-      <AnchorPane fx:id="anchorPane1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="1370.0" style="-fx-background-color: #E9EEEE;">
+      <AnchorPane fx:id="anchorPane1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="1305.0" style="-fx-background-color: #E9EEEE;">
          <children>
-            <BorderPane layoutX="632.0" layoutY="-218.0" prefHeight="1080.0" prefWidth="690.0" style="-fx-background-color: #EC3A3A; -fx-background-radius: 700;">
+            <BorderPane layoutX="632.0" layoutY="-218.0" prefHeight="1080.0" prefWidth="721.0" style="-fx-background-color: #EC3A3A; -fx-background-radius: 700;">
                <top>
                   <Pane prefHeight="200.0" prefWidth="1049.0" BorderPane.alignment="CENTER" />
                </top>
@@ -32,27 +32,27 @@
                   </DropShadow>
                </effect>
             </BorderPane>
-            <Pane fx:id="buttonCancelaVenda" layoutX="185.0" layoutY="57.0" prefHeight="549.0" prefWidth="906.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
+            <Pane fx:id="buttonCancelaVenda" layoutX="114.0" layoutY="54.0" prefHeight="559.0" prefWidth="1072.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
                <children>
-                  <TableView fx:id="tableViewListaProdutos" layoutX="108.0" layoutY="187.0" prefHeight="284.0" prefWidth="555.0" style="-fx-background-radius: 10;">
+                  <TableView fx:id="tableViewListaProdutos" layoutX="108.0" layoutY="153.0" prefHeight="318.0" prefWidth="847.0" style="-fx-background-radius: 10;">
                      <columns>
                         <TableColumn fx:id="tableColumnCodigo" prefWidth="57.33331298828125" text="Código" />
-                        <TableColumn fx:id="tableColumnNome" prefWidth="140.00001525878906" text="Nome" />
-                        <TableColumn fx:id="tableColumnStcokExistente" prefWidth="138.00006103515625" text="Quantidade Existente" />
-                        <TableColumn fx:id="tableColumnStcokExistenteContada" prefWidth="133.99996948242188" text="Quantidade Contada" />
-                        <TableColumn fx:id="tableColumnDiferença" prefWidth="83.0" text="Diferença" />
-                        <TableColumn fx:id="tableColumnCodigoBD" prefWidth="57.33331298828125" text="Código" visible="false" />
+                        <TableColumn fx:id="tableColumnNome" prefWidth="406.6667175292969" text="Nome" />
+                        <TableColumn fx:id="tableColumnStcokExistente" prefWidth="145.33331298828125" text="Quantidade Existente" />
+                        <TableColumn fx:id="tableColumnStcokExistenteContada" prefWidth="146.66668701171875" text="Quantidade Contada" />
+                        <TableColumn fx:id="tableColumnDiferença" prefWidth="90.66656494140625" text="Diferença" />
+                        <TableColumn fx:id="tableColumnCodigoBD" minWidth="0.0" prefWidth="0.0" text="Código" visible="false" />
                      </columns>
                      <effect>
                         <DropShadow />
                      </effect>
                   </TableView>
-                  <ImageView fitHeight="84.0" fitWidth="92.0" layoutX="800.0" layoutY="15.0">
+                  <ImageView fitHeight="91.0" fitWidth="99.0" layoutX="973.0" layoutY="8.0">
                      <image>
                         <Image url="@../icons/Free3dLogo.png" />
                      </image>
                   </ImageView>
-                  <Pane layoutX="108.0" layoutY="86.0" prefHeight="65.0" prefWidth="555.0" style="-fx-background-color: fff; -fx-background-radius: 12;">
+                  <Pane layoutX="108.0" layoutY="66.0" prefHeight="65.0" prefWidth="555.0" style="-fx-background-color: fff; -fx-background-radius: 12;">
                      <effect>
                         <DropShadow>
                            <color>
@@ -92,7 +92,7 @@
                   </Label>
                   <DatePicker fx:id="DatePickerDATA" layoutX="488.0" layoutY="522.0" promptText="Insira a Data" />
                   <Label fx:id="labelNomeUsuario" layoutX="699.0" layoutY="57.0" prefHeight="17.0" prefWidth="113.0" />
-                  <Button fx:id="btnRemover" layoutX="367.0" layoutY="487.0" mnemonicParsing="false" onAction="#removerProdutodaTabela" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: E86E58;" text="Remover">
+                  <Button fx:id="btnRemover" layoutX="659.0" layoutY="484.0" mnemonicParsing="false" onAction="#removerProdutodaTabela" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: E86E58;" text="Remover">
                      <effect>
                         <DropShadow>
                            <color>
@@ -104,7 +104,7 @@
                         <Font name="Times New Roman" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="Imprimir_folha_inventário" layoutX="204.0" layoutY="487.0" mnemonicParsing="false" onAction="#handlePrintPre_InventarioExcel" prefHeight="27.0" prefWidth="158.0" style="-fx-background-color: E86E58;" text="Imprimir folha de Inventário">
+                  <Button fx:id="Imprimir_folha_inventário" layoutX="496.0" layoutY="484.0" mnemonicParsing="false" onAction="#handlePrintPre_InventarioExcel" prefHeight="27.0" prefWidth="158.0" style="-fx-background-color: E86E58;" text="Imprimir folha de Inventário">
                      <effect>
                         <DropShadow>
                            <color>
@@ -116,7 +116,7 @@
                         <Font name="Times New Roman" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnActualiar" layoutX="112.0" layoutY="487.0" mnemonicParsing="false" onAction="#ActualizarStock" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: E86E58;" text="Atualizar">
+                  <Button fx:id="btnActualiar" layoutX="404.0" layoutY="484.0" mnemonicParsing="false" onAction="#ActualizarStock" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: E86E58;" text="Atualizar">
                      <effect>
                         <DropShadow>
                            <color>
@@ -131,7 +131,7 @@
                   <Label fx:id="labelCodigoUser" layoutX="94.0" layoutY="25.0" text="Label" />
                   <Label fx:id="labelNomeUser" layoutX="772.0" layoutY="48.0" text="Label" />
                   <Label fx:id="labelParcial" layoutX="500.0" layoutY="48.0" text="Label" />
-                  <Button fx:id="buttonConcluir" layoutX="457.0" layoutY="487.0" mnemonicParsing="false" onAction="#SairButtonOnAction" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: E86E58;" text="Concluir">
+                  <Button fx:id="buttonConcluir" layoutX="749.0" layoutY="484.0" mnemonicParsing="false" onAction="#SairButtonOnAction" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: E86E58;" text="Concluir">
                      <effect>
                         <DropShadow>
                            <color>
@@ -143,7 +143,7 @@
                         <Font name="Times New Roman" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="ButtonLista_Inventario" layoutX="550.0" layoutY="487.0" mnemonicParsing="false" onAction="#handleMenuItemListaInventario" prefHeight="27.0" prefWidth="113.0" style="-fx-background-color: E86E58;" text="Lista de Inventário">
+                  <Button fx:id="ButtonLista_Inventario" layoutX="842.0" layoutY="484.0" mnemonicParsing="false" onAction="#handleMenuItemListaInventario" prefHeight="27.0" prefWidth="113.0" style="-fx-background-color: E86E58;" text="Lista de Inventário">
                      <effect>
                         <DropShadow>
                            <color>
@@ -164,7 +164,7 @@
                   </DropShadow>
                </effect>
             </Pane>
-            <Text layoutX="239.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventário">
+            <Text layoutX="280.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventário">
                <font>
                   <Font name="Times New Roman" size="24.0" />
                </font>

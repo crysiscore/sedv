@@ -47,3 +47,8 @@ C:\\sedv\\Relatorios\\Pre_Inventario.xlsx
 # other dir
 /db
 
+# Build
+
+build.xml
+
+.gitignore

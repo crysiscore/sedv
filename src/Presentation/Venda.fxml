@@ -43,13 +43,13 @@
             </BorderPane>
             <Pane fx:id="buttonCancelaVenda" layoutX="51.0" layoutY="47.0" prefHeight="559.0" prefWidth="1105.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
                <children>
-                  <TableView fx:id="tableViewListaProdutos" layoutX="108.0" layoutY="209.0" prefHeight="284.0" prefWidth="555.0" style="-fx-background-radius: 10;">
+                  <TableView fx:id="tableViewListaProdutos" layoutX="65.0" layoutY="209.0" prefHeight="284.0" prefWidth="598.0" style="-fx-background-radius: 10;">
                      <columns>
-                        <TableColumn fx:id="tableColumnNome" prefWidth="148.0" text="Nome" />
-                        <TableColumn fx:id="tableColumnPreco" prefWidth="99.99996948242188" text="Preço" />
-                        <TableColumn fx:id="tableColumnStock" prefWidth="102.66668701171875" text="Stock" />
-                        <TableColumn fx:id="tableColumnQuantidade" prefWidth="99.33331298828125" text="Quantidade" />
-                        <TableColumn fx:id="tableColumnSubtotal" minWidth="0.0" prefWidth="104.0" text="Subtotal" />
+                        <TableColumn fx:id="tableColumnNome" prefWidth="268.66664123535156" text="Nome" />
+                        <TableColumn fx:id="tableColumnPreco" prefWidth="82.00006103515625" text="Preço" />
+                        <TableColumn fx:id="tableColumnStock" prefWidth="85.33328247070312" text="Stock" />
+                        <TableColumn fx:id="tableColumnQuantidade" prefWidth="79.33331298828125" text="Quantidade" />
+                        <TableColumn fx:id="tableColumnSubtotal" minWidth="0.0" prefWidth="84.00006103515625" text="Subtotal" />
                      </columns>
                      <effect>
                         <DropShadow />
@@ -193,7 +193,7 @@
                         </ComboBox>
                      </children>
                   </Pane>
-                  <Pane layoutX="108.0" layoutY="108.0" prefHeight="65.0" prefWidth="555.0" style="-fx-background-color: fff; -fx-background-radius: 12;">
+                  <Pane layoutX="65.0" layoutY="108.0" prefHeight="65.0" prefWidth="598.0" style="-fx-background-color: fff; -fx-background-radius: 12;">
                      <effect>
                         <DropShadow>
                            <color>
@@ -202,17 +202,17 @@
                         </DropShadow>
                      </effect>
                      <children>
-                        <TextField fx:id="textFieldPesquisaProdutos1" layoutX="14.0" layoutY="20.0" prefHeight="25.0" prefWidth="296.0" promptText="Introduza o nome ou código do produto para procurar" style="-fx-background-radius: 12;">
+                        <TextField fx:id="textFieldPesquisaProdutos1" layoutX="24.0" layoutY="21.0" prefHeight="25.0" prefWidth="330.0" promptText="Introduza o nome ou código do produto para procurar" style="-fx-background-radius: 12;">
                            <font>
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </TextField>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="286.0" layoutY="21.0">
+                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="330.0" layoutY="22.0">
                            <image>
                               <Image url="@../icons/icon-action-search_24px.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="btnAdicionarProduto" layoutX="428.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleMenuItemAdicionarProduto" prefHeight="27.0" prefWidth="113.0" style="-fx-background-radius: 10; -fx-background-color: E86E58;" text="Procurar Produto">
+                        <Button fx:id="btnAdicionarProduto" layoutX="459.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleMenuItemAdicionarProduto" prefHeight="27.0" prefWidth="113.0" style="-fx-background-radius: 10; -fx-background-color: E86E58;" text="Procurar Produto">
                            <effect>
                               <DropShadow>
                                  <color>
@@ -224,7 +224,7 @@
                               <Font name="Times New Roman" size="12.0" />
                            </font>
                         </Button>
-                        <TextField fx:id="textFieldQuantty" layoutX="334.0" layoutY="20.0" prefHeight="25.0" prefWidth="72.0" promptText="Quantidade" style="-fx-background-radius: 12;">
+                        <TextField fx:id="textFieldQuantty" layoutX="375.0" layoutY="21.0" prefHeight="25.0" prefWidth="72.0" promptText="Quantidade" style="-fx-background-radius: 12;">
                            <font>
                               <Font name="Times New Roman" size="12.0" />
                            </font>

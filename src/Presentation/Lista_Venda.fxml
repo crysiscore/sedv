@@ -30,23 +30,23 @@
             </DropShadow>
          </effect>
       </BorderPane>
-      <Pane layoutX="173.0" layoutY="75.0" prefHeight="571.0" prefWidth="1027.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
+      <Pane layoutX="129.0" layoutY="75.0" prefHeight="571.0" prefWidth="1071.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
          <children>
-            <TableView fx:id="tableViewListaVenda" layoutX="132.0" layoutY="150.0" prefHeight="306.0" prefWidth="780.0" style="-fx-background-radius: 10;">
+            <TableView fx:id="tableViewListaVenda" layoutX="83.0" layoutY="137.0" prefHeight="334.0" prefWidth="851.0" style="-fx-background-radius: 10;">
                <columns>
-                  <TableColumn fx:id="tableColumnCodigo" prefWidth="69.33331298828125" text="Referência" />
-                  <TableColumn fx:id="tableColumnData" prefWidth="118.66668701171875" text="Data" />
-                  <TableColumn fx:id="tableColumnTotal" prefWidth="137.33328247070312" text="Total" />
-                  <TableColumn fx:id="tableColumnCliente" prefWidth="116.66668701171875" text="Cliente" />
-                  <TableColumn fx:id="tableColumnNuit" prefWidth="110.666748046875" text="Nuit" />
-                  <TableColumn fx:id="tableColumnUsuario" prefWidth="91.99993896484375" text="Usuário" />
-                  <TableColumn fx:id="Forma_Pagamento" prefWidth="135.33343505859375" text="Forma de Pagamento" />
+                  <TableColumn fx:id="tableColumnCodigo" prefWidth="97.33332824707031" text="Referência" />
+                  <TableColumn fx:id="tableColumnData" prefWidth="124.66668701171875" text="Data" />
+                  <TableColumn fx:id="tableColumnTotal" prefWidth="121.33331298828125" text="Total" />
+                  <TableColumn fx:id="tableColumnCliente" prefWidth="118.6666259765625" text="Cliente" />
+                  <TableColumn fx:id="tableColumnNuit" prefWidth="107.3333740234375" text="Nuit" />
+                  <TableColumn fx:id="tableColumnUsuario" prefWidth="102.6666259765625" text="Usuário" />
+                  <TableColumn fx:id="Forma_Pagamento" prefWidth="179.99993896484375" text="Forma de Pagamento" />
                </columns>
                <effect>
                   <DropShadow />
                </effect>
             </TableView>
-            <Button fx:id="BtnNovaVenda" layoutX="685.0" layoutY="493.0" mnemonicParsing="false" onAction="#handleMenuItemVendaAdicionarVenda" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Nova Venda">
+            <Button fx:id="BtnNovaVenda" layoutX="710.0" layoutY="487.0" mnemonicParsing="false" onAction="#handleMenuItemVendaAdicionarVenda" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Nova Venda">
                <effect>
                   <InnerShadow>
                      <color>
@@ -58,18 +58,18 @@
                   <Font name="Times New Roman" size="12.0" />
                </font>
             </Button>
-            <TextField fx:id="textFieldPesquisaProdutos" layoutX="132.0" layoutY="63.0" prefHeight="25.0" prefWidth="346.0" promptText="Pesquise por Nuit, Data, Mês ou ano em forma numérica" />
+            <TextField fx:id="textFieldPesquisaProdutos" layoutX="83.0" layoutY="92.0" prefHeight="25.0" prefWidth="346.0" promptText="Pesquise por Nuit, Data, Mês ou ano em forma numérica" />
             <ImageView fitHeight="84.0" fitWidth="92.0" layoutX="929.0" layoutY="10.0">
                <image>
                   <Image url="@../icons/Free3dLogo.png" />
                </image>
             </ImageView>
-            <ImageView layoutX="454.0" layoutY="64.0">
+            <ImageView layoutX="405.0" layoutY="93.0">
                <image>
                   <Image url="@../icons/icon-action-search_24px.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnDetalhesVenda" layoutX="571.0" layoutY="493.0" mnemonicParsing="false" onAction="#handleDetalhesVenda" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Detalhes" textFill="#141414">
+            <Button fx:id="btnDetalhesVenda" layoutX="596.0" layoutY="487.0" mnemonicParsing="false" onAction="#handleDetalhesVenda" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Detalhes" textFill="#141414">
                <effect>
                   <InnerShadow>
                      <color>
@@ -89,7 +89,7 @@
             <Label fx:id="labelCodFuncionario" layoutX="763.0" layoutY="53.0" />
             <Label fx:id="labelCodVenda" layoutX="356.0" layoutY="493.0" />
             <Label fx:id="labelcliente" layoutX="392.0" layoutY="501.0" prefHeight="17.0" prefWidth="107.0" />
-            <Button fx:id="BtnSair" layoutX="798.0" layoutY="493.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Sair">
+            <Button fx:id="BtnSair" layoutX="823.0" layoutY="487.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="28.0" prefWidth="107.0" style="-fx-background-radius: 13; -fx-background-color: fff;" text="Sair">
                <effect>
                   <InnerShadow>
                      <color>

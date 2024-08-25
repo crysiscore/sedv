@@ -26,7 +26,7 @@
             <Pane prefHeight="200.0" prefWidth="1049.0" BorderPane.alignment="CENTER" />
          </top>
       </BorderPane>
-      <Text layoutX="116.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data de Venda">
+      <Text layoutX="201.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data de Venda">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
@@ -38,7 +38,7 @@
             </DropShadow>
          </effect>
       </Text>
-      <Pane layoutX="62.0" layoutY="89.0" prefHeight="265.0" prefWidth="448.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
+      <Pane layoutX="93.0" layoutY="91.0" prefHeight="265.0" prefWidth="448.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
          <children>
             <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="389.0" layoutY="7.0">
                <image>

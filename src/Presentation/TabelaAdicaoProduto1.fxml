@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1373.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TabelaAdicaoProdutoController">
+<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1373.0" style="-fx-background-color: #E9EEEE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TabelaAdicaoProdutoController">
    <children>
       <BorderPane layoutX="632.0" layoutY="-218.0" prefHeight="1080.0" prefWidth="1049.0" style="-fx-background-color: #EC3A3A; -fx-background-radius: 700;">
          <effect>
@@ -31,7 +31,7 @@
       </BorderPane>
       <Pane fx:id="PanePane" layoutX="173.0" layoutY="75.0" prefHeight="586.0" prefWidth="1003.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
          <children>
-            <Button fx:id="buttonRemover" cancelButton="true" layoutX="586.0" layoutY="486.0" mnemonicParsing="false" onAction="#removerStockdaTabela" onMouseEntered="#mudacorRemoverEntered" onMouseExited="#mouseexitRemoverRegistar" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Remover">
+            <Button fx:id="buttonRemover" cancelButton="true" layoutX="642.0" layoutY="464.0" mnemonicParsing="false" onAction="#removerStockdaTabela" onMouseEntered="#mudacorRemoverEntered" onMouseExited="#mouseexitRemoverRegistar" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Remover">
                <effect>
                   <InnerShadow>
                      <color>
@@ -40,19 +40,19 @@
                   </InnerShadow>
                </effect>
             </Button>
-            <TableView fx:id="tableviewAdicionarStock" layoutX="132.0" layoutY="138.0" prefHeight="306.0" prefWidth="702.0" style="-fx-background-radius: 10;">
+            <TableView fx:id="tableviewAdicionarStock" layoutX="133.0" layoutY="133.0" prefHeight="316.0" prefWidth="757.0" style="-fx-background-radius: 10;">
                <columns>
-                  <TableColumn fx:id="columnCodigoProduto" prefWidth="121.0" text="Código do Produto" />
-                  <TableColumn fx:id="columnQuantidade" prefWidth="139.0" text="Quantidade" />
-                  <TableColumn fx:id="columnData" prefWidth="142.0" text="Data" />
-                  <TableColumn fx:id="columnNumeroLote" prefWidth="145.0" text="Número de Lote" />
-                  <TableColumn fx:id="columnFabricante" prefWidth="154.0" text="Fabricante" />
+                  <TableColumn fx:id="columnCodigoProduto" prefWidth="198.0" text="Código do Produto" />
+                  <TableColumn fx:id="columnQuantidade" prefWidth="167.3333740234375" text="Quantidade" />
+                  <TableColumn fx:id="columnData" prefWidth="127.3333740234375" text="Data" />
+                  <TableColumn fx:id="columnNumeroLote" prefWidth="138.6666259765625" text="Número de Lote" />
+                  <TableColumn fx:id="columnFabricante" prefWidth="125.33343505859375" text="Fabricante" />
                </columns>
                <effect>
                   <DropShadow />
                </effect>
             </TableView>
-            <Button fx:id="buittonRegistarStock" cancelButton="true" layoutX="456.0" layoutY="486.0" mnemonicParsing="false" onAction="#handleMenuItemRegistarStock" onMouseEntered="#mudacorRegistarEntered" onMouseExited="#mouseexitbuttonRegistar" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Gravar Stock">
+            <Button fx:id="buittonRegistarStock" cancelButton="true" layoutX="512.0" layoutY="464.0" mnemonicParsing="false" onAction="#handleMenuItemRegistarStock" onMouseEntered="#mudacorRegistarEntered" onMouseExited="#mouseexitbuttonRegistar" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Gravar Stock">
                <effect>
                   <InnerShadow>
                      <color>
@@ -61,7 +61,7 @@
                   </InnerShadow>
                </effect>
             </Button>
-            <Button fx:id="buttonCancelar" cancelButton="true" layoutX="715.0" layoutY="486.0" mnemonicParsing="false" onAction="#CancelarButtonOnAction" onMouseEntered="#mudacorCancelarEntered" onMouseExited="#mouseexitCancelarRegistar" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Cancelar">
+            <Button fx:id="buttonCancelar" cancelButton="true" layoutX="771.0" layoutY="464.0" mnemonicParsing="false" onAction="#CancelarButtonOnAction" onMouseEntered="#mudacorCancelarEntered" onMouseExited="#mouseexitCancelarRegistar" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Cancelar">
                <effect>
                   <InnerShadow>
                      <color>
@@ -70,7 +70,7 @@
                   </InnerShadow>
                </effect>
             </Button>
-            <ImageView fitHeight="107.0" fitWidth="119.0" layoutX="884.0" layoutY="5.0">
+            <ImageView fitHeight="85.0" fitWidth="89.0" layoutX="914.0" layoutY="5.0">
                <image>
                   <Image url="@../icons/Free3dLogo.png" />
                </image>
@@ -82,7 +82,7 @@
                   <Font name="Times New Roman" size="12.0" />
                </font>
             </Label>
-            <Button fx:id="buttonAdicionarStock" cancelButton="true" layoutX="327.0" layoutY="486.0" mnemonicParsing="false" onAction="#handleMenuItemStockAdicionar" onMouseEntered="#mudacorAdicionarEntered" onMouseExited="#mouseexitAdicionarRegistar" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Adicionar Produto">
+            <Button fx:id="buttonAdicionarStock" cancelButton="true" layoutX="383.0" layoutY="464.0" mnemonicParsing="false" onAction="#handleMenuItemStockAdicionar" onMouseEntered="#mudacorAdicionarEntered" onMouseExited="#mouseexitAdicionarRegistar" prefHeight="28.0" prefWidth="119.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Adicionar Produto">
                <effect>
                   <InnerShadow>
                      <color>
@@ -100,7 +100,7 @@
             </DropShadow>
          </effect>
       </Pane>
-      <Text layoutX="236.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registo de Stock">
+      <Text layoutX="490.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registo de Stock">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
