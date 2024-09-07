@@ -241,8 +241,8 @@ public class VendaController implements Initializable {
         labelname.setVisible(false);
          tableViewListaProdutos.setEditable(true);
         btnCalcular.setVisible(false);
-        DatePickerDATA.setDisable(true);
-        DatePickerDATA.setVisible(false);
+        //DatePickerDATA.setDisable(true);
+        //DatePickerDATA.setVisible(false);
         labelCash.textProperty().bind(textfieldPago.textProperty());
         comboBoxFormaPagamento.setItems(FXCollections.observableArrayList(
                 "MPESA", "CASH", "CARTÃO DE CRÉDITO"));
@@ -500,112 +500,81 @@ public class VendaController implements Initializable {
         alert.showAndWait(); // Show the dialog and wait for the user to close it
     }
 
-    @FXML
-    public void handleMenuItemRegistarVenda() throws IOException, SQLException {
+   @FXML
+public void handleMenuItemRegistarVenda() throws IOException, SQLException {
 
-      if(  verificadados()){
-    
-        
+    if (verificadados()) {
+        // Lógica se verificadados() retornar verdadeiro
     } else {
-
         VendaDao dao = new VendaDao();
 
-        DatePickerDATA.setValue(LocalDate.now());
+        // Obtém a data selecionada no DatePicker
+        LocalDate dataSelecionada = DatePickerDATA.getValue();
 
-        if (textfieldNomeCliente.getText().isEmpty() && textfieldNuitCliente.getText().isEmpty()) {
-            Date Data_Venda = java.sql.Date.valueOf(DatePickerDATA.getValue());
-            Double Total = Double.parseDouble(labelTotal.getText());
-            Integer Cod_Usuario = Integer.parseInt(labelNomeUsuario.getText());
-            String Forma_Pagamento = comboBoxFormaPagamento.getSelectionModel().getSelectedItem();
-
-           
-            if (tableViewListaProdutos.getItems().isEmpty()) {
-                DialogUtil.showErrorMessage("SELECIONE UM PRODUTO!", "AVISO");
-                
-
-            } else  if (this.comboBoxFormaPagamento.getSelectionModel().isEmpty()) {
-            
-   
-            DialogUtil.showInfoMessage("SELECIONE A FORMA DE PAGAMENTO!", "Info");
-
-            } else {
-
-
-                    try {
-                        
-                    dao.RegistarDetalhesVenda(tableViewListaProdutos.getItems());
-                    //tableViewListaProdutos.getItems().clear();
-                    Venda venda = new Venda();
-                    venda.setData_Venda(Data_Venda);
-                    venda.setTotal_Venda(Total);
-                    venda.setUsuario_Cod_Funcionario(Cod_Usuario);
-                    venda.setForma_Pagamento(Forma_Pagamento);
-
-                    ResultSet rs = dao.RegistarVendasemnuitesemnome(venda);
-                    
-                    tableViewListaProdutos.getItems().clear();
-                    limparcampos();
-                    DialogUtil.showInfoMessage("A venda foi Cadastrada com Sucesso!", "Info");
-                    
-                } catch (Exception e) {
-                    
-                    DialogUtil.showErrorMessage(" Erro ao registar venda: " + e.getMessage(), "ERRO");
-                }
-                    
-                   //TODO 
-                    //printRecibo();
-
-   
-            }
-
-        } else {
-
-            Date Data_Venda = java.sql.Date.valueOf(DatePickerDATA.getValue());
-            Double Total = Double.parseDouble(labelTotal.getText());
-            String Cliente = textfieldNomeCliente.getText();
-            Integer Cod_Usuario = Integer.parseInt(labelNomeUsuario.getText());
-            Integer Nuit = Integer.parseInt(textfieldNuitCliente.getText());
-            String Forma_Pagamento = comboBoxFormaPagamento.getSelectionModel().getSelectedItem();
-
-            if (tableViewListaProdutos.getItems().isEmpty()) {
-                DialogUtil.showErrorMessage("SELECIONE UM PRODUTO!", "AVISO");
-                
-
-            } else  if (this.comboBoxFormaPagamento.getSelectionModel().isEmpty()) {
-            
-            DialogUtil.showInfoMessage("SELECIONE A FORMA DE PAGAMENTO!", "Info");
-
-
-            
-        } else {
-
-
-                    dao.RegistarDetalhesVenda(tableViewListaProdutos.getItems());
-                    //tableViewListaProdutos.getItems().clear();
-                    Venda venda = new Venda();
-                    venda.setData_Venda(Data_Venda);
-                    venda.setTotal_Venda(Total);
-                    venda.setNome_cliente(Cliente);
-                    venda.setUsuario_Cod_Funcionario(Cod_Usuario);
-                    venda.setNuit_cliente(Nuit);
-                    venda.setForma_Pagamento(Forma_Pagamento);
-
-                    dao.RegistarVenda(venda);
-                    
-                    tableViewListaProdutos.getItems().clear();
-                     DialogUtil.showInfoMessage("A venda foi Cadastrada com Sucesso!", "Info");
-                    
-                    //TODO
-                    //printRecibo();
-                     limparcampos();
-
-              
-            }
-
+        // Verifica se a data não foi selecionada e se os campos de cliente estão vazios
+        if (dataSelecionada == null && textfieldNuitCliente.getText().isEmpty() && textfieldNomeCliente.getText().isEmpty()) {
+            // Se a data não foi selecionada, usa a data atual
+            dataSelecionada = LocalDate.now();
+            DatePickerDATA.setValue(dataSelecionada); // Opcional: Atualiza o DatePicker para mostrar a data atual
         }
-        
-    } }
- 
+
+        // Converte a data selecionada para o formato java.sql.Date
+        Date Data_Venda = java.sql.Date.valueOf(dataSelecionada);
+
+        // Continua com o processamento da venda
+        Double Total = Double.parseDouble(labelTotal.getText());
+        Integer Cod_Usuario = Integer.parseInt(labelNomeUsuario.getText());
+        String Forma_Pagamento = comboBoxFormaPagamento.getSelectionModel().getSelectedItem();
+
+        // Verifica se a tabela de produtos está vazia
+        if (tableViewListaProdutos.getItems().isEmpty()) {
+            DialogUtil.showErrorMessage("SELECIONE UM PRODUTO!", "AVISO");
+        } 
+        // Verifica se a forma de pagamento foi selecionada
+        else if (this.comboBoxFormaPagamento.getSelectionModel().isEmpty()) {
+            DialogUtil.showInfoMessage("SELECIONE A FORMA DE PAGAMENTO!", "Info");
+        } 
+        else {
+            try {
+                // Registra os detalhes da venda
+                dao.RegistarDetalhesVenda(tableViewListaProdutos.getItems());
+
+                // Cria um objeto Venda e define seus atributos
+                Venda venda = new Venda();
+                venda.setData_Venda(Data_Venda);
+                venda.setTotal_Venda(Total);
+                venda.setUsuario_Cod_Funcionario(Cod_Usuario);
+                venda.setForma_Pagamento(Forma_Pagamento);
+
+                // Verifica se os campos de nome do cliente e nuit estão vazios para determinar o registro correto
+                if (textfieldNomeCliente.getText().isEmpty() && textfieldNuitCliente.getText().isEmpty()) {
+                    // Registra venda sem cliente e nuit
+                    ResultSet rs = dao.RegistarVendasemnuitesemnome(venda);
+                } else {
+                    // Adiciona dados do cliente na venda
+                    String Cliente = textfieldNomeCliente.getText();
+                    Integer Nuit = Integer.parseInt(textfieldNuitCliente.getText());
+                    venda.setNome_cliente(Cliente);
+                    venda.setNuit_cliente(Nuit);
+
+                    // Registra venda com cliente e nuit
+                    dao.RegistarVenda(venda);
+                }
+
+                // Limpa a tabela de produtos e campos após o registro
+                tableViewListaProdutos.getItems().clear();
+                limparcampos();
+                DialogUtil.showInfoMessage("A venda foi Cadastrada com Sucesso!", "Info");
+
+                // TODO: printRecibo();
+                
+            } catch (Exception e) {
+                DialogUtil.showErrorMessage("Erro ao registar venda: " + e.getMessage(), "ERRO");
+            }
+        }
+    }
+}
+
     
     public void handleMenuAlert() {
         

@@ -39,14 +39,14 @@
                   </DropShadow>
                </effect>
             </Text>
-            <Pane layoutX="61.0" layoutY="86.0" prefHeight="209.0" prefWidth="395.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
+            <Pane layoutX="48.0" layoutY="82.0" prefHeight="213.0" prefWidth="433.0" style="-fx-background-color: fff; -fx-background-radius: 50;">
                <children>
-                  <ImageView fitHeight="52.0" fitWidth="57.0" layoutX="328.0" layoutY="8.0">
+                  <ImageView fitHeight="52.0" fitWidth="57.0" layoutX="357.0" layoutY="14.0">
                      <image>
                         <Image url="@../icons/Free3dLogo.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="ButtonImprimirVenda" layoutX="23.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleImprimirListaDeProdutos" prefHeight="25.0" prefWidth="171.0" style="-fx-background-radius: 10; -fx-background-color: #E9EEEE;" text="Lista De Produtos Existentes">
+                  <Button fx:id="ButtonImprimirVenda" layoutX="43.0" layoutY="94.0" mnemonicParsing="false" onAction="#handleImprimirListaDeProdutos" prefHeight="25.0" prefWidth="212.0" style="-fx-background-radius: 10; -fx-background-color: #E9EEEE;" text="Lista De Produtos Existentes">
                      <effect>
                         <DropShadow>
                            <color>
@@ -55,7 +55,7 @@
                         </DropShadow>
                      </effect>
                   </Button>
-                  <Button fx:id="buttonCancelar1" layoutX="23.0" layoutY="54.0" mnemonicParsing="false" onAction="#handleImprimirProdutosComPoucoStockExcel" prefHeight="25.0" prefWidth="163.0" style="-fx-background-radius: 10; -fx-background-color: #E9EEEE;" text="Produtos Com Pouco Stock">
+                  <Button fx:id="buttonCancelar1" layoutX="43.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleImprimirProdutosComPoucoStockExcel" prefHeight="25.0" prefWidth="198.0" style="-fx-background-radius: 10; -fx-background-color: #E9EEEE;" text="Produtos Com Pouco Stock">
                      <effect>
                         <DropShadow>
                            <color>
@@ -64,7 +64,7 @@
                         </DropShadow>
                      </effect>
                   </Button>
-                  <Button fx:id="buttonCancelar11" layoutX="250.0" layoutY="158.0" mnemonicParsing="false" onAction="#SairButtonOnAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 10; -fx-background-color: #E9EEEE;" text="Cancelar">
+                  <Button fx:id="buttonCancelar11" layoutX="285.0" layoutY="168.0" mnemonicParsing="false" onAction="#SairButtonOnAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 10; -fx-background-color: #E9EEEE;" text="Cancelar">
                      <effect>
                         <DropShadow>
                            <color>
@@ -73,7 +73,7 @@
                         </DropShadow>
                      </effect>
                   </Button>
-                  <Button fx:id="vendaporperiodo" layoutX="23.0" layoutY="126.0" mnemonicParsing="false" onAction="#handlePrintVendaPorPeriodo" prefHeight="25.0" prefWidth="190.0" style="-fx-background-radius: 10; -fx-background-color: #E9EEEE;" text="Venda em um período de tempo">
+                  <Button fx:id="vendaporperiodo" layoutX="43.0" layoutY="130.0" mnemonicParsing="false" onAction="#handlePrintVendaPorPeriodo" prefHeight="25.0" prefWidth="242.0" style="-fx-background-radius: 10; -fx-background-color: #E9EEEE;" text="Venda em um período de tempo">
                      <effect>
                         <DropShadow>
                            <color>
