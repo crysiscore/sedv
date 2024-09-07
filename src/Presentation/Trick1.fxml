@@ -143,11 +143,11 @@
                <menus>
                   <Menu mnemonicParsing="false" text="  Relatórios">
                      <items>
-                        <MenuItem fx:id="menuItemRelatoriosVendasRecentes" mnemonicParsing="false" onAction="#handlePrintVendaRecente" text="Vendas Recentes (Hoje)" />
-                        <MenuItem fx:id="menuItemRelatoriosVendasPorData" mnemonicParsing="false" onAction="#handlePrintVendaPorData" text="Vendas por Data" />
-                        <MenuItem fx:id="menuItemRelatoriosProdutosPoucoStock" mnemonicParsing="false" onAction="#handlePrintProdutosComPoucoStock" text="Produtos com pouco Stock" />
-                        <MenuItem fx:id="menuItemProdutosExistentes" mnemonicParsing="false" onAction="#handleprintProdutosExistentes" text="Lista de Produtos Existentes" />
-                        <MenuItem fx:id="menuItemVendasPorPeriodo" mnemonicParsing="false" onAction="#handlePrintVendaPorPeriodo" text="Lista de Vendas num Período" />
+                        <MenuItem fx:id="menuItemRelatoriosVendasRecentes" disable="true" mnemonicParsing="false" onAction="#handlePrintVendaRecente" text="Vendas Recentes (Hoje)" visible="false" />
+                        <MenuItem fx:id="menuItemRelatoriosVendasPorData" disable="true" mnemonicParsing="false" onAction="#handlePrintVendaPorData" text="Vendas por Data" visible="false" />
+                        <MenuItem fx:id="menuItemRelatoriosProdutosPoucoStock" disable="true" mnemonicParsing="false" onAction="#handlePrintProdutosComPoucoStock" text="Produtos com pouco Stock" visible="false" />
+                        <MenuItem fx:id="menuItemProdutosExistentes" disable="true" mnemonicParsing="false" onAction="#handleprintProdutosExistentes" text="Lista de Produtos Existentes" visible="false" />
+                        <MenuItem fx:id="menuItemVendasPorPeriodo" mnemonicParsing="false" onAction="#handlePrintVendaPorPeriodo" text="Detalhes de Venda em um Período" />
                         <MenuItem mnemonicParsing="false" onAction="#handleMenumRelatoriosExcel" text="Relatórios em Excêl" />
                      </items>
                   </Menu>
