@@ -136,7 +136,7 @@ public class Datas_VendaController implements Initializable {
 
             // Configurar cabeçalhos
             Row headerRow = sheet.createRow(0);
-            String[] colunas = {"Código", "Cod_Produto", "Nome_Produto", "Preço", "Quantidade", "Subtotal"};
+            String[] colunas = {"# Venda","Data" , "Nome_Produto", "Preço", "Quantidade", "Subtotal"};
             for (int i = 0; i < colunas.length; i++) {
                 Cell cell = headerRow.createCell(i);
                 cell.setCellValue(colunas[i]);
@@ -149,7 +149,7 @@ public class Datas_VendaController implements Initializable {
             while (rs.next()) {
                 Row row = sheet.createRow(rowNum++);
                 row.createCell(0).setCellValue(rs.getInt("Codigo"));
-                row.createCell(1).setCellValue(rs.getInt("Cod_Produto"));
+                row.createCell(1).setCellValue(rs.getString("data_venda"));
                 row.createCell(2).setCellValue(rs.getString("Nome_Produto"));
                 row.createCell(3).setCellValue(rs.getDouble("Preco"));
                 row.createCell(4).setCellValue(rs.getInt("Quantidade"));
