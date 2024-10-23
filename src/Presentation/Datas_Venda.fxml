@@ -61,7 +61,7 @@
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Text>
-                  <Button fx:id="ButtonImprimirVenda" layoutX="128.0" layoutY="206.0" mnemonicParsing="false" onAction="#handlePrintVendaPorData1" prefHeight="25.0" prefWidth="108.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Imprimir Venda">
+                  <Button fx:id="ButtonImprimirVenda" layoutX="128.0" layoutY="206.0" mnemonicParsing="false" onAction="#handlePrintVendaPorData1" prefHeight="25.0" prefWidth="108.0" style="-fx-background-radius: 12; -fx-background-color: #E9EEEE;" text="Visualizar Venda">
                      <effect>
                         <DropShadow>
                            <color>
