@@ -265,7 +265,7 @@
                         <Font name="Times New Roman" size="12.0" />
                      </font>
                   </Button>
-                  <DatePicker fx:id="DatePickerDATA" layoutX="488.0" layoutY="522.0" promptText="Insira a Data" />
+                  <DatePicker fx:id="DatePickerDATA" layoutX="65.0" layoutY="183.0" promptText="Insira a Data" />
                   <TextField fx:id="textfieldNuitCliente" layoutX="300.0" layoutY="521.0" prefHeight="27.0" prefWidth="171.0" promptText="Nuit Cliente" style="-fx-background-color: fff;">
                      <effect>
                         <DropShadow>

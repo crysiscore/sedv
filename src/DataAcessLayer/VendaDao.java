@@ -132,7 +132,7 @@ import java.util.HashMap;
 /*     */     
 /*  77 */     return this.rs;
 /*     */   }
-/*    */   
+        
 /*    */   public void DetalhesVenda(int codP, int codV, double preco, int quantid) throws SQLException {
 /* 76 */     this.cs = this.connect.prepareCall("{call DETALHESVENDA(?,?,?,?)}");
 /* 77 */     this.cs.setInt(1, codP);
@@ -159,6 +159,16 @@ import java.util.HashMap;
 
         return this.rs;
     }
+    
+           public ResultSet Detalhes_Vendas_Periodo(Date data_inicial, Date data_final) throws SQLException {
+               this.cs = this.connect.prepareCall("{call  Detalhes_Vendas_Periodo(?,?)}");
+/*  75 */      this.cs.setDate(1, data_inicial);
+               this.cs.setDate(2, data_final);
+               this.rs = this.cs.executeQuery();
+
+        return this.rs;
+/*     */   }
+/*    */   
 }
 
 
