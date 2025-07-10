@@ -362,7 +362,7 @@ public class InventarioParcialController implements Initializable {
 
     // Configure uma Timeline para fechar automaticamente a notificação após 3 segundos
     Timeline timeline = new Timeline(
-        new KeyFrame(Duration.seconds(2), event -> {
+        new KeyFrame(Duration.seconds(1), event -> {
             notificationStage.close();
         })
     );

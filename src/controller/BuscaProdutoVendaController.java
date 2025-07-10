@@ -235,7 +235,7 @@ public class BuscaProdutoVendaController implements Initializable {
             @Override
             public void handle(MouseEvent event) {
 
-                Produto pr = tableviewProdutos.getItems().get(tableviewProdutos.getSelectionModel().getSelectedIndex());
+              /*  Produto pr = tableviewProdutos.getItems().get(tableviewProdutos.getSelectionModel().getSelectedIndex());
                 //prod.setCod_produto(pr.getCod_produto());
                 //prod.setCod_produto(pr.getCod_produto());
                 //prod.Cod_produto= pr.getCod_produto();
@@ -248,7 +248,7 @@ public class BuscaProdutoVendaController implements Initializable {
                 labelNomeProduto.setVisible(false);
                 labelStock.setVisible(false);
                  Image image= new Image("file:"+pr.getFoto());
-                 imageviewFotoProduto.setImage(image);
+                 imageviewFotoProduto.setImage(image);   */
                 
             }
         });
@@ -279,13 +279,13 @@ public void handleMenuItemAdicionarProdutoNaTabela() throws IOException {
     try {
         if (textfieldQuantidadeProduto.getText().isEmpty()) {
             handleMenuAlert3();
-        } else if (pr.getStock().getUnidades_stock() >= Double.parseDouble(textfieldQuantidadeProduto.getText())) {
+        } else if (pr.getStock().getUnidades_stock() >= 1) {
 
             // Obtém os detalhes do produto selecionado
             int produtoCodigo = pr.getCod_produto();
-            double produtoPreco = Double.parseDouble(labelPrecoProduto.getText());
-            double produtoQuantidade = Double.parseDouble(textfieldQuantidadeProduto.getText());
-            String produtoNome = labelNomeProduto.getText();
+            double produtoPreco = pr.getPreco_unitario();
+            double produtoQuantidade = 1;
+            String produtoNome = pr.getNome();
             double produtoSubtotal = produtoPreco * produtoQuantidade;
             double produtoStock = pr.stock.getUnidades_stock(); // Estoque do produto
 

@@ -81,7 +81,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
+import java.sql.ResultSet;
 /**
  * FXML Controller class
  *
@@ -364,9 +364,13 @@ void removerProdutodaTabela() {
                 ObservableList <Inventario> stock = tableViewListaProdutos.getItems();     
               try {
                            dao.ActualizarStock(tableViewListaProdutos.getItems());
-
-               handleMenuItemRegistarInventario();
-            } catch (Exception e) {
+                
+                           handleMenuItemRegistarInventario(tableViewListaProdutos.getItems());
+            } catch (SQLException e  ){
+                
+               DialogUtil.showErrorMessage("Erro Ao gravar na base de dados: " + e.getMessage(), "ERRO");
+                
+            }  catch (Exception e) {
                 DialogUtil.showErrorMessage("Erro : " + e.getMessage(), "ERRO");
             }
     
@@ -382,12 +386,12 @@ void removerProdutodaTabela() {
     
      
     @FXML
-    public void handleMenuItemRegistarInventario() throws IOException, SQLException {
+    public void handleMenuItemRegistarInventario(ObservableList <Inventario> produtos ) throws IOException, SQLException {
         InventarioDAO dao = new InventarioDAO();
         String Tipo_De_Iventario = inventarioModel.getTipoDeInventario();
-       labelParcial.setText("Parcial");
+        labelParcial.setText("Parcial");
         DatePickerDATA.setValue(LocalDate.now());
-   
+        ResultSet rs_inventario;
                         
         
         Date Data_Venda = java.sql.Date.valueOf(DatePickerDATA.getValue());
@@ -403,20 +407,40 @@ void removerProdutodaTabela() {
        
             if (response ) {
                 
-                
-                dao.RegistarInventarioItem(tableViewListaProdutos.getItems());
-                //tableViewListaProdutos.getItems().clear();
+                try {
                 InventarioPrincipal inventarioPrincipal = new InventarioPrincipal();
                 inventarioPrincipal.setData(Data_Venda);
                 inventarioPrincipal.setUser(usuario);
                 inventarioPrincipal.setTipo_De_Inventario(Tipo_De_Iventario);
+                // Buscar o ID do inventario gravado
+                rs_inventario = dao.RegistarInventario(inventarioPrincipal);    
+                rs_inventario.next();
+                Integer id_inventario  = rs_inventario.getInt(1);
+                
+                for (int i = 0; i < produtos.size(); i++) {
+                    produtos.get(i).setCod_Inventario(id_inventario);
+                }
+                 dao.RegistarInventarioItem( produtos);
+                 
                 
                 
-                dao.RegistarInventario(inventarioPrincipal);
+                //tableViewListaProdutos.getItems().clear();
+
+                
+                
+    
                 DialogUtil.showInfoMessage( "O Inventário foi registado com Sucesso!","Informacao");
                 tableViewListaProdutos.setItems(FXCollections.observableArrayList());
                 
-  
+                } catch (SQLException ex){
+                
+                 DialogUtil.showInfoMessage( "Erro ao gravar inventario na BD:"+ ex.getMessage() ,"Informacao");
+                
+                } catch (Exception e){
+                
+                
+                 DialogUtil.showInfoMessage( "Erro :"+ e.getMessage() ,"Informacao");
+                }
                 
             } else   {
             

@@ -81,7 +81,7 @@
                         <Font name="Times New Roman" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonCancelar" cancelButton="true" layoutX="774.0" layoutY="454.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="28.0" prefWidth="119.0" style="-fx-background-color: E86E58;" text="Concluir">
+                  <Button fx:id="buttonCancelar" cancelButton="true" layoutX="774.0" layoutY="454.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="28.0" prefWidth="119.0" style="-fx-background-color: E86E58;" text="Cancelar">
                      <effect>
                         <InnerShadow>
                            <color>
