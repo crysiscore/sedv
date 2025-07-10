@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="SEDV">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/SEDV.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

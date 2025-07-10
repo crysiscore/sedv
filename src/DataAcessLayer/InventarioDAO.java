@@ -38,22 +38,21 @@ public class InventarioDAO {
 /* 31 */     } catch (ClassNotFoundException e) {}
 /*    */   }
 /*    */    
- public void RegistarInventarioItem( ObservableList <Inventario> inventario ) throws SQLException {
+ public void RegistarInventarioItem(  ObservableList <Inventario> produtos ) throws SQLException {
 /* 103 */    
-              this.cs = this.connect.prepareCall("{call Registar_Inventario_Item(?,?,?,?)}");
-              try{
-/* 104 */     for(int i = 0; i < inventario.size(); i++) {
-              this.cs.setInt(1, inventario.get(i).getCod_Produto());
-/* 106 */     this.cs.setDouble(2, inventario.get(i).getStock());
-/* 107 */     this.cs.setDouble(3, inventario.get(i).getQuantidade_Contada());
-              this.cs.setDouble(4, inventario.get(i).getDiferenca_Existente_Contada());
+              this.cs = this.connect.prepareCall("{call Registar_Inventario_Item(?,?,?,?,?)}");
+            
+/* 104 */     for(int i = 0; i < produtos.size(); i++) {
+              this.cs.setInt(1, produtos.get(i).getCod_Inventario() );
+              this.cs.setInt(2, produtos.get(i).getCod_Produto());
+/* 106 */     this.cs.setDouble(3, produtos.get(i).getStock());
+/* 107 */     this.cs.setDouble(4, produtos.get(i).getQuantidade_Contada());
+              this.cs.setDouble(5, produtos.get(i).getDiferenca_Existente_Contada());
 /* 108 */ 
 /* 110 */     this.cs.executeQuery();
 /* 111 */     
 /*     */   }
-                  } catch(SQLException ex){ 
-                     Logger.getLogger(StockDAO.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                  
   }
 /*    */ 
 /*    */     public ResultSet RegistarInventario(InventarioPrincipal IP) throws SQLException {

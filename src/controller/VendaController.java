@@ -510,13 +510,17 @@ public void handleMenuItemRegistarVenda() throws IOException, SQLException {
 
         // Obtém a data selecionada no DatePicker
         LocalDate dataSelecionada = DatePickerDATA.getValue();
-
+        ObservableList <DetalhesVenda> produtos_da_venda = tableViewListaProdutos.getItems() ;
         // Verifica se a data não foi selecionada e se os campos de cliente estão vazios
         if (dataSelecionada == null && textfieldNuitCliente.getText().isEmpty() && textfieldNomeCliente.getText().isEmpty()) {
             // Se a data não foi selecionada, usa a data atual
             dataSelecionada = LocalDate.now();
             DatePickerDATA.setValue(dataSelecionada); // Opcional: Atualiza o DatePicker para mostrar a data atual
-        }
+        }  else if (dataSelecionada != null && dataSelecionada.isAfter(LocalDate.now())) {
+          // Se a data selecionada for no futuro, exibe mensagem de erro e interrompe o processo
+           DialogUtil.showInfoMessage("A data selecionada não pode ser no futuro.", "Erro de Validação");
+         return; // Interrompe a execução do método
+}
 
         // Converte a data selecionada para o formato java.sql.Date
         Date Data_Venda = java.sql.Date.valueOf(dataSelecionada);
@@ -527,7 +531,7 @@ public void handleMenuItemRegistarVenda() throws IOException, SQLException {
         String Forma_Pagamento = comboBoxFormaPagamento.getSelectionModel().getSelectedItem();
 
         // Verifica se a tabela de produtos está vazia
-        if (tableViewListaProdutos.getItems().isEmpty()) {
+        if (produtos_da_venda.isEmpty()) {
             DialogUtil.showErrorMessage("SELECIONE UM PRODUTO!", "AVISO");
         } 
         // Verifica se a forma de pagamento foi selecionada
@@ -536,8 +540,10 @@ public void handleMenuItemRegistarVenda() throws IOException, SQLException {
         } 
         else {
             try {
-                // Registra os detalhes da venda
-                dao.RegistarDetalhesVenda(tableViewListaProdutos.getItems());
+                
+                
+                
+ 
 
                 // Cria um objeto Venda e define seus atributos
                 Venda venda = new Venda();
@@ -548,8 +554,20 @@ public void handleMenuItemRegistarVenda() throws IOException, SQLException {
 
                 // Verifica se os campos de nome do cliente e nuit estão vazios para determinar o registro correto
                 if (textfieldNomeCliente.getText().isEmpty() && textfieldNuitCliente.getText().isEmpty()) {
-                    // Registra venda sem cliente e nuit
-                    ResultSet rs = dao.RegistarVendasemnuitesemnome(venda);
+                    
+                    // Registra venda sem cliente e nuit e retorna o ID da venda
+                    ResultSet rs_venda = dao.RegistarVendasemnuitesemnome(venda);
+                    rs_venda.next();
+                    
+                    Integer cod_venda =rs_venda.getInt("Cod_venda");
+                     for (int i = 0; i < produtos_da_venda.size(); i++) {
+                         produtos_da_venda.get(i).setVenda_Cod_venda(cod_venda);
+                        
+                    }
+                                    // Registra os detalhes da venda
+                    dao.RegistarDetalhesVenda(produtos_da_venda);
+                    
+                    
                 } else {
                     // Adiciona dados do cliente na venda
                     String Cliente = textfieldNomeCliente.getText();
@@ -558,7 +576,16 @@ public void handleMenuItemRegistarVenda() throws IOException, SQLException {
                     venda.setNuit_cliente(Nuit);
 
                     // Registra venda com cliente e nuit
-                    dao.RegistarVenda(venda);
+                    ResultSet rs_venda = dao.RegistarVenda(venda);
+                    rs_venda.next();
+                    
+                    Integer cod_venda =rs_venda.getInt("Cod_venda");
+                     for (int i = 0; i < produtos_da_venda.size(); i++) {
+                         produtos_da_venda.get(i).setVenda_Cod_venda(cod_venda);
+                        
+                    }
+                                    // Registra os detalhes da venda
+                    dao.RegistarDetalhesVenda(produtos_da_venda);
                 }
 
                 // Limpa a tabela de produtos e campos após o registro

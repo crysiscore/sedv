@@ -131,7 +131,7 @@
                   <Label fx:id="labelCodigoUser" layoutX="94.0" layoutY="25.0" text="Label" />
                   <Label fx:id="labelNomeUser" layoutX="772.0" layoutY="48.0" text="Label" />
                   <Label fx:id="labelParcial" layoutX="500.0" layoutY="48.0" text="Label" />
-                  <Button fx:id="buttonConcluir" layoutX="749.0" layoutY="484.0" mnemonicParsing="false" onAction="#SairButtonOnAction" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: E86E58;" text="Concluir">
+                  <Button fx:id="buttonConcluir" layoutX="749.0" layoutY="484.0" mnemonicParsing="false" onAction="#SairButtonOnAction" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: E86E58;" text="Cancelar">
                      <effect>
                         <DropShadow>
                            <color>

@@ -45,20 +45,19 @@ import java.util.HashMap;
 /*    */    
               public void RegistarDetalhesVenda( ObservableList <DetalhesVenda> detalhesVenda ) throws SQLException {
 /* 103 */    
-              this.cs = this.connect.prepareCall("{call RegistarDetalhesVenda(?,?,?,?)}");
-              try{
+              this.cs = this.connect.prepareCall("{call RegistarDetalhesVenda(?,?,?,?,?)}");
+     
 /* 104 */     for(int i = 0; i < detalhesVenda.size(); i++) {
-              this.cs.setInt(1, detalhesVenda.get(i).getProduto_Cod_produto());
-/* 106 */     this.cs.setDouble(2, detalhesVenda.get(i).getPreco());
-/* 107 */     this.cs.setDouble(3, detalhesVenda.get(i).getQuantidade());
-              this.cs.setDouble(4, detalhesVenda.get(i).getSubtotal());
+             this.cs.setInt(1, detalhesVenda.get(i).getVenda_Cod_venda());
+              this.cs.setInt(2, detalhesVenda.get(i).getProduto_Cod_produto());
+/* 106 */     this.cs.setDouble(3, detalhesVenda.get(i).getPreco());
+/* 107 */     this.cs.setDouble(4, detalhesVenda.get(i).getQuantidade());
+              this.cs.setDouble(5, detalhesVenda.get(i).getSubtotal());
 /* 108 */ 
 /* 110 */     this.cs.executeQuery();
 /* 111 */     
 /*     */   }
-                  } catch(SQLException ex){ 
-                     Logger.getLogger(StockDAO.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+              
   }
 /*    */ 
 /*    */     public ResultSet RegistarVenda(Venda venda) throws SQLException {
